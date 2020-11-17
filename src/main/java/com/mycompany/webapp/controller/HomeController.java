@@ -12,7 +12,7 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String content() { //http://localhost:8080/teamproject
-		logger.info("ì‹¤í–‰");
+		logger.info("½ÇÇà");
 		return "home";
 	}
 	
