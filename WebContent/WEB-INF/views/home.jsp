@@ -60,7 +60,7 @@
                                         <nav>
                                             <ul id="navigation">
                                                 <li><a href="index.html">Home</a></li>
-                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="<%=%>">About</a></li>
                                                 <li><a href="services.html">Services</a></li>
                                                 <li><a href="projects.html">Projects</a></li>
                                                 <li><a href="#">Blog</a>
