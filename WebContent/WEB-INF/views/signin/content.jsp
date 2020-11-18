@@ -74,7 +74,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>Elements</h2>
+								<h2>Sign in</h2>
 							</div>
 						</div>
 					</div>
@@ -724,7 +724,7 @@
 								</div>
 								<!-- End Align Area -->
 							</main>
-   <footer>
+			   <footer>
         <div class="footer-wrapper section-bg2"  data-background="assets/img/gallery/footer-bg.png">
         <!-- Footer Start-->
         <jsp:include page="/WEB-INF/views/include/footer.jsp" />
@@ -779,7 +779,7 @@
 <!-- Jquery Plugins, main Jquery -->	
 <script src="<%=application.getContextPath()%>/resources/assets/js/plugins.js"></script>
 <script src="<%=application.getContextPath()%>/resources/assets/js/main.js"></script>
-    
+ 
 								
 							</body>
 							</html>

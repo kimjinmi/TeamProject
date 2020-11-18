@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/aboutus")
-public class aboutController {
-	private static final Logger logger = LoggerFactory.getLogger(aboutController.class);
+public class AboutController {
+	private static final Logger logger = LoggerFactory.getLogger(AboutController.class);
 
 	@RequestMapping("/about")
 	public String about() { //http://localhost:8080/teamproject
