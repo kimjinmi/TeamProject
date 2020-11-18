@@ -125,7 +125,7 @@
 									alt="">
 							</div>
 							<div class="blog_write">
-								<h3 style="color: #2d2d2d;">게시글 작성</h2>
+								<h3 style="color: #2d2d2d;">게시글 작성</h3>
 								<hr/ style="margin-top:12px;">
 								<div class="input-group mb-3">
 								<input type="text" class="form-control"
