@@ -27,5 +27,11 @@ public class HomeController {
 		logger.info("실행");
 		return "blog_details";
 	}
+	
+	@RequestMapping("/blog_write")
+	public String blog_write() { //http://localhost:8080/teamproject
+		logger.info("실행");
+		return "blog_write";
+	}
 
 }
