@@ -14,6 +14,6 @@ public class AboutController {
 	public String about() { //http://localhost:8080/teamproject
 		logger.info("실행");
 		return "aboutus/about";
-		//선명이 push
+		//선명이 push!!
 	}
 }
