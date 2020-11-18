@@ -15,8 +15,15 @@
 					<li><a href="<%=application.getContextPath()%>/ranking/ranking">RANKING</a></li>
 					<li><a href="<%=application.getContextPath()%>/contents/contents">CONTENTS</a></li>
 					<li><a href="<%=application.getContextPath()%>/elements">참고 : ELEMENTS</a></li>
+					<li><a href="<%=application.getContextPath()%>/blog_details">참고 : BLOG_DETAILS</a></li>
 	            </ul>
-			<li><a href="<%=application.getContextPath()%>/blog/blog">BLOG</a></li>
+	        </li>
+            <li><a href="#">BLOG</a>
+            	<ul class="submenu">
+					<li><a href="<%=application.getContextPath()%>/blog/blog">BLOG</a></li>
+					<li><a href="<%=application.getContextPath()%>/setting/content">SETTING</a></li>
+				</ul>
+			</li>
 			<li><a href="<%=application.getContextPath()%>/contact/contact">CONTANCT</a></li>
 			<!-- Header btn -->
 			<li>

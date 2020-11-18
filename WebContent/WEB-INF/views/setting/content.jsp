@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero__caption hero__caption2">
-                                <h2>Projects</h2>
+                                <h2>Setting</h2>
                             </div>
                         </div>
                     </div>
