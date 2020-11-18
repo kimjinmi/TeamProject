@@ -15,5 +15,6 @@ public class AboutController {
 		logger.info("실행");
 		return "aboutus/about";
 		//선명이 push!!!
+		// 선이 push!!!
 	}
 }
