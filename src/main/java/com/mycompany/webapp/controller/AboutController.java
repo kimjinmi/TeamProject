@@ -16,5 +16,6 @@ public class AboutController {
 		return "aboutus/about";
 		//선명이 push!!!
 		// 선이 push!!!
+		// 영아 push!!!
 	}
 }
