@@ -17,5 +17,6 @@ public class AboutController {
 		//선명이 push!!!
 		// 선이 push!!!
 		// 영아 push!!!
+		// 지훈 push!!!
 	}
 }
