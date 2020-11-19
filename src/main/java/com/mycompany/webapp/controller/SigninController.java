@@ -16,6 +16,17 @@ public class SigninController {
 		return "signin/content";
 	}
 	
+	@RequestMapping("/passwordfind")
+	public String passwordfind() {
+		logger.info("실행");
+		return "signin/passwordfind";
+	}
+	
+	@RequestMapping("/passwordreset")
+	public String passwordreset() {
+		logger.info("실행");
+		return "signin/passwordreset";
+	}
 	
 	
 }
