@@ -150,34 +150,15 @@
 									onblur="this.placeholder = '  작성자'" style="height:45px; font-size:16px;">
 								</div>
 								<hr/>
-							<!-- 	<div class="blog_write">
-									<input type="text" name="first_name" placeholder="제목"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '제목'" required
-										class="single-input" style="margin-bottom: 20px">
-								</div>
-								<h2 style="color: #2d2d2d;">작성자</h2>
-								<div class="mt-10">
-									<input type="text" name="first_name" placeholder="작성자"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '작성자'" required
-										class="single-input" style="margin-bottom: 20px">
-								</div> -->
+							
 								<h2 style="color: #2d2d2d; ">내용</h2>
 
 								<textarea name="textbox" id="textbox"
 									style="width: 100%; height: 100%;">
 								</textarea>
-								
-								
-							</div>
-							
-							
-							
+							</div>						
 						</div>
-						
-					
-						
+	
 						<div class="navigation-top"> <!-- 홍보링크 -->
 							<div class="d-sm-flex justify-content-between text-center">
 									<span class="align-middle"><i class="fa fa-link" aria-hidden="true"></i> </span>
@@ -197,149 +178,10 @@
 								
 							
 							<div class="navigation-area" style="margin-top:5px">
-									<!-- <div class="row">
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/preview.png" alt="">
-											</a>
-										</div>
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-left"></span>
-											</a>
-										</div>
-
-									</div>
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-right"></span>
-											</a>
-										</div>
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/next.png" alt="">
-											</a>
-										</div>
-									</div>
-								</div> --> 
+									
 							</div> 
 						</div>
-						<!-- <div class="blog-author"></div> -->
-						<!-- <div class="comments-area">
- <h4>05 Comments</h4>
- <div class="comment-list">
-  <div class="single-comment justify-content-between d-flex">
-   <div class="user justify-content-between d-flex">
-    <div class="thumb">
-     <img src="assets/img/blog/comment_1.png" alt="">
-   </div>
-   <div class="desc">
-     <p class="comment">
-      Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-      Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-    </p>
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-       <h5>
-        <a href="#">Emilly Blunt</a>
-      </h5>
-      <p class="date">December 4, 2017 at 3:12 pm </p>
-    </div>
-    <div class="reply-btn">
-     <a href="#" class="btn-reply text-uppercase">reply</a>
-   </div>
- </div>
-</div>
-</div>
-</div>
-</div>
-<div class="comment-list">
-  <div class="single-comment justify-content-between d-flex">
-   <div class="user justify-content-between d-flex">
-    <div class="thumb">
-     <img src="assets/img/blog/comment_2.png" alt="">
-   </div>
-   <div class="desc">
-     <p class="comment">
-      Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-      Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-    </p>
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-       <h5>
-        <a href="#">Emilly Blunt</a>
-      </h5>
-      <p class="date">December 4, 2017 at 3:12 pm </p>
-    </div>
-    <div class="reply-btn">
-     <a href="#" class="btn-reply text-uppercase">reply</a>
-   </div>
- </div>
-</div>
-</div>
-</div>
-</div>
-<div class="comment-list">
-  <div class="single-comment justify-content-between d-flex">
-   <div class="user justify-content-between d-flex">
-    <div class="thumb">
-     <img src="assets/img/blog/comment_3.png" alt="">
-   </div>
-   <div class="desc">
-     <p class="comment">
-      Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-      Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-    </p>
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-       <h5>
-        <a href="#">Emilly Blunt</a>
-      </h5>
-      <p class="date">December 4, 2017 at 3:12 pm </p>
-    </div>
-    <div class="reply-btn">
-     <a href="#" class="btn-reply text-uppercase">reply</a>
-   </div>
- </div>
-</div>
-</div>
-</div>
-</div>
-</div> -->
-						<!-- <div class="comment-form">
- <h4>Leave a Reply</h4>
- <form class="form-contact comment_form" action="#" id="commentForm">
-  <div class="row">
-   <div class="col-12">
-    <div class="form-group">
-     <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-     placeholder="Write Comment"></textarea>
-   </div>
- </div>
- <div class="col-sm-6">
-  <div class="form-group">
-   <input class="form-control" name="name" id="name" type="text" placeholder="Name">
- </div>
-</div>
-<div class="col-sm-6">
-  <div class="form-group">
-   <input class="form-control" name="email" id="email" type="email" placeholder="Email">
- </div>
-</div>
-<div class="col-12">
-  <div class="form-group">
-   <input class="form-control" name="website" id="website" type="text" placeholder="Website">
- </div>
-</div>
-</div>
-<div class="form-group">
- <button type="submit" class="button button-contactForm btn_1 boxed-btn">Post Comment</button>
-</div>
-</form>
-</div> -->
+						
 					</div>
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
