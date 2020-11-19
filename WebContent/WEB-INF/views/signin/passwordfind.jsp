@@ -107,58 +107,55 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3 class="text-heading">로그인</h3>
+						<h3 class="text-heading">비밀번호 찾기</h3>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-7 col-md-8">
-						<h3 class="mb-30">아이디와 비밀번호를 입력해 주세요</h3>
-						
-							<div class="container">
+						<h3 class="mb-30">비밀번호를 찾고자 하는 계정의 이메일과 전화번호를 입력해 주세요</h3>
+
+						<div class="container">
 							<form action="#">
 								<div class="row">
 									<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 									<div class="col-lg-7">
-											<div class="mt-6">
-												<input type="text" name="Email" placeholder="Email"
-													onfocus="this.placeholder = ''"
-													onblur="this.placeholder = 'Email'" required
-													class="single-input">
-											</div>
-											<div class="mt-6">
-											<input type="text" name="Password" placeholder="Password"
+										<div class="mt-6">
+											<input type="text" name="Email" placeholder="Email"
 												onfocus="this.placeholder = ''"
-												onblur="this.placeholder = 'Password'" required
+												onblur="this.placeholder = 'Email'" required
 												class="single-input">
-											</div>
-											<p></p>
+										</div>
+										
+										<div class="mt-6">
+											<input type="text" name="Tel" placeholder="Tel"
+												onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Tel'" required
+												class="single-input">
+										</div>
+										
+										<p></p>
 
 									</div>
-									
-									<div class="col-lg-5">
-											<a class="btn btn-lg" style="line-height: 3;">SIGN
-												IN</a>
+									<div class="col-lg-7">
+										<a class="btn" href="<%=application.getContextPath()%>/signin/passwordreset" style="width:100%; line-height:0;">NEXT</a>
 									</div>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="ex" href="#" style="color:black; font-size:7px;">이메일 찾기></a> 
-									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signin/passwordfind" style="color: black; font-size:7px;">비밀번호 찾기></a> 
-									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signup/content"
-														style="color:black; font-size:7px;">회원가입</a>
 								</div>
-								</form>
-								
-						
+							</form>
+
+
 						</div>
-						
+
 					</div>
-		
-	
-						
+
+
+
 					<div class="col-lg-5 col-md-4">
-						<img style="width:100%; height:100%;"src=<%=application.getContextPath()%>/resources/images/bono01.jpg>
+						<img style="width: 100%; height: 100%;"
+							src=<%=application.getContextPath()%>/resources/images/bono01.jpg>
 					</div>
 				</div>
 			</div>
-				
+
 		</section>
 
 
