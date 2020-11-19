@@ -146,7 +146,7 @@
 										  <button type="button" class="genric-btn default radius" data-toggle="dropdown">
 										    	카테고리
 										  </button>
-										  <div class="dropdown-menu">
+										  <div class="dropdown-menu"> 
 										  	<a class="dropdown-item" href="#">전체보기</a>
 										    <a class="dropdown-item" href="#">요리</a>
 										    <a class="dropdown-item" href="#">음악</a>

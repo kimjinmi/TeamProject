@@ -91,7 +91,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>Setting</h2>
+								<h2>BLOG</h2>
 							</div>
 						</div>
 					</div>
@@ -113,7 +113,7 @@
 								<h2 class="contact-title">김지훈</h2>
 								<p>이 블로그는 블로그입니다.</p>
 								<hr/>
-								<a class="genric-btn primary e-large" href="#" >글 쓰 기</a>
+								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
 							</div>
 								
 							</aside>
