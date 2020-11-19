@@ -13,6 +13,6 @@ public class SignupController {
 	@RequestMapping("/content")
 	public String content() { //http://localhost:8080/teamproject
 		logger.info("실행");
-		return "signup/signup";
+		return "signup/signupcheck";
 	}
 }
