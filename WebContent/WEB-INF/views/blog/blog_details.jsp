@@ -113,7 +113,7 @@
 								<h2 class="contact-title">김지훈</h2>
 								<p>이 블로그는 블로그입니다.</p>
 								<hr/>
-								<a class="genric-btn primary e-large" href="#" >글 쓰 기</a>
+								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
 							</div>
 								
 							</aside>
