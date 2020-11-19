@@ -92,80 +92,51 @@
 		       			<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="200" height="200" class="rounded-circle">
 		       			<h2 class="contact-title">Name</h2>
 		                
-		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="<%=application.getContextPath()%>/blog/blog_write"><u>글쓰기</u></a>&nbsp;&nbsp;<a href="#"><u>계정관리</u></a>
+		                <center><a href="#"><u>글쓰기</u></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><u>계정관리</u></a></center>
 		                <p></p>
-						  
+						  <h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 						  <ul class="list cat-list">
 						   <li>
 						    <a href="#" class="d-flex">
-						     <p>내 페이지 설정</p>
-						    </a>
-						   </li>
-						  <li>
-						    <a href="#" class="d-flex">
-						     <p>비밀번호 변경</p>
-						    </a>
-						  </li>
-						  <li>
-						    <a href="#" class="d-flex">
-						     <p>내 게시글 관리</p>
-						    </a>
-						  </li>
-						  <li>
-						    <a href="#" class="d-flex">
-						     <p>내 댓글 관리</p>
-						    </a>
-						  </li>		
-						  <li>
-						    <a href="#" class="d-flex">
-						     <p>회원탈퇴</p>
-						    </a>
-						  </li>						  					  
+						     <p>Resaurant food</p>
+						     <p>(37)</p>
+						   </a>
+						 </li>
+						 <li>
+						  <a href="#" class="d-flex">
+						   <p>Travel news</p>
+						   <p>(10)</p>
+						 </a>
+						</li>
+						<li>
+						  <a href="#" class="d-flex">
+						   <p>Modern technology</p>
+						   <p>(03)</p>
+						 </a>
+						</li>
+						<li>
+						  <a href="#" class="d-flex">
+						   <p>Product</p>
+						   <p>(11)</p>
+						 </a>
+						</li>
+						<li>
+						  <a href="#" class="d-flex">
+						   <p>Inspiration</p>
+						   <p>(21)</p>
+						 </a>
+						</li>
+						<li>
+						  <a href="#" class="d-flex">
+						   <p>Health Care</p>
+						   <p>(21)</p>
+						 </a>
+						</li>
 						</ul>
 						</div> 
 		            </div>
-					 <div class="col-lg-8" >
-		                <h3 style="color: #2d2d2d;">내 계정 관리</h3>
-						<hr/ style="margin-top:12px;">
-		                <form action="#">
-		                <div class="row">
-		                	<div class="col-2">닉네임</div>
-		                	<div class="col-7">
-			                <input type="text" name="first_name" placeholder=" Name"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required
-							class="single-input"></div>
-							<div class="col-3"><a class="genric-btn primary radius small" href="#">중복확인</a></div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">소개글</div>
-		                	<div class="col-10">
-		                	<textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
-							onblur="this.placeholder = 'Message'" required></textarea>
-							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">프로필 사진</div>
-		                	<div class="col-5">
-		                	<img src="<%=application.getContextPath()%>/resources/assets/img/elements/g4.jpg" alt="" width="200" height="200">
-							</div>
-							<div class="col-5">
-								<a class="genric-btn primary radius small" href="#">등록</a>
-								<a class="genric-btn primary radius small" href="#">삭제</a>
-								<br/><br/>
-								프로필 이미지는 ~~~~~
-							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-12">
-		                	<center><a class="genric-btn success radius" href="#">수정 완료</a></center>
-		                	</div>
-		                </div>
-		                </form>
-		                
-		                       
+					 <div class="col-lg-8 alert alert-primary" >
+		               	게시글내용         
 		             </div>
 		             </div>
 		            </div>
