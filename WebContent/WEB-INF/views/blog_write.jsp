@@ -127,10 +127,17 @@
 							<div class="blog_write">
 								<h3 style="color: #2d2d2d;">게시글 작성</h2>
 								<hr/ style="margin-top:12px;">
+								
 								<div class="input-group mb-3">
 								<input type="text" class="form-control"
 									placeholder='  제목' onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '  제목'" style="height:45px; font-size:16px;">
+								</div>
+								
+								<div class="input-group mb-3">
+								<input type="text" class="form-control"
+									placeholder='  작성자' onfocus="this.placeholder = ''"
+									onblur="this.placeholder = '  작성자'" style="height:45px; font-size:16px;">
 								</div>
 									
 								<div class="blog_write">
@@ -150,7 +157,6 @@
 
 								<textarea name="textbox" id="textbox"
 									style="width: 100%; height: 100%;">
-									잘된다
 								</textarea>
 								<div style="margin-top:12px; padding-left:40%; ">
 									<a href="#" class="genric-btn info-border radius" style="margin-right:20px;">확인</a>
