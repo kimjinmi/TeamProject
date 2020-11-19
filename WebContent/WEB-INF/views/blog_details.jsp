@@ -11,7 +11,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon"
 	href="resources/assets/img/favicon.ico">
-
+ 
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/bootstrap.min.css">
