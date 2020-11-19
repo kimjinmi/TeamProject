@@ -121,7 +121,7 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
 									<li><a href="content" class="d-flex">
-											<u><p>내 페이지 설정</p></u>
+											<p>내 페이지 설정</p></u>
 											
 									</a></li>
 									<li><a href="#" class="d-flex">
@@ -129,7 +129,7 @@
 											
 									</a></li>
 									<li><a href="mybloglist" class="d-flex">
-											<p>게시글 관리</p>
+											<u><p>게시글 관리</p></u>
 											
 									</a></li>
 									<li><a href="mycommentlist" class="d-flex">
@@ -149,56 +149,94 @@
 					</div>
 				
 				<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list" 0>
+				<div class="col-lg-8 mb-5 mb-lg-0">
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
 									alt="">
 							</div>
 							<div class="blog_details">
-								<h2 style="color: #2d2d2d;">내 페이지 설정</h2>
+								<h2 style="color: #2d2d2d;">게시글관리</h2>
 								<hr/ style="margin-top:12px;">
-								<form action="#">
-		                <div class="row">
-		                	<div class="col-2">닉네임</div>
-		                	<div class="col-7">
-			                <input type="text" name="first_name" placeholder=" Name"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required
-							class="single-input"></div>
-							<div class="col-3"><a class="genric-btn primary radius small" href="#">중복확인</a></div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">소개글</div>
-		                	<div class="col-10">
-		                	<textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
-							onblur="this.placeholder = 'Message'" required></textarea>
 							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">프로필 사진</div>
-		                	<div class="col-5">
-		                	<img src="<%=application.getContextPath()%>/resources/assets/img/elements/g4.jpg" alt="" width="200" height="200">
-							</div>
-							<div class="col-5">
-								<a class="genric-btn primary radius small" href="#">등록</a>
-								<a class="genric-btn primary radius small" href="#">삭제</a>
-								<br/><br/>
-								프로필 이미지는 ~~~~~
-							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-12">
-		                	<center><a class="genric-btn success radius" href="#">수정 완료</a></center>
-		                	</div>
-		                </div>
-		                </form>
-					
-					</div>
-					</div>
-				</div>
+								<div class="container">
+						 		
+			                	<div class="row">
+			                	<div class="col-md-6">
+					                	
+									</div>
+					                <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div>
+					                <div class="col-md-3"><a href="#" class="genric-btn danger radius small">게시글 삭제</a></div>
+			                	</div>
+			                </div>
+							
+			                <!-- 1 -->
+			                
+                                <div class="blog_details">
+                                	<div class="container" style="background-color: #fbf9ff; padding:30px;">
+	                                	<div class="row">
+		                                    <div class="col-sm-1">
+		                                    	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label>
+		                                    </div>
+		                                    <div class="col-sm-11">
+		                                    <a class="d-inline-block" href="blog_details.html">
+		                                        <h2 class="blog-head" style="color: #2d2d2d;">01 Google inks pact for new 35-storey office</h2>
+		                                    </a>
+		                                    <ul class="blog-info-link">
+		                                    	<li><a href="#"><i class="fa fa-file"></i> 01 분야이름</a></li>
+		                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+		                                        <li><a href="#"><i class="fa fa-calendar"></i> 2020.11.11</a></li>
+		                                    </ul>
+		                                    </div>
+	                                    </div>
+                                    </div>
+                                </div>
+                            
+                            <!-- 2 -->
+                               
+                                <div class="blog_details">
+                                	<div class="container" style="background-color: #fbf9ff; padding:30px;">
+	                                	<div class="row">
+		                                    <div class="col-sm-1">
+		                                    	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label>
+		                                    </div>
+		                                    <div class="col-sm-11">
+		                                    <a class="d-inline-block" href="blog_details.html">
+		                                        <h2 class="blog-head" style="color: #2d2d2d;">02 Google inks pact for new 35-storey office</h2>
+		                                    </a>
+		                                    <ul class="blog-info-link">
+		                                    	<li><a href="#"><i class="fa fa-file"></i> 01 분야이름</a></li>
+		                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+		                                        <li><a href="#"><i class="fa fa-calendar"></i> 2020.11.11</a></li>
+		                                    </ul>
+		                                    </div>
+	                                    </div>
+                                    </div>
+                                </div>
+                            <!-- 3 -->
+                            	
+                                <div class="blog_details">
+                                	<div class="container" style="background-color: #fbf9ff; padding:30px;">
+	                                	<div class="row">
+		                                    <div class="col-sm-1">
+		                                    	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label>
+		                                    </div>
+		                                    <div class="col-sm-11">
+		                                    <a class="d-inline-block" href="blog_details.html">
+		                                        <h2 class="blog-head" style="color: #2d2d2d;">03 Google inks pact for new 35-storey office</h2>
+		                                    </a>
+		                                    <ul class="blog-info-link">
+		                                    	<li><a href="#"><i class="fa fa-file"></i> 01 분야이름</a></li>
+		                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+		                                        <li><a href="#"><i class="fa fa-calendar"></i> 2020.11.11</a></li>
+		                                    </ul>
+		                                    </div>
+	                                    </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            </div>
 		</section>
 		<!-- Blog Area End -->
 	</main>

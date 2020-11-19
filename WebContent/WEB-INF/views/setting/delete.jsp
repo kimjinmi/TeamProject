@@ -121,7 +121,7 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
 									<li><a href="content" class="d-flex">
-											<u><p>내 페이지 설정</p></u>
+											<p>내 페이지 설정</p></u>
 											
 									</a></li>
 									<li><a href="#" class="d-flex">
@@ -137,7 +137,7 @@
 											
 									</a></li>
 									<li><a href="delete" class="d-flex">
-											<p>회원 탈퇴</p>
+											<u><p>회원 탈퇴</p></u>
 											
 									</a></li>
 									
@@ -149,56 +149,32 @@
 					</div>
 				
 				<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list" 0>
+					<div class="col-lg-8 posts-list">
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
 									alt="">
 							</div>
 							<div class="blog_details">
-								<h2 style="color: #2d2d2d;">내 페이지 설정</h2>
+								<h2 style="color: #2d2d2d;">회원탈퇴</h2>
 								<hr/ style="margin-top:12px;">
-								<form action="#">
-		                <div class="row">
-		                	<div class="col-2">닉네임</div>
-		                	<div class="col-7">
-			                <input type="text" name="first_name" placeholder=" Name"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required
-							class="single-input"></div>
-							<div class="col-3"><a class="genric-btn primary radius small" href="#">중복확인</a></div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">소개글</div>
-		                	<div class="col-10">
-		                	<textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
-							onblur="this.placeholder = 'Message'" required></textarea>
-							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">프로필 사진</div>
-		                	<div class="col-5">
-		                	<img src="<%=application.getContextPath()%>/resources/assets/img/elements/g4.jpg" alt="" width="200" height="200">
-							</div>
-							<div class="col-5">
-								<a class="genric-btn primary radius small" href="#">등록</a>
-								<a class="genric-btn primary radius small" href="#">삭제</a>
-								<br/><br/>
-								프로필 이미지는 ~~~~~
-							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-12">
-		                	<center><a class="genric-btn success radius" href="#">수정 완료</a></center>
+							<center>
+							<img class="img-fluid" src="<%=application.getContextPath()%>/resources/images/risk_high.jpg" alt="">
+							<blockquote class="generic-blockquote">
+								탈퇴 후에는 아이디와 데이터는 복구 할 수 없습니다.<br/>
+								작성하였던 모든 게시물과 댓글이 삭제됩니다.
+							</blockquote>
+							<p>
+							<input type="checkbox" id="confirm-checkbox">
+							<label for="confirm-checkbox"></label>
+							안내 사항을 모두 확인하였으며, 이에 동의합니다.<br/>
+							</p>
+							<a class="genric-btn danger-border radius" href="#">회원 탈퇴</a></center>
 		                	</div>
 		                </div>
-		                </form>
+		               
 					
-					</div>
-					</div>
-				</div>
+						</div>
 		</section>
 		<!-- Blog Area End -->
 	</main>

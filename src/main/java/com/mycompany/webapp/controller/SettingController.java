@@ -15,4 +15,22 @@ public class SettingController {
 		logger.info("실행");
 		return "setting/content";
 	}
+	
+	@RequestMapping("/mybloglist")
+	public String mybloglist() { //http://localhost:8080/teamproject
+		logger.info("실행");
+		return "setting/mybloglist";
+	}
+	
+	@RequestMapping("/mycommentlist")
+	public String mycommentlist() { //http://localhost:8080/teamproject
+		logger.info("실행");
+		return "setting/mycommentlist";
+	}
+	
+	@RequestMapping("/delete")
+	public String delete() { //http://localhost:8080/teamproject
+		logger.info("실행");
+		return "setting/delete";
+	}
 }
