@@ -21,4 +21,10 @@ public class BlogController {
 		logger.info("실행");
 		return "blog/blog_write";
 	}
+	
+	@RequestMapping("/blog_details")
+	public String blog_details() { //http://localhost:8080/teamproject
+		logger.info("실행");
+		return "blog/blog_details";
+	}
 }
