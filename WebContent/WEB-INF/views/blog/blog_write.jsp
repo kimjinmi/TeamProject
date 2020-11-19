@@ -127,8 +127,18 @@
 							<div class="blog_write">
 								<h3 style="color: #2d2d2d;">게시글 작성</h2>
 								<hr/ style="margin-top:12px;">
-								
-								<div class="input-group mb-3">
+									<div class="select__box" id="default-select"" style="display: inline-block">
+										
+										<select>
+											<option value=" 1">카테고리1</option>
+											<option value="1">카테고리2</option>
+											<option value="1">카테고리3</option>
+											<option value="1">카테고리4</option>
+											<option value="1">카테고리5</option>
+										</select>
+									</div>
+
+									<div class="input-group mb-3">
 								<input type="text" class="form-control"
 									placeholder='  제목' onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '  제목'" style="height:45px; font-size:16px;">
@@ -139,184 +149,39 @@
 									placeholder='  작성자' onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '  작성자'" style="height:45px; font-size:16px;">
 								</div>
-									
-								<div class="blog_write">
-									<input type="text" name="first_name" placeholder="제목"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '제목'" required
-										class="single-input" style="margin-bottom: 20px">
-								</div>
-								<!-- <h2 style="color: #2d2d2d;">작성자</h2> -->
-								<div class="mt-10">
-									<input type="text" name="first_name" placeholder="작성자"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '작성자'" required
-										class="single-input" style="margin-bottom: 20px">
-								</div>
+								<hr/>
+							
 								<h2 style="color: #2d2d2d; ">내용</h2>
 
 								<textarea name="textbox" id="textbox"
 									style="width: 100%; height: 100%;">
 								</textarea>
-								<div style="margin-top:12px; padding-left:40%; ">
+							</div>						
+						</div>
+	
+						<div class="navigation-top"> <!-- 홍보링크 -->
+							<div class="d-sm-flex justify-content-between text-center">
+									<span class="align-middle"><i class="fa fa-link" aria-hidden="true"></i> </span>
+									<div class="input-group mb-3">
+											<input type="text" class="form-control" style="font-size:12px; margin:0px 8px;" 
+												placeholder='홍보할 링크를 입력하세요' onfocus="this.placeholder = ''"
+												onblur="this.placeholder = '홍보할 링크를 입력하세요'">
+									</div>
+									<span class="align-middle"><a class="fa fa-plus" aria-hidden="true" href="https://www.naver.com" style="color:black"></a></span>
+							</div>
+							
+							
+							<div style="margin-top:12px; padding-left:40%; margin: 20px 0px; ">
 									<a href="#" class="genric-btn info-border radius" style="margin-right:20px;">확인</a>
 									<a href="#" class="genric-btn danger-border radius">취소</a>
 								</div>
 								
-							</div>
+							
+							<div class="navigation-area" style="margin-top:5px">
+									
+							</div> 
 						</div>
-						<div class="navigation-top">
-							<div class="d-sm-flex justify-content-between text-center">
-
-								<div class="col-sm-4 text-center my-2 my-sm-0">
-									<!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
-								</div>
-
-							</div>
-							<div class="navigation-area">
-								<div class="row">
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/preview.png" alt="">
-											</a>
-										</div>
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-left"></span>
-											</a>
-										</div>
-
-									</div>
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-right"></span>
-											</a>
-										</div>
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/next.png" alt="">
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="blog-author"></div>
-						<!-- <div class="comments-area">
- <h4>05 Comments</h4>
- <div class="comment-list">
-  <div class="single-comment justify-content-between d-flex">
-   <div class="user justify-content-between d-flex">
-    <div class="thumb">
-     <img src="assets/img/blog/comment_1.png" alt="">
-   </div>
-   <div class="desc">
-     <p class="comment">
-      Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-      Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-    </p>
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-       <h5>
-        <a href="#">Emilly Blunt</a>
-      </h5>
-      <p class="date">December 4, 2017 at 3:12 pm </p>
-    </div>
-    <div class="reply-btn">
-     <a href="#" class="btn-reply text-uppercase">reply</a>
-   </div>
- </div>
-</div>
-</div>
-</div>
-</div>
-<div class="comment-list">
-  <div class="single-comment justify-content-between d-flex">
-   <div class="user justify-content-between d-flex">
-    <div class="thumb">
-     <img src="assets/img/blog/comment_2.png" alt="">
-   </div>
-   <div class="desc">
-     <p class="comment">
-      Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-      Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-    </p>
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-       <h5>
-        <a href="#">Emilly Blunt</a>
-      </h5>
-      <p class="date">December 4, 2017 at 3:12 pm </p>
-    </div>
-    <div class="reply-btn">
-     <a href="#" class="btn-reply text-uppercase">reply</a>
-   </div>
- </div>
-</div>
-</div>
-</div>
-</div>
-<div class="comment-list">
-  <div class="single-comment justify-content-between d-flex">
-   <div class="user justify-content-between d-flex">
-    <div class="thumb">
-     <img src="assets/img/blog/comment_3.png" alt="">
-   </div>
-   <div class="desc">
-     <p class="comment">
-      Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-      Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-    </p>
-    <div class="d-flex justify-content-between">
-      <div class="d-flex align-items-center">
-       <h5>
-        <a href="#">Emilly Blunt</a>
-      </h5>
-      <p class="date">December 4, 2017 at 3:12 pm </p>
-    </div>
-    <div class="reply-btn">
-     <a href="#" class="btn-reply text-uppercase">reply</a>
-   </div>
- </div>
-</div>
-</div>
-</div>
-</div>
-</div> -->
-						<!-- <div class="comment-form">
- <h4>Leave a Reply</h4>
- <form class="form-contact comment_form" action="#" id="commentForm">
-  <div class="row">
-   <div class="col-12">
-    <div class="form-group">
-     <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-     placeholder="Write Comment"></textarea>
-   </div>
- </div>
- <div class="col-sm-6">
-  <div class="form-group">
-   <input class="form-control" name="name" id="name" type="text" placeholder="Name">
- </div>
-</div>
-<div class="col-sm-6">
-  <div class="form-group">
-   <input class="form-control" name="email" id="email" type="email" placeholder="Email">
- </div>
-</div>
-<div class="col-12">
-  <div class="form-group">
-   <input class="form-control" name="website" id="website" type="text" placeholder="Website">
- </div>
-</div>
-</div>
-<div class="form-group">
- <button type="submit" class="button button-contactForm btn_1 boxed-btn">Post Comment</button>
-</div>
-</form>
-</div> -->
+						
 					</div>
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
