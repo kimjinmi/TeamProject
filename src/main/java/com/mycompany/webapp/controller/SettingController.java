@@ -1,5 +1,7 @@
 package com.mycompany.webapp.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -33,4 +35,18 @@ public class SettingController {
 		logger.info("실행");
 		return "setting/delete";
 	}
+	
+	@RequestMapping("/ex_login")
+	public String ex_login(HttpSession session) {
+		String memail ="jinmikim88@gmail.com";
+		session.setAttribute("memail", memail);		
+		return "setting/content";
+	}
+	
+	@RequestMapping("/ex_logout")
+	public String ex_logout(HttpSession session) {
+		session.invalidate();		
+		return "setting/content";
+	}
+
 }

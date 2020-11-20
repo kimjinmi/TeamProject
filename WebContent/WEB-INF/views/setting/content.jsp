@@ -110,8 +110,10 @@
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">김지훈</h2>
+								<h2 class="contact-title">${memail}</h2>
 								<p>내 블로그</p>
+								<a href="ex_login" class="genric-btn primary">세션연결</a>
+								<a href="ex_logout" class="genric-btn primary">세션연결해제</a>
 							</div>
 								
 							</aside>
