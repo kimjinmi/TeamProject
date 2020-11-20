@@ -9,7 +9,7 @@ public class ReplyDto {
 	private int bno;
 	
 	public int getRno() {
-		return rno;
+		return rno; 
 	}
 	public void setRno(int rno) {
 		this.rno = rno;

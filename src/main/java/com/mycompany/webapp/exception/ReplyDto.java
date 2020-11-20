@@ -5,7 +5,7 @@ public class ReplyDto {
 	private	int rno;
 	private String rcontent;
 	private String firstreply;
-	private String memail;
+	private String memail; 
 	private int bno;
 	
 	public int getRno() {
