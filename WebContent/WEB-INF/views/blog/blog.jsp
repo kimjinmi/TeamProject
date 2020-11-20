@@ -110,8 +110,8 @@
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">김지훈</h2>
-								<p>이 블로그는 블로그입니다.</p>
+								<h2 class="contact-title">mid</h2>
+								<p>mintro</p>
 								<hr/>
 								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
 							</div>
