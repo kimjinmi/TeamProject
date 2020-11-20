@@ -204,6 +204,8 @@
 										type="submit">Search</button>
 								</form>
 							</aside>
+							
+							
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
@@ -233,6 +235,8 @@
 									</a></li>
 								</ul>
 							</aside>
+							
+							
 							<aside class="single_sidebar_widget popular_post_widget">
 								<h3 class="widget_title" style="color: #2d2d2d;">Recent
 									Post</h3>
