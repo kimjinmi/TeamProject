@@ -5,7 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.webapp.dao.MemberDao;
 
 @Controller
 @RequestMapping("/setting")
@@ -36,12 +39,13 @@ public class SettingController {
 		return "setting/delete";
 	}
 	
-	@RequestMapping("/ex_login")
+	/*@RequestMapping("/ex_login")
 	public String ex_login(HttpSession session) {
 		String memail ="jinmikim88@gmail.com";
-		session.setAttribute("memail", memail);		
+		session.setAttribute("sessionMid", value);
+				
 		return "setting/content";
-	}
+	}*/
 	
 	@RequestMapping("/ex_logout")
 	public String ex_logout(HttpSession session) {
