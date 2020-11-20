@@ -112,8 +112,8 @@
 					이야기들을 만나보세요</div>
 				<div class="col-md-12">
 					<ul class="nev">
-						<li class="nev"><a class="link_tab #life"
-							href="/category/life"><span class="inner_link">라이프</span></a></li>
+						<li class="nev">
+							<a class="link_tab #life" href="/category/life"><span class="inner_link">라이프</span></a></li>
 						<li class="nev"><a class="link_tab #travel"
 							href="/category/travel"><span class="inner_link">여행.맛집</span></a></li>
 						<li class="nev"><a class="link_tab #culture"
