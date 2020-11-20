@@ -1,9 +1,9 @@
 package com.mycompany.webapp.dto;
 
 public class LinkDto {
-	private int lno;
-	private String lcontent;
-	private int bno;
+	private int lno; // Link 번호
+	private String lcontent; // Link 내용
+	private int bno; // board 게시글 번호
 	
 	public int getLno() {
 		return lno;

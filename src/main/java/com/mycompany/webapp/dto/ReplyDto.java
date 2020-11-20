@@ -1,11 +1,11 @@
 package com.mycompany.webapp.dto;
 
 public class ReplyDto {
-	private	int rno;
-	private String rcontent;
-	private int firstreply;
-	private String memail;
-	private int bno;
+	private	int rno; // 댓글 번호
+	private String rcontent; // 댓글 내용
+	private int firstreply; // 상위 댓글 번호
+	private String memail; // member email -> 아이디
+	private int bno; // 게시글 번호 
 	
 	public int getRno() {
 		return rno;

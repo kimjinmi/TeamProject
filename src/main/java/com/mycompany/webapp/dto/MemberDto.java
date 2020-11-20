@@ -1,14 +1,14 @@
 package com.mycompany.webapp.dto;
 
 public class MemberDto {
-	private	String memail;
-	private String mpassword;
-	private String mnickname;
-	private String mphonenum;
-	private String mintro;
-	private String mmyimage;	
-	private String mrole;
-	private boolean menabled;
+	private	String memail; // 아이디
+	private String mpassword; // 비밀번호
+	private String mnickname; // 닉네임
+	private String mphonenum; // 휴대폰 번호
+	private String mintro; // 한 줄 소개
+	private String mmyimage;	// 프로필사진
+	private String mrole; // 권한
+	private boolean menabled; // 계정 0(비활성화), 1(활성화)
 	
 	public String getMemail() {
 		return memail;
