@@ -136,10 +136,10 @@
 										</div>
 										
 										<p></p>
-
+ 
 									</div>
 									<div class="col-lg-8">
-										<a class="btn" style="width:100%; line-height:0;">Submit</a>
+										<a class="btn" href="<%=application.getContextPath()%>/signin/content" style="width:100%; line-height:0;">Submit</a>
 									</div>
 								</div>
 							</form>

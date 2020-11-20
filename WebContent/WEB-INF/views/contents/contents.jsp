@@ -140,13 +140,13 @@
 					<div class="col-lg-4 col-md-6 col-sm-6">
 						<div class="single-cat mb-40">
 							<div class="cat-icon">
-								<img
+							<a href="#"> <img 
 									src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
-									alt="">
+									alt="" style="width:100%; height:100%;"> </a>
 							</div>
 							<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 							<div class="cat-cap">
-								<a href="#"> <img class="profile"
+								<a href="#"> <img class="profile" 
 									src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
 								</a>
 								<!-- 이미지 -->
@@ -166,14 +166,14 @@
 					<div class="col-lg-4 col-md-6 col-sm-6">
 						<div class="single-cat mb-40">
 							<div class="cat-icon">
-								<img
+							  <a href="#"> <img 
 									src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
-									alt="">
+									alt=""style="width:100%; height:100%;"> </a>
 							</div>
 							<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 							<div class="cat-cap">
 								<a href="#"> <img class="profile"
-									src="<%=application.getContextPath()%>/resources/images/프로필-2.jpg" />
+									src="<%=application.getContextPath()%>/resources/images/프로필-2.jpg"/>
 								</a>
 								<!-- 이미지 -->
 								<div class="#">
@@ -191,14 +191,14 @@
 					<div class="col-lg-4 col-md-6 col-sm-6">
 						<div class="single-cat mb-40">
 							<div class="cat-icon">
-								<img
-									src="<%=application.getContextPath()%>/resources/assets/img/gallery/services3.png"
-									alt="">
+								<a></a>	<img 
+									src="<%=application.getContextPath()%>/resources/assets/img/gallery/services6.png"
+									alt="" style="width:100%; height: 353px;">
 							</div>
 							<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 							<div class="cat-cap">
 								<a href="#"> <img class="profile"
-									src="<%=application.getContextPath()%>/resources/images/프로필-3.jpg" />
+									src="<%=application.getContextPath()%>/resources/images/프로필-3.jpg"/>
 								</a>
 								<!-- 이미지 -->
 								<div class="#">
@@ -214,6 +214,12 @@
 
 				</div>
 			</div>
+		</section>
+		
+		<section>
+			<div>
+		
+		</div>
 		</section>
 		<!-- ----- 실시간 게시물 끝 부분 ----- -->
 

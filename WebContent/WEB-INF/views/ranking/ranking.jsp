@@ -93,7 +93,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<!-- <h2>Ranking</h2> -->
+							<!-- 	<h2>Ranking</h2> -->
 							</div>
 						</div>
 					</div>
