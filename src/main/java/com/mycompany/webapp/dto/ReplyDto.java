@@ -1,10 +1,9 @@
 package com.mycompany.webapp.dto;
 
 public class ReplyDto {
-
 	private	int rno;
 	private String rcontent;
-	private String firstreply;
+	private int firstreply;
 	private String memail;
 	private int bno;
 	
@@ -20,10 +19,10 @@ public class ReplyDto {
 	public void setRcontent(String rcontent) {
 		this.rcontent = rcontent;
 	}
-	public String getFirstreply() {
+	public int getFirstreply() {
 		return firstreply;
 	}
-	public void setFirstreply(String firstreply) {
+	public void setFirstreply(int firstreply) {
 		this.firstreply = firstreply;
 	}
 	public String getMemail() {

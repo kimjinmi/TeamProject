@@ -4,6 +4,7 @@ public class LinkDto {
 	private int lno;
 	private String lcontent;
 	private int bno;
+	
 	public int getLno() {
 		return lno;
 	}

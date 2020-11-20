@@ -8,7 +8,7 @@ public class BoardDto {
 	private int bno;
 	private String btitle;
 	private String bcontent;
-	@DateTimeFormat(pattern="yyyy-MM-dd-hh:mm:ss") private Date date;
+	private Date bdate;
 	private String blike;
 	private String memail;
 	private int cno;
@@ -33,10 +33,10 @@ public class BoardDto {
 		this.bcontent = bcontent;
 	}
 	public Date getDate() {
-		return date;
+		return bdate;
 	}
 	public void setDate(Date date) {
-		this.date = date;
+		this.bdate = date;
 	}
 	public String getBlike() {
 		return blike;
