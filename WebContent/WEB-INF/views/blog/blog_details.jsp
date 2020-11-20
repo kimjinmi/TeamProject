@@ -267,7 +267,7 @@
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
 									alt="">
 							</div>
-							<div class="blog_details">
+							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">특수분야의 경력이 있는 지원자이고, 해당 경력과 직접적으로 연관이 있는 회사 및 직무에 지원</h2>
 								<ul class="blog-info-link mt-3 mb-4">
 									<li><a href="#"><i class="fa fa-user"></i> 작성자이름 </a></li>
@@ -305,6 +305,8 @@
 								  기관장님께 진급 추천서를 2차례 받아 2등 기관사로 진급하였습니다</p>
 							</div>
 						</div>
+						
+						
 						<div class="navigation-top">
 							<div class="d-sm-flex justify-content-between text-center">
 								<p class="like-info">
