@@ -38,8 +38,6 @@ public class BlogController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 		return "blog/blog_details";
 	} 
 	
