@@ -22,7 +22,6 @@ public class BlogController {
 	
 	@Resource
 	private DataSource dataSource;
-	
 	@Resource
 	private BlogService service;
 	
@@ -42,11 +41,12 @@ public class BlogController {
 		
 		
 		return "blog/blog_details";
-	}
+	} 
 	
-	@GetMapping("/boardView")
-	public String boardView(int bno, Model model) {
-		BoardDto board = service.getBoard(bno);
+	@RequestMapping("/blog_details")
+	public String board_details(Model model ) {
+		 BoardDto board = service.getBoard(2);
+		 model.addAttribute("board", board);
 		return "blog/blog_details";
 	}
 	
@@ -62,12 +62,7 @@ public class BlogController {
 		return "blog/blog_write";
 	}
 	
-	@RequestMapping("/blog_details")
-	public String blog_details() { //http://localhost:8080/teamproject
-		logger.info("실행");
-		return "blog/blog_details";
-	}
-	
+
 	
 	
 }

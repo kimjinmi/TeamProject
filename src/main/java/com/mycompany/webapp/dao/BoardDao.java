@@ -15,7 +15,7 @@ public class BoardDao {
 
 	public BoardDto selectByBno(int bno) {
 		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno", bno);
-		return null;
+		return board;
 	}
 
 }
