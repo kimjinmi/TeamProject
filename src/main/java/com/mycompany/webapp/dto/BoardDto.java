@@ -14,7 +14,7 @@ public class BoardDto {
 	private String memail; // member email -> 아이디
 	private int cno; // Category 번호
 	
-	
+	   
 	public int getBno() {
 		return bno;
 	}
