@@ -144,16 +144,17 @@
 			<div class="container">
 				<div class="row">
 					<!-- 포스팅 view 시작 -->
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="single-cat mb-40">
-							<c:forEach var="board" items="${list}">
-								<ul>
-									<li>
-										<div class="cat-icon">
+					<ul style="width: 100%">
+						<c:forEach var="board" items="${list}">
+							<li>
+								<div class="col-lg-4 col-md-6 col-sm-6">
+									<div class="cat-icon">
+										<div>
 											<img
 												src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
-												alt="" style="width: 100%; height: 100%;">
-										</div> <!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
+												alt="" >
+										</div>
+										<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 										<div class="cat-cap">
 											<a href="#"> <img class="profile"
 												src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
@@ -169,12 +170,15 @@
 												</a>
 											</div>
 										</div>
-									</li>
-								</ul>
-							</c:forEach>
+									</div>
+								</div>
+							</li>
+						</c:forEach>
+					</ul>
 
-							<!-- boardList에 값 넣어줌 -->
-							<!-- 	<a class="btn btn-info" href="javascript:boardList()">게시물 목록</a>
+
+					<!-- boardList에 값 넣어줌 -->
+					<!-- 	<a class="btn btn-info" href="javascript:boardList()">게시물 목록</a>
 							<script>
 								function boardList() {
 									$.ajax({
@@ -186,11 +190,11 @@
 								}
 							</script>
 							<div id="board_result"></div> -->
-							
-						</div>
-					</div>
-					<!-- 포스팅 view 끝 -->
+
 				</div>
+			</div>
+			<!-- 포스팅 view 끝 -->
+			</div>
 			</div>
 		</section>
 		<!-- ----- 이달의 랭킹 끝 부분 ----- -->
