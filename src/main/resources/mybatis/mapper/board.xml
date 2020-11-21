@@ -6,5 +6,11 @@
 		from board
 		where bno = #{bno}
 	</select>
+	
+	<select id="selectAll" resultType="board">
+		select bno, btitle, bcontent, bdate, memail, cno, bimage
+		from board
+		order by bdate desc
+	</select>
 </mapper>
 

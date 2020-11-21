@@ -54,6 +54,11 @@ ul li.nev {
 	font-size: 30px;
 }
 
+.rank {
+	display: inline;
+	padding: 1.3%;
+}
+
 .link_tab {
 	color: #484848;
 	font-size: 36px;

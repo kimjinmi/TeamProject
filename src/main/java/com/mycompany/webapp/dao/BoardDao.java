@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,6 +18,11 @@ public class BoardDao {
 	public BoardDto selectByBno(int bno) {
 		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno", bno);
 		return board;
+	}
+	
+	public List<BoardDto> selectAll() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll");
+		return list;
 	}
 
 }
