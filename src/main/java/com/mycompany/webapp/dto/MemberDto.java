@@ -10,6 +10,7 @@ public class MemberDto {
 	private String mrole; // 권한
 	private boolean menabled; // 계정 0(비활성화), 1(활성화)
 	
+	
 	public String getMemail() {
 		return memail;
 	}
@@ -58,6 +59,9 @@ public class MemberDto {
 	public void setMenabled(boolean menabled) {
 		this.menabled = menabled;
 	}
+	
+	
+	
 	
 	
 	
