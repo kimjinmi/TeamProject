@@ -27,12 +27,12 @@ public class RankingController {
 	
 	@Resource private RankingService service;
 	
-	@GetMapping("/boardList")
+	@GetMapping("/ranking")
 	public String boardList(Model model) {
 		List<BoardDto> list = service.getBoardList(); // 서비스에 BoardList를 달라고 요청
 		model.addAttribute("list", list); 
 		// list(안에 board 객체가 있음)라는 이름으로 이 객체를 사용할 수 있다	-> 	<c:forEach var="board" items="${list}">	
-		return "ranking/boardList"; // view가 html 조각을 만들어준다.
+		return "ranking/ranking"; // view가 html 조각을 만들어준다.
 	}
 	
 	
