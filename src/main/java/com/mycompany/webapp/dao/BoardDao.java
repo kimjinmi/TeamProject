@@ -24,6 +24,11 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll");
 		return list;
 	}
+	
+	public List<BoardDto> selectCategory(int cno) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectCategory", cno);
+		return list;
+	}
 
 
 

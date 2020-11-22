@@ -19,5 +19,10 @@ public class RankingService {
 		List<BoardDto> list = boardDao.selectAll();
 		return list;
 	}
+	
+	public List<BoardDto> getBoardListCno(int cno) {
+		List<BoardDto> list = boardDao.selectCategory(cno);
+		return list;
+	}
 
 }
