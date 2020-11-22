@@ -110,10 +110,9 @@
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">${memail}</h2>
-								<p>내 블로그</p>
-								<a href="ex_login" class="genric-btn primary">세션연결</a>
-								<a href="ex_logout" class="genric-btn primary">세션연결해제</a>
+								<h2 class="contact-title">${member.mnickname}</h2>
+								<p>${member.mintro}</p>
+								
 							</div>
 								
 							</aside>
@@ -151,52 +150,55 @@
 					</div>
 				
 				<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list" 0>
+					<div class="col-lg-8 posts-list">
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
 									alt="">
 							</div>
-							<div class="blog_details">
-								<h2 style="color: #2d2d2d;">내 페이지 설정</h2>
-								<hr/ style="margin-top:12px;">
+						<div class="blog_details">
+								<h2 style="color: #2d2d2d; display:inline;">내 페이지 설정</h2>
+								<a class="genric-btn link radius small" href="ex_login">세션연결</a>
+								<a class="genric-btn link radius small" href="ex_logout">세션삭제</a>
+								<hr style="margin-top:12px;">
+						 		
 								<form action="#">
-		                <div class="row">
-		                	<div class="col-2">닉네임</div>
-		                	<div class="col-7">
-			                <input type="text" name="first_name" placeholder=" Name"
-							onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name'" required
-							class="single-input"></div>
-							<div class="col-3"><a class="genric-btn primary radius small" href="#">중복확인</a></div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">소개글</div>
-		                	<div class="col-10">
-		                	<textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
-							onblur="this.placeholder = 'Message'" required></textarea>
-							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-2">프로필 사진</div>
-		                	<div class="col-5">
-		                	<img src="<%=application.getContextPath()%>/resources/assets/img/elements/g4.jpg" alt="" width="200" height="200">
-							</div>
-							<div class="col-5">
-								<a class="genric-btn primary radius small" href="#">등록</a>
-								<a class="genric-btn primary radius small" href="#">삭제</a>
-								<br/><br/>
-								프로필 이미지는 ~~~~~
-							</div>
-		                </div>
-		                <p></p>
-		                <div class="row">
-		                	<div class="col-12">
-		                	<center><a class="genric-btn success radius" href="#">수정 완료</a></center>
-		                	</div>
-		                </div>
-		                </form>
+			                <div class="row">
+			                	<div class="col-2">닉네임</div>
+			                	<div class="col-7">
+				                <input type="text" name="nickname" 
+								class="single-input" value="${member.mnickname}"></div>
+								<div class="col-3"><a class="genric-btn primary radius small" href="#">중복확인</a></div>
+								
+			                </div>
+			                <p></p>
+			                <div class="row">
+			                	<div class="col-2">소개글</div>
+			                	<div class="col-10">
+			                	<textarea class="single-textarea" >${member.mintro}</textarea>
+								</div>
+			                </div>
+			                <p></p>
+			                <div class="row">
+			                	<div class="col-2">프로필 사진</div>
+			                	<div class="col-5">
+			                	<%-- <img src="<%=application.getContextPath()%>/resources/images/unnamed.jpg" alt="" width="200" height="200"> --%>
+								<img width="200" height="200" src="photodownload?fileName=${member.mmyimage}"/>
+								</div>
+								<div class="col-5">
+									<a class="genric-btn primary radius small" href="photoenroll">등록</a>
+									<a class="genric-btn primary radius small" href="photodelete">삭제</a>
+									<br/><br/>
+									프로필 이미지는 ~~~~~
+								</div>
+			                </div>
+			                <p></p>
+			                <div class="row">
+			                	<div class="col-12">
+			                	<center><a class="genric-btn success radius" href="#">수정 완료</a></center>
+			                	</div>
+			                </div>
+			                </form>
 					
 					</div>
 					</div>

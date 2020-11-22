@@ -9,11 +9,12 @@ public class BoardDto {
 	private String btitle; // 게시글 제목
 	private String bcontent; // 게시글 내용
 	private Date bdate; // 게시글 작성 날짜
-	private int blike; // 게시글 좋아요
+	private int blike; // 게시글 좋아요	
+	private String bimage; // 게시글 이미지
 	private String memail; // member email -> 아이디
 	private int cno; // Category 번호
-	private String bimage; // 게시글 이미지
 	
+	   
 	public int getBno() {
 		return bno;
 	}

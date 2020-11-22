@@ -4,7 +4,7 @@
 .profile {
 	position: relative;
 	float: left;
-	display: inline-block;
+	display: inline;
 	/* 프로필 사진 크기 */
 	width: 70px;
 	height: 70px;
@@ -13,7 +13,7 @@
 }
 
 /* 사용자 닉네임 §공주님§ */
-.single-cat .cat-cap .nick-name {
+.nick-name {
 	font-size: 18px;
 	color: #000000;
 }
@@ -52,6 +52,11 @@ ul li.nev {
 	display: inline;
 	padding: 1.3%;
 	font-size: 30px;
+}
+
+.rank {
+	display: inline;
+	padding: 1.3%;
 }
 
 .link_tab {
