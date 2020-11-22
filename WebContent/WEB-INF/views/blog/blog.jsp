@@ -137,13 +137,11 @@
 										type="submit">검색하기</button>
 								</form>
 							</aside>
+							
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
-									<li><a href="javascript:blogLife()" class="d-flex">
-										<p>라이프</p>
-										<p>(37)</p>
-											</a></li>
+									<li><a href="javascript:blogLife()" class="d-flex"></a></li>
 									<script type="text/javascript">
 										function blogLife(pageNo) {
 											if(!pageNo) {
