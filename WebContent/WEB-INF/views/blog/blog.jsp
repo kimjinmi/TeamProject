@@ -223,7 +223,7 @@
                                 </a>
                              </div>
                             <div class="blog_details">
-                                 <a class="d-inline-block" href="blog_details.html">
+                                 <a class="d-inline-block" href="javascript:boardDetails(${board.bno})">
                                      <h2 class="blog-head" style="color: #2d2d2d;">${board.btitle }</h2>
                                  </a>
                                  <p>${board.bcontent }</p>
@@ -234,6 +234,18 @@
                              </div>
                            </article>  
                            </c:forEach>
+                           
+                           <script>
+                           	function boardDetails(bno){
+                           		$.ajax({
+                           			url:"blog_details",
+                           			data: {bno:bno},
+                           			success:function(data){
+                           				
+                           			}
+                           		});
+                           	}
+                           </script>
                            <!-- blog_item 끝 -->
                            
                            
