@@ -138,30 +138,47 @@
 								</form>
 							</aside>
 							<aside class="single_sidebar_widget post_category_widget">
-								<h4 class="widget_title" style="color: #2d2d2d;">카테고리</h4>
+								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
+									<li><a href="javascript:blogLife()" class="d-flex">
+										<p>라이프</p>
+										<p>(37)</p>
+											</a></li>
+									<script type="text/javascript">
+										function blogLife(pageNo) {
+											if(!pageNo) {
+													pageNo = 1;
+											}
+											
+											$.ajax({
+												url:"blogLife",
+												data: {pageNo:pageNo},
+												success:function(data) {
+													$("#blog_category").html(data);
+												}
+											});
+										}
+									</script>
+									<div id="blog_category" style="margin-top:30px"></div>
+									
 									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력1</p>
-											<p>(37)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력2</p>
+											<p>여행, 맛집</p>
 											<p>(10)</p>
 									</a></li>
 									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력3</p>
+											<p>문화, 연예</p>
 											<p>(03)</p>
 									</a></li>
 									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력4</p>
+											<p>IT</p>
 											<p>(11)</p>
 									</a></li>
 									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력5</p>
+											<p>스포츠</p>
 											<p>(21)</p>
 									</a></li>
 									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력6</p>
+											<p>시사</p>
 											<p>(21)</p>
 									</a></li>
 								</ul>
