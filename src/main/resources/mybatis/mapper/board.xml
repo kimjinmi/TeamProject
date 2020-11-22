@@ -8,9 +8,9 @@
 	</select>
 		
 	<select id="selectAll" resultType="board">
-		select bno, btitle, bcontent, bdate, memail, cno, bimage
+		select bno, btitle, bcontent, bdate, blike, memail, cno, bimage
 		from board
-		order by bdate desc
+		order by blike desc 
 	</select>
 </mapper>
 

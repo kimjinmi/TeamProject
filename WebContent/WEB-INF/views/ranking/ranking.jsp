@@ -144,9 +144,8 @@
 			<div class="container">
 				<div class="row">
 					<!-- 포스팅 view 시작 -->
-					<ul style="width: 100%">
+				
 						<c:forEach var="board" items="${list}">
-							<li>
 								<div class="col-lg-4 col-md-6 col-sm-6">
 									<div class="cat-icon">
 										<div>
@@ -172,9 +171,8 @@
 										</div>
 									</div>
 								</div>
-							</li>
 						</c:forEach>
-					</ul>
+			
 
 
 					<!-- boardList에 값 넣어줌 -->
