@@ -13,9 +13,9 @@
 		
 	<select id="selectAll" resultType="board">	
 		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-from board b, member m
-where b.memail = m.memail
-order by blike desc
+		from board b, member m
+		where b.memail = m.memail
+		order by blike desc
 	</select>
 </mapper>
 

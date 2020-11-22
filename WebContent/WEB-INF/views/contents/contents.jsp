@@ -112,8 +112,8 @@
 					이야기들을 만나보세요</div>
 				<div class="col-md-12">
 					<ul class="nev">
-						<li class="nev">
-							<a class="link_tab #life" href="/category/life"><span class="inner_link">라이프</span></a></li>
+						<li class="nev"><a class="link_tab #life"
+							href="/category/life"><span class="inner_link">라이프</span></a></li>
 						<li class="nev"><a class="link_tab #travel"
 							href="/category/travel"><span class="inner_link">여행.맛집</span></a></li>
 						<li class="nev"><a class="link_tab #culture"
@@ -137,90 +137,38 @@
 			<div class="container">
 				<div class="row">
 					<!-- 포스팅 view 시작 -->
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="single-cat mb-40">
+					
+					<c:forEach var="board" items="${list}">
+						<div class="col-lg-4 col-md-6 col-sm-6">
 							<div class="cat-icon">
-							<a href="#"> <img 
-									src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
-									alt="" style="width:100%; height:100%;"> </a>
-							</div>
-							<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
-							<div class="cat-cap">
-								<a href="#"> <img class="profile" 
-									src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
-								</a>
-								<!-- 이미지 -->
-								<div class="#">
-									<!-- 닉네임 -->
-									<a href="#" class="nick-name"><strong>선명이</strong></a>
-									<!-- 홈페이지 소개글 -->
-									<a href="#"><p id="home-title">자연의 아름다운 모습과 우리가 늘 그리워하는
-											곳을 담아 보고 싶은 꿈</p></a>
+								<div>
+									<img src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
+										alt="" >
+								</div>
+									<div class="cat-cap">
+										<a href="#"> <img class="profile"
+											src="<%=application.getContextPath()%>/resources/images/프로필-2.jpg" />
+										</a>
+									<div class="#">
+										<a href="#" class="nick-name"> <strong>${board.mnickname}</strong>
+										</a>
+										<a href="#">
+											<p id="home-title">${board.btitle}</p>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</c:forEach>
+					
 					<!-- 포스팅 view 끝 -->
 
-					<!-- 포스팅 view 시작 -->
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="single-cat mb-40">
-							<div class="cat-icon">
-							  <a href="#"> <img 
-									src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
-									alt=""style="width:100%; height:100%;"> </a>
-							</div>
-							<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
-							<div class="cat-cap">
-								<a href="#"> <img class="profile"
-									src="<%=application.getContextPath()%>/resources/images/프로필-2.jpg"/>
-								</a>
-								<!-- 이미지 -->
-								<div class="#">
-									<!-- 닉네임 -->
-									<a href="#" class="nick-name"><strong>만두선</strong></a>
-									<!-- 홈페이지 소개글 -->
-									<a href="#"><p id="home-title">안녕하십니까 여기는 이선 홈페이지입니다.</p></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 포스팅 view 끝 -->
-
-					<!-- 포스팅 view 시작 -->
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="single-cat mb-40">
-							<div class="cat-icon">
-								<a></a>	<img 
-									src="<%=application.getContextPath()%>/resources/assets/img/gallery/services6.png"
-									alt="" style="width:100%; height: 353px;">
-							</div>
-							<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
-							<div class="cat-cap">
-								<a href="#"> <img class="profile"
-									src="<%=application.getContextPath()%>/resources/images/프로필-3.jpg"/>
-								</a>
-								<!-- 이미지 -->
-								<div class="#">
-									<!-- 닉네임 -->
-									<a href="#" class="nick-name"><strong>§공주님§</strong></a>
-									<!-- 홈페이지 소개글 -->
-									<a href="#"><p id="home-title">안녕하십니까 여기는 이선 홈페이지입니다.</p></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- 포스팅 view 끝 -->
+					
 
 				</div>
 			</div>
 		</section>
 		
-		<section>
-			<div>
-		
-		</div>
-		</section>
 		<!-- ----- 실시간 게시물 끝 부분 ----- -->
 
 	</main>
