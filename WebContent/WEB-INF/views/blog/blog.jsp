@@ -110,8 +110,8 @@
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">mid</h2>
-								<p>mintro</p>
+								<h2 class="contact-title">유저이름</h2>
+								<p>소개글</p>
 								<hr/>
 								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
 							</div>
@@ -226,28 +226,45 @@
 				
 				<!-- ////////////////////////////////// -->
 					<div class="col-lg-8 mb-5 mb-lg-0">
+                        <!-- blog_item 시작 -->
+                        <c:forEach var="board" items="${list}">
                         <article class="blog_item">	
+                        
                         	<div class="blog_item_img">
                                 <img class="card-img rounded-0" src="<%=application.getContextPath() %>/resources/assets/img/blog/single_blog_3.png" alt="">
                                 <a href="blog_details" class="blog_item_date">
-                                    <h3>15</h3>
-                                    <p>Jan</p>
+                                    <h3>일</h3>
+                                    <p>월</p>
                                 </a>
                              </div>
                             <div class="blog_details">
-                                 <a class="d-inline-block" href="blog_details.html">
-                                     <h2 class="blog-head" style="color: #2d2d2d;">Google inks pact for new 35-storey office</h2>
+                                 <a class="d-inline-block" href="javascript:boardDetails(${board.bno})">
+                                     <h2 class="blog-head" style="color: #2d2d2d;">${board.btitle }</h2>
                                  </a>
-                                 <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                 he earth it first without heaven in place seed it second morning saying.</p>
+                                 <p>${board.bcontent }</p>
                                  <ul class="blog-info-link">
-                                     <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                     <li><a href="#"><i class="fa fa-user"></i>임시카테고리</a></li>
+                                     <li><a href="#"><i class="fa fa-comments"></i>임시댓글갯수</a></li>
                                  </ul>
                              </div>
                            </article>  
+                           </c:forEach>
                            
-                           <article class="blog_item">	
+                           <script>
+                           	function boardDetails(bno){
+                           		$.ajax({
+                           			url:"blog_details",
+                           			data: {bno:bno},
+                           			success:function(data){
+                           				
+                           			}
+                           		});
+                           	}
+                           </script>
+                           <!-- blog_item 끝 -->
+                           
+                           
+<%--                            <article class="blog_item">	
                         	<div class="blog_item_img">
                                 <img class="card-img rounded-0" src="<%=application.getContextPath() %>/resources/assets/img/blog/single_blog_2.png" alt="">
                                 <a href="blog_details" class="blog_item_date">
@@ -266,7 +283,9 @@
                                      <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                                  </ul>
                              </div>
-                           </article>
+                           </article> --%>
+                           
+                           <!-- page 네비게이션 -->
                            <nav class="blog-pagination justify-content-center d-flex">
                                 <ul class="pagination">
                                     <li class="page-item">
@@ -287,8 +306,9 @@
                                     </li>
                                 </ul>
                             </nav>  
+                            <!-- page 네비게이션 끝 -->
                         </div>
-                            
+                          <!--  블로그 리스트 div 끝 -->  
                             
                         </div>
                     </div>

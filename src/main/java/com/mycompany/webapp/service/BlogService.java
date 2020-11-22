@@ -30,4 +30,8 @@ public class BlogService {
 			return list;
 	}
 
+	public List<BoardDto> getBoardList(String memail) {
+		List<BoardDto> list = boardDao.selectUserBoard(memail);
+		return list;
+	}
 }

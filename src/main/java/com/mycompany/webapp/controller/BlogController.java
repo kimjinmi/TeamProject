@@ -2,6 +2,7 @@ package com.mycompany.webapp.controller;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -43,14 +44,17 @@ public class BlogController {
 	} 
 	
 	@RequestMapping("/blog_details")
-	public String board_details(Model model ) {
-		 BoardDto board = service.getBoard(2);
+	public String board_details(int bno, Model model) {
+		 BoardDto board = service.getBoard(bno);
 		 model.addAttribute("board", board);
 		return "blog/blog_details";
 	}
 	
 	@RequestMapping("/blog")
-	public String blog() { //http://localhost:8080/teamproject
+	public String blog(Model model) { //http://localhost:8080/teamproject
+		List<BoardDto> list = service.getBoardList("sunny@nara.com");
+		model.addAttribute("list", list);
+		logger.info(list.toString());
 		logger.info("실행");
 		return "blog/blog";
 	}
