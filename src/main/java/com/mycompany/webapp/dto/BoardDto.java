@@ -13,8 +13,21 @@ public class BoardDto {
 	private String bimage; // 게시글 이미지
 	private String memail; // member email -> 아이디
 	private int cno; // Category 번호
+	private String mnickname;
 	
 	   
+	public String getMnickname() {
+		return mnickname;
+	}
+	public void setMnickname(String mnickname) {
+		this.mnickname = mnickname;
+	}
+	public Date getBdate() {
+		return bdate;
+	}
+	public void setBdate(Date bdate) {
+		this.bdate = bdate;
+	}
 	public int getBno() {
 		return bno;
 	}
@@ -32,12 +45,6 @@ public class BoardDto {
 	}
 	public void setBcontent(String bcontent) {
 		this.bcontent = bcontent;
-	}
-	public Date getDate() {
-		return bdate;
-	}
-	public void setDate(Date date) {
-		this.bdate = date;
 	}
 	public int getBlike() {
 		return blike;

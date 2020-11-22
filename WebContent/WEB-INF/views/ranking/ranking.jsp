@@ -161,7 +161,7 @@
 											<!-- 이미지 -->
 											<div class="#">
 												<!-- 닉네임 -->
-												<a href="#" class="nick-name"> <strong>${board.memail}</strong>
+												<a href="#" class="nick-name"> <strong>${board.mnickname}</strong>
 												</a>
 												<!-- 홈페이지 소개글 -->
 												<a href="#">
