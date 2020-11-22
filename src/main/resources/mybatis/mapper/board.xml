@@ -6,11 +6,16 @@
 		from board
 		where bno = #{bno}
 	</select>
-		
-	<select id="selectAll" resultType="board">
-		select bno, btitle, bcontent, bdate, blike, memail, cno, bimage
+	
+	<!-- 	select bno, btitle, bcontent, bdate, blike, memail, cno, bimage
 		from board
-		order by blike desc 
+		order by blike desc  -->
+		
+	<select id="selectAll" resultType="board">	
+		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+from board b, member m
+where b.memail = m.memail
+order by blike desc
 	</select>
 </mapper>
 
