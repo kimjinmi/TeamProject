@@ -25,5 +25,12 @@
 		order by blike desc
 	</select>
 	
+		<select id="selectUserBoard" parameterType="String" resultType="board">
+		select btitle, bcontent, bdate, blike, bimage, mnickname
+		from board, member
+		where board.memail = member.memail AND board.memail = #{memail}
+		
+	</select>
+	
 </mapper>
 

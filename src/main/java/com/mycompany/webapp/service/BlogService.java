@@ -1,5 +1,7 @@
 package com.mycompany.webapp.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -18,4 +20,8 @@ public class BlogService {
 		return board;
 	}
 
+	public List<BoardDto> getBoardList(String memail) {
+		List<BoardDto> list = boardDao.selectUserBoard(memail);
+		return list;
+	}
 }

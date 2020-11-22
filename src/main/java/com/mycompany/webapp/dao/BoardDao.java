@@ -30,6 +30,11 @@ public class BoardDao {
 		return list;
 	}
 
+	public List<BoardDto> selectUserBoard(String memail) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
+		return list;
+	}
+
 
 
 }

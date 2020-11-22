@@ -172,8 +172,21 @@
 							
 							
 							<div style="margin-top:12px; padding-left:40%; margin: 20px 0px; ">
-									<a href="#" class="genric-btn info-border radius" style="margin-right:20px;">확인</a>
-									<a href="#" class="genric-btn danger-border radius">취소</a>
+									<a href="javascript:boardWrite()" class="genric-btn info-border radius" style="margin-right:20px;">확인</a>
+									<script type="text/javascript">
+										function boardWrite(){
+											$.ajax({
+												url:,
+												method:,
+												data:,
+												success:function(data){
+													//성공시 출력 내용
+												}
+											})
+										}
+									</script>
+									
+									<a href="blog" class="genric-btn danger-border radius">취소</a>
 								</div>
 								
 							
