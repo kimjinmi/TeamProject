@@ -141,44 +141,15 @@
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
-									<li><a href="javascript:blogLife()" class="d-flex"></a></li>
-									<script type="text/javascript">
-										function blogLife(pageNo) {
-											if(!pageNo) {
-													pageNo = 1;
-											}
-											
-											$.ajax({
-												url:"blogLife",
-												data: {pageNo:pageNo},
-												success:function(data) {
-													$("#blog_category").html(data);
-												}
-											});
-										}
-									</script>
-									<div id="blog_category" style="margin-top:30px"></div>
+								<!-- <div id="blog_category" style="margin-top:30px"></div> -->
+								
+	<!-- 								<li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
+									<c:forEach var="category" items="${catelist}">
+									<li><a href="#" class="d-flex">
+											${category.ccontent}
+									</a></li>
+									</c:forEach>
 									
-									<li><a href="#" class="d-flex">
-											<p>여행, 맛집</p>
-											<p>(10)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>문화, 연예</p>
-											<p>(03)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>IT</p>
-											<p>(11)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>스포츠</p>
-											<p>(21)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>시사</p>
-											<p>(21)</p>
-									</a></li>
 								</ul>
 							</aside>
 							<aside class="single_sidebar_widget popular_post_widget">

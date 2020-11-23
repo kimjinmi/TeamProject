@@ -21,17 +21,19 @@ public class BlogService {
 		BoardDto board = boardDao.selectByBno(bno);
 		return board;
 	}
-	
-	@Resource
-	private CategoryDao categoryDao;
-	
-	public List<CategoryDto> getBoardList() {		//controller에서 호출함
-			List<CategoryDto> list = categoryDao.selectAll();			//selectAll을 호출함 - ch14memberDao에서 만들어줌
-			return list;
-	}
+
 
 	public List<BoardDto> getBoardList(String memail) {
 		List<BoardDto> list = boardDao.selectUserBoard(memail);
 		return list;
 	}
+
+	@Resource
+	private CategoryDao categoryDao;
+	
+	public List<CategoryDto> categoryList() {
+		List<CategoryDto> list = categoryDao.selectAll();
+		return list;
+	}
+	
 }

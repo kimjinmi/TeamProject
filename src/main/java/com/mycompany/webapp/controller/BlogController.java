@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.service.BlogService;
+
 
 
 @Controller
@@ -26,6 +28,7 @@ public class BlogController {
 	private DataSource dataSource;
 	@Resource
 	private BlogService service;
+
 	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
@@ -53,9 +56,12 @@ public class BlogController {
 	@RequestMapping("/blog")
 	public String blog(Model model) { //http://localhost:8080/teamproject
 		List<BoardDto> list = service.getBoardList("sunny@nara.com");
+		List<CategoryDto> catelist = service.categoryList();
 		model.addAttribute("list", list);
+		model.addAttribute("carelist", catelist);
 		logger.info(list.toString());
 		logger.info("실행");
+		
 		return "blog/blog";
 	}
 	
