@@ -16,12 +16,12 @@ public class RankingService {
 	private BoardDao boardDao;
 	
 	public List<BoardDto> getBoardList() {
-		List<BoardDto> list = boardDao.selectAll();
+		List<BoardDto> list = boardDao.selectLikeAll();
 		return list;
 	}
 	
 	public List<BoardDto> getBoardListCno(int cno) {
-		List<BoardDto> list = boardDao.selectCategory(cno);
+		List<BoardDto> list = boardDao.selectLikeCategory(cno);
 		return list;
 	}
 

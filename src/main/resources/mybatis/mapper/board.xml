@@ -9,25 +9,47 @@
 		where bno = #{bno}
 	</select>
 	
-	<!-- 	select bno, btitle, bcontent, bdate, blike, memail, cno, bimage
-		from board
-		order by blike desc  -->
-		
-	<select id="selectAll" resultType="board">	
-		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-		from board b, member m
-		where b.memail = m.memail
-		order by blike desc
+	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
+		<!-- 좋아요순은 데이터 12개 -->
+	<select id="selectLikeAll" resultType="board">	
+		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+       			 from board b, member m
+       			 where b.memail = m.memail
+       			 order by blike desc)
+		where rownum &lt;= 12
 	</select>
 	
-	<select id="selectCategory" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-		from board b, member m
-		where b.memail = m.memail and cno = #{cno}
-		order by blike desc
+	<!-- 선: 좋아요 순으로 불러오기 ranking 카테고리별 데이터 -->
+	<!-- 좋아요순은 데이터 12개 -->
+	<select id="selectLikeCategory" parameterType="int" resultType="board">
+		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+       			 from board b, member m
+       			 where b.memail = m.memail and cno = #{cno} 
+       			 order by blike desc)
+		where rownum &lt;= 12
 	</select>
 	
-		<select id="selectUserBoard" parameterType="String" resultType="board">
+	<!-- 선: 최신순으로 불러오기 contents 총 데이터 -->
+	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
+	<select id="selectNewAll" resultType="board">	
+	  	 select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+         from board b, member m
+       	 where b.memail = m.memail
+       	 order by bdate desc
+	</select>
+	
+	<!-- 선: 최신순으로 불러오기 contents 카테고리별 데이터 -->
+	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
+	<select id="selectNewCategory" parameterType="int" resultType="board">
+		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+       	from board b, member m
+       	where b.memail = m.memail and cno = #{cno} 
+       	order by bdate desc
+	</select>
+	
+	<select id="selectUserBoard" parameterType="String" resultType="board">
 		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
 		from board, member
 		where board.memail = member.memail AND board.memail = #{memail}
@@ -41,7 +63,7 @@
 	
 
 	<select id="selectBoardComment" parameterType="int" resultType="reply">
-		select rno, rcontent, reply.memail, member.mnickname
+		select rno, rcontent, reply.memail, member.mnickname, to_char(rdate, 'YYYY-MM-DD HH24:Mi:SS') rdate
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail
 	</select>

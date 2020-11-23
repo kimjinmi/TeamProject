@@ -14,12 +14,13 @@
 
 /* 사용자 닉네임 §공주님§ */
 .nick-name {
-	font-size: 18px;
-	color: #000000;
+	font-size: 15px;
+	color: #6F6F6F;
 }
 
 #home-title {
 	font-size: 15px;
+	color: #5D5D5D;
 }
 
 .section-padding {

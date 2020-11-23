@@ -29,10 +29,13 @@ public class SettingController {
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 
 	@RequestMapping("/content")
-	public String content(HttpSession session) { //http://localhost:8080/teamproject
+	public String content(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
-		String value = (String) session.getAttribute("sessionMemail");
-		logger.info(value);
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		logger.info(sessionMemail);
+		memberdto.setMemail(sessionMemail);
+		MemberDto member = service.sessionconnect(memberdto);
+		model.addAttribute("member", member);
 		return "setting/content";
 	}
 	
@@ -54,32 +57,55 @@ public class SettingController {
 		return "setting/delete";
 	}
 	
+	@RequestMapping("/setting")
+	public String setting(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
+		logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		logger.info(sessionMemail);
+		memberdto.setMemail(sessionMemail);
+		MemberDto member = service.sessionconnect(memberdto);
+		model.addAttribute("member", member);
+		return "setting/setting";
+	}
+	
+	@RequestMapping("/imagechange")
+	public String imagechange(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
+		logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		logger.info(sessionMemail);
+		memberdto.setMemail(sessionMemail);
+		MemberDto member = service.sessionconnect(memberdto);
+		model.addAttribute("member", member);
+		return "setting/imagechange";
+	}
+	
+	
 	@Resource
 	private SettingService service; 
 	
-	@RequestMapping("/sessionconnect")
-	public String sessionconnect(MemberDto memberdto, HttpSession session, Model model) {
+	/*	@RequestMapping("/sessionconnect")
+		public String sessionconnect(MemberDto memberdto, HttpSession session, Model model) {
+			
+			memberdto.setMemail("jinmikim88@gmail.com");
+			MemberDto member =service.sessionconnect(memberdto);
+			
+			session.setAttribute("sessionMemail", memberdto.getMemail());
+			model.addAttribute("member", member);
+			return "setting/content";
+		}
 		
-		memberdto.setMemail("jinmikim88@gmail.com");
-		MemberDto member =service.sessionconnect(memberdto);
-		
-		session.setAttribute("sessionMemail", memberdto.getMemail());
-		model.addAttribute("member", member);
-		return "setting/content";
-	}
-	
-	@RequestMapping("/sessiondelete")
-	public String sessiondelete(HttpSession session) {
-		session.invalidate();		
-		return "setting/content";
-	}
+		@RequestMapping("/sessiondelete")
+		public String sessiondelete(HttpSession session) {
+			session.invalidate();		
+			return "setting/content";
+		}*/
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info(fileName);
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
-		String saveFilePath = "D:/MyWorkspace/photo/" + fileName;
+		String saveFilePath = request.getContextPath()+"/WebContent/resources/images/member/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 		
 		//응답 HTTP 헤더 구성
@@ -109,9 +135,9 @@ public class SettingController {
 	@RequestMapping("/photoenroll")
 	public String photoenroll(MemberDto memberdto, Model model) {
 		
-		memberdto.setMmyimage("spring.PNG");
+		memberdto.setMmyimage("winter.PNG");
 		model.addAttribute("member", memberdto);
-		return "setting/content";
+		return "setting/imagechange";
 	}
 	
 	@RequestMapping("/photodelete")
@@ -119,7 +145,7 @@ public class SettingController {
 		
 		memberdto.setMmyimage("unnamed.jpg");
 		model.addAttribute("member", memberdto);
-		return "setting/content";
+		return "setting/imagechange";
 	}
 
 }
