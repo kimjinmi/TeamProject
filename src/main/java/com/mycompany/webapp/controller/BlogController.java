@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
@@ -47,9 +48,12 @@ public class BlogController {
 		return "blog/blog_details";
 	} 
 	
-	@RequestMapping("/blog_details")
-	public String board_details(Model model) {
-		 BoardDto board = service.getBoard(7);
+	@GetMapping("/blog_details")
+	public String board_details(Model model, HttpServletRequest request) {
+		
+		 int bno = Integer.parseInt(request.getParameter("bno"));
+		 logger.info("bno 값 확인: "+bno);
+		 BoardDto board = service.getBoard(bno);
 		 List<CategoryDto> catelist = service.categoryList();
 		 List<ReplyDto> commentlist = service.commentList(7);
 		 model.addAttribute("board", board);

@@ -221,15 +221,16 @@
                            </article>  
                            </c:forEach>
                            
-                           <script>
+                           <script type="text/javascript">
                            	function boardDetails(bno){
-                           		$.ajax({
+                           		location.href="blog_details?bno="+bno;
+                           		/* $.ajax({
                            			url:"blog_details",
                            			data: {bno:bno},
                            			success:function(data){
                            				
-                           			}
-                           		});
+                           			} */
+                           		/* }); */
                            	}
                            </script>
                            <!-- blog_item 끝 -->
