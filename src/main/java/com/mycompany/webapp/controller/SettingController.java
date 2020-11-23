@@ -29,31 +29,12 @@ public class SettingController {
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 
 	@RequestMapping("/content")
-	public String content() { //http://localhost:8080/teamproject
+	public String content(HttpSession session) { //http://localhost:8080/teamproject
 		logger.info("실행");
+		String value = (String) session.getAttribute("sessionMemail");
+		logger.info(value);
 		return "setting/content";
 	}
-	
-	@RequestMapping("/setting")
-	public String setting(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
-		String memail = (String)session.getAttribute("sessionMemail");
-		memberdto.setMemail(memail);
-		MemberDto member =service.sessionconnect(memberdto);
-		model.addAttribute("member", member);
-		return "setting/setting";
-	}
-	
-	@RequestMapping("/imagechange")
-	public String imagechange(MemberDto memberdto, HttpSession session) { //http://localhost:8080/teamproject
-		logger.info("실행");
-		String memail = (String)session.getAttribute("sessionMemail");
-		memberdto.setMemail(memail);
-		MemberDto member =service.sessionconnect(memberdto);
-		logger.info(member.getMmyimage());
-		return "setting/imagechange";
-	}
-	
 	
 	@RequestMapping("/mybloglist")
 	public String mybloglist() { //http://localhost:8080/teamproject
