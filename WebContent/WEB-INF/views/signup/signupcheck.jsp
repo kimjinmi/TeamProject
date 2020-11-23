@@ -134,7 +134,7 @@
                         									style="height:45px; font-size:16px;">
 														</div>			
 														<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
-														<a href="<%=request.getContextPath()%>/views/signup/signup.jsp" class="genric-btn info circle" style="width: 100%;">가입 여부 확인</a>
+														<a href="test" class="genric-btn info circle" style="width: 100%;">가입 여부 확인</a>
 														</div>
 													</form>
 												</div>
