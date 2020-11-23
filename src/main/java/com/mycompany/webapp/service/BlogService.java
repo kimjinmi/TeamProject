@@ -45,8 +45,8 @@ public class BlogService {
 		return list;
 	}
 	
-	public List<BoardDto> BoardList(String btitle) {
-		List<BoardDto> list = boardDao.selectByBtitle(btitle);
+	public List<BoardDto> BoardList() {
+		List<BoardDto> list = boardDao.selectByBtitle();
 		return list;
 	}
 

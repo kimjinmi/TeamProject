@@ -53,12 +53,12 @@ public class BlogController {
 		 int bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
-		 List<CategoryDto> catelist = service.categoryList();
-		 List<BoardDto> btitlelist = service.BoardList(btitle);
+		 List<CategoryDto> catelist = service.categoryList();		//영아
+		List<BoardDto> btitlelist = service.BoardList();		//영아
 		 List<ReplyDto> commentlist = service.commentList(bno);
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);
-		 model.addAttribute("btitlelist", btitlelist);
+					 model.addAttribute("btitlelist", btitlelist);
 		 model.addAttribute("commentlist", commentlist);
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		return "blog/blog_details";
