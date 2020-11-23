@@ -69,8 +69,7 @@
 					<div class="container-fluid">
 						<div class="row align-items-center">
 							<div class="col-xl-10 col-lg-10">
-								<div
-									class="menu-wrapper  d-flex align-items-center justify-content-end">
+								<div class="menu-wrapper  d-flex align-items-center justify-content-end">
 									<!-- Main-menu -->
 									<jsp:include page="/WEB-INF/views/include/menu.jsp" />
 								</div>
@@ -110,31 +109,41 @@
 				<div class="col-lg-12 col-md-12 col-sm-12 rt">
 					<h2>Ranking</h2>
 				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 rc">블로그 세상 속 다양한
-					이야기들을 만나보세요</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 rc">
+					블로그 세상 속 다양한 이야기들을 만나보세요
+				</div>
 				<div class="col-md-12">
 					<ul class="nev">
 						<li class="nev">
-							<a class="link_tab #life"
-								 href="category/life"> <span class="inner_link">라이프</span> 
+							<a class="link_tab #life" href="category/life"> 
+								<span class="inner_link">라이프</span> 
 							</a>
 						</li>
-						<li class="nev"><a class="link_tab #travel"
-							href="category/travle"> <span class="inner_link">여행.맛집</span>
-						</a></li>
-						
-						<li class="nev"><a class="link_tab #culture"
-							href="category/culture"> <span class="inner_link">문화.연예</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #it" href="category/it">
+						<li class="nev">
+							<a class="link_tab #travel" href="category/travle"> 
+								<span class="inner_link">여행.맛집</span>
+							</a>
+						</li>
+						<li class="nev">
+							<a class="link_tab #culture" href="category/culture">
+							 	<span class="inner_link">문화.연예</span>
+							</a>
+						</li>
+						<li class="nev">
+							<a class="link_tab #it" href="category/it">
 								<span class="inner_link">IT</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #sports"
-							href="category/sports"> <span class="inner_link">스포츠</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #current"
-							href="category/current"> <span class="inner_link">시사</span>
-						</a></li>
+							</a>
+						</li>
+						<li class="nev">
+							<a class="link_tab #sports" href="category/sports">
+								 <span class="inner_link">스포츠</span>
+							</a>
+						</li>
+						<li class="nev">
+							<a class="link_tab #current" href="category/current"> 
+								<span class="inner_link">시사</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -157,7 +166,7 @@
 												alt="" >
 										</div>
 										<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
-										<div class="cat-cap">
+										<div class="cat-cap" style="padding-top: 10px; padding-bottom: 10px; padding-left:10px; ">
 											<a href="#"> <img class="profile"
 												src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
 											</a>
@@ -167,7 +176,7 @@
 												<a href="#" class="nick-name"> <strong>${board.mnickname}</strong>
 												</a>
 												<!-- 홈페이지 소개글 -->
-												<a href="#">
+												<a href="#" class="home-title">
 													<p id="home-title">${board.btitle}</p>
 												</a>
 											</div>
@@ -176,8 +185,6 @@
 								</div>
 						</c:forEach> 
 			
-
-
 					<!-- boardList에 값 넣어줌 -->
 					<!-- <a class="btn btn-info" href="javascript:boardList()">게시물 목록</a>
 							<script>
