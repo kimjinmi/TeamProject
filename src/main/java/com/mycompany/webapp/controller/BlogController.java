@@ -55,7 +55,7 @@ public class BlogController {
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 List<CategoryDto> catelist = service.categoryList();
-		 List<ReplyDto> commentlist = service.commentList(7);
+		 List<ReplyDto> commentlist = service.commentList(bno);
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);
 		 model.addAttribute("commentlist", commentlist);
@@ -72,7 +72,6 @@ public class BlogController {
 		model.addAttribute("catelist", catelist);
 		logger.info(catelist.toString());
 		logger.info("실행");
-		
 		return "blog/blog";
 	}
 	

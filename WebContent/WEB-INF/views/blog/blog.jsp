@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -204,8 +205,8 @@
                         	<div class="blog_item_img">
                                 <img class="card-img rounded-0" src="<%=application.getContextPath() %>/resources/assets/img/blog/single_blog_3.png" alt="">
                                 <a href="blog_details" class="blog_item_date">
-                                    <h3>일</h3>
-                                    <p>월</p>
+                                    <h3 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="MM월 dd일" /></h3>
+                                    <h2 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="HH시 mm분" /></h2>
                                 </a>
                              </div>
                             <div class="blog_details">
@@ -223,14 +224,7 @@
                            
                            <script type="text/javascript">
                            	function boardDetails(bno){
-                           		location.href="blog_details?bno="+bno;
-                           		/* $.ajax({
-                           			url:"blog_details",
-                           			data: {bno:bno},
-                           			success:function(data){
-                           				
-                           			} */
-                           		/* }); */
+                           		location.href="blog_details?bno="+bno;	
                            	}
                            </script>
                            <!-- blog_item 끝 -->
