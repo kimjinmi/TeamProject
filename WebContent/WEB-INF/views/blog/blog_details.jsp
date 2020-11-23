@@ -110,8 +110,8 @@
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">김지훈</h2>
-								<p>이 블로그는 블로그입니다.</p>
+								<h2 class="contact-title">영아나라</h2>
+								<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
 								<hr/>
 								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
 							</div>
@@ -138,32 +138,13 @@
 								</form>
 							</aside>
 							<aside class="single_sidebar_widget post_category_widget">
-								<h4 class="widget_title" style="color: #2d2d2d;">카테고리</h4>
+								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
-									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력1</p>
-											<p>(37)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력2</p>
-											<p>(10)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력3</p>
-											<p>(03)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력4</p>
-											<p>(11)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력5</p>
-											<p>(21)</p>
-									</a></li>
-									<li><a href="#" class="d-flex">
-											<p>사용자가 직접 입력6</p>
-											<p>(21)</p>
-									</a></li>
+									<c:forEach var="category" items="${catelist}">
+										<li><a href="#" class="d-flex">
+											${category.ccontent}
+										</a></li>
+									</c:forEach>
 								</ul>
 							</aside>
 							<aside class="single_sidebar_widget popular_post_widget">

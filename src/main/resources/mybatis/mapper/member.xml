@@ -7,5 +7,6 @@
 		FROM member
 		WHERE MEMAIL=#{memail} 
 	</select>
+	
 </mapper>
 

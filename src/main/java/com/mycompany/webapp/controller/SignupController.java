@@ -3,6 +3,7 @@ package com.mycompany.webapp.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -15,4 +16,12 @@ public class SignupController {
 		logger.info("실행");
 		return "signup/signupcheck";
 	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		logger.info("test실행");
+		return "signup/signup";
+	}
+	
 }
+

@@ -17,7 +17,7 @@ public class BoardDao {
 	private SqlSessionTemplate sst;
 
 	public BoardDto selectByBno(int bno) {
-		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno", bno);
+		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno",bno);
 		return board;
 	}
 	

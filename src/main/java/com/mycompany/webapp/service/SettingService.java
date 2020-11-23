@@ -20,7 +20,7 @@ public class SettingService {
 	@Resource
 	private MemberDao memberdao;
 
-	public MemberDto ex_login(MemberDto member) {
+	public MemberDto sessionconnect(MemberDto member) {
 		//logger.info("service: "+member.getMemail());
 		MemberDto dbmember = memberdao.selectbyMemail(member.getMemail());
 		return dbmember;

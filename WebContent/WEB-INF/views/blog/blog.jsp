@@ -141,7 +141,7 @@
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
-								<!-- <div id="blog_category" style="margin-top:30px"></div> -->
+								<!-- 	<div id="blog_category" style="margin-top:30px"></div> -->
 								
 	<!-- 								<li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
 									<c:forEach var="category" items="${catelist}">

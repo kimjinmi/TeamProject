@@ -42,7 +42,15 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 </head>
+<!-- <script type="text/javascript">
+	$.ajax({
+		url:"setting",
+		success:function(data) {
+			$("#setting_result").html(data);
+		}
+	});
 
+</script> -->
 <body>
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
@@ -108,7 +116,9 @@
 						
 							<aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
-								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
+								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle"><br>
+								<a class="genric-btn link radius small" href="sessionconnect">세션연결</a>
+								<a class="genric-btn link radius small" href="sessiondelete">세션삭제</a>
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
@@ -121,10 +131,38 @@
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
-									<li><a href="content" class="d-flex">
-											<u><p>내 페이지 설정</p></u>
+									<li><a href="javascript:setting()" class="d-flex">
+											<u><p>내 페이지 설정</p></u></a>
+											<script type="text/javascript">
+											function setting(){
+												$.ajax({
+													url:"setting",
+													success:function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+												
+											}
 											
-									</a></li>
+											</script>
+											
+									</li>
+									<li><a href="javascript:imagechange()" class="d-flex">
+											<p>내 프로필 사진 변경</p></a>
+											<script type="text/javascript">
+											function imagechange(){
+												$.ajax({
+													url:"imagechange",
+													success:function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+												
+											}
+											
+											</script>
+											
+									</li>
 									<li><a href="#" class="d-flex">
 											<p>비밀번호 변경</p>
 											
@@ -153,54 +191,13 @@
 					<div class="col-lg-8 posts-list">
 						<div class="single-post">
 							<div class="feature-img">
-								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
+								<img class="img-fluid" src="#"
 									alt="">
 							</div>
-						<div class="blog_details">
-								<h2 style="color: #2d2d2d; display:inline;">내 페이지 설정</h2>
-								<a class="genric-btn link radius small" href="ex_login">세션연결</a>
-								<a class="genric-btn link radius small" href="ex_logout">세션삭제</a>
-								<hr style="margin-top:12px;">
-						 		
-								<form action="#">
-			                <div class="row">
-			                	<div class="col-2">닉네임</div>
-			                	<div class="col-7">
-				                <input type="text" name="nickname" 
-								class="single-input" value="${member.mnickname}"></div>
-								<div class="col-3"><a class="genric-btn primary radius small" href="#">중복확인</a></div>
+						<div id="setting_result" class="blog_details">
 								
-			                </div>
-			                <p></p>
-			                <div class="row">
-			                	<div class="col-2">소개글</div>
-			                	<div class="col-10">
-			                	<textarea class="single-textarea" >${member.mintro}</textarea>
-								</div>
-			                </div>
-			                <p></p>
-			                <div class="row">
-			                	<div class="col-2">프로필 사진</div>
-			                	<div class="col-5">
-			                	<%-- <img src="<%=application.getContextPath()%>/resources/images/unnamed.jpg" alt="" width="200" height="200"> --%>
-								<img width="200" height="200" src="photodownload?fileName=${member.mmyimage}"/>
-								</div>
-								<div class="col-5">
-									<a class="genric-btn primary radius small" href="photoenroll">등록</a>
-									<a class="genric-btn primary radius small" href="photodelete">삭제</a>
-									<br/><br/>
-									프로필 이미지는 ~~~~~
-								</div>
-			                </div>
-			                <p></p>
-			                <div class="row">
-			                	<div class="col-12">
-			                	<center><a class="genric-btn success radius" href="#">수정 완료</a></center>
-			                	</div>
-			                </div>
-			                </form>
 					
-					</div>
+						</div>
 					</div>
 				</div>
 		</section>

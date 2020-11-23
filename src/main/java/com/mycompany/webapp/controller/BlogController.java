@@ -47,9 +47,11 @@ public class BlogController {
 	} 
 	
 	@RequestMapping("/blog_details")
-	public String board_details(int bno, Model model) {
-		 BoardDto board = service.getBoard(bno);
+	public String board_details(Model model) {
+		 BoardDto board = service.getBoard(7);
+		 List<CategoryDto> catelist = service.categoryList();
 		 model.addAttribute("board", board);
+		 model.addAttribute("catelist", catelist);
 		return "blog/blog_details";
 	}
 	
@@ -58,8 +60,8 @@ public class BlogController {
 		List<BoardDto> list = service.getBoardList("sunny@nara.com");
 		List<CategoryDto> catelist = service.categoryList();
 		model.addAttribute("list", list);
-		model.addAttribute("carelist", catelist);
-		logger.info(list.toString());
+		model.addAttribute("catelist", catelist);
+		logger.info(catelist.toString());
 		logger.info("실행");
 		
 		return "blog/blog";
