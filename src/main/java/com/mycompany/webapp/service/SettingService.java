@@ -26,6 +26,18 @@ public class SettingService {
 		return dbmember;
 		
 	}
+
+	public void membernickintroupdate(MemberDto member) {
+		
+		logger.info("mnickname: " + member.getMnickname());
+		logger.info("mintro : " + member.getMintro());
+		memberdao.updatenickintro(member);
+	}
+
+	public void memberimageupdate(MemberDto member) {
+		memberdao.updateimage(member);
+		
+	}
 	
 	
 }

@@ -150,13 +150,13 @@
 							<div class="cat-icon">
 								<div>
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services3.png"
 										alt="">
 								</div>
 								<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 								<div class="cat-cap">
 									<a href="#"> <img class="profile"
-										src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
+										src="<%=application.getContextPath()%>/resources/images/프로필-3.jpg" />
 									</a>
 									<!-- 이미지 -->
 									<div class="#">

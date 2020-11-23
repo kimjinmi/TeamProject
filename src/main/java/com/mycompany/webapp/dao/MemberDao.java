@@ -18,6 +18,16 @@ public class MemberDao {
 		return dbmember;
 	}
 
+	public int updatenickintro(MemberDto member) {
+		int rows = sst.update("mybatis.mapper.member.updatenickintro", member);
+		return rows;
+	}
+
+	public int updateimage(MemberDto member) {
+		int rows = sst.update("mybatis.mapper.member.updateimage", member);
+		return rows;
+	}
+
 	
 
 }
