@@ -109,6 +109,25 @@
 			<version>6</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/WebContent/WEB-INF/lib/ojdbc6.jar</systemPath>
+		</dependency>
+		
+			<!-- Spring Security 설정 -->
+		<dependency>
+   			<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-web</artifactId>
+    		<version>5.3.4.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.3.4.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.3.4.RELEASE</version>
 		</dependency>		
 	</dependencies>
 	

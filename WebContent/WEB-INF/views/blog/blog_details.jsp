@@ -255,7 +255,7 @@
 								<ul class="blog-info-link mt-3 mb-4">
 									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
 									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
-									<li><i class="fa fa-calendar" style="color:#999999"></i>날짜자리</a></li>
+									<li><i class="fa fa-calendar" style="color:#999999"></i>${board.bdate }</a></li>
 								</ul>
 								<p class="excert">${board.bcontent}</p>
 								<!-- <p class="excert">학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
@@ -362,34 +362,35 @@
 						</div>
 						<div class="comments-area">
 							<h4>댓글</h4>
+							
+							<!-- -----------------------------------댓글 폼1 시작----------------------------------------- -->
+							<c:forEach var="comment" items="${commentlist}">
 							<div class="comment-list">
 								<div class="single-comment justify-content-between d-flex">
+									
 									<div class="user justify-content-between d-flex">
 										<div class="thumb">
 											<img src="assetsx/img/blog/comment_1.png" alt="">
 										</div>
 
 
-									<!-- -----------------------------------댓글 폼1 시작----------------------------------------- -->
+									
+										
 										<div class="media align-items-center">
 											<div style="margin-right:23px">
 											<img class="rounded-circle" width="100px" height="100px" src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
 											</div>
 											<div class="desc">
-												<p class="comment">
-												한국소프트산업협회 한국 소프트산업 협회 한국소프트 한한국 소프트
-													협회한국소프트산프트산업협회 한국 소프트산업
-												</p>
-
+												<p class="comment">${comment.rcontent}</p>
 												<div class="d-flex justify-content-between">
 													<div class="d-flex align-items-center">
 														<h5>
-															<a href="#">김지훈</a>
+															<a href="#">${comment.mnickname }</a>
 														</h5>
-														<p class="date">December 4, 2017 at 3:12 pm</p>
+														<p class="date">게시날짜</p>
 													</div>
 													<div class="reply-btn">
-														<a href="#" class="btn-reply text-uppercase">reply</a>
+														<a href="#" class="btn-reply text-uppercase">답글</a>
 													</div>
 												</div>
 											</div>
@@ -397,9 +398,9 @@
 									</div>
 								</div>
 							</div>
-							
+							</c:forEach>
 <!-- --------///////////////////---------------------------댓글 폼1 시작--------------------////////////////////////////////--------------------- -->
-							<div class="comment-list">
+				<%-- 			 <div class="comment-list">
 								<div class="single-comment justify-content-between d-flex">
 									<div class="user justify-content-between d-flex">
 										<div class="thumb">
@@ -433,7 +434,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>  --%>
 <!-- --------///////////////////---------------------------댓글 폼1 끝--------------------////////////////////////////////--------------------- -->
 						</div>
 

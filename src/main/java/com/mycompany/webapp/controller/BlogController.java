@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.BlogService;
 
 
@@ -50,8 +51,10 @@ public class BlogController {
 	public String board_details(Model model) {
 		 BoardDto board = service.getBoard(7);
 		 List<CategoryDto> catelist = service.categoryList();
+		 List<ReplyDto> commentlist = service.commentList(7);
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);
+		 model.addAttribute("commentlist", commentlist);
 		return "blog/blog_details";
 	}
 	
