@@ -79,6 +79,19 @@
                                     <h1 data-animation="bounceIn" data-delay="0.2s">HOBBYS</h1>
                                     <p data-animation="fadeInUp" data-delay="0.4s">취미 생활 공유 플랫폼</p>
                                     <a href="<%=application.getContextPath()%>/blog/blog_write" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
+									<a href="javascript:sessionconnect()" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">세션연결</a>
+									<script type="text/javascript">
+									function sessionconnect(){
+										$.ajax({
+											url:"sessionconnect",
+											success:function(data) {
+												$("#session_result").html(data);
+											}
+										});
+									}
+									</script>
+									<div id="session_result">
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +105,7 @@
                                 <div class="hero__caption text-center">
                                     <h1 data-animation="bounceIn" data-delay="0.2s">HOBBYS</h1>
                                     <p data-animation="fadeInUp" data-delay="0.4s">취미 생활 공유 플랫폼</p>
-                                    <a href="#" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">Explore services</a>
+                                   <a href="<%=application.getContextPath()%>/blog/blog_write" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
                                 </div>
                             </div>
                         </div>

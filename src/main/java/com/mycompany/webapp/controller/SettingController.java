@@ -29,8 +29,10 @@ public class SettingController {
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 
 	@RequestMapping("/content")
-	public String content() { //http://localhost:8080/teamproject
+	public String content(HttpSession session) { //http://localhost:8080/teamproject
 		logger.info("실행");
+		String value = (String) session.getAttribute("sessionMemail");
+		logger.info(value);
 		return "setting/content";
 	}
 	
