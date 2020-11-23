@@ -121,7 +121,11 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
 									<li><a href="content" class="d-flex">
-											<p>내 페이지 설정</p></u>
+											<p>내 페이지 설정</p>
+											
+									</a></li>
+									<li><a href="imagechange" class="d-flex">
+											<p>내 프로필 사진 변경</p>
 											
 									</a></li>
 									<li><a href="#" class="d-flex">
