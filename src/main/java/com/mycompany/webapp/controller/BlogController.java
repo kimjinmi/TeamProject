@@ -58,7 +58,7 @@ public class BlogController {
 		List<BoardDto> list = service.getBoardList("sunny@nara.com");
 		List<CategoryDto> catelist = service.categoryList();
 		model.addAttribute("list", list);
-		model.addAttribute("carelist", catelist);
+		model.addAttribute("catelist", catelist);
 		logger.info(list.toString());
 		logger.info("실행");
 		
