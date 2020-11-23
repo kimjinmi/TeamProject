@@ -31,8 +31,6 @@ public class BlogService {
 		return board;
 	}
 	
-
-	
 	public List<CategoryDto> getBoardList() {		//controller에서 호출함
 			List<CategoryDto> list = categoryDao.selectAll();			//selectAll을 호출함 - ch14memberDao에서 만들어줌
 			return list;

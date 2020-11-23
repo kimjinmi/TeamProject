@@ -50,7 +50,6 @@ public class BlogController {
 	
 	@GetMapping("/blog_details")
 	public String board_details(Model model, HttpServletRequest request) {
-		
 		 int bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
@@ -90,6 +89,6 @@ public class BlogController {
 			model.addAttribute("pager", pager);							//jsp에서 이 pager를 사용할 수 있도록 해줌
 			return "ch14/boardList";
 	}*/
-	
+
 	
 }
