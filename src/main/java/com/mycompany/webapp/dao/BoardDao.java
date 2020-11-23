@@ -20,21 +20,33 @@ public class BoardDao {
 		return board;
 	}
 	
-	public List<BoardDto> selectAll() {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll");
+	/*------------------------- 선 -------------------------*/
+	public List<BoardDto> selectLikeAll() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectLikeAll");
 		return list;
 	}
 	
-	public List<BoardDto> selectCategory(int cno) {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectCategory", cno);
+	public List<BoardDto> selectLikeCategory(int cno) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectLikeCategory", cno);
 		return list;
 	}
 
+	public List<BoardDto> selectNewAll() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectNewAll");
+		return list;
+	}
+	
+	public List<BoardDto> selectNewCategory(int cno) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectNewCategory", cno);
+		return list;
+	}	
+	/*------------------------- 선 -------------------------*/
+	
+	
 	public List<BoardDto> selectUserBoard(String memail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
 		return list;
 	}
-
 
 
 }

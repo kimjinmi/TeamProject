@@ -16,10 +16,13 @@ public class ContentsService {
 	private BoardDao boardDao;
 
 	public List<BoardDto> getBoardList() {
-		List<BoardDto> list = boardDao.selectAll();
+		List<BoardDto> list = boardDao.selectNewAll();
 		return list;
 	}
 	
-	
+	public List<BoardDto> getBoardListCno(int cno) {
+		List<BoardDto> list = boardDao.selectNewCategory(cno);
+		return list;
+	}
 
 }
