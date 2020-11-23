@@ -28,6 +28,7 @@ public class BlogController {
 	
 	@Resource
 	private DataSource dataSource;
+	
 	@Resource
 	private BlogService service;
 
@@ -54,13 +55,14 @@ public class BlogController {
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 List<CategoryDto> catelist = service.categoryList();		//영아
-		List<BoardDto> btitlelist = service.BoardList();		//영아
+		 List<BoardDto> btitlelist = service.BoardList();		//영아
 		 List<ReplyDto> commentlist = service.commentList(bno);
 		 model.addAttribute("board", board);
-		 model.addAttribute("catelist", catelist);
-					 model.addAttribute("btitlelist", btitlelist);
+		 model.addAttribute("catelist", catelist);				//영아
+		 model.addAttribute("btitlelist", btitlelist);			//영아
 		 model.addAttribute("commentlist", commentlist);
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
+		 logger.info("btitlelist출력됨");				//영아
 		return "blog/blog_details";
 	}
 

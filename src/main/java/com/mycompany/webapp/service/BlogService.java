@@ -46,7 +46,7 @@ public class BlogService {
 	}
 	
 	public List<BoardDto> BoardList() {
-		List<BoardDto> list = boardDao.selectByBtitle();
+		List<BoardDto> list = boardDao.selectBtitleAll();
 		return list;
 	}
 

@@ -55,11 +55,12 @@
 		where board.memail = member.memail AND board.memail = #{memail}
 		</select>
 		
-		<select id="selectByBtitle" resultType="board">
+		<select id="selectBtitleAll" resultType="board">
 		select btitle 
-		from ( select btitle  from board 
-					order by bdate desc) 
-		where rownum &lt; = 4
+		from ( select btitle  
+		from board 
+		order by to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS')desc) 
+		where rownum&lt;=4;
 		</select>
 
 	

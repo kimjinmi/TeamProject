@@ -49,8 +49,8 @@ public class BoardDao {
 		return list;
 	}
 	
-	public List<BoardDto> selectByBtitle() {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectByBtitle");
+	public List<BoardDto> selectBtitleAll() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll");
 		return list;
 	}
 	
@@ -59,5 +59,6 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectByPage", pager);
 		return list;
 	}
+
 
 }
