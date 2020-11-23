@@ -55,6 +55,8 @@ public class BlogController {
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);
 		 model.addAttribute("commentlist", commentlist);
+		 
+		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		return "blog/blog_details";
 	}
 	

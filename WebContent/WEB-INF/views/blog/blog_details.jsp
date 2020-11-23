@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -255,7 +256,7 @@
 								<ul class="blog-info-link mt-3 mb-4">
 									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
 									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
-									<li><i class="fa fa-calendar" style="color:#999999"></i>${board.bdate }</a></li>
+									<li><i class="fa fa-calendar" style="color:#999999"></i><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd HH:mm:ss"/></a></li>
 								</ul>
 								<p class="excert">${board.bcontent}</p>
 								<!-- <p class="excert">학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
@@ -387,7 +388,7 @@
 														<h5>
 															<a href="#">${comment.mnickname }</a>
 														</h5>
-														<p class="date">게시날짜</p>
+														<p class="date"><fmt:formatDate value="${comment.rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
 													</div>
 													<div class="reply-btn">
 														<a href="#" class="btn-reply text-uppercase">답글</a>

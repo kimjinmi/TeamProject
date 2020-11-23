@@ -34,7 +34,7 @@
 	</select>
 	
 	<select id="selectBoardComment" parameterType="int" resultType="reply">
-		select rno, rcontent, reply.memail, member.mnickname
+		select rno, rcontent, reply.memail, member.mnickname, to_char(rdate, 'YYYY-MM-DD HH24:Mi:SS') rdate
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail
 	</select>
