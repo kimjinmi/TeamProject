@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -110,34 +111,31 @@
 						<h3 class="text-heading">로그인</h3>
 					</div>
 				</div>
+				
 				<div class="row">
 					<div class="col-lg-7 col-md-8">
 						<h3 class="mb-30">아이디와 비밀번호를 입력해 주세요</h3>
 						
 							<div class="container">
-							<form action="#">
+							<form method="post" action="<%=application.getContextPath()%>/login">
 								<div class="row">
 									<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 									<div class="col-lg-7">
 											<div class="mt-6">
-												<input type="text" name="Email" placeholder="Email"
-													onfocus="this.placeholder = ''"
-													onblur="this.placeholder = 'Email'" required
-													class="single-input">
+												<input type="text" name="memail" class="form-control" value="${memail}"
+													class="form-control">
 											</div>
 											<div class="mt-6">
-											<input type="text" name="Password" placeholder="Password"
-												onfocus="this.placeholder = ''"
-												onblur="this.placeholder = 'Password'" required
-												class="single-input">
+											<input type="password" name="mpassword" class="form-control"
+													class="form-control">
 											</div>
+											
 											<p></p>
-
+											
 									</div>
 									
 									<div class="col-lg-5">
-											<a class="btn btn-lg" style="line-height: 3;">SIGN
-												IN</a>
+										<input class="btn btn-lg" type="submit" value="login" name="submit" style="line-height: 3;" >
 									</div>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="ex" href="#" style="color:black; font-size:7px;">이메일 찾기></a> 
 									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signin/passwordfind" style="color: black; font-size:7px;">비밀번호 찾기></a> 

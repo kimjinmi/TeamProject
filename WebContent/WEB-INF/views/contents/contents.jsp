@@ -113,17 +113,17 @@
 				<div class="col-md-12">
 					<ul class="nev">
 						<li class="nev"><a class="link_tab #life"
-							href="/category/life"><span class="inner_link">라이프</span></a></li>
+							href="category/life"><span class="inner_link">라이프</span></a></li>
 						<li class="nev"><a class="link_tab #travel"
-							href="/category/travel"><span class="inner_link">여행.맛집</span></a></li>
+							href="category/travel"><span class="inner_link">여행.맛집</span></a></li>
 						<li class="nev"><a class="link_tab #culture"
-							href="/category/culture"><span class="inner_link">문화.연예</span></a></li>
-						<li class="nev"><a class="link_tab #it" href="/category/it"><span
+							href="category/culture"><span class="inner_link">문화.연예</span></a></li>
+						<li class="nev"><a class="link_tab #it" href="category/it"><span
 								class="inner_link">IT</span></a></li>
 						<li class="nev"><a class="link_tab #sports"
-							href="/category/sports"><span class="inner_link">스포츠</span></a></li>
+							href="category/sports"><span class="inner_link">스포츠</span></a></li>
 						<li class="nev"><a class="link_tab #current"
-							href="/category/current" style="margin-left: 0px;"><span
+							href="category/current" style="margin-left: 0px;"><span
 								class="inner_link">시사</span></a></li>
 					</ul>
 				</div>
@@ -138,39 +138,42 @@
 				<div class="row">
 					<!-- 포스팅 view 시작 -->
 					
-					<c:forEach var="board" items="${list}">
+			 		<c:forEach var="board" items="${list}">
 						<div class="col-lg-4 col-md-6 col-sm-6">
-							<div class="cat-icon">
-								<div>
-									<img src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
-										alt="" >
-								</div>
-									<div class="cat-cap">
-										<a href="#"> <img class="profile"
-											src="<%=application.getContextPath()%>/resources/images/프로필-2.jpg" />
-										</a>
+								<div class="cat-icon">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
+										alt="" style="width: 100%; height: 100%;">
+								</div> <!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
+								<div class="cat-cap">
+									<a href="#"> <img class="profile"
+										src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
+									</a>
+									<!-- 이미지 -->
 									<div class="#">
+										<!-- 닉네임 -->
 										<a href="#" class="nick-name"> <strong>${board.mnickname}</strong>
 										</a>
+										<!-- 홈페이지 소개글 -->
 										<a href="#">
 											<p id="home-title">${board.btitle}</p>
 										</a>
 									</div>
 								</div>
-							</div>
-						</div>
+											</div>
 					</c:forEach>
 					
 					<!-- 포스팅 view 끝 -->
-
 					
-
+				
 				</div>
 			</div>
+			
+		
 		</section>
 		
 		<!-- ----- 실시간 게시물 끝 부분 ----- -->
-
+		
 	</main>
 	<footer>
 		<div class="footer-wrapper section-bg2"

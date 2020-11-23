@@ -8,5 +8,15 @@
 		WHERE MEMAIL=#{memail} 
 	</select>
 	
+	<update id="updatenickintro" parameterType="member">
+		UPDATE member SET mnickname=#{mnickname}, mintro=#{mintro}
+		WHERE memail=#{memail}
+	</update>
+	
+	<update id="updateimage" parameterType="member">
+		UPDATE member SET mmyimage=#{mmyimage}
+		WHERE memail=#{memail}
+	</update>
+	
 </mapper>
 

@@ -1,15 +1,24 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.mycompany.webapp.dto.ReplyDto;
 
 @Repository
 public class ReplyDao {
 	
 	@Resource
 	private SqlSessionTemplate sst;
+
+	public List<ReplyDto> selectBoardComment(int bno) {
+		List<ReplyDto> list = sst.selectList("mybatis.mapper.board.selectBoardComment", bno);
+		return list;
+	}
 	
 	
 

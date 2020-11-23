@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
+import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class BlogService {
@@ -19,6 +21,9 @@ public class BlogService {
 	
 	@Resource
 	private CategoryDao categoryDao;
+	
+	@Resource
+	private ReplyDao replyDao;
 
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
@@ -45,5 +50,8 @@ public class BlogService {
 		return list;
 	}
 
-	
+	public List<ReplyDto> commentList(int bno){
+		List<ReplyDto> list = replyDao.selectBoardComment(bno);
+		return list;
+	}
 }

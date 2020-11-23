@@ -1,12 +1,29 @@
 package com.mycompany.webapp.dto;
 
+import java.util.Date;
+
 public class ReplyDto {
 	private	int rno; // 댓글 번호
 	private String rcontent; // 댓글 내용
 	private int firstreply; // 상위 댓글 번호
 	private String memail; // member email -> 아이디
 	private int bno; // 게시글 번호 
+	private String mnickname;
+	private Date rdate;
 	
+	
+	public Date getRdate() {
+		return rdate;
+	}
+	public void setRdate(Date rdate) {
+		this.rdate = rdate;
+	}
+	public String getMnickname() {
+		return mnickname;
+	}
+	public void setMnickname(String mnickname) {
+		this.mnickname = mnickname;
+	}
 	public int getRno() {
 		return rno;
 	}

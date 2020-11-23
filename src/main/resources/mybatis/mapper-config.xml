@@ -8,6 +8,7 @@
 		<typeAlias alias="link" type="com.mycompany.webapp.dto.LinkDto" />
 		<typeAlias alias="member" type="com.mycompany.webapp.dto.MemberDto" />
 		<typeAlias alias="reply" type="com.mycompany.webapp.dto.ReplyDto" />
+		<typeAlias alias="pager" type="com.mycompany.webapp.dto.PagerDto" />
 	</typeAliases> 
 </configuration>
 
