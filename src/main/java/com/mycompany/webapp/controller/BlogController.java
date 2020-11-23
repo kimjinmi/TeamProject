@@ -47,8 +47,8 @@ public class BlogController {
 	} 
 	
 	@RequestMapping("/blog_details")
-	public String board_details(int bno, Model model) {
-		 BoardDto board = service.getBoard(bno);
+	public String board_details(Model model) {
+		 BoardDto board = service.getBoard(2);
 		 model.addAttribute("board", board);
 		return "blog/blog_details";
 	}
