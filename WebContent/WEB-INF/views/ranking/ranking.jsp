@@ -120,7 +120,7 @@
 							</a>
 						</li>
 						<li class="nev">
-							<a class="link_tab #travel" href="category/travle"> 
+							<a class="link_tab #travel" href="category/travel"> 
 								<span class="inner_link">여행.맛집</span>
 							</a>
 						</li>
