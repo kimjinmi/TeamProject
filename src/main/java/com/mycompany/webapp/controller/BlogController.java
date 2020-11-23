@@ -48,8 +48,10 @@ public class BlogController {
 	
 	@RequestMapping("/blog_details")
 	public String board_details(Model model) {
-		 BoardDto board = service.getBoard(2);
+		 BoardDto board = service.getBoard(7);
+		 List<CategoryDto> catelist = service.categoryList();
 		 model.addAttribute("board", board);
+		 model.addAttribute("catelist", catelist);
 		return "blog/blog_details";
 	}
 	
