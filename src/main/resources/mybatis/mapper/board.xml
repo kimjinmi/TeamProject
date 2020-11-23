@@ -31,8 +31,14 @@
 		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
 		from board, member
 		where board.memail = member.memail AND board.memail = #{memail}
+		</select>
 		
-	</select>
+		<select id="selectByBtitle" parameterType="String" resultType="board">
+		select btitle from ( select btitle  
+		from board 
+		order by to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') desc) 
+		where rownum &lt; = 4
+		</select>
 	
 </mapper>
 

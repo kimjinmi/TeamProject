@@ -35,6 +35,10 @@ public class BoardDao {
 		return list;
 	}
 
-
+	public List<BoardDto> selectByBtitle(String btitle) {
+		List<BoardDto> list = sst.selectList("com.mycompany.webapp.dto.BoardDto", btitle);
+		return list;
+	}
+	
 
 }

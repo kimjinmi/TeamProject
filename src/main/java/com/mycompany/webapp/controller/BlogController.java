@@ -29,7 +29,6 @@ public class BlogController {
 	@Resource
 	private BlogService service;
 
-	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
 	@GetMapping("/dbConnect")
@@ -47,13 +46,16 @@ public class BlogController {
 	} 
 	
 	@RequestMapping("/blog_details")
-	public String board_details(Model model) {
+	public String board_details(String btitle, Model model) {
 		 BoardDto board = service.getBoard(7);
 		 List<CategoryDto> catelist = service.categoryList();
+		 List<BoardDto> btitlelist = service.BoardList(btitle);
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);
+		 model.addAttribute("btitlelist", btitlelist);
 		return "blog/blog_details";
 	}
+
 	
 	@RequestMapping("/blog")
 	public String blog(Model model) { //http://localhost:8080/teamproject
@@ -72,16 +74,5 @@ public class BlogController {
 		logger.info("실행");
 		return "blog/blog_write";
 	}
-	
-	/*@GetMapping("/blogLife")
-	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model) {			//페이지 값을 default값으로 1을 줌, 1페이지로넘어가게
-			int totalRows = service.getTotalRows();				//전체 행수를 달라고 서비스에 요청
-			Ch14Pager pager = new Ch14Pager(10, 5, totalRows, pageNo);			//pager - page 객체를 만들어야함 / 한 페이지에 나타나는 행수, 그룹당 오는 행수, 전체 행수, 페이지수
-			List<Ch14Board> list = service.getBoardList(pager);		
-			model.addAttribute("list", list);								//테이블을 만들수 있도록 하기 위해 list를 가져와서 return에 넣어줌
-			model.addAttribute("pager", pager);							//jsp에서 이 pager를 사용할 수 있도록 해줌
-			return "ch14/boardList";
-	}*/
-	
 	
 }

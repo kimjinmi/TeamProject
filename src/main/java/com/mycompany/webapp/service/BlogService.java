@@ -20,13 +20,10 @@ public class BlogService {
 	@Resource
 	private CategoryDao categoryDao;
 
-
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
 		return board;
 	}
-	
-
 	
 	public List<CategoryDto> getBoardList() {		//controller에서 호출함
 			List<CategoryDto> list = categoryDao.selectAll();			//selectAll을 호출함 - ch14memberDao에서 만들어줌
@@ -40,7 +37,13 @@ public class BlogService {
 	
 	public List<CategoryDto> categoryList(){
 		List<CategoryDto> list = categoryDao.selectAll();
-		
 		return list;
 	}
+	
+	public List<BoardDto> BoardList(String btitle) {
+		List<BoardDto> list = boardDao.selectByBtitle(btitle);
+		return list;
+	}
+
+	
 }
