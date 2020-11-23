@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dao;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,6 +20,5 @@ public class MemberDao {
 		return dbmember;
 	}
 
-	
 
 }
