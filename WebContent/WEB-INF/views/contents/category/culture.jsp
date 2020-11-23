@@ -108,7 +108,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 rt">
-					<h2>Ranking</h2>
+					<h2>Contents</h2>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 rc">블로그 세상 속 다양한
 					이야기들을 만나보세요</div>

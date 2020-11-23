@@ -108,7 +108,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 rt">
-					<h2>Ranking</h2>
+					<h2>Contents</h2>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 rc">블로그 세상 속 다양한
 					이야기들을 만나보세요</div>
@@ -150,13 +150,13 @@
 							<div class="cat-icon">
 								<div>
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services3.png"
 										alt="">
 								</div>
 								<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 								<div class="cat-cap">
 									<a href="#"> <img class="profile"
-										src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
+										src="<%=application.getContextPath()%>/resources/images/프로필-3.jpg" />
 									</a>
 									<!-- 이미지 -->
 									<div class="#">
