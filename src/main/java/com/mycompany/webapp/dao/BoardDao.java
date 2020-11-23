@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.PagerDto;
 
 @Repository
 public class BoardDao {
@@ -32,6 +33,11 @@ public class BoardDao {
 
 	public List<BoardDto> selectUserBoard(String memail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
+		return list;
+	}
+	
+	public List<BoardDto> selectByPage(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectByPage", pager);
 		return list;
 	}
 

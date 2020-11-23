@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.PagerDto;
 
 @Service
 public class ContentsService {
@@ -20,6 +21,4 @@ public class ContentsService {
 		return list;
 	}
 	
-	
-
 }

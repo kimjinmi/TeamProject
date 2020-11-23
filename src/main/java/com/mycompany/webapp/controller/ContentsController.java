@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.ContentsService;
 
 @Controller
@@ -28,9 +30,12 @@ public class ContentsController {
 	
 	@GetMapping("/contents")
 	public String boardList(Model model) {
+		
 		List<BoardDto> list = service.getBoardList();
 		model.addAttribute("list", list);
 		
 		return "contents/contents";
 	}
+	
+
 }
