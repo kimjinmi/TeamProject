@@ -36,9 +36,6 @@ public class ContentsController {
 		return "contents/contents";
 	}
 	
-
-
-
 	@GetMapping("/category/life")
 	public String life(Model model) {
 		List<BoardDto> list = service.getBoardListCno(1); // 서비스에 BoardList를 달라고 요청
