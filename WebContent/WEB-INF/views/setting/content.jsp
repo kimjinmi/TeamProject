@@ -122,7 +122,7 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
 									<li><a href="javascript:setting()" class="d-flex">
-											<u><p>내 페이지 설정</p></u></a>
+											<p>내 페이지 설정</p></a>
 											<script type="text/javascript">
 											function setting(){
 												$.ajax({
@@ -138,7 +138,7 @@
 											
 									</li>
 									<li><a href="javascript:imagechange()" class="d-flex">
-											<p>내 프로필 사진 변경</p></a>
+											<p>프로필 사진 설정</p></a>
 											<script type="text/javascript">
 											function imagechange(){
 												$.ajax({

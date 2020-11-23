@@ -2,8 +2,10 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -11,12 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.BoardDto;
@@ -105,7 +110,7 @@ public class SettingController {
 		logger.info(fileName);
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
-		String saveFilePath = request.getContextPath()+"/WebContent/resources/images/member/" + fileName;
+		String saveFilePath = "C:/temp/projectimage/member/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 		
 		//응답 HTTP 헤더 구성
@@ -141,11 +146,25 @@ public class SettingController {
 	}
 	
 	@RequestMapping("/photodelete")
-	public String photodelete(MemberDto memberdto, Model model) {
+	public String photodelete(MemberDto member, Model model, HttpSession session) {
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		
-		memberdto.setMmyimage("unnamed.jpg");
-		model.addAttribute("member", memberdto);
+		member.setMemail(sessionMemail);
+		member.setMmyimage("default.jpg");
+		model.addAttribute("member", member);
+		service.memberimageupdate(member);
 		return "setting/imagechange";
 	}
+	
+	@PostMapping("/updatenickintro")
+	public String updatenickintro(MemberDto member){
+		
+		logger.info(member.getMemail());
+		logger.info(member.getMintro());
+		logger.info(member.getMnickname());
+		service.membernickintroupdate(member);
+		return "redirect:/setting/content";
+	}
+	
 
 }
