@@ -42,15 +42,7 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 </head>
-<!-- <script type="text/javascript">
-	$.ajax({
-		url:"setting",
-		success:function(data) {
-			$("#setting_result").html(data);
-		}
-	});
 
-</script> -->
 <body>
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
@@ -117,8 +109,6 @@
 							<aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle"><br>
-								<a class="genric-btn link radius small" href="sessionconnect">세션연결</a>
-								<a class="genric-btn link radius small" href="sessiondelete">세션삭제</a>
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
@@ -195,7 +185,8 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-								
+						
+						<jsp:include page="/WEB-INF/views/setting/setting.jsp" />		
 					
 						</div>
 					</div>

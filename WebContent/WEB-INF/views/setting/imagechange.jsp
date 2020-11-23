@@ -15,8 +15,32 @@
 			<img width="200" height="200" src="photodownload?fileName=${member.mmyimage}"/>
 		</div>
 		<div class="col-5">
-			<a class="genric-btn primary radius small" href="photoenroll">등록</a>
-			<a class="genric-btn primary radius small" href="photodelete">삭제</a>
+			<a class="genric-btn primary radius small" href="javascript:photoenroll()">등록</a>
+			<script type="text/javascript">
+				function photoenroll(){
+					$.ajax({
+						url:"photoenroll",
+						success:function(data) {
+							$("#setting_result").html(data);
+						}
+					});
+					
+				}
+			
+			</script>
+			<a class="genric-btn primary radius small" href="javascript:photodelete()">삭제</a>
+			<script type="text/javascript">
+				function photodelete(){
+					$.ajax({
+						url:"photodelete",
+						success:function(data) {
+							$("#setting_result").html(data);
+						}
+					});
+					
+				}
+			
+			</script>
 			<br/><br/>
 			프로필 이미지는 ~~~~~
 		</div>
