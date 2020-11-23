@@ -9,25 +9,27 @@
 		where bno = #{bno}
 	</select>
 	
-	<!-- 	select bno, btitle, bcontent, bdate, blike, memail, cno, bimage
-		from board
-		order by blike desc  -->
-		
+	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
 	<select id="selectAll" resultType="board">	
-		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-		from board b, member m
-		where b.memail = m.memail
-		order by blike desc
+		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+       			 from board b, member m
+       			 where b.memail = m.memail
+       			 order by blike desc)
+		where rownum &lt;= 12
 	</select>
 	
+	<!-- 선: 좋아요 순으로 불러오기 ranking 카테고리별 데이터 -->
 	<select id="selectCategory" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-		from board b, member m
-		where b.memail = m.memail and cno = #{cno}
-		order by blike desc
+		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
+       			 from board b, member m
+       			 where b.memail = m.memail and cno = #{cno} 
+       			 order by blike desc)
+		where rownum &lt;= 12
 	</select>
 	
-		<select id="selectUserBoard" parameterType="String" resultType="board">
+	<select id="selectUserBoard" parameterType="String" resultType="board">
 		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
 		from board, member
 		where board.memail = member.memail AND board.memail = #{memail}
