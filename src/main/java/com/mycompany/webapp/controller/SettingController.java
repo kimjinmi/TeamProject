@@ -55,19 +55,19 @@ public class SettingController {
 	@Resource
 	private SettingService service; 
 	
-	@RequestMapping("/ex_login")
-	public String ex_login(MemberDto memberdto, HttpSession session, Model model) {
+	@RequestMapping("/sessionconnect")
+	public String sessionconnect(MemberDto memberdto, HttpSession session, Model model) {
 		
 		memberdto.setMemail("jinmikim88@gmail.com");
-		MemberDto member =service.ex_login(memberdto);
-		logger.info(member.getMnickname());
-		session.setAttribute("sessionMid", memberdto.getMemail());
+		MemberDto member =service.sessionconnect(memberdto);
+		
+		session.setAttribute("sessionMemail", memberdto.getMemail());
 		model.addAttribute("member", member);
 		return "setting/content";
 	}
 	
-	@RequestMapping("/ex_logout")
-	public String ex_logout(HttpSession session) {
+	@RequestMapping("/sessiondelete")
+	public String sessiondelete(HttpSession session) {
 		session.invalidate();		
 		return "setting/content";
 	}

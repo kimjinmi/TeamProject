@@ -17,7 +17,7 @@ public class SignupController {
 		return "signup/signupcheck";
 	}
 	
-	@GetMapping("/test")
+	@RequestMapping("/test")
 	public String test() {
 		logger.info("test실행");
 		return "signup/signup";
