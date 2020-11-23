@@ -4,7 +4,7 @@
 	
 	
 	<select id="selectByBno" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, memail
+		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
 		from board
 		where bno = #{bno}
 	</select>
@@ -31,8 +31,12 @@
 		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
 		from board, member
 		where board.memail = member.memail AND board.memail = #{memail}
-		
 	</select>
 	
+	<select id="selectBoardComment" parameterType="int" resultType="reply">
+		select rno, rcontent, reply.memail, member.mnickname
+		from board, reply, member
+		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail
+	</select>
 </mapper>
 
