@@ -28,10 +28,10 @@ public class BlogController {
 	
 	@Resource
 	private DataSource dataSource;
-	
 	@Resource
 	private BlogService service;
 
+	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
 	@GetMapping("/dbConnect")
@@ -47,19 +47,16 @@ public class BlogController {
 		}
 		return "blog/blog_details";
 	} 
-
+	
 	@GetMapping("/blog_details")
-	public String board_details(String btitle, Model model, HttpServletRequest request) {
-		
+	public String board_details(Model model, HttpServletRequest request) {
 		 int bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
-		 List<CategoryDto> catelist = service.categoryList();		//영아
-		 List<BoardDto> btitlelist = service.BoardList();		//영아
+		 List<CategoryDto> catelist = service.categoryList();
 		 List<ReplyDto> commentlist = service.commentList(bno);
 		 model.addAttribute("board", board);
-		 model.addAttribute("catelist", catelist);				//영아
-		 model.addAttribute("btitlelist", btitlelist);			//영아
+		 model.addAttribute("catelist", catelist);
 		 model.addAttribute("commentlist", commentlist);
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		return "blog/blog_details";
@@ -82,5 +79,7 @@ public class BlogController {
 		logger.info("실행");
 		return "blog/blog_write";
 	}
+	
+
 	
 }

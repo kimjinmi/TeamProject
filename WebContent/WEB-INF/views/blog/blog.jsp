@@ -111,7 +111,7 @@
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">유저이름</h2>
+								<h2 class="contact-title">유저네임</h2>
 								<p>소개글</p>
 								<hr/>
 								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
