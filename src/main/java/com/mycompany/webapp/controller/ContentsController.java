@@ -43,11 +43,11 @@ public class ContentsController {
 		return "contents/category/life";
 	}
 	
-	@GetMapping("/category/travle")
+	@GetMapping("/category/travel")
 	public String travle(Model model) {
 		List<BoardDto> list = service.getBoardListCno(2); // 서비스에 BoardList를 달라고 요청
 		model.addAttribute("list", list); 
-		return "contents/category/travle";
+		return "contents/category/travel";
 	}
 	
 	@GetMapping("/category/culture")

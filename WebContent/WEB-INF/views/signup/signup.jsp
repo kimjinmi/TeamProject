@@ -1,5 +1,3 @@
-로그인content
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
@@ -45,7 +43,7 @@
  	.section-top-border1 i {
  		font-size: 20px;
  		margin: 10px 10px 0 0 ;
- 		color: 940128;
+ 		color: #940128;
  	}
 
     </style>
@@ -122,7 +120,7 @@
 					<section class="sample-text-area" style="padding: 50px 150px 0 150px;">
 						<div class="container box_1170">
 							<h3 class="text-heading">회원가입</h3>
-								<i class="fas fa-check" style="color: 940128; margin: 0 5px 0 0 ;"></i><p style="display: inline; color: 940128; margin: 0 5px 0 0 ;  	font-weight: 250px;">표시는 필수사항입니다.</p>
+								<i class="fas fa-check" style="color: #940128; margin: 0 5px 0 0 ;"></i><p style="display: inline; color: 940128; margin: 0 5px 0 0 ;  	font-weight: 250px;">표시는 필수사항입니다.</p>
 						</div>
 					</section>
 		<!-- End Sample Area 여기까지 회원가입 제목 사용-->  

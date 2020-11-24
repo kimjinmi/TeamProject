@@ -25,7 +25,6 @@ public class BlogService {
 	@Resource
 	private ReplyDao replyDao;
 
-
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
 		return board;
@@ -46,6 +45,11 @@ public class BlogService {
 		return list;
 	}
 	
+	public List<BoardDto> BoardList() {
+		List<BoardDto> list = boardDao.selectBtitleAll();
+		return list;
+	}
+
 	public List<ReplyDto> commentList(int bno){
 		List<ReplyDto> list = replyDao.selectBoardComment(bno);
 		return list;

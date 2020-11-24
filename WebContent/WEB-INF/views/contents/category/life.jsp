@@ -117,7 +117,7 @@
 						<li class="nev"><a class="link_tab #life" href="life"> <span
 								class="inner_link">라이프</span>
 						</a></li>
-						<li class="nev"><a class="link_tab #travel" href="travle">
+						<li class="nev"><a class="link_tab #travel" href="travel">
 								<span class="inner_link">여행.맛집</span>
 						</a></li>
 

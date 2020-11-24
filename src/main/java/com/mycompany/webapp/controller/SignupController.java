@@ -1,14 +1,22 @@
 package com.mycompany.webapp.controller;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.service.SignupService;
 
 @Controller
 @RequestMapping("/signup")
 public class SignupController {
+	
+	@Resource
+	private SignupService service;
+	
 	private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
 
 	@RequestMapping("/content")
@@ -18,10 +26,12 @@ public class SignupController {
 	}
 	
 	@RequestMapping("/test")
-	public String test() {
-		logger.info("test실행");
-		return "signup/signup";
-	}
+		public String test() {
+			/*	MemberDto mememail = service.getMemail();*/
+			
+			logger.info("test실행");
+			return "signup/signup";
+		}
 	
 }
 
