@@ -19,7 +19,7 @@ public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 		logger.info("실행");
 		super.onLogoutSuccess(request, response, authentication);
-		
+	
 	}
 }
 

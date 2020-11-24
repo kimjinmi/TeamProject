@@ -117,7 +117,7 @@
 						<h3 class="mb-30">아이디와 비밀번호를 입력해 주세요</h3>
 						
 							<div class="container">
-							<form method="post" action="<%=application.getContextPath()%>/login">
+							<form method="post" action="<%=application.getContextPath()%>/SIGNIN">
 								<div class="row">
 									<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 									<div class="col-lg-7">

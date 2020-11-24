@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="col-xl-2 col-lg-2">
 	<div class="logo">
 		<br/>
@@ -30,8 +31,17 @@
 			<!-- Header btn -->
 			<li>
 				<div class="header-right-btn ml-40">
-					<a href="<%=application.getContextPath()%>/signup/content" class="btn btn-sm">SIGN UP</a> 
-					<a href="<%=application.getContextPath()%>/signin/content" class="btn btn-sm">SIGN IN</a>
+					<sec:authorize access="isAnonymous()">
+						<a href="<%=application.getContextPath()%>/signup/content" class="btn btn-sm">SIGN UP</a> 
+						<a href="<%=application.getContextPath()%>/signin/content" class="btn btn-sm">SIGN IN</a>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<form method="post" action="<%=application.getContextPath()%>/SIGNOUT">
+							
+							<input class="btn btn-info" type="submit" value='SIGNOUT'/>
+						</form>
+					</sec:authorize>
+				
 				</div>
 			</li>
 		</ul>

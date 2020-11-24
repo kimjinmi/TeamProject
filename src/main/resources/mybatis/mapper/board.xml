@@ -52,7 +52,9 @@
 	<select id="selectUserBoard" parameterType="String" resultType="board">
 		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
 		from board, member
-		where board.memail = member.memail AND board.memail = #{memail}
+		where board.memail = member.memail AND board.memail = #{memail} 
+		order by bdate desc
+		
 		</select>
 		
 		<select id="selectBtitleAll" resultType="board">

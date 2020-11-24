@@ -66,6 +66,7 @@ public class BlogController {
 	
 	@RequestMapping("/blog")
 	public String blog(Model model) { //http://localhost:8080/teamproject
+		
 		List<BoardDto> list = service.getBoardList("sunny@nara.com");
 		List<CategoryDto> catelist = service.categoryList();				//영아
 		List<BoardDto> btitlelist = service.BoardList();					//영아
