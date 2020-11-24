@@ -204,7 +204,7 @@
                         
                         	<div class="blog_item_img">
                                 <img class="card-img rounded-0" src="<%=application.getContextPath() %>/resources/assets/img/blog/single_blog_3.png" alt="">
-                                <a href="blog_details" class="blog_item_date">
+                                <a href="javascript:boardDetails(${board.bno})" class="blog_item_date">
                                     <h3 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="MM월 dd일" /></h3>
                                     <h2 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="HH시 mm분" /></h2>
                                 </a>
