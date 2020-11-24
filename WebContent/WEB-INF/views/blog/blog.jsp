@@ -150,48 +150,21 @@
 											${category.ccontent}
 									</a></li>
 									</c:forEach>
-									
 								</ul>
 							</aside>
 							<aside class="single_sidebar_widget popular_post_widget">
-								<h3 class="widget_title" style="color: #2d2d2d;">최근 포스팅
-									</h3>
-								<div class="media post_item">
-									<img src="assets/img/post/post_1.png" alt="post">
-									<div class="media-body">
-										<a href="blog_details.html">
-											<h3 style="color: #2d2d2d;">최근 포스팅1</h3>
-										</a>
-										<p>1시간 전 작성</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="assets/img/post/post_2.png" alt="post">
-									<div class="media-body">
-										<a href="blog_details.html">
-											<h3 style="color: #2d2d2d;">최근 포스팅2</h3>
-										</a>
-										<p>2시간 전 작성</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="assets/img/post/post_3.png" alt="post">
-									<div class="media-body">
-										<a href="blog_details.html">
-											<h3 style="color: #2d2d2d;">최근 포스팅3</h3>
-										</a>
-										<p>3시간 전 작성</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="assets/img/post/post_4.png" alt="post">
-									<div class="media-body">
-										<a href="blog_details.html">
-											<h3 style="color: #2d2d2d;">최근 포스팅4</h3>
-										</a>
-										<p>4시간 전 작성</p>
-									</div>
-								</div>
+									<h3 class="widget_title" style="color: #2d2d2d;">Recent Posting</h3>
+									<c:forEach var="btitle" items="${btitlelist}">
+										<div class="media post_item">
+											<img src="assets/img/post/post_1.png" alt="post">
+											<div class="media-body">
+												<a href="blog_details.html">
+													<h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
+												</a>
+												<p>1시간 전 작성</p>
+											</div>
+										</div>
+									</c:forEach>
 							</aside>
 						</div>
 					</div>
