@@ -32,7 +32,8 @@ import com.mycompany.webapp.service.SettingService;
 @RequestMapping("/setting")
 public class SettingController {
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
-
+	
+	
 	@RequestMapping("/content")
 	public String content(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
@@ -45,21 +46,33 @@ public class SettingController {
 	}
 	
 	@RequestMapping("/mybloglist")
-	public String mybloglist() { //http://localhost:8080/teamproject
+	public String mybloglist(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		
+		
 		return "setting/mybloglist";
 	}
 	
 	@RequestMapping("/mycommentlist")
-	public String mycommentlist() { //http://localhost:8080/teamproject
+	public String mycommentlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "setting/mycommentlist";
 	}
 	
 	@RequestMapping("/delete")
-	public String delete() { //http://localhost:8080/teamproject
+	public String delete(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "setting/delete";
+	}
+	
+	@RequestMapping("/passwordchange")
+	public String imagechange(HttpSession session, Model model) { //http://localhost:8080/teamproject
+		logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		return "setting/passwordchange";
 	}
 	
 	@RequestMapping("/setting")
