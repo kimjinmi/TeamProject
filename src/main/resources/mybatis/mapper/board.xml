@@ -65,8 +65,6 @@
 		where rownum &lt; = 4
 		</select>
 
-	
-
 	<select id="countAll" resultType="int">
 		select count(*) 
 		from board

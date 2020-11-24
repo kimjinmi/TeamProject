@@ -53,13 +53,13 @@ public class BlogController {
 		 int bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
-		 List<CategoryDto> catelist = service.categoryList();
+		 List<CategoryDto> catelist = service.categoryList();			//영아
 		 List<ReplyDto> commentlist = service.commentList(bno);
-		 List<BoardDto> btitlelist = service.BoardList();
+		 List<BoardDto> btitlelist = service.BoardList();					//영아
 		 model.addAttribute("board", board);
-		 model.addAttribute("catelist", catelist);
+		 model.addAttribute("catelist", catelist);								//영아
 		 model.addAttribute("commentlist", commentlist);
-		 model.addAttribute("btitlelist", btitlelist);
+		 model.addAttribute("btitlelist", btitlelist);							//영아
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		return "blog/blog_details";
 	}
@@ -68,12 +68,13 @@ public class BlogController {
 	public String blog(Model model) { //http://localhost:8080/teamproject
 		
 		List<BoardDto> list = service.getBoardList("sunny@nara.com");
-		List<CategoryDto> catelist = service.categoryList();
+		List<CategoryDto> catelist = service.categoryList();				//영아
+		List<BoardDto> btitlelist = service.BoardList();					//영아
 		model.addAttribute("list", list);
-		model.addAttribute("catelist", catelist);
-		logger.info(catelist.toString());
+		model.addAttribute("catelist", catelist);								//영아
+		model.addAttribute("btitlelist", btitlelist);							//영아
+		logger.info(catelist.toString());											//영아
 		logger.info("실행");
-		
 		return "blog/blog";
 	}
 	
