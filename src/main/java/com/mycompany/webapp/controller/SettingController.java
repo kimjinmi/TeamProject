@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -23,6 +24,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
@@ -151,10 +153,22 @@ public class SettingController {
 	}
 	
 	@RequestMapping("/photoenroll")
-	public String photoenroll(MemberDto memberdto, Model model) {
-		
-		memberdto.setMmyimage("winter.PNG");
-		model.addAttribute("member", memberdto);
+	public String photoenroll(MemberDto member, MultipartFile attach, HttpSession session, Model model) throws Exception, IOException {	
+		//memberdto.setMmyimage("winter.PNG");
+		//model.addAttribute("member", member);
+		/*String sessionMemail = (String) session.getAttribute("sessionMemail");
+		if(!attach.isEmpty()) {
+			String originalFileName = attach.getOriginalFilename();
+			String saveName = new Date().getTime() + "_" + originalFileName;
+			logger.info("file name : "+ originalFileName);
+			File dest = new File("C:/temp/projectimage/member/" + saveName);
+			member.setMemail(sessionMemail);
+			attach.transferTo(dest);
+			member.setMmyimage(saveName);
+			service.memberimageupdate(member);
+		}else {
+			model.addAttribute("error", "파일이 존재하지 않음");
+		}*/
 		return "setting/imagechange";
 	}
 	
@@ -178,6 +192,8 @@ public class SettingController {
 		service.membernickintroupdate(member);
 		return "redirect:/setting/content";
 	}
+	
+	
 	
 
 }
