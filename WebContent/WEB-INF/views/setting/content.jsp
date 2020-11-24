@@ -185,9 +185,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-						
-						<jsp:include page="/WEB-INF/views/setting/setting.jsp" />		
-					
+						<jsp:include page="/WEB-INF/views/setting/setting.jsp"/>
 						</div>
 					</div>
 				</div>
