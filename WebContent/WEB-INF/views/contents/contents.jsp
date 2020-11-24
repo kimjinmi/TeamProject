@@ -113,17 +113,17 @@
 				<div class="col-md-12">
 					<ul class="nev">
 						<li class="nev"><a class="link_tab #life"
-							href="category/life"><span class="inner_link">라이프</span></a></li>
+							href="javascript:boardList(1)"><span class="inner_link">라이프</span></a></li>
 						<li class="nev"><a class="link_tab #travel"
-							href="category/travel"><span class="inner_link">여행.맛집</span></a></li>
+							href="javascript:boardList(2)"><span class="inner_link">여행.맛집</span></a></li>
 						<li class="nev"><a class="link_tab #culture"
-							href="category/culture"><span class="inner_link">문화.연예</span></a></li>
-						<li class="nev"><a class="link_tab #it" href="category/it"><span
-								class="inner_link">IT</span></a></li>
+							href="javascript:boardList(3)"><span class="inner_link">문화.연예</span></a></li>
+						<li class="nev"><a class="link_tab #it"
+							href="javascript:boardList(4)"><span class="inner_link">IT</span></a></li>
 						<li class="nev"><a class="link_tab #sports"
-							href="category/sports"><span class="inner_link">스포츠</span></a></li>
+							href="javascript:boardList(5)"><span class="inner_link">스포츠</span></a></li>
 						<li class="nev"><a class="link_tab #current"
-							href="category/current" style="margin-left: 0px;"><span
+							href="javascript:boardList(6)" style="margin-left: 0px;"><span
 								class="inner_link">시사</span></a></li>
 					</ul>
 				</div>
@@ -135,48 +135,25 @@
 		<section class="services-section section-padding-contents fix"
 			style="background: #F2F2F2;">
 			<div class="container">
-				<div class="row" style="width:80%; margin-left:10%; margin-right: 10%;">
-					<c:forEach var="board" items="${list}">
-						<div class="col-lg-12 col-md-12 col-sm-12" style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
-								<a href=# class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
-									<div class="img_thumb">
-										<img class="thumb_g"
-											src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
-									</div> <!-- 게시물 타이틀, 내용 -->
-									<div class="wrap_cont">
-										<div class="wrap_data">
-											<dl class="list_data">
-												<dt class="screen_out">카테고리</dt>
-												<dd class="ddcss ddcss1" style="margin-bottom: 3%">라이프</dd>
-											</dl>
-											<dl class="list_data" style="margin-bottom: 0px">
-												<dt class="screen_out">게시된 시간</dt>
-												<dd class="ddcss">2시간전</dd>
-											</dl>
-											<dl class="list_data">
-												<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
-												<dd class="ddcss" style="display: inline;">13</dd>
-											</dl>
-										</div>
-									</div>
-									<div>
-										<strong class="desc_tit"> ${board.btitle } </strong>
-										<p class="desc_g">${board.bcontent}</p>
-									</div>
-									<div class="info_g">
-										<!-- 사용자 이미지 -->
-										<span class="wrap_thumb"> <img class="thumb_profile"
-											src="<%=application.getContextPath()%>/resources/images/프로필-3.jpg">
-										</span> <span class="txt_id">블로그 타이틀</span> <span class="txt_date">by ${board.mnickname}</span>
-									</div>
-								</a>
-							</div>
-					</c:forEach>
+				<script>
+					function boardList(cno) {
+						$.ajax({
+							url : "boardList",
+							data : {
+								cno : cno
+							},
+							success : function(data) {
+								$("#board_result").html(data);
+							}
+						});
+					}
+				</script>
+				<div id="board_result" class="row"
+					style="width: 80%; margin-left: 10%; margin-right: 10%;">
+					<!-- 포스팅 view 시작 -->
 					<!-- 포스팅 view 끝 -->
 				</div>
 			</div>
-
-
 		</section>
 
 		<!-- ----- 실시간 게시물 끝 부분 ----- -->
