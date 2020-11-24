@@ -62,10 +62,8 @@ public class BlogController {
 		 model.addAttribute("btitlelist", btitlelist);			//영아
 		 model.addAttribute("commentlist", commentlist);
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
-		 logger.info("btitlelist출력됨");				//영아
 		return "blog/blog_details";
 	}
-
 	
 	@RequestMapping("/blog")
 	public String blog(Model model) { //http://localhost:8080/teamproject
