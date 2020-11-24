@@ -26,13 +26,13 @@
 		
 		<!-- ### 로그인/로그아웃: 방법2 ### -->			 <!--login-page: 컨트롤러 경로 //login-processing-url: 요청 경로(컨택스트루트가 생략되어있음) -->
 		<security:form-login login-page="/signin/content"		
-					 login-processing-url="/login"	 
+					 login-processing-url="/SIGNIN"	 
 					 username-parameter="memail"
 					 password-parameter="mpassword"
 					 authentication-success-handler-ref="AuthenticationSuccessHandler"
 					 authentication-failure-handler-ref="AuthenticationFailureHandler"/>			 
 						 
-		<security:logout logout-url="/logout" 
+		<security:logout logout-url="/SIGNOUT" 
 						 success-handler-ref="LogoutSuccessHandler"/>
 						 
 		<!-- ### 사이트간 요청 위조 비활성화(기본: 활성화) ###  -->

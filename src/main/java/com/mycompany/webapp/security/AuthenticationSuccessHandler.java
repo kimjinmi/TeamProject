@@ -20,10 +20,10 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		
 		super.onAuthenticationSuccess(request, response, authentication);
 		//로그인 성공시 세션에 mid 저장
-		String mid = authentication.getName(); 
+		String memail = authentication.getName(); 
 		HttpSession session = request.getSession();
-		session.setAttribute("sessionMid", mid);
-		logger.info("로그인한 아이디:" + mid);
+		session.setAttribute("sessionMemail", memail);
+		logger.info("로그인한 이메일:" + memail);
 	}
 }
 
