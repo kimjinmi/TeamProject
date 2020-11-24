@@ -154,7 +154,8 @@
 									<div class="media post_item">
 										<img src="assets/img/post/post_1.png" alt="post">
 										<div class="media-body">
-											<a href="blog_details.html">
+											<a href="javascript:selectBoard()">
+												<script ></script>
 												<h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
 											</a>
 											<p>1시간 전 작성</p>
@@ -445,8 +446,20 @@
 
 						<div class="comment-form">
 							<h4>댓글 작성</h4>
-							<form class="form-contact comment_form" action="#"
+							<form class="form-contact comment_form" action="javascript:commentWrite()"
 								id="commentForm">
+								<script type="text/javascript">
+									alert("commentWrite");
+								
+									/* 	function commentWrite(){
+										
+										url:,
+										data:,
+										success:function(data){
+											
+										}
+									} */
+								</script>
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
@@ -454,30 +467,9 @@
 												id="comment" cols="30" rows="4" placeholder="댓글을 작성하세요"></textarea>
 										</div>
 									</div>
-									<!-- 
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input class="form-control" name="name" id="name" type="text"
-												placeholder="Name">
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<input class="form-control" name="email" id="email"
-												type="email" placeholder="Email">
-										</div>
-									</div>
-									<div class="col-12">
-										<div class="form-group">
-											<input class="form-control" name="website" id="website"
-												type="text" placeholder="Website">
-										</div>
-									</div> -->
 								</div>
 								<div class="form-group">
-									<button type="submit"
-										class="button button-contactForm btn_1 boxed-btn">작성하기
-									</button>
+									<button type="submit" class="button button-contactForm btn_1 boxed-btn">작성하기</button>
 								</div>
 							</form>
 						</div>
