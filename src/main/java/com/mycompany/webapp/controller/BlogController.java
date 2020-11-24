@@ -55,9 +55,11 @@ public class BlogController {
 		 BoardDto board = service.getBoard(bno);
 		 List<CategoryDto> catelist = service.categoryList();
 		 List<ReplyDto> commentlist = service.commentList(bno);
+		 List<BoardDto> btitlelist = service.BoardList();
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);
 		 model.addAttribute("commentlist", commentlist);
+		 model.addAttribute("btitlelist", btitlelist);
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		return "blog/blog_details";
 	}
