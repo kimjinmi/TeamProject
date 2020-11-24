@@ -55,6 +55,7 @@
 		where board.memail = member.memail AND board.memail = #{memail}
 		</select>
 		
+		<!-- 영아 - 보드 최신순 게시물 -->
 		<select id="selectBtitleAll" resultType="board">
 		select btitle 
 		from ( select btitle  

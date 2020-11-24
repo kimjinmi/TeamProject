@@ -111,8 +111,8 @@
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
 								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">유저네임</h2>
-								<p>소개글</p>
+								<h2 class="contact-title">영아나라</h2>
+								<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
 								<hr/>
 								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
 							</div>
@@ -144,7 +144,7 @@
 								<ul class="list cat-list">
 								<!-- 	<div id="blog_category" style="margin-top:30px"></div> -->
 								
-	<!-- 								<li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
+								<!-- 	<li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
 									<c:forEach var="category" items="${catelist}">
 									<li><a href="#" class="d-flex">
 											${category.ccontent}
@@ -176,7 +176,7 @@
                         <article class="blog_item">	
                         
                         	<div class="blog_item_img">
-                                <img class="card-img rounded-0" src="<%=application.getContextPath() %>/resources/assets/img/blog/single_blog_3.png" alt="">
+                                <img class="card-img rounded-0" src="<%=application.getContextPath() %>/resources/assets/img/blog/crab.png" alt="">
                                 <a href="javascript:boardDetails(${board.bno})" class="blog_item_date">
                                     <h3 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="MM월 dd일" /></h3>
                                     <h2 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="HH시 mm분" /></h2>
