@@ -109,10 +109,10 @@
 						
 							<aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
-								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
+								<img src="photodownload?fileName=${member.mmyimage}" alt="" width="100" height="100" class="rounded-circle">
 								<hr/>
-								<h2 class="contact-title">영아나라</h2>
-								<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
+								<h2 class="contact-title">${member.mnickname}</h2>
+								<p>${member.mintro}</p>
 								<hr/>
 								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
 							</div>
@@ -156,7 +156,7 @@
 									<h3 class="widget_title" style="color: #2d2d2d;">Recent Posting</h3>
 									<c:forEach var="btitle" items="${btitlelist}">
 										<div class="media post_item">
-											<img src="assets/img/post/post_1.png" alt="post">
+											<img src="C:\temp\projectimage\blog\crab.png" alt="post">
 											<div class="media-body">
 												<a href="blog_details.html">
 													<h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
@@ -176,7 +176,7 @@
                         <article class="blog_item">	
                         
                         	<div class="blog_item_img">
-                                <img class="card-img rounded-0" src="<%=application.getContextPath() %>/resources/assets/img/blog/crab.png" alt="">
+                                <img class="card-img rounded-0" height="350px" src="<%=application.getContextPath() %>/resources/assets/img/blog/dinner.png" alt="">
                                 <a href="javascript:boardDetails(${board.bno})" class="blog_item_date">
                                     <h3 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="MM월 dd일" /></h3>
                                     <h2 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="HH시 mm분" /></h2>

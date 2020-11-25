@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.BlogService;
 
@@ -30,7 +32,6 @@ public class BlogController {
 	private DataSource dataSource;
 	@Resource
 	private BlogService service;
-
 	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
@@ -65,14 +66,17 @@ public class BlogController {
 	}
 	
 	@RequestMapping("/blog")
-	public String blog(Model model) { //http://localhost:8080/teamproject
+	public String blog(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		
-		List<BoardDto> list = service.getBoardList("sunny@nara.com");
+		String memail= (String)session.getAttribute("sessionMemail");			//영아
+		List<BoardDto> list = service.getBoardList(memail);
 		List<CategoryDto> catelist = service.categoryList();				//영아
 		List<BoardDto> btitlelist = service.BoardList();					//영아
+		MemberDto member = service.getMimage(memail);				//영아 - boardService에서 getMimage1개를 memail의 이미지를 들고오는 것
 		model.addAttribute("list", list);
 		model.addAttribute("catelist", catelist);								//영아
 		model.addAttribute("btitlelist", btitlelist);							//영아
+		model.addAttribute("member", member);								//영아 - "member" request범위에 저장되는 이름
 		logger.info(catelist.toString());											//영아
 		logger.info("실행");
 		return "blog/blog";
@@ -85,5 +89,4 @@ public class BlogController {
 	}
 	
 
-	
 }
