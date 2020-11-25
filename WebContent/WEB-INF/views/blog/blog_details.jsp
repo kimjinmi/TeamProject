@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -12,7 +12,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon"
 	href="resources/assets/img/favicon.ico">
- 
+
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/bootstrap.min.css">
@@ -44,7 +44,20 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 </head>
 
-<body>
+
+<body onload="javascript:onload(${board.bno})">
+
+ <script type="text/javascript">
+      $(function() {
+         $.ajax({
+            url:"blogcommentlist",
+            success:function(data) {
+               consoel.log(data);
+            }
+         });
+      });
+   </script>
+
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
 		<div
@@ -104,21 +117,25 @@
 		<section class="blog_area single-post-area section-padding">
 			<div class="container" style="margin: 0px 55px;">
 				<div class="row">
-				<div class="col-lg-4">
+					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
-						
-							<aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
-							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
-								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle">
-								<hr/>
-								<h2 class="contact-title">영아나라</h2>
-								<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
-								<hr/>
-								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
-							</div>
-								
+
+							<aside class="single_sidebar_widget search_widget"
+								style="padding: 40px 30px">
+								<div class="align-items-center"
+									style="width: 100%; height: 100%; text-align: center;">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg"
+										alt="" width="100" height="100" class="rounded-circle">
+									<hr />
+									<h2 class="contact-title">영아나라</h2>
+									<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
+									<hr />
+									<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
+								</div>
+
 							</aside>
-							
+
 							<aside class="single_sidebar_widget search_widget">
 								<form action="#">
 									<div class="form-group">
@@ -129,7 +146,7 @@
 											<div class="input-group-append">
 												<button class="btns" type="button">
 													<i class="ti-search"></i>
-												</button>	
+												</button>
 											</div>
 										</div>
 									</div>
@@ -142,20 +159,19 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
 									<c:forEach var="category" items="${catelist}">
-										<li><a href="#" class="d-flex">
-											${category.ccontent}
+										<li><a href="#" class="d-flex"> ${category.ccontent}
 										</a></li>
 									</c:forEach>
 								</ul>
 							</aside>
 							<aside class="single_sidebar_widget popular_post_widget">
-								<h3 class="widget_title" style="color: #2d2d2d;">Recent Posting</h3>
+								<h3 class="widget_title" style="color: #2d2d2d;">Recent
+									Posting</h3>
 								<c:forEach var="btitle" items="${btitlelist}">
 									<div class="media post_item">
 										<img src="assets/img/post/post_1.png" alt="post">
 										<div class="media-body">
-											<a href="javascript:selectBoard()">
-												<script ></script>
+											<a href="javascript:selectBoard()"> <script></script>
 												<h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
 											</a>
 											<p>1시간 전 작성</p>
@@ -245,22 +261,24 @@
 							</aside> -->
 						</div>
 					</div>
-				
-				<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list" 0>
+
+					<!-- ////////////////////////////////// -->
+					<div class="col-lg-8 posts-list"0>
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
 									alt="">
 							</div>
-							
-						
+
+
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
 								<ul class="blog-info-link mt-3 mb-4">
 									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
 									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
-									<li><i class="fa fa-calendar" style="color:#999999"></i><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd HH:mm:ss"/></a></li>
+									<li><i class="fa fa-calendar" style="color: #999999"></i>
+										<fmt:formatDate value="${board.bdate}"
+											pattern="yyyy-MM-dd HH:mm:ss" /></a></li>
 								</ul>
 								<p class="excert">${board.bcontent}</p>
 								<!-- <p class="excert">학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
@@ -294,8 +312,8 @@
 								  기관장님께 진급 추천서를 2차례 받아 2등 기관사로 진급하였습니다</p> -->
 							</div>
 						</div>
-						
-						
+
+
 						<div class="navigation-top">
 							<div class="d-sm-flex justify-content-between text-center">
 								<p class="like-info">
@@ -356,110 +374,68 @@
 						</div>
 						<div class="blog-author">
 							<div class="media align-items-center">
-								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg" alt="">
+								<img
+									src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
+									alt="">
 								<div class="media-body">
 									<p>돼지고기 마늘 상추 양파 된장 쌈장 고추장 와사비</p>
-									<a href="https://www.coupang.com/vp/products/306264774?itemId=965657775&vendorItemId=5265041997&sourceType=srp_product_ads&isAddedCart=" target="_blank">
+									<a
+										href="https://www.coupang.com/vp/products/306264774?itemId=965657775&vendorItemId=5265041997&sourceType=srp_product_ads&isAddedCart="
+										target="_blank">
 										<h4>지금 바로 구매하기</h4>
 									</a>
 								</div>
 							</div>
 						</div>
-						<div class="comments-area">
-							<h4>댓글</h4>
-							
+						<div class="comments-area" id="comments-area">
+							<%-- <h4>댓글</h4>
+
 							<!-- -----------------------------------댓글 폼1 시작----------------------------------------- -->
 							<c:forEach var="comment" items="${commentlist}">
-							<div class="comment-list">
-								<div class="single-comment justify-content-between d-flex">
-									
-									<div class="user justify-content-between d-flex">
-										<div class="thumb">
-											<img src="assetsx/img/blog/comment_1.png" alt="">
-										</div>
+								<div class="comment-list">
+									<div class="single-comment justify-content-between d-flex">
 
-
-									
-										
-										<div class="media align-items-center">
-											<div style="margin-right:23px">
-											<img class="rounded-circle" width="100px" height="100px" src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
+										<div class="user justify-content-between d-flex">
+											<div class="thumb">
+												<img src="assetsx/img/blog/comment_1.png" alt="">
 											</div>
-											<div class="desc">
-												<p class="comment">${comment.rcontent}</p>
-												<div class="d-flex justify-content-between">
-													<div class="d-flex align-items-center">
-														<h5>
-															<a href="#">${comment.mnickname }</a>
-														</h5>
-														<p class="date"><fmt:formatDate value="${comment.rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></p>
-													</div>
-													<div class="reply-btn">
-														<a href="#" class="btn-reply text-uppercase">답글</a>
+
+
+
+
+											<div class="media align-items-center">
+												<div style="margin-right: 23px">
+													<img class="rounded-circle" width="100px" height="100px"
+														src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
+												</div>
+												<div class="desc">
+													<p class="comment">${comment.rcontent}</p>
+													<div class="d-flex justify-content-between">
+														<div class="d-flex align-items-center">
+															<h5>
+																<a href="#">${comment.mnickname }</a>
+															</h5>
+															<p class="date">
+																<fmt:formatDate value="${comment.rdate}"
+																	pattern="yyyy-MM-dd HH:mm:ss" />
+															</p>
+														</div>
+														<div class="reply-btn">
+															<a href="#" class="btn-reply text-uppercase">답글</a>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							</c:forEach>
-<!-- --------///////////////////---------------------------댓글 폼1 시작--------------------////////////////////////////////--------------------- -->
-				<%-- 			 <div class="comment-list">
-								<div class="single-comment justify-content-between d-flex">
-									<div class="user justify-content-between d-flex">
-										<div class="thumb">
-											<img src="assetsx/img/blog/comment_1.png" alt="">
-										</div>
-
-
-									
-										<div class="media align-items-center">
-											<div style="margin-right:23px">
-											<img class="rounded-circle" width="100px" height="100px" src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
-											</div>
-											<div class="desc">
-												<p class="comment">
-												한국소프트산업협회 한국 소프트산업 협회 한국소프트 한한국 소프트
-													협회한국소프트산프트산업협회 한국 소프트산업
-												</p>
-
-												<div class="d-flex justify-content-between">
-													<div class="d-flex align-items-center">
-														<h5>
-															<a href="#">김지훈</a>
-														</h5>
-														<p class="date">December 4, 2017 at 3:12 pm</p>
-													</div>
-													<div class="reply-btn">
-														<a href="#" class="btn-reply text-uppercase">reply</a>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>  --%>
-<!-- --------///////////////////---------------------------댓글 폼1 끝--------------------////////////////////////////////--------------------- -->
+							</c:forEach> --%>
 						</div>
-
 
 						<div class="comment-form">
 							<h4>댓글 작성</h4>
-							<form class="form-contact comment_form" action="javascript:commentWrite()"
+							<form class="form-contact comment_form" action="#"
 								id="commentForm">
-								<script type="text/javascript">
-									alert("commentWrite");
-								
-									/* 	function commentWrite(){
-										
-										url:,
-										data:,
-										success:function(data){
-											
-										}
-									} */
-								</script>
 								<div class="row">
 									<div class="col-12">
 										<div class="form-group">
@@ -469,14 +445,46 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<button type="submit" class="button button-contactForm btn_1 boxed-btn">작성하기</button>
+									<a href="javascript:commentWrite(7)" class="button button-contactForm btn_1 boxed-btn">작성하기Test</a>
+									<script type="text/javascript">
+										function commentWrite(bno) {								
+											var comment = $("#comment").val().trim();
+											if(comment == ""){
+												alert("2글자 이상 입력해야 합니다.");
+												return;
+											}		
+											$.ajax({
+												url : "blogcommentlist",
+												method : "get",
+												data : {
+													bno:bno
+												},
+												success : function(data) {
+													$("#comments-area").html(data);
+												}
+											});
+										}
+										
+										function onload(bno){
+											$.ajax({
+												url : "blogcommentlist",
+												method : "get",
+												data : {
+													bno:bno
+												},
+												success : function(data) {
+													$("#comments-area").html(data);
+												}
+											});
+										}
+									</script>
 								</div>
 							</form>
 						</div>
 					</div>
-					
-					</div>
-					
+
+				</div>
+
 			</div>
 		</section>
 		<!-- Blog Area End -->

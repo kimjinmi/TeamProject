@@ -29,6 +29,8 @@ public class MemberDao {
 		int rows = sst.update("mybatis.mapper.member.updateimage", member);
 		return rows;
 	}
+<<<<<<< HEAD
+=======
 
 	public MemberDto selectbyMimage(String memail) {
 		MemberDto dbmimage = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
@@ -37,4 +39,5 @@ public class MemberDao {
 	
 
 
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 }

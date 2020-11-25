@@ -11,6 +11,7 @@ public class MemberDto {
 	private String mmyimage;	// 프로필사진
 	private String mrole; // 권한
 	private boolean menabled; // 계정 0(비활성화), 1(활성화)
+	private MultipartFile mphotoAttach;
 	
 	
 	public String getMemail() {
@@ -60,6 +61,12 @@ public class MemberDto {
 	}
 	public void setMenabled(boolean menabled) {
 		this.menabled = menabled;
+	}
+	public MultipartFile getMphotoAttach() {
+		return mphotoAttach;
+	}
+	public void setMphotoAttach(MultipartFile mphotoAttach) {
+		this.mphotoAttach = mphotoAttach;
 	}
 
 	
