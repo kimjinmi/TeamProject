@@ -73,7 +73,7 @@ public class BlogController {
 	}
 	
 	@RequestMapping("/blog")
-	public String blog(HttpSession session, Model model, ) { //http://localhost:8080/teamproject
+	public String blog(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
 		List<BoardDto> list = service.getBoardList(memail);
 		List<CategoryDto> catelist = service.categoryList();				//영아
