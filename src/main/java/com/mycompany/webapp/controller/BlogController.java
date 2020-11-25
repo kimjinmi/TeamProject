@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.BoardDto;
@@ -72,8 +73,15 @@ public class BlogController {
 		return "blog/blogcommentList";
 	}
 	
+	@PostMapping("/blogcommentlist")
+	public void blogcommentwrite(ReplyDto reply) {
+		service.commentWrite(reply);
+		
+		
+	}
+	
 	@RequestMapping("/blog")
-	public String blog(HttpSession session, Model model, ) { //http://localhost:8080/teamproject
+	public String blog(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
 		List<BoardDto> list = service.getBoardList(memail);
 		List<CategoryDto> catelist = service.categoryList();				//영아

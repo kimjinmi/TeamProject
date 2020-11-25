@@ -463,8 +463,16 @@
 													$("#comments-area").html(data);
 												}
 											});
-										}
 										
+										
+										//데이터베이스 값 입력
+										
+										
+										//
+										
+										
+										}
+										//페이지 로드될때 댓글ajax로 가져옴
 										function onload(bno){
 											$.ajax({
 												url : "blogcommentlist",
