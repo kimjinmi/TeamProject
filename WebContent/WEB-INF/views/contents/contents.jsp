@@ -141,9 +141,9 @@
 			 		<c:forEach var="board" items="${list}">
 						<div class="col-lg-4 col-md-6 col-sm-6">
 								<div class="cat-icon">
-									<img
+									<a href="#"><img
 										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
-										alt="" style="width: 100%; height: 100%;">
+										alt="" style="width: 100%; height: 100%;"></a>
 								</div> <!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 								<div class="cat-cap">
 									<a href="#"> <img class="profile"
