@@ -38,6 +38,7 @@ public class SettingService {
 		memberdao.updateimage(member);
 		
 	}
+
 	
 	
 }

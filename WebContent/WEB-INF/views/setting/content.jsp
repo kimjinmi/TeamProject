@@ -119,8 +119,8 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
 									<li><a href="javascript:setting()" class="d-flex">
-											<p>내 페이지 설정</p></a>
-											<script type="text/javascript">
+										<p>내 페이지 설정</p></a>
+										<script type="text/javascript">
 											function setting(){
 												$.ajax({
 													url:"setting",
@@ -130,13 +130,13 @@
 												});
 												
 											}
-											
-											</script>
+										
+										</script>
 											
 									</li>
 									<li><a href="javascript:imagechange()" class="d-flex">
-											<p>프로필 사진 설정</p></a>
-											<script type="text/javascript">
+										<p>프로필 사진 설정</p></a>
+										<script type="text/javascript">
 											function imagechange(){
 												$.ajax({
 													url:"imagechange",
@@ -146,26 +146,67 @@
 												});
 												
 											}
-											
-											</script>
+										
+										</script>
 											
 									</li>
-									<li><a href="#" class="d-flex">
-											<p>비밀번호 변경</p>
+									<li><a href="javascript:passwordchange()" class="d-flex">
+											<p>비밀번호 변경</p></a>
+											<script type="text/javascript">
+											function passwordchange(){
+												$.ajax({
+													url:"passwordchange",
+													success:function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+											}
+											</script>
+									</li>
+									<li><a href="javascript:mybloglist()" class="d-flex">
+										<p>게시글 관리</p></a>
+										<script type="text/javascript">
+										function mybloglist(){
+											$.ajax({
+												url:"mybloglist",
+												success:function(data) {
+													$("#setting_result").html(data);
+												}
+											});
 											
-									</a></li>
-									<li><a href="mybloglist" class="d-flex">
-											<p>게시글 관리</p>
+										}
+										</script>
 											
-									</a></li>
-									<li><a href="mycommentlist" class="d-flex">
-											<p>댓글 관리</p>
+									</li>
+									<li><a href="javascript:mycommentlist()" class="d-flex">
+											<p>댓글 관리</p></a>
+										<script type="text/javascript">
+										function mycommentlist(){
+											$.ajax({
+												url:"mycommentlist",
+												success:function(data) {
+													$("#setting_result").html(data);
+												}
+											});
 											
-									</a></li>
-									<li><a href="delete" class="d-flex">
-											<p>회원 탈퇴</p>
+										}
+										</script>
 											
-									</a></li>
+									</li>
+									<li><a href="javascript:deletemember()" class="d-flex">
+											<p>회원 탈퇴</p></a>
+										<script type="text/javascript">
+										function deletemember(){
+											$.ajax({
+												url:"delete",
+												success:function(data) {
+													$("#setting_result").html(data);
+												}
+											});
+											
+										}
+										</script>	
+									</li>
 									
 								</ul>
 							</aside>

@@ -28,53 +28,19 @@ public class ContentsController {
 	}
 	@Resource private ContentsService service;
 	
-	@GetMapping("/contents")
+	/*@GetMapping("/contents")
 	public String boardList(Model model) {
-		
 		List<BoardDto> list = service.getBoardList();
 		model.addAttribute("list", list);
 		return "contents/contents";
+	}*/
+	
+	@GetMapping("/boardList")
+	public String life(int cno, Model model) {
+		List<BoardDto> list = service.getBoardListCno(cno); // 서비스에 BoardList를 달라고 요청
+		model.addAttribute("list", list); 
+		return "contents/boardList";
 	}
 	
-	@GetMapping("/category/life")
-	public String life(Model model) {
-		List<BoardDto> list = service.getBoardListCno(1); // 서비스에 BoardList를 달라고 요청
-		model.addAttribute("list", list); 
-		return "contents/category/life";
-	}
-	
-	@GetMapping("/category/travel")
-	public String travle(Model model) {
-		List<BoardDto> list = service.getBoardListCno(2); // 서비스에 BoardList를 달라고 요청
-		model.addAttribute("list", list); 
-		return "contents/category/travel";
-	}
-	
-	@GetMapping("/category/culture")
-	public String culture(Model model) {
-		List<BoardDto> list = service.getBoardListCno(3); // 서비스에 BoardList를 달라고 요청
-		model.addAttribute("list", list); 
-		return "contents/category/culture";
-	}
-	
-	@GetMapping("/category/it")
-	public String it(Model model) {
-		List<BoardDto> list = service.getBoardListCno(4); // 서비스에 BoardList를 달라고 요청
-		model.addAttribute("list", list); 
-		return "contents/category/it";
-	}
-	
-	@GetMapping("/category/sports")
-	public String sports(Model model) {
-		List<BoardDto> list = service.getBoardListCno(5); // 서비스에 BoardList를 달라고 요청
-		model.addAttribute("list", list); 
-		return "contents/category/sports";
-	}
-	
-	@GetMapping("/category/current")
-	public String current(Model model) {
-		List<BoardDto> list = service.getBoardListCno(6); // 서비스에 BoardList를 달라고 요청
-		model.addAttribute("list", list); 
-		return "contents/category/current";
-	}
+
 }
