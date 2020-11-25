@@ -146,7 +146,7 @@
 								
 								<!-- 	<li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
 									<c:forEach var="category" items="${catelist}">
-									<li><a href="#" class="d-flex">
+									<li><a href="javascript:boardDetails(${board.bno}" class="d-flex">
 											${category.ccontent}
 									</a></li>
 									</c:forEach>
@@ -183,7 +183,7 @@
                                 </a>
                              </div>
                             <div class="blog_details">
-                                 <a class="d-inline-block" href="javascript:boardDetails(${board.bno})">
+                                 <a class="d-inline-block" href="javascript:boardDetails(${cate.cno})">
                                      <h2 class="blog-head" style="color: #2d2d2d;">${board.btitle }</h2>
                                  </a>
                                  <p>${board.bcontent }</p>

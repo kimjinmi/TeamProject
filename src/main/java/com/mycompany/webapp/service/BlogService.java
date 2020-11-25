@@ -48,12 +48,12 @@ public class BlogService {
 		return list;
 	}
 	
-	public List<CategoryDto> categoryList(){
+	public List<CategoryDto> categoryList(){													//영아
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
 	
-	public List<BoardDto> BoardList() {
+	public List<BoardDto> BoardList() {															//영아
 		List<BoardDto> list = boardDao.selectBtitleAll();
 		return list;
 	}
@@ -63,7 +63,7 @@ public class BlogService {
 		return list;
 	}
 
-	public MemberDto getMimage(String memail) {
+	public MemberDto getMimage(String memail) {												//영아
 		MemberDto list = memberDao.selectbyMemail(memail);
 		return list;
 	}

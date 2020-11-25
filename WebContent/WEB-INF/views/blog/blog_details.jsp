@@ -257,7 +257,7 @@
 						
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
-								<ul class="blog-info-link mt-3 mb-4">
+								<ul class="blog-info-link mt-3 mb	-4">
 									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
 									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
 									<li><i class="fa fa-calendar" style="color:#999999"></i><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd HH:mm:ss"/></a></li>
