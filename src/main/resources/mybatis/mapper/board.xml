@@ -34,18 +34,18 @@
 	<!-- 선: 최신순으로 불러오기 contents 총 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewAll" resultType="board">	
-	  	 select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-         from board b, member m
-       	 where b.memail = m.memail
+	  	 select bno, btitle, bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage
+         from board b, member m, category c
+       	 where b.memail = m.memail and b.cno = c.cno
        	 order by bdate desc
 	</select>
 	
 	<!-- 선: 최신순으로 불러오기 contents 카테고리별 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewCategory" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-       	from board b, member m
-       	where b.memail = m.memail and cno = #{cno} 
+		select bno, btitle, bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage
+       	from board b, member m, category c
+       	where b.memail = m.memail and b.cno = #{cno} and b.cno = c.cno 
        	order by bdate desc
 	</select>
 	
@@ -57,6 +57,7 @@
 		
 		</select>
 		
+		<!-- 영아 - 보드 최신순 게시물 -->
 		<select id="selectBtitleAll" resultType="board">
 		select btitle 
 		from ( select btitle  
@@ -72,17 +73,28 @@
 	
 
 	<select id="selectBoardComment" parameterType="int" resultType="reply">
-		select rno, rcontent, reply.memail, member.mnickname, to_char(rdate, 'YYYY-MM-DD HH24:Mi:SS') rdate
+		select rno, rcontent, reply.memail, member.mnickname, rdate
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail
 	</select>
-	<!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
 	
-	<select id="selectAll" resultType="board">
+<!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
+	
+	<select id="selectAll" parameterType="String" resultType="board">
 		select bno, btitle, blike, b.cno ,memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
 		from board b, category c
-		where b.bno = #{bno} AND b.cno = c.cno order by bno desc
+		where b.cno = c.cno and memail=#{memail}
+		order by bno desc
 		
 	</select>
+
+<!-- 	<select id="commentinsert" parameterType="reply">
+		<selectKey order="BEFORE" resultType="int" keyProperty="rno">
+		 select seq_reply_rno.nextval from dual
+		</selectKey>
+	
+		insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
+			values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
+	</select> -->
 </mapper>
 

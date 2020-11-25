@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,7 +22,6 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
@@ -49,12 +49,8 @@ public class SettingController {
 		logger.info("실행");
 
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		
-		
 		List<BoardDto> list = service.getBoardList(sessionMemail);
 		model.addAttribute("list", list);
-		
-		
 		return "setting/mybloglist";
 		
 	}
@@ -156,23 +152,25 @@ public class SettingController {
 	}
 	
 	@RequestMapping("/photoenroll")
-	public String photoenroll(MemberDto member, MultipartFile attach, HttpSession session, Model model) throws Exception, IOException {	
+	public String photoenroll(MemberDto member, HttpSession session, Model model) throws Exception, IOException {	
 		//memberdto.setMmyimage("winter.PNG");
 		//model.addAttribute("member", member);
-		/*String sessionMemail = (String) session.getAttribute("sessionMemail");
-		if(!attach.isEmpty()) {
-			String originalFileName = attach.getOriginalFilename();
+		logger.info("사진 :"+member.getMmyimage());
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		if(!member.getMphotoAttach().isEmpty()) {
+			String originalFileName = member.getMphotoAttach().getOriginalFilename();
 			String saveName = new Date().getTime() + "_" + originalFileName;
 			logger.info("file name : "+ originalFileName);
 			File dest = new File("C:/temp/projectimage/member/" + saveName);
 			member.setMemail(sessionMemail);
-			attach.transferTo(dest);
+			member.getMphotoAttach().transferTo(dest);
 			member.setMmyimage(saveName);
 			service.memberimageupdate(member);
 		}else {
+			logger.info("사진 :"+member.getMmyimage());
 			model.addAttribute("error", "파일이 존재하지 않음");
-		}*/
-		return "setting/imagechange";
+		}
+		return "redirect:/setting/content";
 	}
 	
 	@RequestMapping("/photodelete")
@@ -180,10 +178,10 @@ public class SettingController {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		
 		member.setMemail(sessionMemail);
-		member.setMmyimage("default.jpg");
+		member.setMmyimage("default.png");
 		model.addAttribute("member", member);
 		service.memberimageupdate(member);
-		return "setting/imagechange";
+		return "redirect:/setting/content";
 	}
 	
 	@PostMapping("/updatenickintro")
@@ -194,6 +192,12 @@ public class SettingController {
 		logger.info(member.getMnickname());
 		service.membernickintroupdate(member);
 		return "redirect:/setting/content";
+	}
+	
+	@RequestMapping("/doublecheck")
+	public String doublecheck(MemberDto member, HttpSession session) {
+		
+		return "setting/setting";
 	}
 	
 	

@@ -30,4 +30,14 @@ public class MemberDao {
 		return rows;
 	}
 
+
+	public MemberDto selectbyMimage(String memail) {
+		MemberDto dbmimage = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
+		return dbmimage;
+	}
+
+	
+
+	
+
 }

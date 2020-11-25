@@ -40,7 +40,9 @@ public class SettingService {
 	}
 
 	public void memberimageupdate(MemberDto member) {
+		logger.info("mmyimage :" + member.getMmyimage());
 		memberdao.updateimage(member);
+		
 		
 	}
 

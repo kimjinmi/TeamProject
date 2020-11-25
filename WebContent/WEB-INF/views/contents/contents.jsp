@@ -112,19 +112,13 @@
 					이야기들을 만나보세요</div>
 				<div class="col-md-12">
 					<ul class="nev">
-						<li class="nev"><a class="link_tab #life"
-							href="javascript:boardList(1)"><span class="inner_link">라이프</span></a></li>
-						<li class="nev"><a class="link_tab #travel"
-							href="javascript:boardList(2)"><span class="inner_link">여행.맛집</span></a></li>
-						<li class="nev"><a class="link_tab #culture"
-							href="javascript:boardList(3)"><span class="inner_link">문화.연예</span></a></li>
-						<li class="nev"><a class="link_tab #it"
-							href="javascript:boardList(4)"><span class="inner_link">IT</span></a></li>
-						<li class="nev"><a class="link_tab #sports"
-							href="javascript:boardList(5)"><span class="inner_link">스포츠</span></a></li>
-						<li class="nev"><a class="link_tab #current"
-							href="javascript:boardList(6)" style="margin-left: 0px;"><span
-								class="inner_link">시사</span></a></li>
+						<c:forEach var="i" items="${category_list}">
+							<li class="nev">
+								<a class="link_tab" href="javascript:boardList(${i.cno})">
+								 	<span class="inner_link">${i.ccontent}</span>
+								</a>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -179,6 +173,178 @@
 					</c:forEach>
 					
 
+					<c:forEach var="board" items="${list}">
+						<div class="col-lg-12 col-md-12 col-sm-12"
+							style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
+							<a href="javascript:boardDetails(${board.bno})" class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
+								<script type="text/javascript">
+									function boardDetails(bno) {
+										location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+									}
+								</script>
+								<div class="img_thumb">
+									<img class="thumb_g"
+										src="photodownload_board?fileName=${board.bimage}" />
+								</div> <!-- 게시물 타이틀, 내용 -->
+								<div class="wrap_cont">
+									<div class="wrap_data">
+										<dl class="list_data">
+											<dt class="screen_out">카테고리</dt>
+											<dd class="ddcss ddcss1" style="margin-bottom: 3%">${board.ccontent}</dd>
+										</dl>
+										<dl class="list_data" style="margin-bottom: 0px">
+											<dt class="screen_out">게시된 시간</dt>
+											<dd class="ddcss">2시간전</dd>
+										</dl> 
+										<dl class="list_data">
+											<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
+											<dd class="ddcss" style="display: inline;">${board.blike}</dd>
+										</dl>
+									</div>
+								</div>
+								<div>
+									<strong class="desc_tit"> ${board.btitle } </strong>
+									<p class="desc_g">${board.bcontent}</p>
+								</div>
+								<div class="info_g">
+									<!-- 사용자 이미지 -->
+									<span class="wrap_thumb"> <img class="thumb_profile"
+										src="photodownload_member?fileName=${board.mmyimage}">
+									</span> <span class="txt_id">블로그 타이틀</span> <span class="txt_date">by
+										${board.mnickname}</span>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+					<c:forEach var="board" items="${list}">
+						<div class="col-lg-12 col-md-12 col-sm-12"
+							style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
+							<a href="javascript:boardDetails(${board.bno})" class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
+								<script type="text/javascript">
+									function boardDetails(bno) {
+										location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+									}
+								</script>
+								<div class="img_thumb">
+									<img class="thumb_g"
+										src="photodownload_board?fileName=${board.bimage}" />
+								</div> <!-- 게시물 타이틀, 내용 -->
+								<div class="wrap_cont">
+									<div class="wrap_data">
+										<dl class="list_data">
+											<dt class="screen_out">카테고리</dt>
+											<dd class="ddcss ddcss1" style="margin-bottom: 3%">${board.ccontent}</dd>
+										</dl>
+										<dl class="list_data" style="margin-bottom: 0px">
+											<dt class="screen_out">게시된 시간</dt>
+											<dd class="ddcss">2시간전</dd>
+										</dl> 
+										<dl class="list_data">
+											<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
+											<dd class="ddcss" style="display: inline;">${board.blike}</dd>
+										</dl>
+									</div>
+								</div>
+								<div>
+									<strong class="desc_tit"> ${board.btitle } </strong>
+									<p class="desc_g">${board.bcontent}</p>
+								</div>
+								<div class="info_g">
+									<!-- 사용자 이미지 -->
+									<span class="wrap_thumb"> <img class="thumb_profile"
+										src="photodownload_member?fileName=${board.mmyimage}">
+									</span> <span class="txt_id">블로그 타이틀</span> <span class="txt_date">by
+										${board.mnickname}</span>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+					<c:forEach var="board" items="${list}">
+						<div class="col-lg-12 col-md-12 col-sm-12"
+							style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
+							<a href="javascript:boardDetails(${board.bno})" class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
+								<script type="text/javascript">
+									function boardDetails(bno) {
+										location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+									}
+								</script>
+								<div class="img_thumb">
+									<img class="thumb_g"
+										src="photodownload_board?fileName=${board.bimage}" />
+								</div> <!-- 게시물 타이틀, 내용 -->
+								<div class="wrap_cont">
+									<div class="wrap_data">
+										<dl class="list_data">
+											<dt class="screen_out">카테고리</dt>
+											<dd class="ddcss ddcss1" style="margin-bottom: 3%">${board.ccontent}</dd>
+										</dl>
+										<dl class="list_data" style="margin-bottom: 0px">
+											<dt class="screen_out">게시된 시간</dt>
+											<dd class="ddcss">2시간전</dd>
+										</dl> 
+										<dl class="list_data">
+											<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
+											<dd class="ddcss" style="display: inline;">${board.blike}</dd>
+										</dl>
+									</div>
+								</div>
+								<div>
+									<strong class="desc_tit"> ${board.btitle } </strong>
+									<p class="desc_g">${board.bcontent}</p>
+								</div>
+								<div class="info_g">
+									<!-- 사용자 이미지 -->
+									<span class="wrap_thumb"> <img class="thumb_profile"
+										src="photodownload_member?fileName=${board.mmyimage}">
+									</span> <span class="txt_id">블로그 타이틀</span> <span class="txt_date">by
+										${board.mnickname}</span>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+					<c:forEach var="board" items="${list}">
+						<div class="col-lg-12 col-md-12 col-sm-12"
+							style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
+							<a href="javascript:boardDetails(${board.bno})" class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
+								<script type="text/javascript">
+									function boardDetails(bno) {
+										location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+									}
+								</script>
+								<div class="img_thumb">
+									<img class="thumb_g"
+										src="photodownload_board?fileName=${board.bimage}" />
+								</div> <!-- 게시물 타이틀, 내용 -->
+								<div class="wrap_cont">
+									<div class="wrap_data">
+										<dl class="list_data">
+											<dt class="screen_out">카테고리</dt>
+											<dd class="ddcss ddcss1" style="margin-bottom: 3%">${board.ccontent}</dd>
+										</dl>
+										<dl class="list_data" style="margin-bottom: 0px">
+											<dt class="screen_out">게시된 시간</dt>
+											<dd class="ddcss">2시간전</dd>
+										</dl> 
+										<dl class="list_data">
+											<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
+											<dd class="ddcss" style="display: inline;">${board.blike}</dd>
+										</dl>
+									</div>
+								</div>
+								<div>
+									<strong class="desc_tit"> ${board.btitle } </strong>
+									<p class="desc_g">${board.bcontent}</p>
+								</div>
+								<div class="info_g">
+									<!-- 사용자 이미지 -->
+									<span class="wrap_thumb"> <img class="thumb_profile"
+										src="photodownload_member?fileName=${board.mmyimage}">
+									</span> <span class="txt_id">블로그 타이틀</span> <span class="txt_date">by
+										${board.mnickname}</span>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
 					<!-- 포스팅 view 끝 -->
 				</div>
 			</div>

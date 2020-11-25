@@ -1,19 +1,25 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
-import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.service.ContentsService;
 
 @Controller
@@ -21,19 +27,17 @@ import com.mycompany.webapp.service.ContentsService;
 public class ContentsController {
 	private static final Logger logger = LoggerFactory.getLogger(ContentsController.class);
 
-	@RequestMapping("/contents")
-	public String contents() { //http://localhost:8080/teamproject
-		logger.info("실행");
-		return "contents/contents";
-	}
 	@Resource private ContentsService service;
 	
-	/*@GetMapping("/contents")
+	@GetMapping("/contents")
 	public String boardList(Model model) {
+		logger.info("실행");
 		List<BoardDto> list = service.getBoardList();
+		List<CategoryDto> category_list = service.getCategoryList(); 
 		model.addAttribute("list", list);
+		model.addAttribute("category_list", category_list);
 		return "contents/contents";
-	}*/
+	}
 	
 	@GetMapping("/boardList")
 	public String life(int cno, Model model) {
@@ -42,5 +46,56 @@ public class ContentsController {
 		return "contents/boardList";
 	}
 	
+	@GetMapping("/photodownload_board")
+	public void photodownload_board(String fileName, HttpServletResponse response, HttpServletRequest request)
+			throws Exception {
+		logger.info("fileName: " + fileName);
+		
+		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+		
+		String fileType = request.getServletContext().getMimeType(fileName);
+		response.setContentType(fileType);
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+
+		int fileSize = (int) new File(saveFilePath).length(); // 파일 사이즈 얻기
+		response.setContentLength(fileSize);
+
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os);
+		os.flush();
+		os.close();
+		is.close();
+	}
+	
+	@GetMapping("/photodownload_member")
+	public void photodownload_member(String fileName, HttpServletResponse response, HttpServletRequest request)
+			throws Exception {
+		logger.info("fileName: " + fileName);
+		
+		String saveFilePath = "C:/temp/projectimage/member/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+		
+		String fileType = request.getServletContext().getMimeType(fileName);
+		response.setContentType(fileType);
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+
+		int fileSize = (int) new File(saveFilePath).length(); // 파일 사이즈 얻기
+		response.setContentLength(fileSize);
+
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os);
+		os.flush();
+		os.close();
+		is.close();
+	}
+	
+	@GetMapping("./blog/blog_details")
+	public String board_details(Model model, HttpServletRequest request) {
+		 int bno = Integer.parseInt(request.getParameter("bno"));
+		 BoardDto board = service.getBoard(bno);
+		 model.addAttribute("board", board);
+		return "blog/blog_details";
+	}
 
 }
