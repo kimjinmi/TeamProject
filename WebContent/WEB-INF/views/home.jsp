@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -79,6 +80,13 @@
                                 <div class="hero__caption text-center">
                                     <h1 data-animation="bounceIn" data-delay="0.2s">HOBBYS</h1>
                                     <p data-animation="fadeInUp" data-delay="0.4s">취미 생활 공유 플랫폼</p>
+                                    <sec:authorize access="isAuthenticated()">
+                                    	<p data-animation="fadeInUp" data-delay="0.4s"><strong>${member.mnickname}</strong>님이 로그인하셨습니다</p>
+                                    </sec:authorize>
+                                    
+                                    <sec:authorize access="isAnonymous()">
+                                    	<p data-animation="fadeInUp" data-delay="0.4s"><strong>로그인 하세요</strong> </p>
+                                    </sec:authorize>:
                                     <a href="<%=application.getContextPath()%>/blog/blog_write" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
 									<a href="javascript:sessionconnect()" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">세션연결</a>
 									<script type="text/javascript">
@@ -105,8 +113,10 @@
                             <div class="col-xl-8 col-lg-9 col-md-12">
                                 <div class="hero__caption text-center">
                                     <h1 data-animation="bounceIn" data-delay="0.2s">HOBBYS</h1>
-                                    <p data-animation="fadeInUp" data-delay="0.4s">취미 생활 공유 플랫폼</p>
-                                   <a href="<%=application.getContextPath()%>/blog/blog_write" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
+                                    <p data-animation="fadeInUp" data-delay="0.4s">취미 생활 공유 플랫폼
+                                    </p> 
+                                    <a href="<%=application.getContextPath()%>/blog/blog_write" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
+                                  	
                                 </div>
                             </div>
                         </div>

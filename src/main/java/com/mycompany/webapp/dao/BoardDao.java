@@ -62,4 +62,10 @@ public class BoardDao {
 		return list;
 	}
 
+	public List<BoardDto> selectAll(String sessionMemail) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
+		return list;
+	}
+
+
 }

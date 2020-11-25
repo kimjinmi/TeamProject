@@ -24,14 +24,17 @@
 		              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label>
 		              </div>
 		              <div class="col-sm-11">
+		              <!-- 포이치 -->
+		              	<c:forEach var="board" items="${list}">
 			              <a class="d-inline-block" href="blog_details.html">
-			                  <h2 class="blog-head" style="color: #2d2d2d;">03 Google inks pact for new 35-storey office</h2>
+			                <h2 class="blog-head" style="color: #2d2d2d;">${board.btitle}</h2>  
 			              </a>
 			              <ul class="blog-info-link">
-			              	<li><a href="#"><i class="fa fa-file"></i> 01 분야이름</a></li>
-			                  <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-			                  <li><a href="#"><i class="fa fa-calendar"></i> 2020.11.11</a></li>
+			              	<%-- <li><a href="#"><i class="fa fa-file"></i> ${board.좋아요수}</a></li> --%>
+			                  <%-- <li><a href="#"><i class="fa fa-comments"></i>${board.댓글수}</a></li> --%>
+			                  <li><a href="#"><i class="fa fa-calendar"></i>${board.bdate}</a></li>  
 			              </ul>
+			             </c:forEach>  
 		              </div>
 		             </div>
 	            </div>

@@ -113,11 +113,10 @@
 				<div class="col-md-12">
 					<ul class="nev">
 						<c:forEach var="i" items="${category_list}">
-							<li class="nev">
-								<a class="link_tab" href="javascript:boardList(${i.cno})">
-								 	<span class="inner_link">${i.ccontent}</span>
-								</a>
-							</li>
+							<li class="nev"><a class="link_tab"
+								href="javascript:boardList(${i.cno})"> <span
+									class="inner_link">${i.ccontent}</span>
+							</a></li>
 						</c:forEach>
 					</ul>
 				</div>
@@ -148,7 +147,13 @@
 					<c:forEach var="board" items="${list}">
 						<div class="col-lg-12 col-md-12 col-sm-12"
 							style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
-							<a href=# class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
+							<a href="javascript:boardDetails(${board.bno})"
+								class="box_desc box_desc_type"> <!-- 게시물 이미지 --> 
+								<script type="text/javascript">
+										function boardDetails(bno) {
+											location.href = "<%=application.getContextPath()%>/blog/blog_details?bno="+ bno;
+										}
+									</script>
 								<div class="img_thumb">
 									<img class="thumb_g"
 										src="photodownload_board?fileName=${board.bimage}" />
@@ -162,7 +167,7 @@
 										<dl class="list_data" style="margin-bottom: 0px">
 											<dt class="screen_out">게시된 시간</dt>
 											<dd class="ddcss">2시간전</dd>
-										</dl> 
+										</dl>
 										<dl class="list_data">
 											<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
 											<dd class="ddcss" style="display: inline;">${board.blike}</dd>
