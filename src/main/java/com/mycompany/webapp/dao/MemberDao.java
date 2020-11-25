@@ -29,5 +29,4 @@ public class MemberDao {
 		int rows = sst.update("mybatis.mapper.member.updateimage", member);
 		return rows;
 	}
-
 }

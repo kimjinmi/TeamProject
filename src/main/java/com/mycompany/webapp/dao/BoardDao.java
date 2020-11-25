@@ -41,6 +41,8 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectNewCategory", cno);
 		return list;
 	}	
+	
+	
 	/*------------------------- 선 -------------------------*/
 	
 	
