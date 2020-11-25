@@ -105,6 +105,10 @@ public class BlogController {
 	public String blog(HttpSession session, Model model, HttpServletRequest request) { //http://localhost:8080/teamproject
 		// get 값 매핑
 		 String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다.
+		 if(UserUrl == "") {
+			 UserUrl += session.getAttribute("UserUrl");
+		 }
+		 
 		 //UserUrl로 memail을 가져온다
 		 List<BoardDto> list = service.getBoardList(UserUrl); 
 		 logger.info("list 값 : "+ list); 
