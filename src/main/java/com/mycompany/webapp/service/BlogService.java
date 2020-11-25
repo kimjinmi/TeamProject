@@ -68,9 +68,12 @@ public class BlogService {
 		MemberDto list = memberDao.selectbyMemail(memail);
 		return list;
 	}
+<<<<<<< HEAD
 
 	public void commentWrite(ReplyDto reply) {
 		replyDao.commentinsert(reply);
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	
 }
