@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
@@ -17,7 +19,7 @@ import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class BlogService {
-	
+	private static final Logger logger = LoggerFactory.getLogger(BlogService.class);
 	@Resource
 	private BoardDao boardDao;
 	
@@ -71,6 +73,7 @@ public class BlogService {
 
 	public void commentWrite(ReplyDto reply) {
 		replyDao.commentinsert(reply);
+		logger.info("새로 입력된 Rno : " + reply.getRno());
 	}
 	
 }

@@ -1,14 +1,18 @@
 package com.mycompany.webapp.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -67,11 +71,28 @@ public class BlogController {
 	}
 	
 	@GetMapping("/blogcommentlist")
-	public String blogcommentlist(int bno, Model model, HttpServletRequest request) {
+	public String blogcommentlist(int bno, ReplyDto reply, Model model, HttpServletResponse response) throws IOException {
 		List<ReplyDto> commentlist = service.commentList(bno);
 		model.addAttribute("commentlist", commentlist);
+		
+		/* service.commentWrite(reply); */
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+		
 		return "blog/blogcommentList";
+		
 	}
+	
+	
 	
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
@@ -81,12 +102,18 @@ public class BlogController {
 	}
 	
 	@RequestMapping("/blog")
-	public String blog(HttpSession session, Model model) { //http://localhost:8080/teamproject
-		String memail = (String) session.getAttribute("sessionMemail");
-		List<BoardDto> list = service.getBoardList(memail);
+	public String blog(HttpSession session, Model model, HttpServletRequest request) { //http://localhost:8080/teamproject
+		// get 값 매핑
+		 String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다.
+		 //UserUrl로 memail을 가져온다
+		 List<BoardDto> list = service.getBoardList(UserUrl); 
+		 logger.info("list 값 : "+ list); 
+		 //
+		String memail = (String) session.getAttribute("sessionMemail"); 
+		/* List<BoardDto> list = service.getBoardList(memail); */
 		List<CategoryDto> catelist = service.categoryList();				//영아
 		List<BoardDto> btitlelist = service.BoardList();					//영아
-		MemberDto member = service.getMimage(memail);	
+		MemberDto member = service.getMimage(UserUrl);	
 		model.addAttribute("list", list);
 		model.addAttribute("catelist", catelist);								//영아
 		model.addAttribute("btitlelist", btitlelist);	
@@ -97,7 +124,10 @@ public class BlogController {
 	}
 	
 	@RequestMapping("/blog_write")
-	public String blog_write() { //http://localhost:8080/teamproject
+	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
+		String memail = (String) session.getAttribute("sessionMemail");
+		MemberDto member = service.getMimage(memail);
+		
 		logger.info("실행");
 		return "blog/blog_write";
 	}

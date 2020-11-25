@@ -139,13 +139,13 @@
 									</div>
 
 									<div class="input-group mb-3">
-								<input type="text" class="form-control"
+								<input type="text" class="form-control" id="btitle"
 									placeholder='  제목' onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '  제목'" style="height:45px; font-size:16px;">
 								</div>
 								
 								<div class="input-group mb-3">
-								<input type="text" class="form-control"
+								<input readonly type="text" class="form-control" id="bwriter" value="작성자 : ${member.mnickname }"
 									placeholder='  작성자' onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '  작성자'" style="height:45px; font-size:16px;">
 								</div>
@@ -175,7 +175,15 @@
 									<a href="javascript:boardWrite()" class="genric-btn info-border radius" style="margin-right:20px;">확인</a>
 									<script type="text/javascript">
 										function boardWrite(){
+											var btitle = $("#btitle").val().trim();
+											var bwriter = $("#bwriter").val().trim();
+											var bcontent = $("#bcontent").val().trim();											
+											
+											if(btitle == ("")){ alert("제목을 입력하세요.");}
+											if(bcontent == ("")) { alert("내용을 입력하세요"); }
+											
 											$.ajax({
+												
 												url:,
 												method:,
 												data:,

@@ -3,9 +3,9 @@
 <mapper namespace="mybatis.mapper.member">
 
 	<select id="selectByMemail" parameterType="String" resultType="member">
-		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled
+		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled, murl
 		FROM member
-		WHERE memail=#{memail} 
+		WHERE murl = #{memail}
 	</select>
 	
 	<update id="updatenickintro" parameterType="member">
@@ -20,3 +20,4 @@
 	
 </mapper>
 
+	

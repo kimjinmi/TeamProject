@@ -46,16 +46,21 @@
 
 
 <body onload="javascript:onload(${board.bno})">
-
+	
  <script type="text/javascript">
-      $(function() {
-         $.ajax({
-            url:"blogcommentlist",
-            success:function(data) {
-               consoel.log(data);
-            }
-         });
-      });
+//페이지 로드될때 댓글ajax로 가져옴
+	function onload(bno){
+		$.ajax({
+			url : "blogcommentlist",
+			method : "get",
+			data : {
+				bno:bno
+			},
+			success : function(data) {
+				$("#comments-area").html(data);
+			}
+		});
+	}
    </script>
 
 	<!-- ? Preloader Start -->
@@ -445,46 +450,50 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<a href="javascript:commentWrite(7)" class="button button-contactForm btn_1 boxed-btn">작성하기Test</a>
+									<a href="javascript:commentWrite(7)" class="button button-contactForm btn_1 boxed-btn">작성하기</a>
 									<script type="text/javascript">
 										function commentWrite(bno) {								
+											// 데이터 검사	
 											var comment = $("#comment").val().trim();
 											if(comment == ""){
 												alert("2글자 이상 입력해야 합니다.");
 												return;
-											}		
+											}	
+											
+											//데이터베이스 값 입력
 											$.ajax({
-												url : "blogcommentlist",
-												method : "get",
-												data : {
-													bno:bno
-												},
-												success : function(data) {
-													$("#comments-area").html(data);
+												url:"blogcommentlist";
+												method:"post",
+												data{comment:comment},
+												success:function(data){
+													if(data.result = "success"){
+														console.log("성공하였습니다.");
+														
+														// 리스트 불러오기
+														$.ajax({
+															url : "blogcommentlist",
+															method : "get",
+															data : {
+																bno:bno
+															},
+															success : function(data) {
+																$("#comments-area").html(data);
+															}
+														});
+													}
 												}
 											});
-										
-										
-										//데이터베이스 값 입력
-										
-										
-										//
-										
-										
+											
 										}
-										//페이지 로드될때 댓글ajax로 가져옴
-										function onload(bno){
-											$.ajax({
-												url : "blogcommentlist",
-												method : "get",
-												data : {
-													bno:bno
-												},
-												success : function(data) {
-													$("#comments-area").html(data);
-												}
-											});
-										}
+											
+											
+											
+										
+											
+										
+										
+										
+										
 									</script>
 								</div>
 							</form>
