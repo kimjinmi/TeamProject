@@ -21,19 +21,15 @@ import com.mycompany.webapp.service.ContentsService;
 public class ContentsController {
 	private static final Logger logger = LoggerFactory.getLogger(ContentsController.class);
 
-	@RequestMapping("/contents")
-	public String contents() { //http://localhost:8080/teamproject
-		logger.info("실행");
-		return "contents/contents";
-	}
 	@Resource private ContentsService service;
 	
-	/*@GetMapping("/contents")
+	@GetMapping("/contents")
 	public String boardList(Model model) {
+		logger.info("실행");
 		List<BoardDto> list = service.getBoardList();
 		model.addAttribute("list", list);
 		return "contents/contents";
-	}*/
+	}
 	
 	@GetMapping("/boardList")
 	public String life(int cno, Model model) {
