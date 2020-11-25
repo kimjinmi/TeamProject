@@ -12,7 +12,7 @@ public class MemberDto {
 	private String mrole; // 권한
 	private boolean menabled; // 계정 0(비활성화), 1(활성화)
 	private MultipartFile mphotoAttach;
-	private String murl; 
+	private String murl="cutesun"; 
 	
 	
 	public String getMurl() {
