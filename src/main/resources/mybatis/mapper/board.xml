@@ -76,6 +76,13 @@
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail
 	</select>
-
+	<!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
+	
+	<select id="selectAll" resultType="board">
+		select bno, btitle, blike, b.cno ,memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
+		from board b, category c
+		where b.bno = #{bno} AND b.cno = c.cno order by bno desc
+		
+	</select>
 </mapper>
 

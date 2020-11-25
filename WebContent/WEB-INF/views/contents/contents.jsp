@@ -113,17 +113,17 @@
 				<div class="col-md-12">
 					<ul class="nev">
 						<li class="nev"><a class="link_tab #life"
-							href="category/life"><span class="inner_link">라이프</span></a></li>
+							href="javascript:boardList(1)"><span class="inner_link">라이프</span></a></li>
 						<li class="nev"><a class="link_tab #travel"
-							href="category/travel"><span class="inner_link">여행.맛집</span></a></li>
+							href="javascript:boardList(2)"><span class="inner_link">여행.맛집</span></a></li>
 						<li class="nev"><a class="link_tab #culture"
-							href="category/culture"><span class="inner_link">문화.연예</span></a></li>
-						<li class="nev"><a class="link_tab #it" href="category/it"><span
-								class="inner_link">IT</span></a></li>
+							href="javascript:boardList(3)"><span class="inner_link">문화.연예</span></a></li>
+						<li class="nev"><a class="link_tab #it"
+							href="javascript:boardList(4)"><span class="inner_link">IT</span></a></li>
 						<li class="nev"><a class="link_tab #sports"
-							href="category/sports"><span class="inner_link">스포츠</span></a></li>
+							href="javascript:boardList(5)"><span class="inner_link">스포츠</span></a></li>
 						<li class="nev"><a class="link_tab #current"
-							href="category/current" style="margin-left: 0px;"><span
+							href="javascript:boardList(6)" style="margin-left: 0px;"><span
 								class="inner_link">시사</span></a></li>
 					</ul>
 				</div>
@@ -132,11 +132,26 @@
 		<!-- ----- 실시간 카테고리 게시물 끝 부분 ----- -->
 
 		<!-- ----- 실시간 게시물 시작 부분 ----- -->
-		<section class="services-section section-padding fix"
+		<section class="services-section section-padding-contents fix"
 			style="background: #F2F2F2;">
 			<div class="container">
-				<div class="row">
+				<script>
+					function boardList(cno) {
+						$.ajax({
+							url : "boardList",
+							data : {
+								cno : cno
+							},
+							success : function(data) {
+								$("#board_result").html(data);
+							}
+						});
+					}
+				</script>
+				<div id="board_result" class="row"
+					style="width: 80%; margin-left: 10%; margin-right: 10%;">
 					<!-- 포스팅 view 시작 -->
+
 					
 			 		<c:forEach var="board" items="${list}">
 						<div class="col-lg-4 col-md-6 col-sm-6">
@@ -163,17 +178,14 @@
 											</div>
 					</c:forEach>
 					
+
 					<!-- 포스팅 view 끝 -->
-					
-				
 				</div>
 			</div>
-			
-		
 		</section>
-		
+
 		<!-- ----- 실시간 게시물 끝 부분 ----- -->
-		
+
 	</main>
 	<footer>
 		<div class="footer-wrapper section-bg2"

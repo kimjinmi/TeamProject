@@ -1,5 +1,7 @@
 package com.mycompany.webapp.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberDto {
 	private	String memail; // 아이디
 	private String mpassword; // 비밀번호
@@ -59,6 +61,7 @@ public class MemberDto {
 	public void setMenabled(boolean menabled) {
 		this.menabled = menabled;
 	}
+
 	
 	
 	

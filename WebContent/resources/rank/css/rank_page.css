@@ -28,6 +28,11 @@
 	padding-bottom: 120px
 }
 
+.section-padding-contents {
+	padding-top: 50px;
+	padding-bottom: 120px
+}
+
 /* 게시물 제목 css */
 /* #blog-title{
 	font-size: 13px;
@@ -94,3 +99,165 @@ ul li.nev {
 	src: url("../font/도담.ttf");
 }
 
+/* contents.jsp css시작 */
+
+/* 게시된 시간, 카테고리 안보이게 */
+.screen_out {
+	overflow: hidden;
+    line-height: 0;
+}
+
+/* 카테고리 종류, 좋아요 수, 게시된 시간 <dd> css */
+.ddcss {
+	/* display: block; */
+    /* float: left; */
+    font-size: 13px;
+    line-height: 13px;
+    font-family: fontARD;
+    color: #909090;
+    padding-left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* <a> 태그 css */
+.box_desc {
+	display: block;
+	position: relative;
+	padding: 32px 114px 28xp 0;
+	text-decoration: none;
+}
+
+.box_desc_type {
+	width: 896px;
+	height: 142px;
+	padding: 32px 0 18px;
+}
+
+/* 게시물 사진 <img> css */
+.img_thumb {
+	overflow: hidden;
+	padding: 28px 0 1px 92px;
+	display: block;
+	float: right;
+	position: relative;
+	width: 128px;
+	height: 128px;
+	padding: 0;
+	margin: 0 0 0 46px;
+}
+
+.thumb_g {
+	width: 128px; 
+	height: 128px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* <div> 태그 css */
+.wrap_cont {
+	max-height: none;
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+.wrap_data {
+	float: left;
+	width: 159px;
+	padding: 5px 0 0;
+}
+
+/* <dl> 태그 css */
+.list_data {
+	position: static;
+	/* overflow: hidden; */
+	padding: 4px 0 0;
+	top: 31px;
+	right: 19px;
+	line-height: 22px;
+	font-size: 13px;
+}
+
+/* <strong> 태그 css */
+.desc_tit {
+	display: block;
+	/* overflow: hidden; */
+	position: relative;
+	max-width: 671px;
+	padding: 6px 0 5px;
+	font-size: 20px;
+	line-height: 1;
+	color: #000000;
+	font-weight: normal;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* <p> 태그 css */
+.desc_g {
+	position: absolute;
+	top: 72px;
+	left: 158px;
+	width: 564px;
+	max-height: 44px;
+	font-size: 14px;
+	color: #777;
+	line-height: 22px;
+	padding: 0 0 0 1px;
+	text-overflow: ellipsis;
+	overflow : hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/* <div> 태그 css */
+.info_g {
+	display: block;
+	bottom: 32px;
+	margin-left: 18%;
+	padding: 3px 0 0 0;
+	font-size: 13px;
+	line-height: 14px;
+	margin-top: 10%;
+}
+
+/* <span> 사용자 이미지 위 css */
+wrap_thumb {
+	display: block;
+	float: left;
+} 
+
+/* <img> 사용자 이미지 css */
+.thumb_profile {
+	width: 30px;
+	height: 30px;
+	margin: 0;
+	float: left;
+}
+
+/* <span> 사용자 닉네임 css */
+.txt_id {
+	display: inline-block;
+	max-width: 250px;
+	padding: 5px 0 0 12px;
+	vertical-align: top;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin: 0 0 0 -1px;
+	color: #333;
+	text-decoration: none;
+}
+
+.txt_date {
+	display: inline-block;
+    max-width: 138px;
+    color: #333;
+    padding: 2.5px 0 0 5px;
+    line-height: 18px;
+    vertical-align: top;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    
+}
