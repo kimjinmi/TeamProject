@@ -27,11 +27,12 @@ import com.mycompany.webapp.service.BlogService;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
-	
+	int bno=0;
 	@Resource
 	private DataSource dataSource;
 	@Resource
 	private BlogService service;
+
 	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
@@ -62,17 +63,24 @@ public class BlogController {
 		 model.addAttribute("commentlist", commentlist);
 		 model.addAttribute("btitlelist", btitlelist);							//영아
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
+		 logger.info("bno 값 출력 1 : " + bno);
 		return "blog/blog_details";
+	}
+	
+	@GetMapping("/blogcommentlist")
+	public String blogcommentlist(int bno, Model model, HttpServletRequest request) {
+		List<ReplyDto> commentlist = service.commentList(bno);
+		model.addAttribute("commentlist", commentlist);
+		return "blog/blogcommentList";
 	}
 	
 	@RequestMapping("/blog")
 	public String blog(HttpSession session, Model model) { //http://localhost:8080/teamproject
-		
-		String memail= (String)session.getAttribute("sessionMemail");			//영아
+		String memail = (String) session.getAttribute("sessionMemail");
 		List<BoardDto> list = service.getBoardList(memail);
 		List<CategoryDto> catelist = service.categoryList();				//영아
 		List<BoardDto> btitlelist = service.BoardList();					//영아
-		MemberDto member = service.getMimage(memail);				//영아 - boardService에서 getMimage1개를 memail의 이미지를 들고오는 것
+		MemberDto member = service.getMimage(memail);	
 		model.addAttribute("list", list);
 		model.addAttribute("catelist", catelist);								//영아
 		model.addAttribute("btitlelist", btitlelist);							//영아

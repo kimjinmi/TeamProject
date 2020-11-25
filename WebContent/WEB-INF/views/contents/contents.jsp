@@ -112,19 +112,13 @@
 					이야기들을 만나보세요</div>
 				<div class="col-md-12">
 					<ul class="nev">
-						<li class="nev"><a class="link_tab #life"
-							href="javascript:boardList(1)"><span class="inner_link">라이프</span></a></li>
-						<li class="nev"><a class="link_tab #travel"
-							href="javascript:boardList(2)"><span class="inner_link">여행.맛집</span></a></li>
-						<li class="nev"><a class="link_tab #culture"
-							href="javascript:boardList(3)"><span class="inner_link">문화.연예</span></a></li>
-						<li class="nev"><a class="link_tab #it"
-							href="javascript:boardList(4)"><span class="inner_link">IT</span></a></li>
-						<li class="nev"><a class="link_tab #sports"
-							href="javascript:boardList(5)"><span class="inner_link">스포츠</span></a></li>
-						<li class="nev"><a class="link_tab #current"
-							href="javascript:boardList(6)" style="margin-left: 0px;"><span
-								class="inner_link">시사</span></a></li>
+						<c:forEach var="i" items="${category_list}">
+							<li class="nev">
+								<a class="link_tab" href="javascript:boardList(${i.cno})">
+								 	<span class="inner_link">${i.ccontent}</span>
+								</a>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>

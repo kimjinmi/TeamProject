@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
+import com.mycompany.webapp.dao.CategoryDao;
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.PagerDto;
 
 @Service
@@ -24,6 +26,14 @@ public class ContentsService {
 
 	public List<BoardDto> getBoardListCno(int cno) {
 		List<BoardDto> list = boardDao.selectNewCategory(cno);
+		return list;
+	}
+
+	@Resource
+	private CategoryDao categoryDao;
+	
+	public List<CategoryDto> getCategoryList() {
+		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
 

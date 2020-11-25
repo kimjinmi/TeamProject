@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="col-3">
-			<a class="genric-btn primary radius small" href="#">중복확인</a>
+			<a class="genric-btn primary radius small" href="doublecheck">중복확인</a>
 		</div>
 
     </div>

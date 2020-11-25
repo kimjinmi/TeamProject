@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.service.RankingService;
 
 @Controller
@@ -25,7 +26,9 @@ public class RankingController {
 		public String boardList(Model model) {
 			logger.info("실행");	
 			List<BoardDto> list = service.getBoardList(); // 서비스에 BoardList를 달라고 요청
+			List<CategoryDto> category_list = service.getCategoryList(); 
 			model.addAttribute("list", list); 
+			model.addAttribute("category_list", category_list);
 			return "ranking/ranking"; // view가 html 조각을 만들어준다.
 	}
 	
