@@ -96,24 +96,13 @@
 					이야기들을 만나보세요</div>
 				<div class="col-md-12">
 					<ul class="nev">
-						<li class="nev"><a class="link_tab #life"
-							href="javascript:boardList(1)"> <span class="inner_link">라이프</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #travel"
-							href="javascript:boardList(2)"> <span class="inner_link">여행.맛집</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #culture"
-							href="javascript:boardList(3)"> <span class="inner_link">문화.연예</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #it"
-							href="javascript:boardList(4)"> <span class="inner_link">IT</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #sports"
-							href="javascript:boardList(5)"> <span class="inner_link">스포츠</span>
-						</a></li>
-						<li class="nev"><a class="link_tab #current"
-							href="javascript:boardList(6)"> <span class="inner_link">시사</span>
-						</a></li>
+						<c:forEach var="i" items="${category_list}">
+							<li class="nev">
+								<a class="link_tab" href="javascript:boardList(${i.cno})">
+								 	<span class="inner_link">${i.ccontent}</span>
+								</a>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -139,6 +128,34 @@
 				</script>
 				<div id="board_result" class="row">
 					<!-- 포스팅 view 시작 -->
+					<c:forEach var="board" items="${list}">
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="cat-icon">
+								<div>
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
+										alt="">
+								</div>
+								<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
+								<div class="cat-cap"
+									style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px;">
+									<a href="#"> <img class="profile"
+										src="<%=application.getContextPath()%>/resources/images/프로필-1.jpg" />
+									</a>
+									<!-- 이미지 -->
+									<div class="#">
+										<!-- 닉네임 -->
+										<a href="#" class="nick-name"> <strong>${board.mnickname}</strong>
+										</a>
+										<!-- 홈페이지 소개글 -->
+										<a href="#" class="home-title">
+											<p id="home-title">${board.btitle}</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
 					<!-- 포스팅 view 끝 -->
 				</div>
 			</div>

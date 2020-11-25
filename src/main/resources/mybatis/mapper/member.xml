@@ -5,7 +5,7 @@
 	<select id="selectByMemail" parameterType="String" resultType="member">
 		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled
 		FROM member
-		WHERE MEMAIL=#{memail} 
+		WHERE memail=#{memail} 
 	</select>
 	
 	<update id="updatenickintro" parameterType="member">

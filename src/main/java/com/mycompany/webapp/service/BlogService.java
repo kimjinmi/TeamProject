@@ -28,6 +28,12 @@ public class BlogService {
 	private ReplyDao replyDao;
 	
 	@Resource
+<<<<<<< HEAD
+=======
+	private MemberDao updateimageDao;
+	
+	@Resource
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	private MemberDao memberDao;
 
 	public BoardDto getBoard(int bno) {
@@ -60,5 +66,12 @@ public class BlogService {
 		return list;
 	}
 
+<<<<<<< HEAD
+=======
+	public MemberDto getMimage(String memail) {
+		MemberDto list = memberDao.selectbyMemail(memail);
+		return list;
+	}
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	
 }

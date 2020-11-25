@@ -73,14 +73,16 @@ public class BlogController {
 	}
 	
 	@RequestMapping("/blog")
-	public String blog(Model model, HttpSession session) { //http://localhost:8080/teamproject
+	public String blog(HttpSession session, Model model, ) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
 		List<BoardDto> list = service.getBoardList(memail);
 		List<CategoryDto> catelist = service.categoryList();				//영아
 		List<BoardDto> btitlelist = service.BoardList();					//영아
+		MemberDto member = service.getMimage(memail);	
 		model.addAttribute("list", list);
 		model.addAttribute("catelist", catelist);								//영아
-		model.addAttribute("btitlelist", btitlelist);							//영아
+		model.addAttribute("btitlelist", btitlelist);	
+		model.addAttribute("member", member);//영아
 		logger.info(catelist.toString());											//영아
 		logger.info("실행");
 		return "blog/blog";

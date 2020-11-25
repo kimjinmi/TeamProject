@@ -112,11 +112,8 @@
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
-								
-							</div>
-								
+								</div>
 							</aside>
-							
 							
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
