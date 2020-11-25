@@ -235,6 +235,7 @@ wrap_thumb {
 	height: 30px;
 	margin: 0;
 	float: left;
+	border-radius: 50px; 
 }
 
 /* <span> 사용자 닉네임 css */

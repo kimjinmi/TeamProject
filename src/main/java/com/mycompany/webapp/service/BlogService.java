@@ -31,6 +31,7 @@ public class BlogService {
 	private MemberDao updateimageDao;
 	@Resource
 	private MemberDao memberDao;
+	
 
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
@@ -65,6 +66,10 @@ public class BlogService {
 	public MemberDto getMimage(String memail) {
 		MemberDto list = memberDao.selectbyMemail(memail);
 		return list;
+	}
+
+	public void commentWrite(ReplyDto reply) {
+		replyDao.commentinsert(reply);
 	}
 	
 }

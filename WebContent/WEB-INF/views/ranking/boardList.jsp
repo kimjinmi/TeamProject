@@ -7,7 +7,7 @@
 			<div>
 				<img
 					src="photodownload_board?fileName=${board.bimage}"
-					alt="">
+					style="width: 350px; height: 350px;">
 			</div>
 			<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 			<div class="cat-cap"

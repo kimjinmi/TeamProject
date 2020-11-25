@@ -35,6 +35,9 @@ public class MemberDao {
 		MemberDto dbmimage = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmimage;
 	}
+
+	
+
 	
 
 }
