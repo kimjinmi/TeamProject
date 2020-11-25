@@ -118,12 +118,13 @@
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
-									<li><a href="javascript:imagechange()" class="d-flex">
-										<p>프로필 사진 설정</p></a>
+									
+									<li><a href="javascript:setting()" class="d-flex">
+										<p>내 페이지 설정</p></a>
 										<script type="text/javascript">
-											function imagechange(){
+											function setting(){
 												$.ajax({
-													url:"imagechange",
+													url:"setting",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -134,12 +135,12 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:setting()" class="d-flex">
-										<p>내 페이지 설정</p></a>
+									<li><a href="javascript:imagechange()" class="d-flex">
+										<p>프로필 사진 설정</p></a>
 										<script type="text/javascript">
-											function setting(){
+											function imagechange(){
 												$.ajax({
-													url:"setting",
+													url:"imagechange",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -223,7 +224,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-						<jsp:include page="/WEB-INF/views/setting/imagechange.jsp"/>
+							<jsp:include page="/WEB-INF/views/setting/setting.jsp"/>
 						</div>
 					</div>
 				</div>
