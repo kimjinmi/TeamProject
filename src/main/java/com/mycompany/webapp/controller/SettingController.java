@@ -177,7 +177,7 @@ public class SettingController {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		
 		member.setMemail(sessionMemail);
-		member.setMmyimage("default.jpg");
+		member.setMmyimage("default.png");
 		model.addAttribute("member", member);
 		service.memberimageupdate(member);
 		return "setting/imagechange";

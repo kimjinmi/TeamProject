@@ -108,7 +108,7 @@
 						
 							<aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
 							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
-								<img src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg" alt="" width="100" height="100" class="rounded-circle"><br>
+								<img src="photodownload?fileName=${member.mmyimage}" alt="" width="100" height="100" class="rounded-circle"><br>
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
@@ -121,12 +121,12 @@
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
 								<ul class="list cat-list">
-									<li><a href="javascript:setting()" class="d-flex">
-										<p>내 페이지 설정</p></a>
+									<li><a href="javascript:imagechange()" class="d-flex">
+										<p>프로필 사진 설정</p></a>
 										<script type="text/javascript">
-											function setting(){
+											function imagechange(){
 												$.ajax({
-													url:"setting",
+													url:"imagechange",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -137,12 +137,12 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:imagechange()" class="d-flex">
-										<p>프로필 사진 설정</p></a>
+									<li><a href="javascript:setting()" class="d-flex">
+										<p>내 페이지 설정</p></a>
 										<script type="text/javascript">
-											function imagechange(){
+											function setting(){
 												$.ajax({
-													url:"imagechange",
+													url:"setting",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -226,7 +226,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-						<jsp:include page="/WEB-INF/views/setting/setting.jsp"/>
+						<jsp:include page="/WEB-INF/views/setting/imagechange.jsp"/>
 						</div>
 					</div>
 				</div>
