@@ -5,8 +5,7 @@
 	<div class="col-lg-4 col-md-6 col-sm-6">
 		<div class="cat-icon">
 			<div>
-				<img
-					src="photodownload_board?fileName=${board.bimage}"
+				<img src="photodownload_board?fileName=${board.bimage}"
 					style="width: 350px; height: 350px;">
 			</div>
 			<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
@@ -21,9 +20,14 @@
 					<a href="#" class="nick-name"> <strong>${board.mnickname}</strong>
 					</a>
 					<!-- 홈페이지 소개글 -->
-					<a href="#" class="home-title">
+					<a href="javascript:boardDetails(${board.bno})" class="home-title">
 						<p id="home-title">${board.btitle}</p>
 					</a>
+					<script type="text/javascript">
+						function boardDetails(bno) {
+							location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+						}
+					</script>
 				</div>
 			</div>
 		</div>

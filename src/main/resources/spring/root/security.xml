@@ -40,10 +40,10 @@
 		
 		<!-- ### url 권한 설정 ### -->
 		<!-- /path/path/**, /path/method* // pattern에 포함된 페이지에 접근하기 위해서는 access에 포함된 권한을 갖고 있어야 한다 --> 
-		<security:intercept-url pattern="/ch17/admin*" access="hasRole('ROLE_ADMIN')"/>
+	<!-- 	<security:intercept-url pattern="/ch17/admin*" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/ch17/manager*" access="hasRole('ROLE_MANAGER')"/>
 		<security:intercept-url pattern="/ch17/user*" access="isAuthenticated()"/>	
-		
+		 -->
 		<security:intercept-url pattern="/**" access="permitAll"/>
 		
 		<!-- ### 권한 없음(403) 에러일 경우 포워드 페이지 ### -->

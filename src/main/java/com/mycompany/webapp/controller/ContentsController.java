@@ -17,11 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
-import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.ContentsService;
 
 @Controller
@@ -58,7 +56,6 @@ public class ContentsController {
 		
 		String fileType = request.getServletContext().getMimeType(fileName);
 		response.setContentType(fileType);
-
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 
 		int fileSize = (int) new File(saveFilePath).length(); // 파일 사이즈 얻기
@@ -81,7 +78,6 @@ public class ContentsController {
 		
 		String fileType = request.getServletContext().getMimeType(fileName);
 		response.setContentType(fileType);
-
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 
 		int fileSize = (int) new File(saveFilePath).length(); // 파일 사이즈 얻기
@@ -92,6 +88,14 @@ public class ContentsController {
 		os.flush();
 		os.close();
 		is.close();
+	}
+	
+	@GetMapping("./blog/blog_details")
+	public String board_details(Model model, HttpServletRequest request) {
+		 int bno = Integer.parseInt(request.getParameter("bno"));
+		 BoardDto board = service.getBoard(bno);
+		 model.addAttribute("board", board);
+		return "blog/blog_details";
 	}
 
 }

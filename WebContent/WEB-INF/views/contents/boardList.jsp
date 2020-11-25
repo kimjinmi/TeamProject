@@ -4,7 +4,12 @@
 <c:forEach var="board" items="${list}">
 	<div class="col-lg-12 col-md-12 col-sm-12"
 		style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
-		<a href=# class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
+		<a href="javascript:boardDetails(${board.bno})" class="box_desc box_desc_type"> <!-- 게시물 이미지 -->
+			<script type="text/javascript">
+				function boardDetails(bno) {
+					location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+				}
+			</script>
 			<div class="img_thumb">
 				<img class="thumb_g" src="photodownload_board?fileName=${board.bimage}" />
 			</div> <!-- 게시물 타이틀, 내용 -->

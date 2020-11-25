@@ -77,7 +77,16 @@
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail
 	</select>
-
+	
+<!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
+	
+	<select id="selectAll" parameterType="String" resultType="board">
+		select bno, btitle, blike, b.cno ,memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
+		from board b, category c
+		where b.cno = c.cno and memail=#{memail}
+		order by bno desc
+		
+	</select>
 
 <!-- 	<select id="commentinsert" parameterType="reply">
 		<selectKey order="BEFORE" resultType="int" keyProperty="rno">
@@ -88,28 +97,4 @@
 			values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
 	</select> -->
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -92,5 +92,11 @@ public class RankingController {
 		is.close();
 	}
 
-	
+	@GetMapping("./blog/blog_details")
+	public String board_details(Model model, HttpServletRequest request) {
+		 int bno = Integer.parseInt(request.getParameter("bno"));
+		 BoardDto board = service.getBoard(bno);
+		 model.addAttribute("board", board);
+		return "blog/blog_details";
+	}
 }
