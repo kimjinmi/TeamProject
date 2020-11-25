@@ -38,4 +38,10 @@ public class ContentsService {
 	}
 
 
+	public BoardDto getBoard(int bno) {
+		BoardDto board = boardDao.selectByBno(bno);
+		return board;
+	}
+
+
 }

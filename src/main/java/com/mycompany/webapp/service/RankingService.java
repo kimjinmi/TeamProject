@@ -34,5 +34,10 @@ public class RankingService {
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
+
+	public BoardDto getBoard(int bno) {
+		BoardDto board = boardDao.selectByBno(bno);
+		return board;
+	}
 	
 }
