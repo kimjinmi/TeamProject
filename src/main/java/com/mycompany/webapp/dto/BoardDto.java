@@ -14,8 +14,22 @@ public class BoardDto {
 	private String memail; // member email -> 아이디
 	private int cno; // Category 번호
 	private String mnickname;
+	private String ccontent;
+	private String mmyimage;
 	
 	   
+	public String getMmyimage() {
+		return mmyimage;
+	}
+	public void setMmyimage(String mmyimage) {
+		this.mmyimage = mmyimage;
+	}
+	public String getCcontent() {
+		return ccontent;
+	}
+	public void setCcontent(String ccontent) {
+		this.ccontent = ccontent;
+	}
 	public String getMnickname() {
 		return mnickname;
 	}
