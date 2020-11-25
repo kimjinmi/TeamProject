@@ -18,6 +18,7 @@ import com.mycompany.webapp.service.RankingService;
 @RequestMapping("/ranking")
 public class RankingController {
 	private static final Logger logger = LoggerFactory.getLogger(RankingController.class);
+	
 	@Resource private RankingService service;
 	
 	@GetMapping("/ranking")

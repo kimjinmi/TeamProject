@@ -18,7 +18,7 @@
 					<dl class="list_data" style="margin-bottom: 0px">
 						<dt class="screen_out">게시된 시간</dt>
 						<dd class="ddcss">2시간전</dd>
-					</dl>
+					</dl> 
 					<dl class="list_data">
 						<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
 						<dd class="ddcss" style="display: inline;">13</dd>
