@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
+import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
@@ -24,6 +26,12 @@ public class BlogService {
 	
 	@Resource
 	private ReplyDao replyDao;
+	
+	@Resource
+	private MemberDao updateimageDao;
+	
+	@Resource
+	private MemberDao memberDao;
 
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
@@ -54,4 +62,10 @@ public class BlogService {
 		List<ReplyDto> list = replyDao.selectBoardComment(bno);
 		return list;
 	}
+
+	public MemberDto getMimage(String memail) {
+		MemberDto list = memberDao.selectbyMemail(memail);
+		return list;
+	}
+	
 }

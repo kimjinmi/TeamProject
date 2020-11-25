@@ -60,5 +60,4 @@ public class BoardDao {
 		return list;
 	}
 
-
 }
