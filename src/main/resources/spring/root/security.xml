@@ -99,7 +99,8 @@
 	<security:jdbc-user-service id="jdbcUserService"
 		data-source-ref="dataSource"
 		users-by-username-query="select memail, mpassword, menabled from member where memail=?"
-		authorities-by-username-query="select memail, mrole from member where memail=?"/>
+		authorities-by-username-query="select memail, mrole from member where memail=?"
+		/>
 		
 	<!-- 권한 계층 설정 -->
 	<bean id="roleHierarchyAuthoritiesMapper" 

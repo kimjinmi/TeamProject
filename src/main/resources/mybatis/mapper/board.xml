@@ -34,18 +34,18 @@
 	<!-- 선: 최신순으로 불러오기 contents 총 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewAll" resultType="board">	
-	  	 select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-         from board b, member m
-       	 where b.memail = m.memail
+	  	 select bno, btitle, bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage
+         from board b, member m, category c
+       	 where b.memail = m.memail and b.cno = c.cno
        	 order by bdate desc
 	</select>
 	
 	<!-- 선: 최신순으로 불러오기 contents 카테고리별 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewCategory" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage
-       	from board b, member m
-       	where b.memail = m.memail and cno = #{cno} 
+		select bno, btitle, bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage
+       	from board b, member m, category c
+       	where b.memail = m.memail and b.cno = #{cno} and b.cno = c.cno 
        	order by bdate desc
 	</select>
 	

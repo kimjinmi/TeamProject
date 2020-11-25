@@ -6,8 +6,10 @@
 
 <hr style="margin-top:12px;">
 	
-<form method="post" action="updatenickintro">
-	<div class="row">
+
+	
+<form method="post" action="javascript:updatenickintro()">
+	<div id="nicknamecheck" class="row">
 		<div class="col-2">닉네임</div>
 		<div class="col-7">
 	 		<input type="text" id="mnickname" name="mnickname" 
@@ -15,12 +17,32 @@
 		</div>
 
 		<div class="col-3">
-			<a class="genric-btn primary radius small" href="doublecheck">중복확인</a>
+			<input type="submit" class="genric-btn primary radius small" value="중복확인"/>
 		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	/* function updatenickintro(){
+		var 
+		$.ajax({
+			url:"doublecheck",
+			data:{}
+			
+		});
+	} */
+	
+</script>
 
-    </div>
+	<div id="nicknamecheck" class="row" style="display: none;">
+		<div class="col-2">닉네임</div>
+		<div class="col-10">
+	 		<input type="text" id="mnickname" name="mnickname" 
+				class="single-input" value="${member.mnickname}" readonly>
+		</div>
+	</div>
+   
     <p></p>
-     
+<form method="post" action="updatenickintro">   
 	<div class="row">
        	<div class="col-2">소개글</div>
        	<div class="col-10">
