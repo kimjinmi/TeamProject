@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.BoardDto;
@@ -70,6 +71,13 @@ public class BlogController {
 		List<ReplyDto> commentlist = service.commentList(bno);
 		model.addAttribute("commentlist", commentlist);
 		return "blog/blogcommentList";
+	}
+	
+	@PostMapping("/blogcommentlist")
+	public void blogcommentwrite(ReplyDto reply) {
+		service.commentWrite(reply);
+		
+		
 	}
 	
 	@RequestMapping("/blog")
