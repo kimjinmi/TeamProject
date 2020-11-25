@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.ContentsService;
 
@@ -27,7 +28,9 @@ public class ContentsController {
 	public String boardList(Model model) {
 		logger.info("실행");
 		List<BoardDto> list = service.getBoardList();
+		List<CategoryDto> category_list = service.getCategoryList(); 
 		model.addAttribute("list", list);
+		model.addAttribute("category_list", category_list);
 		return "contents/contents";
 	}
 	

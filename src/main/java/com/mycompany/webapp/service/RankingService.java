@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
+import com.mycompany.webapp.dao.CategoryDao;
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 
 @Service
 public class RankingService {
@@ -24,5 +26,13 @@ public class RankingService {
 		List<BoardDto> list = boardDao.selectLikeCategory(cno);
 		return list;
 	}
-
+	
+	@Resource
+	private CategoryDao categoryDao;
+	
+	public List<CategoryDto> getCategoryList(){
+		List<CategoryDto> list = categoryDao.selectAll();
+		return list;
+	}
+	
 }
