@@ -31,7 +31,6 @@ public class BlogService {
 	
 	@Resource
 	private MemberDao updateimageDao;
-	
 	@Resource
 	private MemberDao memberDao;
 	

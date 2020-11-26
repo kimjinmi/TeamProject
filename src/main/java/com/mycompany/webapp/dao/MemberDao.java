@@ -20,7 +20,7 @@ public class MemberDao {
 		return dbmember;
 	}
 	
-	public MemberDto selectbyMemail(String memail) { //세션 이메일이 들어온다
+	public MemberDto selectbyMemail(String memail) { //유저 url이 들어온다
 		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmember;
 	}
@@ -40,6 +40,24 @@ public class MemberDao {
 		MemberDto dbmimage = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmimage;
 	}
+
+	public int countMemail(String memail) {
+		int rows = sst.selectOne("mybatis.mapper.member.countMemail", memail);
+		return rows;
+	}
+
+	public int countMnickname(String mnickname) {
+		int rows = sst.selectOne("mybatis.mapper.member.countMnickname", mnickname);
+		return rows;
+	}
+
+	public int insert(MemberDto member) {
+		int row = sst.insert("mybatis.mapper.member.insert", member);
+		return row;
+		
+	}
+
+	
 
 	
 

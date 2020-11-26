@@ -104,7 +104,7 @@
 						},
 						success : function(data) {
 							if (data.result == "success") {
-								location.href="blog?UserUrl=${UserUrl}";	
+								location.href="blog?UserUrl=${UserUrl}";
 							}
 						}
 					});

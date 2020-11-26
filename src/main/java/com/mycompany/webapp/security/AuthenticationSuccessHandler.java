@@ -23,6 +23,7 @@ public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticatio
 		String memail = authentication.getName(); 
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionMemail", memail);
+		session.setAttribute("sessionMemail", memail);
 		logger.info("로그인한 이메일:" + memail);
 	}
 }

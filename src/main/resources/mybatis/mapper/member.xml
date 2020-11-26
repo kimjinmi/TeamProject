@@ -24,6 +24,16 @@
 		WHERE memail=#{memail}
 	</update>
 	
+	<select id="countMemail" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE memail=#{memail}
+	</select>
+	
+	<select id="countMnickname" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE mnickname=#{mnickname}
+	</select>
 </mapper>
 
-	

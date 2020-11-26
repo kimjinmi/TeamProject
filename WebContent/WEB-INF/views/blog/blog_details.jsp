@@ -478,8 +478,7 @@
 												success:function(data){
 													if(data.result = "success"){
 														console.log("성공하였습니다.");
-														
-														// 리스트 불러오기
+														// 댓글리스트 리로드
 														$.ajax({
 															url : "blogcommentlist",
 															method : "get",

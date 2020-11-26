@@ -194,11 +194,11 @@ public class SettingController {
 		return "redirect:/setting/content";
 	}
 	
-	@RequestMapping("/doublecheck")
+	/*@RequestMapping("/doublecheck")
 	public String doublecheck(MemberDto member, HttpSession session) {
 		
 		return "setting/setting";
-	}
+	}*/
 	
 	
 	
