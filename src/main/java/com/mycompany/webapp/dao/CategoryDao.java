@@ -19,4 +19,9 @@ public class CategoryDao {
 		return list;
 	}
 
+	public List<CategoryDto> selectbyCno(int cno) {
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectbyCno");
+		return list;
+	}
+
 }

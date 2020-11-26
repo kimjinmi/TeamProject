@@ -1,6 +1,6 @@
 package com.mycompany.webapp.dao;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.annotation.Resource;
 

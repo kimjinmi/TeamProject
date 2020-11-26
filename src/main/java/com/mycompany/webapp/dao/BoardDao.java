@@ -21,6 +21,12 @@ public class BoardDao {
 		return board;
 	}
 	
+	public List<BoardDto> categoryListLink(String memail) {
+			List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectbyCateList", memail);
+			return list;
+	}
+
+	
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectLikeAll");
@@ -61,5 +67,6 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectByPage", pager);
 		return list;
 	}
+
 
 }

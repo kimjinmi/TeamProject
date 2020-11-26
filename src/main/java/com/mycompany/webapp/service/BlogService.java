@@ -48,7 +48,7 @@ public class BlogService {
 		return list;
 	}
 	
-	public List<CategoryDto> categoryList(){													//영아
+	public List<CategoryDto> categoryList() {													//영아
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
@@ -58,7 +58,7 @@ public class BlogService {
 		return list;
 	}
 
-	public List<ReplyDto> commentList(int bno){
+	public List<ReplyDto> commentList(int bno) {
 		List<ReplyDto> list = replyDao.selectBoardComment(bno);
 		return list;
 	}
@@ -67,5 +67,16 @@ public class BlogService {
 		MemberDto list = memberDao.selectbyMemail(memail);
 		return list;
 	}
-	
+
+	public List<CategoryDto> test(int cno) {
+		List<CategoryDto> list = categoryDao.selectbyCno(cno);
+		return list;
+	}
+
+	/*
+		public List<BoardDto> ClistLink(String memail) {																//영아
+					List<BoardDto> list = boardDao.categoryListLink(memail);
+					return list;
+		}*/
+
 }

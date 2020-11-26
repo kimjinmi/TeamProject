@@ -14,8 +14,15 @@ public class BoardDto {
 	private String memail; // member email -> 아이디
 	private int cno; // Category 번호
 	private String mnickname;
+	private String murl;
 	
 	   
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
 	public String getMnickname() {
 		return mnickname;
 	}
