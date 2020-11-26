@@ -43,7 +43,7 @@ public class BlogService {
 			return list;
 	}
 
-	public List<BoardDto> getBoardList(String memail) {
+	public List<BoardDto> getBoardList(String memail) {										//userurl이 들어옴(memail자리에)
 		List<BoardDto> list = boardDao.selectUserBoard(memail);
 		return list;
 	}
@@ -73,15 +73,15 @@ public class BlogService {
 		return list;
 	}
 
-	/*
-		public List<BoardDto> ClistLink(String memail) {																//영아
-					List<BoardDto> list = boardDao.categoryListLink(memail);
-					return list;
-		}*/
-
 
 	public void commentWrite(ReplyDto reply) {
 		replyDao.commentinsert(reply);
 	}
+
+	/*	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때
+		public List<BoardDto> bcno(int cno, String UserUrl) {
+			List<BoardDto> list = boardDao.categoryListLink(cno, UserUrl);
+			return list;
+		}*/
 	
 }

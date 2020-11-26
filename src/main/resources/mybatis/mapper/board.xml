@@ -10,10 +10,11 @@
 	</select>
 	
 	<!-- 영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 -->
-	<select id="categoryListLink" parameterType="board" resultType="board">
-		select bno, btitle, bcontent, bdate, blike, bimage, memail, cno, c.ccontent
-		from board b, category c
-		where c.cno = b.cno and memail=${memail} and cno = ${cno};
+	<select id="categoryListLink" parameterType="String" resultType="board">
+		select bno, btitle, bcontent, bdate, bimage, c.cno, c.ccontent
+		from board b, category c, member m
+		where m.memail=b.memail and c.cno=b.cno 
+		and m.murl=#{UserUrl}
 	</select>
 	
 	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->

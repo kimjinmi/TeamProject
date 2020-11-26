@@ -151,14 +151,12 @@
                                  <script type=text/javascript>
                                  	function categoryList(cno){
                                  		$.ajax({
-                                 			url:"test",
-                                 			method:"get",
+                                 			url:"categoryListLinkBoard",
                                  			data:{cno:cno},
                                  			success:function(data){
-                                 				$("#board_result").html(data);
+                                 				$("#categoryListLinkBoard").html(data);
                                  			}
                                  		});
-                                 		
                 							}
                                  </script>
                            </a></li>
@@ -184,9 +182,9 @@
                </div>
             
             <!-- ////////////////////////////////// -->
-               <div class="col-lg-8 mb-5 mb-lg-0">
+               <div class="col-lg-8 mb-5 mb-lg-0" id="categoryListLinkBoard">
                         <!-- blog_item 시작 -->
-                        <c:forEach var="board" items="${list}">
+                      <c:forEach var="board" items="${list}">
                         <article class="blog_item">   
                         
                            <div class="blog_item_img">

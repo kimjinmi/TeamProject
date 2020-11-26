@@ -29,7 +29,6 @@ import com.mycompany.webapp.service.BlogService;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
-	private int bno = 0;
 	@Resource
 	private DataSource dataSource;
 	@Resource
@@ -76,8 +75,6 @@ public class BlogController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
-		
-		
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json; charset=utf-8");
 		out.println(json);
@@ -113,7 +110,18 @@ public class BlogController {
 		logger.info("실행");
 		return "blog/blog";
 	}
-
+	
+	
+	/*	@RequestMapping("/categoryListLinkBoard")
+		public String categoryListLinkBoard(int cno, Model model, HttpServletRequest request) {
+			String UserUrl = (String) request.getParameter("UserUrl");
+			//List<BoardDto> list = service.getBoardList(UserUrl); 
+			List<BoardDto> bcno = service.bcno(cno, UserUrl);
+			//model.addAttribute("list", list);
+			model.addAttribute("bcno", bcno);
+			return "blog/categoryListLinkBoard";
+		}
+	*/
 	@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
@@ -121,35 +129,6 @@ public class BlogController {
 		
 		logger.info("실행");
 		return "blog/blog_write";
-	}
-
-	/*@GetMapping("/test")
-	public String testfunction(int cno, HttpSession session) {
-		// 카테고리 넘버 얻었고
-		// 멤버의 이메일 필요함 // murl   ->  디비에 들고가서 select ~ from ~ where  memail = #{memal}, m
-		//데이터 베이스에서 내가 원하는 값은 cno의 카테고리에서 내가 접속해있는 블로그의 게시글
-		// 카테고리넘버, memail
-		
-		String memail = (String) session.getAttribute("sessionMemail");
-		
-		List<BoardDto> test = service.test(memail); // Servcie -> Dao -> XML -> 쿼리문실행  -> 결과 돌아와
-		// memail이 피영아가 작성한 글이 다 나오겠자
-		// 결과는 니가 다 작성한거
-		return null;
-	}*/
-
-	/*	@GetMapping("/test")
-		public String test (HttpSession session, Model model) {
-				String memail = (String)session.getAttribute("sessionMemail");
-				List<BoardDto> clistlink = service.ClistLink(memail);
-				model.addAttribute("clistlink", clistlink);
-				return "blog/test";
-		}*/
-
-	@GetMapping("/test")
-	public String test (HttpSession session, Model model,int cno) {
-			logger.info("cno출력"+cno);
-			return "blog/test";
 	}
 
 }

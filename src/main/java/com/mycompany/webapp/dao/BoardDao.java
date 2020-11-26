@@ -21,11 +21,12 @@ public class BoardDao {
 		return board;
 	}
 	
-	public List<BoardDto> categoryListLink(String memail) {
-			List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectbyCateList", memail);
-			return list;
-	}
-
+	/*	//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
+		public List<BoardDto> categoryListLink(int cno, String UserUrl) {
+			List<BoardDto> list = sst.selectOne("mybatis.mapper.board.selectbyCateList", UserUrl,  cno);
+				return list;
+		}
+	*/
 	
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
