@@ -84,9 +84,13 @@
 	
 
 	<select id="selectBoardComment" parameterType="int" resultType="reply">
-		select rno, rcontent, reply.memail, member.mnickname, rdate
+		<!-- select distinct rno, rcontent, reply.memail, , rdate
 		from board, reply, member
-		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail
+		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail -->
+      
+        select  rno, rcontent, reply.memail,  rdate
+		from board, reply
+		where board.bno = reply.bno AND board.bno = #{bno}
 	</select>
 	
 <!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
