@@ -117,7 +117,7 @@ public class BlogController {
 		/* List<BoardDto> list = service.getBoardList(memail); */
 		List<CategoryDto> catelist = service.categoryList();				//영아
 		List<BoardDto> btitlelist = service.BoardList();					//영아
-		MemberDto member = service.getMimage(UserUrl);	
+		MemberDto member = service.getMimage(UserUrl);	// UserUrl을 가지고 유저 이미지를 들고온다
 		model.addAttribute("list", list);
 		model.addAttribute("catelist", catelist);								//영아
 		model.addAttribute("btitlelist", btitlelist);	
