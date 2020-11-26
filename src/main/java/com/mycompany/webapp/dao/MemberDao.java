@@ -20,7 +20,7 @@ public class MemberDao {
 		return dbmember;
 	}
 	
-	public MemberDto selectbyMemail(String memail) { //세션 이메일이 들어온다
+	public MemberDto selectbyMemail(String memail) { //유저 url이 들어온다
 		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmember;
 	}

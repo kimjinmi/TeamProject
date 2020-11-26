@@ -102,7 +102,7 @@
 						},
 						success : function(data) {
 							if (data.result == "success") {
-								location.href="blog?UserUrl=${use}";	
+								location.href="blog?UserUrl=";	
 							}
 						}
 					});
