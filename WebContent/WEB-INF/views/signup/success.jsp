@@ -138,7 +138,7 @@
 						</div>
 					</div>
 					<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 50px; text-align: center;">
-						<a href="<%=application.getContextPath()%>/views/signin/content.jsp;" class="genric-btn info radius" style="width: 40%; padding-left: 30px;">로그인</a>
+						<a href="<%=application.getContextPath()%>/signin/login" class="genric-btn info radius" style="width: 40%; padding-left: 30px;">로그인</a>
 					</div>
 				</div>
 				<div class="col-md-3">
