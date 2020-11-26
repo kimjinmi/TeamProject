@@ -16,8 +16,15 @@ public class BoardDto {
 	private String mnickname;
 	private String ccontent;
 	private String mmyimage;
+	private String blinkcontent;
 	
 	   
+	public String getBlinkcontent() {
+		return blinkcontent;
+	}
+	public void setBlinkcontent(String blinkcontent) {
+		this.blinkcontent = blinkcontent;
+	}
 	public String getMmyimage() {
 		return mmyimage;
 	}
