@@ -127,16 +127,30 @@
 															입력하신 정보는 회원가입 여부에만 사용되며 저장되지 않습니다.
 														</li>
 													</ul>
-													<form action="#">									
+													<form onsubmit="return validateForm()" method="post" action="signupcheckform">									
 														<div class="input-group mb-3">
-                        									<input type="text" class="form-control" placeholder='  이메일을 입력하세요' 
+                        									<input type="text" id="paramemail" name="paramemail" class="form-control" placeholder='  이메일을 입력하세요' 
                         									onfocus="this.placeholder = ''" onblur="this.placeholder = '  이메일을 입력하세요'" 
                         									style="height:45px; font-size:16px;">
 														</div>			
+														<span id="signuperror"></span>
+														
 														<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
-
-														<a href="test" class="genric-btn info circle" style="width: 100%;">가입 여부 확인</a>
-
+														
+														<input type="submit" class="genric-btn info circle" style="width: 100%;" value="가입 여부 확인"/>
+														<script type="text/javascript">
+															function validateForm(){
+																var email = $("#paramemail").val().trim();
+																var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+																if (email.match(regExp) != null) {
+																	return true;
+																}else{
+																	$("#signuperror").text("올바른 이메일을 입력해주세요");
+																	return false;
+																}
+															}
+														</script>
+	
 														</div>
 													</form>
 												</div>

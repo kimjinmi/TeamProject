@@ -75,16 +75,37 @@ public class BlogController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
+
+
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json; charset=utf-8");
 		out.println(json);
 		out.flush();
 		out.close();
-		
+
+
+		/*
+		 * JSONObject jsonObject = new JSONObject(); jsonObject.put("result",
+		 * "success"); String json = jsonObject.toString();
+		 * 
+		 * 
+		 * PrintWriter out = response.getWriter();
+		 * response.setContentType("application/json; charset=utf-8");
+		 * out.println(json); out.flush(); out.close();
+		 */
+
 		return "blog/blogcommentList";
-		
+
 	}
 
+	
+	
+	
+	@PostMapping("/blogcommentlist")
+	public void blogcommentwrite(ReplyDto reply) {
+		service.commentWrite(reply);
+	}
+	
 	@RequestMapping("/blog")
 	public String blog(HttpSession session, Model model, HttpServletRequest request) { //http://localhost:8080/teamproject
 		// get 값 매핑
@@ -122,13 +143,25 @@ public class BlogController {
 			return "blog/categoryListLinkBoard";
 		}
 	*/
-	@RequestMapping("/blog_write")
+
+
+	/*	@RequestMapping("/blog_write")
+
+	/*	@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
 		MemberDto member = service.getMimage(memail);
 		
 		logger.info("실행");
 		return "blog/blog_write";
+	}
+
+
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 
 }

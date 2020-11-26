@@ -83,5 +83,9 @@ public class BlogService {
 			List<BoardDto> list = boardDao.categoryListLink(cno, UserUrl);
 			return list;
 		}*/
+
+	public void boardWrite(BoardDto board) {
+		boardDao.insert(board);
+	}
 	
 }

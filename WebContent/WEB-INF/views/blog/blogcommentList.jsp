@@ -30,9 +30,7 @@
 								</p>
 							</div>
 							<div class="reply-btn">
-								<a href="javascript:nextReply(${board.bno}" class="btn-reply text-uppercase"></a> <!-- 답글 -->
-								
-								
+								<a href="javascript:nextReply(${board.bno}" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
 							</div>
 						</div>
 					</div>

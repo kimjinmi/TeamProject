@@ -66,6 +66,7 @@
                <div class="container-fluid">
                   <div class="row align-items-center">
 
+<<<<<<< HEAD
                      <div class="col-xl-10 col-lg-10">
                         <div
                            class="menu-wrapper  d-flex align-items-center justify-content-end">
@@ -116,6 +117,128 @@
                         <hr/>
                         <a class="genric-btn primary e-large" href="blog_write">POSTING</a>
                      </div>
+=======
+							<div class="col-xl-10 col-lg-10">
+								<div
+									class="menu-wrapper  d-flex align-items-center justify-content-end">
+									<!-- Main-menu -->
+									<jsp:include page="/WEB-INF/views/include/menu.jsp" />
+								</div>
+							</div>
+							<!-- Mobile Menu -->
+							<div class="col-12">
+								<div class="mobile_menu d-block d-lg-none"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Header End -->
+	</header>
+	<main>
+		<!--? Hero Start -->
+		<div class="slider-area2 ">
+			<div class="slider-height2 hero-overly d-flex align-items-center">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="hero__caption hero__caption2">
+								<h2>BLOG</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Hero End -->
+		<!--? Blog Area Start -->
+		<section class="blog_area single-post-area section-padding">
+			<div class="container" style="margin: 0px 55px;">
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="blog_right_sidebar">
+						
+							<aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
+							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
+								<img src="photodownload?fileName=${member.mmyimage}" alt="" width="100" height="100" class="rounded-circle">
+								<hr/>
+								<h2 class="contact-title">${member.mnickname}</h2>
+								<p>${member.mintro}</p>
+								<hr/>
+								<!-- 게시글 작성 버튼 -->
+								<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+								<script type="text/javascript">
+									function boardWrite() {
+										$.ajax({
+											url: "boardWrite",
+											success:function(data){
+												$("#test").html(data);
+											}
+										});
+									}
+								</script>
+								<!-- 게시글 작성 버튼 -->
+							</div>
+								
+							</aside>
+							
+							<aside class="single_sidebar_widget search_widget">
+								<form action="#">
+									<div class="form-group">
+										<div class="input-group mb-3">
+											<input type="text" class="form-control"
+												placeholder='검색어를 입력하세요' onfocus="this.placeholder = ''"
+												onblur="this.placeholder = '검색어를 입력하세요'">
+											<div class="input-group-append">
+												<button class="btns" type="button">
+													<i class="ti-search"></i>
+												</button>	
+											</div>
+										</div>
+									</div>
+									<button
+										class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+										type="submit">검색하기</button>
+								</form>
+							</aside>
+							
+							<aside class="single_sidebar_widget post_category_widget">
+								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
+								<ul class="list cat-list">
+								<!-- 	<div id="blog_category" style="margin-top:30px"></div> -->
+								
+								<!-- 	<li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
+									<c:forEach var="category" items="${catelist}">
+									<li><a href="#" class="d-flex">
+											${category.ccontent}
+									</a></li>
+									</c:forEach>
+								</ul>
+							</aside>
+							<aside class="single_sidebar_widget popular_post_widget">
+									<h3 class="widget_title" style="color: #2d2d2d;">Recent Posting</h3>
+									<c:forEach var="btitle" items="${btitlelist}">
+										<div class="media post_item">
+											<img src="C:\temp\projectimage\blog\crab.png" alt="post">
+											<div class="media-body">
+												<a href="blog_details.html">
+													<h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
+												</a>
+												<p>1시간 전 작성</p>
+											</div>
+										</div>
+									</c:forEach>
+							</aside>
+						</div>
+					</div>
+				
+				<!-- ////////////////////////////////// -->
+					<div id="test" class="col-lg-8 mb-5 mb-lg-0">
+                        <!-- blog_item 시작 -->
+                        <c:forEach var="board" items="${list}">
+                        <article class="blog_item">	
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
                         
                      </aside>
                      
