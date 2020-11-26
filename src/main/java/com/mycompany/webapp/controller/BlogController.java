@@ -146,7 +146,9 @@ public class BlogController {
 	
 
 	@GetMapping("/boardWrite")
-	public String boardWrite(HttpSession session, BoardDto board) {
+	public String boardWrite(Model model, BoardDto board) {
+		List<CategoryDto> category_list = service.categoryList();
+		model.addAttribute("category_list", category_list);
 		return "blog/boardWriteForm";
 	}
 	
