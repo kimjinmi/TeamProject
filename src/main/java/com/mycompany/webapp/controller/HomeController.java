@@ -33,12 +33,12 @@ public class HomeController {
 		logger.info("메인페이지 로그인");
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		if(sessionMemail!=null) {
-		MemberDto member = service.selectbyMemail(sessionMemail);
-		model.addAttribute("member", member);
-		logger.info(member.getMnickname());
-		
-		session.setAttribute("mnickname", member.getMnickname());
-		session.setAttribute("murl", member.getMurl());
+			MemberDto member = service.selectbyMemail(sessionMemail);
+			model.addAttribute("member", member);
+			logger.info(member.getMnickname());
+			
+			session.setAttribute("mnickname", member.getMnickname());
+			session.setAttribute("murl", member.getMurl());
 		}
 		return "home";
 	}
