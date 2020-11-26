@@ -8,5 +8,11 @@
 			Order by cno asc
 		</select>
 		
+		<select id="selectMurl" parameterType="String" resultType="category">	
+			select distinct c.cno, c.ccontent, m.murl
+			from category c, board b, member m
+			where b.cno = c.cno and m.memail = b.memail and m.murl=#{murl}
+		</select>
+		
 </mapper>
 

@@ -131,8 +131,8 @@
 										src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg"
 										alt="" width="100" height="100" class="rounded-circle">
 									<hr />
-									<h2 class="contact-title">영아나라</h2>
-									<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
+									<h2 class="contact-title">${member.mnickname}</h2>
+									<p>${member.mintro}</p>
 									<hr />
 									<a class="genric-btn primary e-large"
 										href="javascript:boardWrite()">POSTING</a>
@@ -287,7 +287,7 @@
 
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
-								<ul class="blog-info-link mt-3 mb-4">
+								<ul class="blog-info-link mt-3 mb	-4">
 									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
 									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
 									<li><i class="fa fa-calendar" style="color: #999999"></i>

@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
@@ -19,10 +17,10 @@ import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class BlogService {
-	private static final Logger logger = LoggerFactory.getLogger(BlogService.class);
+	
 	@Resource
 	private BoardDao boardDao;
-	
+		
 	@Resource
 	private CategoryDao categoryDao;
 	
@@ -31,36 +29,40 @@ public class BlogService {
 	
 	@Resource
 	private MemberDao updateimageDao;
+	
 	@Resource
 	private MemberDao memberDao;
-	
 
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
 		return board;
 	}
 	
-	public List<CategoryDto> getBoardList() {		//controller에서 호출함
+	/*public List<CategoryDto> getBoardList() {		//controller에서 호출함
 			List<CategoryDto> list = categoryDao.selectAll();			//selectAll을 호출함 - ch14memberDao에서 만들어줌
 			return list;
-	}
+	}*/
 
-	public List<BoardDto> getBoardList(String memail) {
+	public List<BoardDto> getBoardList(String memail) {										//userurl이 들어옴(memail자리에)
 		List<BoardDto> list = boardDao.selectUserBoard(memail);
 		return list;
 	}
 	
-	public List<CategoryDto> categoryList(){
+	public List<CategoryDto> categoryList() {													//영아
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
+	public List<CategoryDto> categoryListMurl(String UserUrl) {													//영아
+		List<CategoryDto> list = categoryDao.selectMurl(UserUrl);
+		return list;
+	}
 	
-	public List<BoardDto> BoardList() {
+	public List<BoardDto> BoardList() {															//영아
 		List<BoardDto> list = boardDao.selectBtitleAll();
 		return list;
 	}
 
-	public List<ReplyDto> commentList(int bno){
+	public List<ReplyDto> commentList(int bno) {
 		List<ReplyDto> list = replyDao.selectBoardComment(bno);
 		return list;
 	}
@@ -72,9 +74,14 @@ public class BlogService {
 
 	public void commentWrite(ReplyDto reply) {
 		replyDao.commentinsert(reply);
-		logger.info("새로 입력된 Rno : " + reply.getRno());
 	}
 
+	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때
+	public List<BoardDto> bcno(int cno, String userUrl) {
+			List<BoardDto> list = boardDao.categoryListLink(cno, userUrl);
+			return list;
+		}
+		
 	public void boardWrite(BoardDto board) {
 		boardDao.insert(board);
 	}
