@@ -160,7 +160,7 @@
                            <c:forEach var="category" items="${catelist}">
                            
                            <li><a href="javascript:categoryListLinkBoard(${category.cno},'${category.murl}')" class="d-flex">
-                           		 ${category.cno}.  ${category.ccontent}</a></li>
+                           		 ${category.ccontent}</a></li>
                              <script type="text/javascript">
 									//페이지 로드될때 댓글ajax로 가져옴
 									function categoryListLinkBoard(cno,murl){
@@ -178,7 +178,7 @@
                         </ul>
                      </aside>
                      <aside class="single_sidebar_widget popular_post_widget">
-                           <h3 class="widget_title" style="color: #2d2d2d;">Recent Posting</h3>
+                           <h3 class="widget_title" style="color: #2d2d2d;">Like Posting</h3>
                            <c:forEach var="btitle" items="${btitlelist}">
                               <div class="media post_item">
                                  <img src="C:\temp\projectimage\blog\crab.png" alt="post">
