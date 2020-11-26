@@ -107,19 +107,11 @@
 
 	<insert id="insertComment" parameterType="reply">
 		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
-		values (seq_board_rno.nextval, #{rcontent}, 0, #{memail}, 7, sysdate)
+		values (seq_board_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
-<!-- 	
-		<select id="commentinsert" parameterType="reply">
-		
-			<selectKey order="BEFORE" resultType="int" keyProperty="rno">
-			 select seq_reply_rno.nextval from dual
-			</selectKey>
-		
-			insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
-				values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
-		</select>
 	
-	 -->
+
+	
+	
 </mapper>
 

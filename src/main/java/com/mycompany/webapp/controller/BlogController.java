@@ -68,42 +68,11 @@ public class BlogController {
 		return "blog/blog_details";
 	}
 	
-	@GetMapping("/blogcommentlist")
-	public String blogcommentlist(int bno, ReplyDto reply, Model model, HttpServletResponse response)
-			throws IOException {
-		List<ReplyDto> commentlist = service.commentList(bno);
-		logger.info("commentlist 값 = " + commentlist.toString());
-		
-		model.addAttribute("commentlist", commentlist);
-
-		/* service.commentWrite(reply); */
-
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
-		String json = jsonObject.toString();
-
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json; charset=utf-8");
-		out.println(json);
-		out.flush();
-		out.close();
-
-
-		/*
-		 * JSONObject jsonObject = new JSONObject(); jsonObject.put("result",
-		 * "success"); String json = jsonObject.toString();
-		 * 
-		 * 
-		 * PrintWriter out = response.getWriter();
-		 * response.setContentType("application/json; charset=utf-8");
-		 * out.println(json); out.flush(); out.close();
-		 */
-
-		return "blog/blogcommentList";
-
-	}
 	
+	/// blogcommentList
+
 	
+	//
 	
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
@@ -163,5 +132,27 @@ public class BlogController {
 		out.println(json);
 		out.flush();
 		out.close();
+	}
+	
+	@GetMapping("/blogcommentlist")
+	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session)
+			throws IOException {
+		/* service.commentWrite(reply); */
+		logger.info("겟댓글내용");
+		reply.setMemail((String)session.getAttribute("sessionMemail"));
+		reply.setMnickname((String)session.getAttribute("SessionMnickname"));
+		logger.info(reply.getRcontent());
+		logger.info(reply.getMemail());
+		logger.info(reply.getMnickname());
+		
+		
+		/*
+		 * List<ReplyDto> commentlist = service.commentList(bno);
+		 * logger.info("commentlist 값 = " + commentlist.toString());
+		 * model.addAttribute("commentlist", commentlist);
+		 */
+
+		return "blog/blogcommentList";
+
 	}
 }
