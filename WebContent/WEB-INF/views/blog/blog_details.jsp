@@ -133,8 +133,8 @@
 										src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg"
 										alt="" width="100" height="100" class="rounded-circle">
 									<hr />
-									<h2 class="contact-title">영아나라</h2>
-									<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
+									<h2 class="contact-title">${member.mnickname}</h2>
+									<p>${member.mintro}</p>
 									<hr />
 									<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
 										<script type="text/javascript">
