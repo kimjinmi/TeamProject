@@ -21,5 +21,21 @@ public class SignupService {
 		MemberDto mememail = memberDao.selectbyMemail(memail);
 		return mememail;
 	}
+
+	public int checkMemail(String memail) {
+		int result = memberDao.countMemail(memail);
+		return result;
+	}
+
+	public int nicknamecheck(String mnickname) {
+		int result = memberDao.countMnickname(mnickname);
+		return result;
+		
+	}
+
+	public void signup(MemberDto member) {
+		memberDao.insert(member);
+		
+	}
 	
 }

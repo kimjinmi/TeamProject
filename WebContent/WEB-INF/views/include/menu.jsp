@@ -32,7 +32,7 @@
 			<li>
 				<div class="header-right-btn ml-40">
 					<sec:authorize access="isAnonymous()">
-						<a href="<%=application.getContextPath()%>/signup/content" class="btn btn-sm">SIGN UP</a> 
+						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn btn-sm">SIGN UP</a> 
 						<a href="<%=application.getContextPath()%>/signin/content" class="btn btn-sm">SIGN IN</a>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">

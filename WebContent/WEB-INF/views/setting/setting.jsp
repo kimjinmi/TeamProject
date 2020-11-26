@@ -22,14 +22,14 @@
 	</div>
 </form>
 <script type="text/javascript">
-	/* function updatenickintro(){
-		var 
+	/*function updatenickintro(){
+	 	var mnickname = $("#mnickname")
 		$.ajax({
 			url:"doublecheck",
 			data:{}
 			
 		});
-	} */
+	}  */
 	
 </script>
 

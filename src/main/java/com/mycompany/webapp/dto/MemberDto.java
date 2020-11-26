@@ -12,7 +12,7 @@ public class MemberDto {
 	private String mrole; // 권한
 	private boolean menabled; // 계정 0(비활성화), 1(활성화)
 	private MultipartFile mphotoAttach;
-	
+	private String murl; //주소
 	
 	public String getMemail() {
 		return memail;
@@ -56,6 +56,7 @@ public class MemberDto {
 	public void setMrole(String mrole) {
 		this.mrole = mrole;
 	}
+	
 	public boolean isMenabled() {
 		return menabled;
 	}
@@ -68,7 +69,13 @@ public class MemberDto {
 	public void setMphotoAttach(MultipartFile mphotoAttach) {
 		this.mphotoAttach = mphotoAttach;
 	}
-
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
+	
 	
 	
 	

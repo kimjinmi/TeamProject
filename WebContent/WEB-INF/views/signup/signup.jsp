@@ -121,6 +121,8 @@
 						<div class="container box_1170">
 							<h3 class="text-heading">회원가입</h3>
 								<i class="fas fa-check" style="color: #940128; margin: 0 5px 0 0 ;"></i><p style="display: inline; color: 940128; margin: 0 5px 0 0 ;  	font-weight: 250px;">표시는 필수사항입니다.</p>
+								<br><i class="fas fa-exclamation-triangle"></i><span>비밀번호는 최소 8 자, 하나 이상의 문자와 숫자로 구성되어야 합니다.</span>	
+								
 						</div>
 					</section>
 		<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
@@ -131,43 +133,109 @@
 									<div class="container box_1170">
 										<div class="section-top-border1">
 											<h3 class="mb-30">기본정보</h3>
-												<form action="#">
-													<div class="input-group mb-3">
-                        								<i class="fas fa-check"></i><input type="text" class="form-control" placeholder='  닉네임' 
+												<form onsubmit="return validateForm()" method="post" action="signupform">
+													<div class="input-group mb-3" id="nickname">
+                        								<i class="fas fa-check"></i><input type="text" id="mnickname" name="mnickname" class="form-control" placeholder='  닉네임' 
                         								onfocus="this.placeholder = ''" onblur="this.placeholder = '  닉네임을 입력하세요'" 
                         								style="height:45px; font-size:16px;">
-                        									<a href="#" class="genric-btn danger radius" >중복 확인</a>
+                        									<input type="button" class="genric-btn danger radius" id="check" value="중복 확인"/>  									
                         							</div>
-														
+                        							
+													<div class="input-group mb-3" id="nicknameerror" style="display: none;">
+														<i class="fas fa-exclamation-triangle"></i><span>닉네임 중복</span>	
+													</div>	
+															<!-- <script type="text/javascript">
+															$('#check').click(function(){
+	                        										console.log($("#nickname").val());
+	                        										$.ajax({
+	                        											url:"nicknamecheck",
+	                        											type: "GET",
+	                        											data:{'mnickname' : $("#nickname").val()},
+	                        											success:function(data){
+	                        												if(data.result == "success"){
+	                        													$("#nickname").attr("readonly",true);
+	                        												}else{
+	                        													$("#nicknameerror").show();
+	                        												} 
+	                        											}
+	                        										});
+	                        										
+	                        									}
+                        									</script> -->
 													<div class="input-group mb-3">
-                        								<i class="fas fa-check"></i><input type="text" class="form-control" placeholder='  이메일' 
-                        								onfocus="this.placeholder = ''" onblur="this.placeholder = '  이메일을 입력하세요'" 
-                        								style="height:45px; font-size:16px;">
+                        								<i class="fas fa-check"></i><input type="text" id="memail" name="memail" class="form-control" 
+                        								style="height:45px; font-size:16px;" value="${Memail}" readonly>
 													</div>
 														
 													<div class="input-group mb-3">
-                        								<i class="fas fa-check"></i><input type="text" class="form-control" placeholder='  전화번호' 
+                        								<i class="fas fa-check"></i><input type="text" id="mphonenum" name="mphonenum" class="form-control" placeholder='  전화번호' 
                         								onfocus="this.placeholder = ''" onblur="this.placeholder = '  전화번호를 입력하세요'" 
                         								style="height:45px; font-size:16px;">
 													</div>
-														
+													<div class="input-group mb-3" id="phonenumerror" style="display: none;">
+														<i class="fas fa-exclamation-triangle"></i><span>전화번호 오류</span>	
+													</div>	
 			
 													<div class="input-group mb-3">
-                        								<i class="fas fa-check"></i><input type="text" class="form-control" placeholder='  비밀번호' 
+                        								<i class="fas fa-check"></i><input type="password" id="mpassword" name="mpassword" class="form-control" placeholder='  비밀번호' 
                         								onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 입력하세요'" 
                         								style="height:45px; font-size:16px;">
 													</div>
+													<div class="input-group mb-3" id="passworderror" style="display: none;">
+														<i class="fas fa-exclamation-triangle"></i><span>비밀번호는 최소 8 자, 하나 이상의 문자와 하나의 숫자로 구성</span>	
+													</div>
+													
 									
 													<div class="input-group mb-3">
-	                        							<i class="fas fa-check"></i><input type="text" class="form-control" placeholder='  비밀번호 확인' 
+	                        							<i class="fas fa-check"></i><input type="password" id="mpasswordcheck" class="form-control" placeholder='  비밀번호 확인' 
 	                        							onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 확인하세요'" 
 	                        							style="height:45px; font-size:16px;">
 													</div>
+													<div class="input-group mb-3" id="passwordcheckerror" style="display: none;">
+														<i class="fas fa-exclamation-triangle"></i><span>비밀번호 불일치</span>	
+													</div>	
 																	
 													<div class="button-group-area mt-40" style="font-size: 20px;">
-														<a href="views/home.jsp" class="genric-btn info circle">회원가입 완료</a>
+														<input type="submit" class="genric-btn info circle" value="회원가입 완료" />
 													</div>
 												</form>
+												<script type="text/javascript">
+												function validateForm(){
+													/* var mnickname = $("#mnickname").val();
+													var mphonenum = $("#mphonenum").val();
+													var mpassword = $("#mpassword").val();
+													var mpasswordcheck = $("#mpasswordcheck").val();
+													
+													var pwchk = ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$;
+													var pnchk = /^\d{3}-\d{3,4}-\d{4}$/;
+													
+													if (!pnchk.test(mphonenum)) {
+														
+														$("#phonenumerror").show();
+														$("#passworderror").hide();
+														$("#passwordcheckerror").hide();
+														return false;
+													}else if(!pwchk.test(mpassword)){
+														
+														$("#phonenumerror").hide();
+														$("#passworderror").show();
+														$("#passwordcheckerror").hide();
+														return false;
+													}else if(mpassword != mpasswordcheck){
+														
+														$("#phonenumerror").hide();
+														$("#passworderror").hide();
+														$("#passwordcheckerror").show();
+														return false;
+													}else{
+														
+														$("#phonenumerror").hide();
+														$("#passworderror").hide();
+														$("#passwordcheckerror").show();  */
+														return true;	
+													
+												}
+												</script>
 											</div>
 										</div>
 									</div>

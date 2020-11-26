@@ -36,6 +36,24 @@ public class MemberDao {
 		return dbmimage;
 	}
 
+	public int countMemail(String memail) {
+		int rows = sst.selectOne("mybatis.mapper.member.countMemail", memail);
+		return rows;
+	}
+
+	public int countMnickname(String mnickname) {
+		int rows = sst.selectOne("mybatis.mapper.member.countMnickname", mnickname);
+		return rows;
+	}
+
+	public int insert(MemberDto member) {
+		int row = sst.insert("mybatis.mapper.member.insert", member);
+		return row;
+		
+	}
+
+	
+
 	
 
 	
