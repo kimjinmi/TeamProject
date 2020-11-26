@@ -72,5 +72,9 @@ public class BlogService {
 	public void commentWrite(ReplyDto reply) {
 		replyDao.commentinsert(reply);
 	}
+
+	public void boardWrite(BoardDto board) {
+		boardDao.insert(board);
+	}
 	
 }
