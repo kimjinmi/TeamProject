@@ -16,8 +16,21 @@ public class BoardDto {
 	private String mnickname;
 	private String ccontent;
 	private String mmyimage;
+	private String mintro;
+	private String blinkcontent;
 	
-	   
+	public String getMintro() {
+		return mintro;
+	}
+	public void setMintro(String mintro) {
+		this.mintro = mintro;
+	}	   
+	public String getBlinkcontent() {
+		return blinkcontent;
+	}
+	public void setBlinkcontent(String blinkcontent) {
+		this.blinkcontent = blinkcontent;
+	}
 	public String getMmyimage() {
 		return mmyimage;
 	}
