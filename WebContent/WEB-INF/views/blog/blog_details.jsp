@@ -136,7 +136,17 @@
 									<h2 class="contact-title">영아나라</h2>
 									<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
 									<hr />
-									<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
+									<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+										<script type="text/javascript">
+									function boardWrite() {
+										$.ajax({
+											url: "boardWrite",
+											success:function(data){
+												$("#test").html(data);
+											}
+										});
+									}
+								</script>
 								</div>
 
 							</aside>
@@ -268,7 +278,7 @@
 					</div>
 
 					<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list"0>
+					<div id="test" class="col-lg-8 posts-list">
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
@@ -468,8 +478,7 @@
 												success:function(data){
 													if(data.result = "success"){
 														console.log("성공하였습니다.");
-														
-														// 리스트 불러오기
+														// 댓글리스트 리로드
 														$.ajax({
 															url : "blogcommentlist",
 															method : "get",

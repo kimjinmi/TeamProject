@@ -98,6 +98,11 @@
 		order by bno desc
 		
 	</select>
+	
+	<insert id="insert" parameterType="board">
+		insert into board(cno, bno, btitle, bcontent, bdate, memail)
+		values (1, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail} )
+	</insert>
 
 <!-- 	
 		<select id="commentinsert" parameterType="reply">
