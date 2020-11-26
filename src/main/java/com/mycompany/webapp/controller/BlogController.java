@@ -73,23 +73,20 @@ public class BlogController {
 	@GetMapping("/blogcommentlist")
 	public String blogcommentlist(int bno, ReplyDto reply, Model model, HttpServletResponse response) throws IOException {
 		List<ReplyDto> commentlist = service.commentList(bno);
+		logger.info("commentlist 값 = " + commentlist.toString());
 		model.addAttribute("commentlist", commentlist);
 		
 		/* service.commentWrite(reply); */
-		
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
-		String json = jsonObject.toString();
-		
-		
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json; charset=utf-8");
-		out.println(json);
-		out.flush();
-		out.close();
-		
+		/*
+		 * JSONObject jsonObject = new JSONObject(); jsonObject.put("result",
+		 * "success"); String json = jsonObject.toString();
+		 * 
+		 * 
+		 * PrintWriter out = response.getWriter();
+		 * response.setContentType("application/json; charset=utf-8");
+		 * out.println(json); out.flush(); out.close();
+		 */
 		return "blog/blogcommentList";
-		
 	}
 	
 	
