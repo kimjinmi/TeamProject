@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
+
+
 <form id="boardWriteForm">
 	<div class="single-post">
 		<div class="blog_write">
@@ -25,17 +27,17 @@
 					placeholder='  제목' onfocus="this.placeholder = ''"
 					onblur="this.placeholder = '  제목'"
 					style="height: 45px; font-size: 16px;">
-				<!-- <span id="btitleError" class="error"></span> -->
+				<span id="btitleError" class="error"></span> 
 			</div>
 			<!-- 제목 입력 끝 (board.btitle) -->
 
 			<!-- 작성자 입력 시작 (board.mnickname) -->
 			<div class="input-group mb-3">
 				<input id="memail" type="text" name="memail" class="form-control"
-					placeholder='  작성자' onfocus="this.placeholder = ''"
-					onblur="this.placeholder = '  작성자'"
 					style="height: 45px; font-size: 16px;"
-					<c:if test="${sessionMemail!=null}">value="${board.memail}"</c:if>>
+					<c:if test="${sessionMemail!=null}">value="${sessionMemail}"</c:if>
+					<c:if test="${sessionMemail==null}">value="세션 연결좀ㅋ"</c:if>
+				readonly>
 			</div>
 			<!-- 작성자 입력 끝 (board.mnickname) -->
 			<hr />
@@ -45,7 +47,7 @@
 			<textarea id="bcontent" name="bcontent"
 				style="width: 100%; height: 100%;">
 								</textarea>
-			<!-- <span id="bcontentError" class="error"></span> -->
+			<span id="bcontentError" class="error"></span>
 			<!-- 내용 입력 끝 (board.bcontent) -->
 		</div>
 	</div>
@@ -79,16 +81,16 @@
 			<script type="text/javascript">
 				function boardWrite() {
 					var btitle = $("#btitle").val().trim();
-					/* if(btitle==""){$("#btitleError").text("필수");}
-					else { $("#btitleError").text("");} */
+					if(btitle==""){$("#btitleError").text("필수");}
+					else { $("#btitleError").text("");} 
 
 					var bcontent = $("#bcontent").val().trim();
-					/*if(bcontent == "") { $("#bcontentError").text("필수"); }
-					else { $("#bcontentError").text(""); }*/
+					if(bcontent == "") { $("#bcontentError").text("필수"); }
+					else { $("#bcontentError").text(""); }
 
-					/* if (btitle == "" || bcontent == "") {
+					if (btitle == "" || bcontent == "") {
 						return;
-					} */
+					} 
 
 					var memail = $("#memail").val().trim();
 
@@ -102,7 +104,7 @@
 						},
 						success : function(data) {
 							if (data.result == "success") {
-								location.href="blog?UserUrl=${use}";	
+								location.href="blog?UserUrl=${UserUrl}";	
 							}
 						}
 					});
