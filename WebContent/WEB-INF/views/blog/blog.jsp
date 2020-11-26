@@ -158,22 +158,22 @@
                         
                         <!--    <li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
                            <c:forEach var="category" items="${catelist}">
-                           <li><a href="javascript:categoryListLinkBoard(${board.cno})" class="d-flex">
-                               ${category.cno}.  ${category.ccontent}
-                                 <script type="text/javascript">
+                           
+                           <li><a href="javascript:categoryListLinkBoard(${category.cno},'${category.murl}')" class="d-flex">
+                           		 ${category.cno}.  ${category.ccontent}</a></li>
+                             <script type="text/javascript">
 									//페이지 로드될때 댓글ajax로 가져옴
-								function onload(cno){
-									$.ajax({
-										url : "categoryListLinkBoard",
-										method : "get",
-										data : {cno:cno},
-										success : function(data) {
-											$("#categoryListLinkBoard").html(data);
-										}
-									});
-								}
+									function categoryListLinkBoard(cno,murl){
+											$.ajax({
+												url : "categoryListLinkBoard",
+												method : "get",
+												data : {cno:cno, murl:murl},
+												success : function(data) {
+													$("#categoryListLinkBoard").html(data);
+												}
+											});
+									}
 							   </script>
-                           </a></li>
                            </c:forEach>
                         </ul>
                      </aside>
@@ -197,7 +197,7 @@
             <!-- ////////////////////////////////// -->
                <div id="categoryListLinkBoard" class="col-lg-8 mb-5 mb-lg-0">
                         <!-- blog_item 시작 -->
-                     <%--    <c:forEach var="board" items="${list}">
+                       <c:forEach var="board" items="${list}">
                         <article class="blog_item">   
                         
                            <div class="blog_item_img">
@@ -218,7 +218,7 @@
                                  </ul>
                              </div>
                            </article>  
-                           </c:forEach> --%>
+                           </c:forEach>
                            
                            <script type="text/javascript">
                               function boardDetails(bno){

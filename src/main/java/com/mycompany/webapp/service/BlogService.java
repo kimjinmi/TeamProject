@@ -20,7 +20,7 @@ public class BlogService {
 	
 	@Resource
 	private BoardDao boardDao;
-	
+		
 	@Resource
 	private CategoryDao categoryDao;
 	
@@ -38,10 +38,10 @@ public class BlogService {
 		return board;
 	}
 	
-	public List<CategoryDto> getBoardList() {		//controller에서 호출함
+	/*public List<CategoryDto> getBoardList() {		//controller에서 호출함
 			List<CategoryDto> list = categoryDao.selectAll();			//selectAll을 호출함 - ch14memberDao에서 만들어줌
 			return list;
-	}
+	}*/
 
 	public List<BoardDto> getBoardList(String memail) {										//userurl이 들어옴(memail자리에)
 		List<BoardDto> list = boardDao.selectUserBoard(memail);
@@ -50,6 +50,10 @@ public class BlogService {
 	
 	public List<CategoryDto> categoryList() {													//영아
 		List<CategoryDto> list = categoryDao.selectAll();
+		return list;
+	}
+	public List<CategoryDto> categoryListMurl(String UserUrl) {													//영아
+		List<CategoryDto> list = categoryDao.selectMurl(UserUrl);
 		return list;
 	}
 	
@@ -68,24 +72,16 @@ public class BlogService {
 		return list;
 	}
 
-	/*	public List<CategoryDto> test(int cno) {
-			List<CategoryDto> list = categoryDao.selectbyCno(cno);
-		public MemberDto getMimage(String memail) {
-			MemberDto list = memberDao.selectbyMemail(memail);
-			return list;
-		}
-	*/
-
 	public void commentWrite(ReplyDto reply) {
 		replyDao.commentinsert(reply);
 	}
 
-	/*	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때
-		public List<BoardDto> bcno(int cno, String UserUrl) {
-			List<BoardDto> list = boardDao.categoryListLink(cno, UserUrl);
+	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때
+	public List<BoardDto> bcno(int cno, String userUrl) {
+			List<BoardDto> list = boardDao.categoryListLink(cno, userUrl);
 			return list;
-		}*/
-
+		}
+		
 	public void boardWrite(BoardDto board) {
 		boardDao.insert(board);
 	}

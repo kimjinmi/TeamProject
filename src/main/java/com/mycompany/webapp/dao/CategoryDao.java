@@ -18,10 +18,15 @@ public class CategoryDao {
 		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectAll");		//id를 찾아서 모두를 실행해라
 		return list;
 	}
-
-	public List<CategoryDto> selectbyCno(int cno) {
-		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectbyCno");
+	
+	public List<CategoryDto> selectMurl(String UserUrl) {				
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectMurl", UserUrl);		
 		return list;
 	}
+
+	/*public List<CategoryDto> selectbyCno(int cno) {
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectbyCno");
+		return list;
+	}*/
 
 }

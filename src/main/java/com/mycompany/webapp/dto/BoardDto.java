@@ -12,6 +12,7 @@ public class BoardDto {
 	private int blike; // 게시글 좋아요	
 	private String bimage; // 게	시글 이미지
 	private String memail; // member email -> 아이디
+	private String murl;
 	private int cno; // Category 번호
 	private String mnickname;
 	private String ccontent;
@@ -19,6 +20,13 @@ public class BoardDto {
 	private String blinkcontent;
 	
 	   
+	
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
 	public String getBlinkcontent() {
 		return blinkcontent;
 	}

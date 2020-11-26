@@ -31,27 +31,15 @@ import com.mycompany.webapp.service.BlogService;
 @RequestMapping("/blog")
 public class BlogController {
 	int bno=0;
-	@Resource
-	private DataSource dataSource;
+
 	@Resource
 	private BlogService service;
+	
 
 	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
-	@GetMapping("/dbConnect")
-	public String dbConnect() {
-		
-		Connection connect;
-		try {
-			connect = dataSource.getConnection();
-			connect.close();
-			logger.info("dbConnected");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return "blog/blog_details";
-	} 
+
 	
 	@GetMapping("/blog_details")
 	public String board_details(Model model, HttpServletRequest request) {
@@ -61,7 +49,7 @@ public class BlogController {
 		 List<CategoryDto> catelist = service.categoryList();			//영아
 		 List<BoardDto> btitlelist = service.BoardList();					//영아
 		 model.addAttribute("board", board);
-		 model.addAttribute("catelist", catelist);								//영아
+		model.addAttribute("catelist", catelist);								//영아
 		 model.addAttribute("btitlelist", btitlelist);							//영아
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
@@ -103,8 +91,6 @@ public class BlogController {
 
 	}
 	
-	
-	
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
 		service.commentWrite(reply);
@@ -117,13 +103,12 @@ public class BlogController {
 		if (UserUrl == "") {
 			UserUrl += session.getAttribute("murl");
 		}
-
 		// UserUrl로 memail을 가져온다
 		List<BoardDto> list = service.getBoardList(UserUrl);
 		logger.info("list 값 : " + list);
 		String memail = (String) session.getAttribute("sessionMemail");
 		/* List<BoardDto> list = service.getBoardList(memail); */
-		List<CategoryDto> catelist = service.categoryList(); // 영아
+		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); // 영아
 		List<BoardDto> btitlelist = service.BoardList(); // 영아
 		MemberDto member = service.getMimage(UserUrl); // UserUrl을 가지고 유저 이미지를 들고온다
 		model.addAttribute("list", list);
@@ -135,7 +120,7 @@ public class BlogController {
 		return "blog/blog";
 	}
 
-	/*	@RequestMapping("/blog_write")
+	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
 		MemberDto member = service.getMimage(memail);
@@ -144,21 +129,22 @@ public class BlogController {
 		return "blog/blog_write";
 	}*/
 	
-	/*	@RequestMapping("/categoryListLinkBoard")
-	public String categoryListLinkBoard(int cno, Model model, HttpServletRequest request) {
-		String UserUrl = (String) request.getParameter("UserUrl");
-		//List<BoardDto> list = service.getBoardList(UserUrl); 
-		List<BoardDto> bcno = service.bcno(cno, UserUrl);
-		//model.addAttribute("list", list);
-		model.addAttribute("bcno", bcno);
-		return "blog/categoryListLinkBoard";
-	}
-*/
+	@RequestMapping("/categoryListLinkBoard")
+	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {
+			logger.info("cno는 : " + cno); // cno 들어옴 성공 완성
+			logger.info("murl는 : " + murl); // cno 들어옴 성공 완성
+			
+			List<BoardDto> bcno = service.bcno(cno, murl);
+			model.addAttribute("bcno", bcno);
+			//logger.info("cno, userUrl출력 : " + cno, UserUrl);
+			
+			return "blog/categoryListLinkBoard";
+		}
 	
-	/*	@GetMapping("/boardWrite")
-		public String boardWrite(HttpSession session, BoardDto board) {
-			return "blog/boardWriteForm";
-		}*/
+	@GetMapping("/boardWrite")
+	public String boardWrite(HttpSession session, BoardDto board) {
+		return "blog/boardWriteForm";
+	}
 	
 	@RequestMapping("boardWrite")
 	public void blog_write(BoardDto board, HttpServletResponse response) throws Exception {
