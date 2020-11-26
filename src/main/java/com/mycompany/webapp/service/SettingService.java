@@ -13,6 +13,7 @@ import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 
 
 @Service
@@ -46,10 +47,19 @@ public class SettingService {
 		
 	}
 
-	public List<BoardDto> getBoardList(String sessionMemail) {
-		List<BoardDto> list = boarddao.selectAll(sessionMemail);
-		return list;
+	public List<BoardDto> getBoardList(PagerDto pager) {
+		//List<BoardDto> list = boarddao.selectAll(sessionMemail);
+		List<BoardDto> pageList = boarddao.selectByPage(pager);
+		return pageList;
 	}
+
+	public int getTotalRows() {
+		int totalRows = boarddao.countAll();
+		return totalRows;
+	}
+
+	
+
 
 	
 	

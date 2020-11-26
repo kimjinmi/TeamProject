@@ -1,6 +1,7 @@
 package com.mycompany.webapp.dto;
 
 public class PagerDto {
+	private String memail;
 	private int totalRows;		//전체 행수
 	private int totalPageNo;	//전체 페이지 수
 	private int totalGroupNo;	//전체 그룹 수
@@ -13,7 +14,8 @@ public class PagerDto {
 	private int startRowNo;		//페이지의 시작 행 번호
 	private int endRowNo;		//페이지의 마지막 행 번호
 	
-	public PagerDto(int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
+	public PagerDto(String memail, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
+		this.memail = memail;
 		this.rowsPerPage = rowsPerPage;
 		this.pagesPerGroup = pagesPerGroup;
 		this.totalRows = totalRows;
@@ -37,6 +39,16 @@ public class PagerDto {
 	}
 
 	
+	public String getMemail() {
+		return memail;
+	}
+
+
+	public void setMemail(String memail) {
+		this.memail = memail;
+	}
+
+
 	public int getTotalRows() {
 		return totalRows;
 	}
@@ -80,6 +92,7 @@ public class PagerDto {
 	public int getEndRowNo() {
 		return endRowNo;
 	}
+
 }
 
 

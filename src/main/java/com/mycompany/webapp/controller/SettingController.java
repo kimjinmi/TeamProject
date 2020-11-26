@@ -22,9 +22,11 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.SettingService;
 
 @Controller
@@ -45,13 +47,21 @@ public class SettingController {
 	}
 	
 	@RequestMapping("/mybloglist")
-	public String mybloglist(HttpSession session, Model model) { //http://localhost:8080/teamproject
+	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
-
+		
+		//페이저 적용 부분
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		List<BoardDto> list = service.getBoardList(sessionMemail);
+		logger.info(sessionMemail);
+		int totalRows = service.getTotalRows();
+		PagerDto pager = new PagerDto(sessionMemail, 5, 5, totalRows, pageNo);
+		
+		//--------------
+		
+		List<BoardDto> list = service.getBoardList(pager);
+		model.addAttribute("pager", pager);
 		model.addAttribute("list", list);
-		return "setting/mybloglist";
+		return "redirect:/setting/mybloglist";
 		
 	}
 	

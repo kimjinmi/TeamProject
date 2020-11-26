@@ -87,6 +87,22 @@
 		order by bno desc
 		
 	</select>
+	<!-- 선명 - 페이지별로 목록 불러오기  -->
+ 	<select id="selectByPage" parameterType="pager" resultType="board">
+		select rnum, cno, bno, btitle, blike, memail, bdate
+		from(
+			select rownum as rnum, cno, bno, btitle, blike, memail, bdate
+			from (
+				select cno, bno, btitle, blike, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
+				from board
+				where memail=#{memail,jdbcType=VARCHAR}
+				order by bno desc
+			)
+			where rownum &lt; = #{endRowNo}
+		)
+		where rnum &gt; = #{startRowNo}
+	</select> 
+	
 
 <!-- 	<select id="commentinsert" parameterType="reply">
 		<selectKey order="BEFORE" resultType="int" keyProperty="rno">

@@ -176,6 +176,19 @@
 											});
 											
 										}
+										
+										</script>
+										<script type="text/javascript">
+											function boardList() {
+												$.ajax({
+													url:"boardList",
+													data:{pageNo:pageNo},
+													success:function(data) {
+														$("setting_result").html(data);
+														}
+													});
+
+												}
 										</script>
 											
 									</li>
