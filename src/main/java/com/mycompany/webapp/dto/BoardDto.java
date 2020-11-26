@@ -20,7 +20,7 @@ public class BoardDto {
 	private String mintro;
 	private String blinkcontent;
 	
-<<<<<<< HEAD
+
 	   
 	
 	public String getMurl() {
@@ -29,14 +29,14 @@ public class BoardDto {
 	public void setMurl(String murl) {
 		this.murl = murl;
 	}
-=======
+
 	public String getMintro() {
 		return mintro;
 	}
 	public void setMintro(String mintro) {
 		this.mintro = mintro;
 	}	   
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 	public String getBlinkcontent() {
 		return blinkcontent;
 	}

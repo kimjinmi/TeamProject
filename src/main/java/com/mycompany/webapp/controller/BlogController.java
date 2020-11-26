@@ -30,24 +30,18 @@ import com.mycompany.webapp.service.BlogService;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
-<<<<<<< HEAD
-	int bno=0;
 
-=======
 	int bno = 0;
 	@Resource
 	private DataSource dataSource;
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 	@Resource
 	private BlogService service;
 	
 
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
-<<<<<<< HEAD
 
-	
-=======
 	@GetMapping("/dbConnect")
 	public String dbConnect() {
 
@@ -62,63 +56,24 @@ public class BlogController {
 		return "blog/blog_details";
 	}
 
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 	@GetMapping("/blog_details")
 	public String board_details(Model model, HttpServletRequest request) {
-<<<<<<< HEAD
+
 		 int bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 List<CategoryDto> catelist = service.categoryList();			//영아
 		 List<BoardDto> btitlelist = service.BoardList();					//영아
 		 model.addAttribute("board", board);
-		model.addAttribute("catelist", catelist);								//영아
+		 model.addAttribute("catelist", catelist);								//영아
 		 model.addAttribute("btitlelist", btitlelist);							//영아
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
-=======
-		int bno = Integer.parseInt(request.getParameter("bno"));
-		logger.info("bno 값 확인: " + bno);
-		BoardDto board = service.getBoard(bno);
-		List<CategoryDto> catelist = service.categoryList(); // 영아
-		List<BoardDto> btitlelist = service.BoardList(); // 영아
-		model.addAttribute("board", board);
-		model.addAttribute("catelist", catelist); // 영아
-		model.addAttribute("btitlelist", btitlelist); // 영아
-		logger.info("날짜형식 테스트 : " + board.getBdate());
-		logger.info("bno 값 출력 1 : " + bno);
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 		return "blog/blog_details";
 	}
 
-	/// blogcommentList
-
-	//
-
-<<<<<<< HEAD
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json; charset=utf-8");
-		out.println(json);
-		out.flush();
-		out.close();
-
-
-		/*
-		 * JSONObject jsonObject = new JSONObject(); jsonObject.put("result",
-		 * "success"); String json = jsonObject.toString();
-		 * 
-		 * 
-		 * PrintWriter out = response.getWriter();
-		 * response.setContentType("application/json; charset=utf-8");
-		 * out.println(json); out.flush(); out.close();
-		 */
-
-		return "blog/blogcommentList";
-
-	}
-	
-=======
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
 		service.commentWrite(reply);
@@ -148,7 +103,6 @@ public class BlogController {
 		return "blog/blog";
 	}
 
-<<<<<<< HEAD
 	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
@@ -170,7 +124,6 @@ public class BlogController {
 			return "blog/categoryListLinkBoard";
 		}
 	
-=======
 	/*
 	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
 	 * Model model) { //http://localhost:8080/teamproject String memail = (String)
@@ -180,7 +133,6 @@ public class BlogController {
 	 * logger.info("실행"); return "blog/blog_write"; }
 	 */
 
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	@GetMapping("/boardWrite")
 	public String boardWrite(Model model, BoardDto board) {
 		List<CategoryDto> category_list = service.categoryList();
