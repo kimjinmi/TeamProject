@@ -15,9 +15,9 @@ public class MemberDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public MemberDto selectbyMemail1(String memail) {
-		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail1", memail);
-		return dbmember;
+	public MemberDto selectByMurl(String murl) {
+		MemberDto Sessionmurl = sst.selectOne("mybatis.mapper.member.selectByMurl", murl);
+		return Sessionmurl;
 	}
 	
 	public MemberDto selectbyMemail(String memail) { //유저 url이 들어온다

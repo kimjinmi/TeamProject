@@ -17,12 +17,12 @@ public class HomeService {
 
 
 	public MemberDto getMemberInfo(String sessionMemail) { // 세션이메일이 들어온다
-		MemberDto memberinfo = memberDao.selectbyMemail(sessionMemail);
+		MemberDto memberinfo = memberDao.selectByMurl(sessionMemail);
 		return memberinfo;
 	}
 	
-	public MemberDto selectbyMemail(String memail) {
-		MemberDto sessionMemail = memberDao.selectbyMemail1(memail);
-		return sessionMemail;
+	public MemberDto selectbyMemail(String Memail) {
+		MemberDto SessionMemail = memberDao.selectbyMemail(Memail);
+		return SessionMemail;
 	}
 }

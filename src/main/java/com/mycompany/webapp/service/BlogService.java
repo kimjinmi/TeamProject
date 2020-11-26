@@ -68,11 +68,13 @@ public class BlogService {
 		return list;
 	}
 
-	public List<CategoryDto> test(int cno) {
-		List<CategoryDto> list = categoryDao.selectbyCno(cno);
-		return list;
-	}
-
+	/*	public List<CategoryDto> test(int cno) {
+			List<CategoryDto> list = categoryDao.selectbyCno(cno);
+		public MemberDto getMimage(String memail) {
+			MemberDto list = memberDao.selectbyMemail(memail);
+			return list;
+		}
+	*/
 
 	public void commentWrite(ReplyDto reply) {
 		replyDao.commentinsert(reply);
