@@ -1,5 +1,7 @@
 package com.mycompany.webapp.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -19,6 +21,9 @@ public class SettingService {
 
 	@Resource
 	private MemberDao memberdao;
+	
+	@Resource
+	private BoardDao boarddao;
 
 	public MemberDto sessionconnect(MemberDto member) {
 		//logger.info("service: "+member.getMemail());
@@ -39,6 +44,11 @@ public class SettingService {
 		memberdao.updateimage(member);
 		
 		
+	}
+
+	public List<BoardDto> getBoardList(String sessionMemail) {
+		List<BoardDto> list = boarddao.selectAll(sessionMemail);
+		return list;
 	}
 
 	

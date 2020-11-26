@@ -5,8 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -14,17 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
@@ -50,10 +47,12 @@ public class SettingController {
 	@RequestMapping("/mybloglist")
 	public String mybloglist(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
+
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		
-		
+		List<BoardDto> list = service.getBoardList(sessionMemail);
+		model.addAttribute("list", list);
 		return "setting/mybloglist";
+		
 	}
 	
 	@RequestMapping("/mycommentlist")

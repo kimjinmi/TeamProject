@@ -19,6 +19,11 @@ public class ReplyDao {
 		List<ReplyDto> list = sst.selectList("mybatis.mapper.board.selectBoardComment", bno);
 		return list;
 	}
+
+	public int commentinsert(ReplyDto reply) {
+		int rows = sst.insert("mybatis.mapper.board.commentinsert", reply);
+		return rows;
+	}
 	
 	
 

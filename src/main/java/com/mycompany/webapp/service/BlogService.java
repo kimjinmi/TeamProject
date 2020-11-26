@@ -63,7 +63,7 @@ public class BlogService {
 		return list;
 	}
 
-	public MemberDto getMimage(String memail) {												//영아
+	public MemberDto getMimage(String memail) {											
 		MemberDto list = memberDao.selectbyMemail(memail);
 		return list;
 	}
@@ -79,4 +79,9 @@ public class BlogService {
 					return list;
 		}*/
 
+
+	public void commentWrite(ReplyDto reply) {
+		replyDao.commentinsert(reply);
+	}
+	
 }
