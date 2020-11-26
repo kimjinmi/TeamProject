@@ -104,6 +104,11 @@
 		values (1, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail} )
 	</insert>
 
+
+	<insert id="insertComment" parameterType="reply">
+		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
+		values (seq_board_rno.nextval, #{rcontent}, 0, #{memail}, 7, sysdate)
+	</insert>
 <!-- 	
 		<select id="commentinsert" parameterType="reply">
 		

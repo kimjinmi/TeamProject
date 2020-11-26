@@ -474,10 +474,12 @@
 											$.ajax({
 												url:"blogcommentlist";
 												method:"post",
-												data{comment:comment},
+												data{comment:comment
+													},
 												success:function(data){
 													if(data.result = "success"){
 														console.log("성공하였습니다.");
+														
 														// 댓글리스트 리로드
 														$.ajax({
 															url : "blogcommentlist",
@@ -488,6 +490,8 @@
 															success : function(data) {
 																$("#comments-area").html(data);
 															}
+															
+													/////댓글리스트 리로드///////////////////
 														});
 													}
 												}
@@ -496,12 +500,6 @@
 										}
 											
 											
-											
-										
-											
-										
-										
-										
 										
 									</script>
 								</div>

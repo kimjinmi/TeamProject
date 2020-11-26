@@ -73,6 +73,7 @@ public class BlogController {
 			throws IOException {
 		List<ReplyDto> commentlist = service.commentList(bno);
 		logger.info("commentlist 값 = " + commentlist.toString());
+		
 		model.addAttribute("commentlist", commentlist);
 
 		/* service.commentWrite(reply); */
@@ -120,7 +121,6 @@ public class BlogController {
 		// UserUrl로 memail을 가져온다
 		List<BoardDto> list = service.getBoardList(UserUrl);
 		logger.info("list 값 : " + list);
-		//
 		String memail = (String) session.getAttribute("sessionMemail");
 		/* List<BoardDto> list = service.getBoardList(memail); */
 		List<CategoryDto> catelist = service.categoryList(); // 영아
