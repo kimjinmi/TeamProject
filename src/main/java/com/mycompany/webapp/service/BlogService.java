@@ -65,8 +65,8 @@ public class BlogService {
 		return list;
 	}
 
-	public MemberDto getMimage(String memail) {
-		MemberDto list = memberDao.selectbyMemail(memail);
+	public MemberDto getMimage(String murl) {
+		MemberDto list = memberDao.selectByMurl(murl);
 		return list;
 	}
 

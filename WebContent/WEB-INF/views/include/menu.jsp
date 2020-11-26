@@ -21,7 +21,7 @@
 	        </li>
             <li><a href="#">BLOG</a>
             	<ul class="submenu">
-					<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${UserUrl}">BLOG</a></li>
+					<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}">BLOG</a></li>
 					<%-- <li><a href="<%=application.getContextPath()%>/blog/blog_details">BLOG_DETAILS</a></li> --%>
 					<li><a href="<%=application.getContextPath()%>/setting/content">SETTING</a></li>
 					
