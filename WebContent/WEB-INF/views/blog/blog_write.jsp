@@ -125,10 +125,12 @@
 									alt="">
 							</div>
 							<div class="blog_write">
-								<h3 style="color: #2d2d2d;">게시글 작성</h2>
-								<hr/ style="margin-top:12px;">
-									<div class="select__box" id="default-select"" style="display: inline-block">
-										
+								<h3 style="color: #2d2d2d;">
+									게시글 작성
+									</h2>
+									<hr / style="margin-top: 12px;">
+									<div class="select__box" id="default-select"
+										" style="display: inline-block">
 										<select>
 											<option value=" 1">카테고리1</option>
 											<option value="1">카테고리2</option>
@@ -137,15 +139,15 @@
 											<option value="1">카테고리5</option>
 										</select>
 									</div>
-
 									<div class="input-group mb-3">
-								<input type="text" class="form-control"
+<<<<<<< HEAD
+								<input type="text" class="form-control" id="btitle"
 									placeholder='  제목' onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '  제목'" style="height:45px; font-size:16px;">
 								</div>
 								
 								<div class="input-group mb-3">
-								<input type="text" class="form-control"
+								<input readonly type="text" class="form-control" id="bwriter" value="작성자 : ${member.mnickname }"
 									placeholder='  작성자' onfocus="this.placeholder = ''"
 									onblur="this.placeholder = '  작성자'" style="height:45px; font-size:16px;">
 								</div>
@@ -166,16 +168,63 @@
 											<input type="text" class="form-control" style="font-size:12px; margin:0px 8px;" 
 												placeholder='홍보할 링크를 입력하세요' onfocus="this.placeholder = ''"
 												onblur="this.placeholder = '홍보할 링크를 입력하세요'">
+=======
+										<input type="text" class="form-control" placeholder='  제목'
+											onfocus="this.placeholder = ''"
+											onblur="this.placeholder = '  제목'"
+											style="height: 45px; font-size: 16px;">
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 									</div>
-									<span class="align-middle"><a class="fa fa-plus" aria-hidden="true" href="https://www.naver.com" style="color:black"></a></span>
+
+									<div class="input-group mb-3">
+										<input type="text" class="form-control" placeholder='  작성자'
+											onfocus="this.placeholder = ''"
+											onblur="this.placeholder = '  작성자'"
+											style="height: 45px; font-size: 16px;">
+									</div>
+									<hr />
+
+									<h2 style="color: #2d2d2d;">내용</h2>
+
+									<textarea name="textbox" id="textbox"
+										style="width: 100%; height: 100%;">
+								</textarea>
 							</div>
-							
-							
-							<div style="margin-top:12px; padding-left:40%; margin: 20px 0px; ">
-									<a href="javascript:boardWrite()" class="genric-btn info-border radius" style="margin-right:20px;">확인</a>
-									<script type="text/javascript">
+						</div>
+
+						<div class="navigation-top">
+							<!-- 홍보링크 -->
+							<div class="d-sm-flex justify-content-between text-center">
+								<span class="align-middle"><i class="fa fa-link"
+									aria-hidden="true"></i> </span>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control"
+										style="font-size: 12px; margin: 0px 8px;"
+										placeholder='홍보할 링크를 입력하세요' onfocus="this.placeholder = ''"
+										onblur="this.placeholder = '홍보할 링크를 입력하세요'">
+								</div>
+								<span class="align-middle"><a class="fa fa-plus"
+									aria-hidden="true" href="https://www.naver.com"
+									style="color: black"></a></span>
+							</div>
+
+
+							<div
+								style="margin-top: 12px; padding-left: 40%; margin: 20px 0px;">
+								<a href="javascript:boardWrite()"
+									class="genric-btn info-border radius"
+									style="margin-right: 20px;">확인</a>
+								<script type="text/javascript">
 										function boardWrite(){
+											var btitle = $("#btitle").val().trim();
+											var bwriter = $("#bwriter").val().trim();
+											var bcontent = $("#bcontent").val().trim();											
+											
+											if(btitle == ("")){ alert("제목을 입력하세요.");}
+											if(bcontent == ("")) { alert("내용을 입력하세요"); }
+											
 											$.ajax({
+												
 												url:,
 												method:,
 												data:,
@@ -185,16 +234,14 @@
 											})
 										}
 									</script>
-									
-									<a href="blog" class="genric-btn danger-border radius">취소</a>
-								</div>
-								
-							
-							<div class="navigation-area" style="margin-top:5px">
-									
-							</div> 
+
+								<a href="blog" class="genric-btn danger-border radius">취소</a>
+							</div>
+
+
+							<div class="navigation-area" style="margin-top: 5px"></div>
 						</div>
-						
+
 					</div>
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
@@ -217,8 +264,8 @@
 										type="submit">Search</button>
 								</form>
 							</aside>
-							
-							
+
+
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
@@ -248,11 +295,12 @@
 									</a></li>
 								</ul>
 							</aside>
-							
-							
+
+
 							<aside class="single_sidebar_widget popular_post_widget">
-								<h3 class="widget_title" style="color: #2d2d2d;">Recent
-									Post</h3>
+								<h3 class="widget_title" style="color: #2d2d2d;">
+									Recent Post
+								</h3>
 								<div class="media post_item">
 									<img src="assets/img/post/post_1.png" alt="post">
 									<div class="media-body">
