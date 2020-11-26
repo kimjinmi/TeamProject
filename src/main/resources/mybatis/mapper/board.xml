@@ -60,7 +60,7 @@
 		
 		
 		<select id="selectUserBoard" parameterType="String" resultType="board">
-		select bno,btitle, bcontent, bdate, blike, bimage, mnickname, murl
+		select bno,btitle, bcontent, bdate, blike, bimage, mnickname, member.murl
 		from board, member
 		where member.murl = #{memail} AND member.memail = board.memail
 		order by bdate desc
