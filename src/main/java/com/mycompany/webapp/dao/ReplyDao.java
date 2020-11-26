@@ -24,7 +24,4 @@ public class ReplyDao {
 		int rows = sst.insert("mybatis.mapper.board.commentinsert", reply);
 		return rows;
 	}
-	
-	
-
 }
