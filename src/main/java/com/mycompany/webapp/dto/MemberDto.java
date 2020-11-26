@@ -14,6 +14,12 @@ public class MemberDto {
 	private MultipartFile mphotoAttach;
 	private String murl; //주소
 	
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
 	public String getMemail() {
 		return memail;
 	}
@@ -69,13 +75,7 @@ public class MemberDto {
 	public void setMphotoAttach(MultipartFile mphotoAttach) {
 		this.mphotoAttach = mphotoAttach;
 	}
-	public String getMurl() {
-		return murl;
-	}
-	public void setMurl(String murl) {
-		this.murl = murl;
-	}
-	
+
 	
 	
 	

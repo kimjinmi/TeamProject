@@ -140,10 +140,40 @@
 										</select>
 									</div>
 									<div class="input-group mb-3">
+<<<<<<< HEAD
+								<input type="text" class="form-control" id="btitle"
+									placeholder='  제목' onfocus="this.placeholder = ''"
+									onblur="this.placeholder = '  제목'" style="height:45px; font-size:16px;">
+								</div>
+								
+								<div class="input-group mb-3">
+								<input readonly type="text" class="form-control" id="bwriter" value="작성자 : ${member.mnickname }"
+									placeholder='  작성자' onfocus="this.placeholder = ''"
+									onblur="this.placeholder = '  작성자'" style="height:45px; font-size:16px;">
+								</div>
+								<hr/>
+							
+								<h2 style="color: #2d2d2d; ">내용</h2>
+
+								<textarea name="textbox" id="textbox"
+									style="width: 100%; height: 100%;">
+								</textarea>
+							</div>						
+						</div>
+	
+						<div class="navigation-top"> <!-- 홍보링크 -->
+							<div class="d-sm-flex justify-content-between text-center">
+									<span class="align-middle"><i class="fa fa-link" aria-hidden="true"></i> </span>
+									<div class="input-group mb-3">
+											<input type="text" class="form-control" style="font-size:12px; margin:0px 8px;" 
+												placeholder='홍보할 링크를 입력하세요' onfocus="this.placeholder = ''"
+												onblur="this.placeholder = '홍보할 링크를 입력하세요'">
+=======
 										<input type="text" class="form-control" placeholder='  제목'
 											onfocus="this.placeholder = ''"
 											onblur="this.placeholder = '  제목'"
 											style="height: 45px; font-size: 16px;">
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 									</div>
 
 									<div class="input-group mb-3">
@@ -186,7 +216,15 @@
 									style="margin-right: 20px;">확인</a>
 								<script type="text/javascript">
 										function boardWrite(){
+											var btitle = $("#btitle").val().trim();
+											var bwriter = $("#bwriter").val().trim();
+											var bcontent = $("#bcontent").val().trim();											
+											
+											if(btitle == ("")){ alert("제목을 입력하세요.");}
+											if(bcontent == ("")) { alert("내용을 입력하세요"); }
+											
 											$.ajax({
+												
 												url:,
 												method:,
 												data:,

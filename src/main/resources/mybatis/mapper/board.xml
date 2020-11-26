@@ -49,13 +49,24 @@
        	order by bdate desc
 	</select>
 	
-	<select id="selectUserBoard" parameterType="String" resultType="board">
+	
+	<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->
+	<!-- <select id="selectUserBoard" parameterType="String" resultType="board">
 		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
 		from board, member
 		where board.memail = member.memail AND board.memail = #{memail} 
 		order by bdate desc
+	</select> -->
 		
+		
+		<select id="selectUserBoard" parameterType="String" resultType="board">
+		select bno,btitle, bcontent, bdate, blike, bimage, mnickname, murl
+		from board, member
+		where member.murl = #{memail} AND member.memail = board.memail
+		order by bdate desc
 		</select>
+		
+			<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->			
 		
 		<!-- 영아 - 보드 최신순 게시물 -->
 		<select id="selectBtitleAll" resultType="board">
@@ -88,13 +99,17 @@
 		
 	</select>
 
-<!-- 	<select id="commentinsert" parameterType="reply">
-		<selectKey order="BEFORE" resultType="int" keyProperty="rno">
-		 select seq_reply_rno.nextval from dual
-		</selectKey>
+<!-- 	
+		<select id="commentinsert" parameterType="reply">
+		
+			<selectKey order="BEFORE" resultType="int" keyProperty="rno">
+			 select seq_reply_rno.nextval from dual
+			</selectKey>
+		
+			insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
+				values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
+		</select>
 	
-		insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
-			values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
-	</select> -->
+	 -->
 </mapper>
 

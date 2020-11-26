@@ -15,7 +15,12 @@ public class MemberDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public MemberDto selectbyMemail(String memail) {
+	public MemberDto selectbyMemail1(String memail) {
+		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail1", memail);
+		return dbmember;
+	}
+	
+	public MemberDto selectbyMemail(String memail) { //세션 이메일이 들어온다
 		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmember;
 	}

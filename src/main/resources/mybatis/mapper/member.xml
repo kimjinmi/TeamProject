@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.member">
-	
-	<insert id="insert" parameterType="member">
-		INSERT INTO member(memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled, murl) 
-		VALUES (#{memail},#{mpassword},#{mnickname},#{mphonenum},#{mintro},#{mmyimage},#{mrole},#{menabled},#{murl})
-	</insert>
-	
-	<select id="selectByMemail" parameterType="String" resultType="member">
-		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled
+
+	<select id="selectByMemail" parameterType="String" resultType="member"> <!-- 세션 이메일이 들어온다 -->
+		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled, murl
 		FROM member
-		WHERE memail=#{memail} 
+		WHERE memail = #{memail} <!-- 이메일에 맞는 정보 반환 -->
+	</select>
+	
+	<select id="selectByMemail1" parameterType="String" resultType="member">
+		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled, murl
+		FROM member
+		WHERE murl = #{memail} <!-- Murl을 얻을꺼 -->
 	</select>
 	
 	<update id="updatenickintro" parameterType="member">

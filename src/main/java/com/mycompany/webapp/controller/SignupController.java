@@ -58,11 +58,11 @@ public class SignupController {
 		}
 	}
 	
-	/*@RequestMapping("/nicknamecheck")
-	public void nicknamecheck(String mnickname, HttpServletResponse response) throws Exception {
-		
+	@RequestMapping("/nicknamecheck")
+	public void nicknamecheck(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String mnickname = request.getParameter("mnickname");
 		logger.info(mnickname);
-		int result = service.nicknamecheck(mnickname);
+		/*int result = service.nicknamecheck(mnickname);
 		logger.info("result:"+result);
 		JSONObject jsonObject = new JSONObject();
 		if(result==0) {
@@ -77,9 +77,9 @@ public class SignupController {
 		response.setContentType("application/json;charset=utf-8");
 		out.println(json);
 		out.flush();
-		out.close();
+		out.close();*/
 		
-	}*/
+	}
 	
 	@PostMapping("/signupform")
 	public String signupform(MemberDto member) {

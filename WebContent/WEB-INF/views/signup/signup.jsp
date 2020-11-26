@@ -138,30 +138,28 @@
                         								<i class="fas fa-check"></i><input type="text" id="mnickname" name="mnickname" class="form-control" placeholder='  닉네임' 
                         								onfocus="this.placeholder = ''" onblur="this.placeholder = '  닉네임을 입력하세요'" 
                         								style="height:45px; font-size:16px;">
-                        									<input type="button" class="genric-btn danger radius" id="check" value="중복 확인"/>  									
+                        									<a type="button" class="genric-btn danger radius" href="javascript:idcnk();" >중복확인</a>  									
                         							</div>
                         							
 													<div class="input-group mb-3" id="nicknameerror" style="display: none;">
 														<i class="fas fa-exclamation-triangle"></i><span>닉네임 중복</span>	
 													</div>	
-															<!-- <script type="text/javascript">
-															$('#check').click(function(){
-	                        										console.log($("#nickname").val());
-	                        										$.ajax({
-	                        											url:"nicknamecheck",
-	                        											type: "GET",
-	                        											data:{'mnickname' : $("#nickname").val()},
-	                        											success:function(data){
-	                        												if(data.result == "success"){
-	                        													$("#nickname").attr("readonly",true);
-	                        												}else{
-	                        													$("#nicknameerror").show();
-	                        												} 
-	                        											}
-	                        										});
-	                        										
-	                        									}
-                        									</script> -->
+															<script>
+															/* var mnickname = $("#mnickname").val();
+															
+															function idchk(){
+																alert(mnickname);
+	                        									$.ajax({
+	                        										url:"nicknamecheck",
+	                        										type:"get",
+	                        										data:{mnickname:mnickname},
+	                        										success:function(data){
+	                        											
+	                        										}
+	                        									});	
+														
+	                        								} */
+                        									</script>
 													<div class="input-group mb-3">
                         								<i class="fas fa-check"></i><input type="text" id="memail" name="memail" class="form-control" 
                         								style="height:45px; font-size:16px;" value="${Memail}" readonly>
