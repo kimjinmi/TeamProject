@@ -69,7 +69,7 @@
 		
 		
 		<select id="selectUserBoard" parameterType="String" resultType="board">
-		select bno,btitle, bcontent, bdate, blike, bimage, mnickname, murl
+		select bno,btitle, bcontent, bdate, blike, bimage, mnickname, member.murl
 		from board, member
 		where member.murl = #{memail} AND member.memail = board.memail
 		order by bdate desc
@@ -110,25 +110,19 @@
 	
 	<insert id="insert" parameterType="board">
 		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent)
-		values (1, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent} )
+		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent} )
 	</insert>
 
 
-	<insert id="insertComment" parameterType="reply">
+
+<!--  댓글 입력값 -->
+	<insert id="commentinsert" parameterType="reply">
 		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
-		values (seq_board_rno.nextval, #{rcontent}, 0, #{memail}, 7, sysdate)
+		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
-<!-- 	
-		<select id="commentinsert" parameterType="reply">
-		
-			<selectKey order="BEFORE" resultType="int" keyProperty="rno">
-			 select seq_reply_rno.nextval from dual
-			</selectKey>
-		
-			insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
-				values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
-		</select>
+<!--  댓글 입력 -->	
+
 	
-	 -->
+	
 </mapper>
 

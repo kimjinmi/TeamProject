@@ -9,13 +9,10 @@
 			<!-- 카테고리 선택 시작 (div) -->
 			<div class="select box" id="default-select"
 				style="display: inline-block; padding-bottom: 2%;">
-				<select>
-					<option value="1">카테고리1</option>
-					<option value="1">카테고리2</option>
-					<option value="1">카테고리3</option>
-					<option value="1">카테고리4</option>
-					<option value="1">카테고리5</option>
-					<option value="1">카테고리6</option>
+				<select id="cno" name="cno">
+					<c:forEach var="i" items="${category_list}">
+						<option value="${i.cno}">${i.ccontent}</option>
+					</c:forEach>
 				</select>
 			</div>
 			<!-- 카테고리 선택 끝 (div) -->
@@ -77,6 +74,8 @@
 				class="genric-btn info-border radius" style="margin-right: 20px;">확인</a>
 			<script type="text/javascript">
 				function boardWrite() {
+					var cno = $("#cno").val();
+					
 					var btitle = $("#btitle").val().trim();
 					if(btitle==""){$("#btitleError").text("필수");}
 					else { $("#btitleError").text("");} 
@@ -88,7 +87,7 @@
 					if (btitle == "" || bcontent == "") {
 						return;
 					} 
-
+					
 					var blinkcontent = $("#blinkcontent").val().trim();
 					var memail = $("#memail").val().trim();
 
@@ -99,11 +98,12 @@
 							btitle : btitle,
 							bcontent : bcontent,
 							memail : memail,
-							blinkcontent : blinkcontent
+							blinkcontent : blinkcontent,
+							cno : cno
 						},
 						success : function(data) {
 							if (data.result == "success") {
-								location.href="blog?UserUrl=${UserUrl}";
+								location.href="blog?UserUrl=${SessionMurl}";
 							}
 						}
 					});

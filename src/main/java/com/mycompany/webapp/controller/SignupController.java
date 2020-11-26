@@ -83,8 +83,7 @@ public class SignupController {
 	
 	@PostMapping("/signupform")
 	public String signupform(MemberDto member) {
-		logger.info("성공");
-		logger.info(member.getMpassword());
+		
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String encodePassword = passwordEncoder.encode(member.getMpassword());
 		member.setMpassword(encodePassword);
@@ -93,8 +92,11 @@ public class SignupController {
 		member.setMmyimage("default.PNG");
 		member.setMenabled(true);
 		member.setMrole("ROLE_USER");
-		String save = new Date().getTime() + "_" + origin;
-		member.setMurl(save);
+		String arr[] = member.getMemail().split("@");
+		String edit = arr[1].substring(0,arr[1].indexOf("."));
+		String editend = arr[1].substring(arr[1].indexOf(".")+1);
+		String murl = arr[0] + edit + editend;
+		member.setMurl(murl);
 		service.signup(member);
 		return "signup/success";
 		

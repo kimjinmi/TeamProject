@@ -30,19 +30,42 @@ import com.mycompany.webapp.service.BlogService;
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
+<<<<<<< HEAD
 	int bno=0;
 
+=======
+	int bno = 0;
+	@Resource
+	private DataSource dataSource;
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	@Resource
 	private BlogService service;
 	
 
-	
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
+<<<<<<< HEAD
 
 	
+=======
+	@GetMapping("/dbConnect")
+	public String dbConnect() {
+
+		Connection connect;
+		try {
+			connect = dataSource.getConnection();
+			connect.close();
+			logger.info("dbConnected");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return "blog/blog_details";
+	}
+
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	@GetMapping("/blog_details")
 	public String board_details(Model model, HttpServletRequest request) {
+<<<<<<< HEAD
 		 int bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
@@ -53,23 +76,26 @@ public class BlogController {
 		 model.addAttribute("btitlelist", btitlelist);							//영아
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
+=======
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		logger.info("bno 값 확인: " + bno);
+		BoardDto board = service.getBoard(bno);
+		List<CategoryDto> catelist = service.categoryList(); // 영아
+		List<BoardDto> btitlelist = service.BoardList(); // 영아
+		model.addAttribute("board", board);
+		model.addAttribute("catelist", catelist); // 영아
+		model.addAttribute("btitlelist", btitlelist); // 영아
+		logger.info("날짜형식 테스트 : " + board.getBdate());
+		logger.info("bno 값 출력 1 : " + bno);
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 		return "blog/blog_details";
 	}
-	
-	@GetMapping("/blogcommentlist")
-	public String blogcommentlist(int bno, ReplyDto reply, Model model, HttpServletResponse response)
-			throws IOException {
-		List<ReplyDto> commentlist = service.commentList(bno);
-		logger.info("commentlist 값 = " + commentlist.toString());
-		
-		model.addAttribute("commentlist", commentlist);
 
-		/* service.commentWrite(reply); */
+	/// blogcommentList
 
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
-		String json = jsonObject.toString();
+	//
 
+<<<<<<< HEAD
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json; charset=utf-8");
 		out.println(json);
@@ -91,11 +117,13 @@ public class BlogController {
 
 	}
 	
+=======
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
 		service.commentWrite(reply);
 	}
-	
+
 	@RequestMapping("/blog")
 	public String blog(HttpSession session, Model model, HttpServletRequest request) { // http://localhost:8080/teamproject
 		// get 값 매핑
@@ -112,14 +140,15 @@ public class BlogController {
 		List<BoardDto> btitlelist = service.BoardList(); // 영아
 		MemberDto member = service.getMimage(UserUrl); // UserUrl을 가지고 유저 이미지를 들고온다
 		model.addAttribute("list", list);
-		model.addAttribute("catelist", catelist);								//영아
-		model.addAttribute("btitlelist", btitlelist);	
-		model.addAttribute("member", member);//영아
-		logger.info(catelist.toString());											//영아
+		model.addAttribute("catelist", catelist); // 영아
+		model.addAttribute("btitlelist", btitlelist);
+		model.addAttribute("member", member);// 영아
+		logger.info(catelist.toString()); // 영아
 		logger.info("실행");
 		return "blog/blog";
 	}
 
+<<<<<<< HEAD
 	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
@@ -141,11 +170,24 @@ public class BlogController {
 			return "blog/categoryListLinkBoard";
 		}
 	
+=======
+	/*
+	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
+	 * Model model) { //http://localhost:8080/teamproject String memail = (String)
+	 * session.getAttribute("sessionMemail"); MemberDto member =
+	 * service.getMimage(memail);
+	 * 
+	 * logger.info("실행"); return "blog/blog_write"; }
+	 */
+
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 	@GetMapping("/boardWrite")
-	public String boardWrite(HttpSession session, BoardDto board) {
+	public String boardWrite(Model model, BoardDto board) {
+		List<CategoryDto> category_list = service.categoryList();
+		model.addAttribute("category_list", category_list);
 		return "blog/boardWriteForm";
 	}
-	
+
 	@RequestMapping("boardWrite")
 	public void blog_write(BoardDto board, HttpServletResponse response) throws Exception {
 		service.boardWrite(board);
@@ -159,5 +201,31 @@ public class BlogController {
 		out.println(json);
 		out.flush();
 		out.close();
+	}
+
+	@GetMapping("/blogcommentlist")
+	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session)
+			throws IOException {
+
+		/*
+		 * if(reply.getRcontent() != null) { logger.info("겟댓글내용");
+		 * reply.setMemail((String)session.getAttribute("sessionMemail"));
+		 * 
+		 * //reply.setMnickname((String)session.getAttribute("SessionMnickname"));
+		 * logger.info(reply.getRcontent()); logger.info(reply.getMemail());
+		 * logger.info(reply.getMnickname());
+		 * 
+		 * service.commentWrite(reply);
+		 * 
+		 * 
+		 * }
+		 */
+
+		List<ReplyDto> commentlist = service.commentList(reply.getBno());
+		logger.info("commentlist 값 = " + commentlist.toString());
+		model.addAttribute("commentlist", commentlist);
+
+		return "blog/blogcommentList";
+
 	}
 }

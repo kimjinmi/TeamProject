@@ -46,9 +46,7 @@
 
 
 <body onload="javascript:onload(${board.bno})">
-	
- <script type="text/javascript">
-//페이지 로드될때 댓글ajax로 가져옴
+	<script type="text/javascript">
 	function onload(bno){
 		$.ajax({
 			url : "blogcommentlist",
@@ -136,8 +134,9 @@
 									<h2 class="contact-title">${member.mnickname}</h2>
 									<p>${member.mintro}</p>
 									<hr />
-									<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
-										<script type="text/javascript">
+									<a class="genric-btn primary e-large"
+										href="javascript:boardWrite()">POSTING</a>
+									<script type="text/javascript">
 									function boardWrite() {
 										$.ajax({
 											url: "boardWrite",
@@ -460,7 +459,8 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<a href="javascript:commentWrite(7)" class="button button-contactForm btn_1 boxed-btn">작성하기</a>
+									<a href="javascript:commentWrite(${board.bno })"
+										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
 									<script type="text/javascript">
 										function commentWrite(bno) {								
 											// 데이터 검사	
@@ -469,11 +469,24 @@
 												alert("2글자 이상 입력해야 합니다.");
 												return;
 											}	
+
+											// 댓글리스트 리로드
+											$.ajax({
+												url : "blogcommentlist",
+												method : "get",
+												data : {
+													bno:bno,
+													rcontent:comment
+												},
+												success : function(data) {
+													$("#comments-area").html(data);
+												}
+												
+												
+										/////댓글리스트 리로드///////////////////
+											});
 											
-											var commentWriter = ${SessionNickname};
-											
-											alert(commentWriter);
-											
+									/* 		
 											//데이터베이스 값 입력
 											$.ajax({
 												url:"blogcommentlist";
@@ -483,23 +496,10 @@
 												success:function(data){
 													if(data.result = "success"){
 														console.log("성공하였습니다.");
-														
-														// 댓글리스트 리로드
-														$.ajax({
-															url : "blogcommentlist",
-															method : "get",
-															data : {
-																bno:bno
-															},
-															success : function(data) {
-																$("#comments-area").html(data);
-															}
-															
-													/////댓글리스트 리로드///////////////////
-														});
+	
 													}
 												}
-											});
+											}); */
 											
 										}
 											

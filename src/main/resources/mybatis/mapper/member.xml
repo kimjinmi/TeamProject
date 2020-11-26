@@ -35,5 +35,10 @@
 		FROM member
 		WHERE mnickname=#{mnickname}
 	</select>
+	
+	<insert id="insert" parameterType="member">
+		INSERT INTO member(memail, mpassword, mnickname, mphonenum, mintro, mmyimage, menabled, mrole, murl) 
+		VALUES (#{memail},#{mpassword},#{mnickname}, #{mphonenum},#{mintro},#{mmyimage},#{menabled},#{mrole},#{murl})
+	</insert>
 </mapper>
 
