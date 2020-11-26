@@ -12,7 +12,6 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon"
    href="resources/assets/img/favicon.ico">
- 
 <!-- CSS here -->
 <link rel="stylesheet"
    href="<%=application.getContextPath()%>/resources/assets/css/bootstrap.min.css">
@@ -42,6 +41,8 @@
    href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
    href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+ <script
+	src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 </head>
 
 <body>
