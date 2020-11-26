@@ -3,6 +3,7 @@ package com.mycompany.webapp.dto;
 public class CategoryDto {
 	private int cno; // Category 번호
 	private String ccontent; // Category 내용
+	private String murl;
 	
 	public int getCno() {
 		return cno;
@@ -16,4 +17,11 @@ public class CategoryDto {
 	public void setCcontent(String ccontent) {
 		this.ccontent = ccontent;
 	}
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
+	
 }

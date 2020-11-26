@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
-
 <form id="boardWriteForm">
 	<div class="single-post">
 		<div class="blog_write">
@@ -116,5 +114,3 @@
 		<!-- 글쓰기 버튼 끝 (확인) -->
 	</div>
 </form>
-
-<script src="${pageContext.request.contextPath}/resources/js/ckeditor.js" ></script>

@@ -45,7 +45,6 @@ public class ContentsController {
 		model.addAttribute("list", list); 
 		return "contents/boardList";
 	}
-	
 	@GetMapping("/photodownload_board")
 	public void photodownload_board(String fileName, HttpServletResponse response, HttpServletRequest request)
 			throws Exception {
@@ -97,5 +96,6 @@ public class ContentsController {
 		 model.addAttribute("board", board);
 		return "blog/blog_details";
 	}
+
 
 }
