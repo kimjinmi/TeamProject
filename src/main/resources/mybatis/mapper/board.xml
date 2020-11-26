@@ -105,11 +105,13 @@
 	</insert>
 
 
-	<insert id="insertComment" parameterType="reply">
+
+<!--  댓글 입력값 -->
+	<insert id="commentinsert" parameterType="reply">
 		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
-		values (seq_board_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
+		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
-	
+<!--  댓글 입력 -->	
 
 	
 	

@@ -5,6 +5,7 @@
 		<select id="selectAll" resultType="category">	
 			select cno, ccontent
 			from category
+			Order by cno asc
 		</select>
 		
 </mapper>
