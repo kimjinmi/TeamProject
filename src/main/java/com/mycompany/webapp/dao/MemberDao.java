@@ -32,7 +32,7 @@ public class MemberDao {
 
 
 	public MemberDto selectbyMimage(String memail) {
-		MemberDto dbmimage = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
+		MemberDto dbmimage = sst.selectOne("mybatis.mapper.member.selectByMemail1", memail);
 		return dbmimage;
 	}
 
