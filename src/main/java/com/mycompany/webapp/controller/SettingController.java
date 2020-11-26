@@ -44,6 +44,22 @@ public class SettingController {
 		return "setting/content";
 	}
 	
+	@RequestMapping("/myneighborlist")
+	public String myneighborlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
+		logger.info("실행");
+
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		String SessionMnickname = (String) session.getAttribute("SessionMnickname"); //대소문자조심
+		String SessionMurl = (String) session.getAttribute("SessionMurl"); //대소문자조심
+		logger.info("memail :"+sessionMemail);
+		logger.info("mnickname :"+SessionMnickname);
+		logger.info("murl :"+SessionMurl);
+		
+		return "setting/myneighborlist";
+		
+	}
+	
+	
 	@RequestMapping("/mybloglist")
 	public String mybloglist(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
