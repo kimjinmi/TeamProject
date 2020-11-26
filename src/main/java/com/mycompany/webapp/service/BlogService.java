@@ -75,5 +75,9 @@ public class BlogService {
 		replyDao.commentinsert(reply);
 		logger.info("새로 입력된 Rno : " + reply.getRno());
 	}
+
+	public void boardWrite(BoardDto board) {
+		boardDao.insert(board);
+	}
 	
 }

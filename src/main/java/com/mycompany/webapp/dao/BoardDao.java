@@ -45,7 +45,6 @@ public class BoardDao {
 	
 	/*------------------------- 선 -------------------------*/
 	
-	
 	public List<BoardDto> selectUserBoard(String memail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
 		return list;
@@ -65,6 +64,11 @@ public class BoardDao {
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
 		return list;
+	}
+
+	public int insert(BoardDto board) {
+		int rows = sst.insert("mybatis.mapper.board.insert", board);
+		return rows;
 	}
 
 

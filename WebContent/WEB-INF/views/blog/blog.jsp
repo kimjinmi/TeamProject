@@ -114,7 +114,19 @@
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
 								<hr/>
-								<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
+								<!-- 게시글 작성 버튼 -->
+								<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+								<script type="text/javascript">
+									function boardWrite() {
+										$.ajax({
+											url: "boardWrite",
+											success:function(data){
+												$("#test").html(data);
+											}
+										});
+									}
+								</script>
+								<!-- 게시글 작성 버튼 -->
 							</div>
 								
 							</aside>
@@ -170,7 +182,7 @@
 					</div>
 				
 				<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 mb-5 mb-lg-0">
+					<div id="test" class="col-lg-8 mb-5 mb-lg-0">
                         <!-- blog_item 시작 -->
                         <c:forEach var="board" items="${list}">
                         <article class="blog_item">	
