@@ -115,7 +115,7 @@ public class BlogController {
 		// get 값 매핑
 		String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다.
 		if (UserUrl == "") {
-			UserUrl += session.getAttribute("UserUrl");
+			UserUrl += session.getAttribute("murl");
 		}
 
 		// UserUrl로 memail을 가져온다

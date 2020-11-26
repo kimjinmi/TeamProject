@@ -37,8 +37,8 @@ public class HomeController {
 			model.addAttribute("member", member);
 			logger.info(member.getMnickname());
 			
-			session.setAttribute("mnickname", member.getMnickname());
-			session.setAttribute("murl", member.getMurl());
+			session.setAttribute("SessionMnickname", member.getMnickname());
+			session.setAttribute("SessionMurl", member.getMurl());
 		}
 		return "home";
 	}

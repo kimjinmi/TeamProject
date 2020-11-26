@@ -470,6 +470,10 @@
 												return;
 											}	
 											
+											var commentWriter = ${SessionNickname};
+											
+											alert(commentWriter);
+											
 											//데이터베이스 값 입력
 											$.ajax({
 												url:"blogcommentlist";
