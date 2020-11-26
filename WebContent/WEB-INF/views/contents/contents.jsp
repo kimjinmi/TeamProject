@@ -182,7 +182,7 @@
 									<!-- 사용자 이미지 -->
 									<span class="wrap_thumb"> <img class="thumb_profile"
 										src="photodownload_member?fileName=${board.mmyimage}">
-									</span> <span class="txt_id">블로그 타이틀</span> <span class="txt_date">by
+									</span> <span class="txt_id">${board.mintro}</span> <span class="txt_date">by
 										${board.mnickname}</span>
 								</div>
 							</a>
