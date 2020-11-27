@@ -93,7 +93,7 @@ public class BlogController {
 		if (UserUrl == "") {
 			UserUrl += session.getAttribute("murl");
 		}
-		logger.info(UserUrl);
+
 		// UserUrl로 memail을 가져온다
 		List<BoardDto> list = service.getBoardList(UserUrl);
 		logger.info("list 값 : " + list);
