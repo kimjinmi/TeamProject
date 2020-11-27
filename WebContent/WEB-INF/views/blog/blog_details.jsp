@@ -217,14 +217,12 @@
 					</div>
 
 					<!-- ////////////////////////////////// -->
-					<div id="test" class="col-lg-8 posts-list">
+					    <div id="categoryListLinkBoard" class="col-lg-8 posts-list">
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
 									alt="">
 							</div>
-
-
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
 								<ul class="blog-info-link mt-3 mb	-4">

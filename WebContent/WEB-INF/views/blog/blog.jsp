@@ -129,7 +129,9 @@
                         <p>${member.mintro}</p>
                         <hr/>
                         <!-- 게시글 작성 버튼 -->
+                        <c:if test="${UserUrl=='category.murl'}" var="pbutton" scope="session">
                         <a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+                        </c:if>
                         <script type="text/javascript">
                            function boardWrite() {
                               $.ajax({

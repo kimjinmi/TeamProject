@@ -1,12 +1,17 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,6 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,11 +72,12 @@ public class BlogController {
 		}*/
 		
 		 bno = Integer.parseInt(request.getParameter("bno"));
-		 logger.info("bno 값 확인: "+bno);
+		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
-		 logger.info(board.getMurl());
-		 List<CategoryDto> catelist = service.categoryListMurl(board.getMurl()); 
-		 List<BoardDto> likelist = service.bLikeList(board.getMurl());			//영아		
+		 String UserUrl = board.getMurl();
+		 logger.info("###############"+board.getMurl());
+		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
+		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
 		 model.addAttribute("likelist", likelist);
@@ -123,6 +130,7 @@ public class BlogController {
 	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
 	@RequestMapping("/categoryListLinkBoard")	
 	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
+			logger.info("실행되는건가");
 			List<BoardDto> bcno = service.bcno(cno, murl);
 			model.addAttribute("bcno", bcno);
 			return "blog/categoryListLinkBoard";
@@ -167,35 +175,59 @@ public class BlogController {
 	}
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
+	
+	//////////////////////// 김지훈 댓글 리스트 시작 //////////////////////////
 	@GetMapping("/blogcommentlist")
-	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session)
-			throws IOException {
-
-		
-		  if(reply.getRcontent() != null) { logger.info("겟댓글내용");
+	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session) throws IOException {
+		  if(reply.getRcontent() != null) { 
 		  reply.setMemail((String)session.getAttribute("sessionMemail"));
-		  
-		  //reply.setMnickname((String)session.getAttribute("SessionMnickname"));
-			/*
-			 * logger.info(reply.getRcontent()); logger.info(reply.getMemail());
-			 * logger.info(reply.getMnickname());
-			 */
-		  
-		  service.commentWrite(reply);
-		  
-		  
+		  service.commentWrite(reply); 
 		  }
-		 
-		
-		int bbno = reply.getBno();
-		List<ReplyDto> commentlist = service.commentList(bbno);
-		logger.info("getBno = " + bbno);
-		logger.info("commentlist 값 = " + commentlist.toString());
-		model.addAttribute("commentlist", commentlist);
-		
-		
-
-		return "blog/blogcommentList";
+			int bbno = reply.getBno();
+			List<ReplyDto> commentlist = service.commentList(bbno);
+			logger.info("getBno = " + bbno);
+			logger.info("commentlist 값 = " + commentlist.toString());
+			model.addAttribute("commentlist", commentlist);
+			return "blog/blogcommentList";
 
 	}
+	
+	@GetMapping("/photodownload")
+	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		logger.info(fileName);
+		
+		//파일의 데이터를 읽기 위한 입력 스트림 얻기
+		String saveFilePath = "C:/temp/projectimage/member/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+		
+		//응답 HTTP 헤더 구성
+		//1) Content-Type 헤더 구성(파일 종류)
+		ServletContext application = request.getServletContext();
+		String fileType = application.getMimeType(fileName);
+		response.setContentType(fileType);
+		
+		//다운로드할 실제 파일 이름 구성
+		//split메소드는 배열로 리턴됨
+
+		//attachment; : 브라우저가 해당 파일을 다운로드(없으면 보여줄 수 있으면 브라우저에서 보여줌, 보여줄 수 없으면 다운로드
+		response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\"");
+		
+		//3)Content-Length 헤더 구성(다운로드할 파일의 크기를 지정)
+		int fileSize = (int) new File(saveFilePath).length();
+		response.setContentLength(fileSize);
+		
+		//응답 HTTP의 바디(본문) 구성
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os); //스프링에서 제공
+		os.flush();
+		os.close();
+		is.close();
+	}
+
+	@GetMapping("/commentDelete")
+	public void commentDelete(int rno) {
+		logger.info("나와라 commentDelete Rno = " + rno);
+		service.commentDelete(rno);		
+	}
+
 }

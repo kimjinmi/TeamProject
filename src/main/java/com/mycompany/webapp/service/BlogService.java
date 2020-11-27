@@ -92,6 +92,11 @@ public class BlogService {
 		return list;
 	}
 
+	public int commentDelete(int rno) {
+		int rows = boardDao.commentDelete(rno);
+		return rows;
+	}
+
 
 
 }
