@@ -41,7 +41,7 @@
    href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
    href="<%=application.getContextPath()%>/resources/assets/css/style.css">
-<<<<<<< HEAD
+
    
    <style type="text/css">
    .blog_list_content{  	
@@ -53,9 +53,9 @@
    }
    </style>
    
-=======
+
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 </head>
 
 <body>
