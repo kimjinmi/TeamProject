@@ -174,106 +174,45 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
 								<ul class="list cat-list">
 									<c:forEach var="category" items="${catelist}">
-										<li><a href="#" class="d-flex"> ${category.ccontent}
-										</a></li>
+										<li><a
+											href="javascript:categoryListLinkBoard(${category.cno},'${category.murl}')"
+											class="d-flex"> ${category.ccontent}</a></li>
+										<script type="text/javascript">
+												//페이지 로드될때 댓글ajax로 가져옴
+												function categoryListLinkBoard(cno,murl){
+														$.ajax({
+															url : "categoryListLinkBoard",
+															method : "get",
+															data : {cno:cno, murl:murl},
+															success : function(data) {
+																$("#categoryListLinkBoard").html(data);
+															}
+														});
+												}
+										   </script>
 									</c:forEach>
 								</ul>
 							</aside>
 							<aside class="single_sidebar_widget popular_post_widget">
-								<h3 class="widget_title" style="color: #2d2d2d;">Recent
+								<h3 class="widget_title" style="color: #2d2d2d;">Be Liked
 									Posting</h3>
-								<c:forEach var="btitle" items="${btitlelist}">
+								<c:forEach var="likelist" items="${likelist}">
 									<div class="media post_item">
-										<img src="assets/img/post/post_1.png" alt="post">
+										<i class="fas fa-heart"
+											style="color: red; padding-top: 3px; padding-right: 3px;"></i>
+										<h3 style="color: red;">like : ${likelist.blike}</h3>
 										<div class="media-body">
-											<a href="javascript:selectBoard()"> <script></script>
-												<h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
-											</a>
-											<p>1시간 전 작성</p>
+											<a href="javascript:boardDetails(${likelist.bno}, '${likelist.murl}')"><h3 style="color: #2d2d2d;">
+											${likelist.btitle}</h3> </a>
+											<script type="text/javascript">
+										function boardDetails(bno) {
+											location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+										}
+									</script>
 										</div>
 									</div>
 								</c:forEach>
-
-
-								<!-- <div class="media post_item">
-									<img src="assets/img/post/post_2.png" alt="post">
-									<div class="media-body">
-										<a href="blog_details.html">
-											<h3 style="color: #2d2d2d;">최근 포스팅2</h3>
-										</a>
-										<p>2시간 전 작성</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="assets/img/post/post_3.png" alt="post">
-									<div class="media-body">
-										<a href="blog_details.html">
-											<h3 style="color: #2d2d2d;">최근 포스팅3</h3>
-										</a>
-										<p>3시간 전 작성</p>
-									</div>
-								</div>
-								<div class="media post_item">
-									<img src="assets/img/post/post_4.png" alt="post">
-									<div class="media-body">
-										<a href="blog_details.html">
-											<h3 style="color: #2d2d2d;">최근 포스팅4</h3>
-										</a>
-										<p>4시간 전 작성</p>
-									</div>
-								</div> -->
 							</aside>
-							<!-- <aside class="single_sidebar_widget tag_cloud_widget">
-								<h4 class="widget_title" style="color: #2d2d2d;">Tag Clouds</h4>
-								<ul class="list">
-									<li><a href="#">project</a></li>
-									<li><a href="#">love</a></li>
-									<li><a href="#">technology</a></li>
-									<li><a href="#">travel</a></li>
-									<li><a href="#">restaurant</a></li>	
-									<li><a href="#">life style</a></li>
-									<li><a href="#">design</a></li>
-									<li><a href="#">illustration</a></li>
-								</ul>
-							</aside> -->
-							<!-- <aside class="single_sidebar_widget instagram_feeds">
-								<h4 class="widget_title" style="color: #2d2d2d;">Instagram
-									Feeds</h4>
-								<ul class="instagram_row flex-wrap">
-									<li><a href="#"> <img class="img-fluid"
-											src="assets/img/post/post_5.png" alt="">
-									</a></li>
-									<li><a href="#"> <img class="img-fluid"
-											src="assets/img/post/post_6.png" alt="">
-									</a></li>
-									<li><a href="#"> <img class="img-fluid"
-											src="assets/img/post/post_7.png" alt="">
-									</a></li>
-									<li><a href="#"> <img class="img-fluid"
-											src="assets/img/post/post_8.png" alt="">
-									</a></li>
-									<li><a href="#"> <img class="img-fluid"
-											src="assets/img/post/post_9.png" alt="">
-									</a></li>
-									<li><a href="#"> <img class="img-fluid"
-											src="assets/img/post/post_10.png" alt="">
-									</a></li>
-								</ul>
-							</aside> -->
-							<!-- <aside class="single_sidebar_widget newsletter_widget">
-								<h4 class="widget_title" style="color: #2d2d2d;">Newsletter</h4>
-								<form action="#">
-									<div class="form-group">
-										<input type="email" class="form-control"
-											onfocus="this.placeholder = ''"
-											onblur="this.placeholder = 'Enter email'"
-											placeholder='Enter email' required>
-									</div>
-									<button
-										class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-										type="submit">Subscribe</button>
-								</form>
-							</aside> -->
 						</div>
 					</div>
 
@@ -332,8 +271,15 @@
 						<div class="navigation-top">
 							<div class="d-sm-flex justify-content-between text-center">
 								<p class="like-info">
-									<span class="align-middle"><i class="fa fa-heart"></i></span>
-									김지훈 외 좋아요 4개
+									<span class="align-middle"><a href="javascript:heartbreaker()" class="fa fa-heart" style="color:black;"></a></span>
+									<script type="text/javascript">		
+										function heartbreaker(){
+											alert("좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋아요좋아요좋아요좋아요좋아요");
+											
+											
+										}
+									</script>
+									좋아요 ${board.blike}개
 								</p>
 								<div class="col-sm-4 text-center my-2 my-sm-0">
 									<!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->

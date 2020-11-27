@@ -19,8 +19,8 @@ public class CategoryDao {
 		return list;
 	}
 	
-	public List<CategoryDto> selectMurl(String UserUrl) {				
-		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectMurl", UserUrl);		
+	public List<CategoryDto> selectMurl(String murl) {				
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectMurl", murl);		
 		return list;
 	}
 

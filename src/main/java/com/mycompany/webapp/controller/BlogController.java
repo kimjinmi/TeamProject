@@ -58,18 +58,25 @@ public class BlogController {
 
 
 	@GetMapping("/blog_details")
-	public String board_details(Model model, HttpServletRequest request) {
-
-		 int bno = Integer.parseInt(request.getParameter("bno"));
+	public String board_details(HttpSession session, int bno, Model model, HttpServletRequest request) {
+		// get 값 매핑
+		/*String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다. -지훈
+		if (UserUrl == "") {
+			UserUrl += session.getAttribute("murl");
+		}*/
+		
+		 bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
-		 List<CategoryDto> catelist = service.categoryList();			//영아
-		 List<BoardDto> btitlelist = service.BoardList();					//영아
+		 logger.info(board.getMurl());
+		 List<CategoryDto> catelist = service.categoryListMurl(board.getMurl()); 
+		 List<BoardDto> likelist = service.bLikeList(board.getMurl());			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
-		 model.addAttribute("btitlelist", btitlelist);							//영아
+		 model.addAttribute("likelist", likelist);
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
+		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
 
 		return "blog/blog_details";
 	}
@@ -80,9 +87,9 @@ public class BlogController {
 	}
 
 	@RequestMapping("/blog")
-	public String blog(HttpSession session, Model model, HttpServletRequest request) { // http://localhost:8080/teamproject
+	public String blog(String murl, HttpSession session, Model model, HttpServletRequest request) { // http://localhost:8080/teamproject
 		// get 값 매핑
-		String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다.
+		String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다. -지훈
 		if (UserUrl == "") {
 			UserUrl += session.getAttribute("murl");
 		}
@@ -90,15 +97,14 @@ public class BlogController {
 		List<BoardDto> list = service.getBoardList(UserUrl);
 		logger.info("list 값 : " + list);
 		String memail = (String) session.getAttribute("sessionMemail");
-		/* List<BoardDto> list = service.getBoardList(memail); */
-		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); // 영아
-		List<BoardDto> btitlelist = service.BoardList(); // 영아
-		MemberDto member = service.getMimage(UserUrl); // UserUrl을 가지고 유저 이미지를 들고온다
+		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
+		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
+		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
 		model.addAttribute("list", list);
-		model.addAttribute("catelist", catelist); // 영아
-		model.addAttribute("btitlelist", btitlelist);
-		model.addAttribute("member", member);// 영아
-		logger.info(catelist.toString()); // 영아
+		model.addAttribute("catelist", catelist);													 // 영아
+		model.addAttribute("member", member);													// 영아
+		model.addAttribute("likelist", likelist);													// 영아
+		logger.info(catelist.toString()); 																// 영아
 		logger.info("실행");
 		return "blog/blog";
 	}
@@ -112,17 +118,15 @@ public class BlogController {
 		return "blog/blog_write";
 	}*/
 	
-	@RequestMapping("/categoryListLinkBoard")
-	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {
-			logger.info("cno는 : " + cno); // cno 들어옴 성공 완성
-			logger.info("murl는 : " + murl); // cno 들어옴 성공 완성
-			
+	
+	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
+	@RequestMapping("/categoryListLinkBoard")	
+	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
 			List<BoardDto> bcno = service.bcno(cno, murl);
 			model.addAttribute("bcno", bcno);
-			//logger.info("cno, userUrl출력 : " + cno, UserUrl);
-			
 			return "blog/categoryListLinkBoard";
 		}
+
 	
 	/*
 	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
