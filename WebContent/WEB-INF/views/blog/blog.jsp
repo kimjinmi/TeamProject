@@ -159,7 +159,7 @@
                         <!--    <li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
                            <c:forEach var="category" items="${catelist}">
                            <li><a href="javascript:categoryListLinkBoard(${category.cno},'${category.murl}')" class="d-flex">
-                           		 ${category.ccontent}</a></li>
+                           	 ${category.ccontent}</a></li>
                              <script type="text/javascript">
 									//페이지 로드될때 댓글ajax로 가져옴
 									function categoryListLinkBoard(cno,murl){
@@ -178,18 +178,20 @@
                      </aside>
                      <aside class="single_sidebar_widget popular_post_widget">
                            <h3 class="widget_title" style="color: #2d2d2d;">Be Liked Posting</h3>
-                           <c:forEach var="btitle" items="${btitlelist}">
-                           <li><a href="javascript:categoryListLinkBoard(${board.blike},'${board.murl}')" class="d-flex">
-                           		 ${board.btitle}</a></li>
-                              <div class="media post_item">
-                                 <img src="C:\temp\projectimage\blog\crab.png" alt="post">
+                           <c:forEach var="likelist" items="${likelist}">
+                           <div class="media post_item">    
+                               <i class="fas fa-heart" style="color: red;padding-top: 3px; padding-right: 3px;"></i>
+                                <h3 style="color: red;"> like : ${likelist.blike} </h3>                
                                  <div class="media-body">
-                                    <a href="blog_details.html">
-                                       <h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
-                                    </a>
-                                    <p>1시간 전 작성</p>
-                                 </div>
-                              </div>
+                                	<a href="javascript:boardDetails(${likelist.bno})"><h3 style="color: #2d2d2d;">
+                                	${likelist.btitle}</h3> </a>
+		                          	<script type="text/javascript">
+										function boardDetails(bno) {
+											location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+										}
+									</script>
+										</div>
+									</div>
                            </c:forEach>
                      </aside>
                   </div>

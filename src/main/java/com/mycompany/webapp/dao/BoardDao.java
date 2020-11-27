@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.PagerDto;
 
 @Repository
@@ -32,15 +33,11 @@ public class BoardDao {
 				return list;
 		}
 		
-		//영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물
-		public List<BoardDto> selectBtitleAll(int blike, String murl) {
-			Map map = new HashMap();
-			map.put("blike", blike);
-			map.put("murl", murl);
-			List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll", map);
+		//영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
+		public List<BoardDto> selectBLikeList(String murl) {				//selectAll : Service가 호출함
+			List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList", murl);		//like받은 것을 찾아서 모두를 실행해라
 			return list;
 		}
-		
 		
 	
 	/*------------------------- 선 -------------------------*/
@@ -88,5 +85,11 @@ public class BoardDao {
 		int rows = sst.insert("mybatis.mapper.board.insert", board);
 		return rows;
 	}
+
+	public List<BoardDto> selectBLikeList1() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList1");		//like받은 것을 찾아서 모두를 실행해라
+		return list;
+	}
+
 
 }
