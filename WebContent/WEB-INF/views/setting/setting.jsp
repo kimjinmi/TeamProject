@@ -8,7 +8,7 @@
 	
 
 	
-<form method="post" action="javascript:updatenickintro()">
+<form method="post" action="updatenickintro">
 	<div id="nicknamecheck" class="row">
 		<div class="col-2">닉네임</div>
 		<div class="col-7">
@@ -20,29 +20,7 @@
 			<a class="genric-btn primary radius small" href="#">중복확인</a>
 		</div>
 	</div>
-</form>
-<script type="text/javascript">
-	/*function updatenickintro(){
-	 	var mnickname = $("#mnickname")
-		$.ajax({
-			url:"doublecheck",
-			data:{}
-			
-		});
-	}  */
-	
-</script>
-
-	<div id="nicknamecheck" class="row" style="display: none;">
-		<div class="col-2">닉네임</div>
-		<div class="col-10">
-	 		<input type="text" id="mnickname" name="mnickname" 
-				class="single-input" value="${member.mnickname}" readonly>
-		</div>
-	</div>
-   
-    <p></p>
-<form method="post" action="updatenickintro">   
+	<p></p>
 	<div class="row">
        	<div class="col-2">소개글</div>
        	<div class="col-10">
