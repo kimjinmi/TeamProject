@@ -19,6 +19,7 @@ public class BoardDto {
 	private String mmyimage;
 	private String mintro;
 	private String blinkcontent;
+	private int commentnum;
 	
 
 	private String count;
@@ -37,6 +38,12 @@ public class BoardDto {
 		this.rcount = rcount;
 	}
 	
+	public int getCommentnum() {
+		return commentnum;
+	}
+	public void setCommentnum(int commentnum) {
+		this.commentnum = commentnum;
+	}
 	public String getMurl() {
 		return murl;
 	}

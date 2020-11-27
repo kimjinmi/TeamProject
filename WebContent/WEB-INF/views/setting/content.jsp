@@ -221,7 +221,7 @@
 										 
 											
 									
-									<li><a href="javascript:mycommentlist()" class="d-flex">
+									<li><a href="javascript:mycommentlist()" style="padding-top: 15px;" class="d-flex">
 											<p>댓글 관리</p></a>
 										<script type="text/javascript">
 										function mycommentlist(){
