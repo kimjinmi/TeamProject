@@ -93,6 +93,7 @@ public class BlogController {
 		if (UserUrl == "") {
 			UserUrl += session.getAttribute("murl");
 		}
+		logger.info(UserUrl);
 		// UserUrl로 memail을 가져온다
 		List<BoardDto> list = service.getBoardList(UserUrl);
 		logger.info("list 값 : " + list);
@@ -148,10 +149,10 @@ public class BlogController {
 
 	@RequestMapping("boardWrite")
 	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
-		/*
-		 * String SessionMurl =(String) session.getAttribute("SessionMurl");
-		 * board.setMurl(SessionMurl);
-		 */
+		String SessionMurl =(String) session.getAttribute("SessionMurl");
+		board.setMurl(SessionMurl);
+		board.setBlike(0);
+		
 		service.boardWrite(board);
 		
 		JSONObject jsonObject = new JSONObject();

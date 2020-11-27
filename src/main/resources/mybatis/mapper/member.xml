@@ -16,7 +16,7 @@
 	
 	<update id="updatenickintro" parameterType="member">
 		UPDATE member SET mnickname=#{mnickname}, mintro=#{mintro}
-		WHERE memail=#{memail}selectByMemail
+		WHERE memail=#{memail}
 	</update>
 	
 	<update id="updateimage" parameterType="member">

@@ -4,7 +4,7 @@
 
 
 	<select id="selectByBno" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate, murl
+		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate, murl, blike
 		from board
 		where bno = #{bno}
 	</select>
