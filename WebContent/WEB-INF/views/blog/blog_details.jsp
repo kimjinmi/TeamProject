@@ -42,13 +42,13 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+ <script
+	src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 </head>
 
 
 <body onload="javascript:onload(${board.bno})">
-	
- <script type="text/javascript">
-//페이지 로드될때 댓글ajax로 가져옴
+	<script type="text/javascript">
 	function onload(bno){
 		$.ajax({
 			url : "blogcommentlist",
@@ -133,10 +133,21 @@
 										src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg"
 										alt="" width="100" height="100" class="rounded-circle">
 									<hr />
-									<h2 class="contact-title">영아나라</h2>
-									<p>혼저옵서예~ 영아 블로그에유 반가워유</p>
+									<h2 class="contact-title">${member.mnickname}</h2>
+									<p>${member.mintro}</p>
 									<hr />
-									<a class="genric-btn primary e-large" href="blog_write">POSTING</a>
+									<a class="genric-btn primary e-large"
+										href="javascript:boardWrite()">POSTING</a>
+									<script type="text/javascript">
+									function boardWrite() {
+										$.ajax({
+											url: "boardWrite",
+											success:function(data){
+												$("#test").html(data);
+											}
+										});
+									}
+								</script>
 								</div>
 
 							</aside>
@@ -268,7 +279,7 @@
 					</div>
 
 					<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list"0>
+					<div id="test" class="col-lg-8 posts-list">
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="assets/img/blog/single_blog_1.png"
@@ -278,7 +289,7 @@
 
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
-								<ul class="blog-info-link mt-3 mb-4">
+								<ul class="blog-info-link mt-3 mb	-4">
 									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
 									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
 									<li><i class="fa fa-calendar" style="color: #999999"></i>
@@ -450,7 +461,8 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<a href="javascript:commentWrite(7)" class="button button-contactForm btn_1 boxed-btn">작성하기</a>
+									<a href="javascript:commentWrite(${board.bno })"
+										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
 									<script type="text/javascript">
 										function commentWrite(bno) {								
 											// 데이터 검사	
@@ -459,40 +471,43 @@
 												alert("2글자 이상 입력해야 합니다.");
 												return;
 											}	
+
+											// 댓글리스트 리로드
+											$.ajax({
+												url : "blogcommentlist",
+												method : "get",
+												data : {
+													bno:bno,
+													rcontent:comment
+												},
+												success : function(data) {
+													$("#comments-area").html(data);
+												}
+												
+												
+										/////댓글리스트 리로드///////////////////
+											});
 											
+											
+											$("#comment").val("");
+									/* 		
 											//데이터베이스 값 입력
 											$.ajax({
 												url:"blogcommentlist";
 												method:"post",
-												data{comment:comment},
+												data{comment:comment
+													},
 												success:function(data){
 													if(data.result = "success"){
 														console.log("성공하였습니다.");
-														
-														// 리스트 불러오기
-														$.ajax({
-															url : "blogcommentlist",
-															method : "get",
-															data : {
-																bno:bno
-															},
-															success : function(data) {
-																$("#comments-area").html(data);
-															}
-														});
+	
 													}
 												}
-											});
+											}); */
 											
 										}
 											
 											
-											
-										
-											
-										
-										
-										
 										
 									</script>
 								</div>

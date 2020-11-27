@@ -1,6 +1,6 @@
 package com.mycompany.webapp.dao;
 
-import java.util.List;
+import java.util.List; 
 
 import javax.annotation.Resource;
 
@@ -15,12 +15,12 @@ public class MemberDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public MemberDto selectbyMemail1(String memail) {
-		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail1", memail);
-		return dbmember;
+	public MemberDto selectByMurl(String murl) {
+		MemberDto Sessionmurl = sst.selectOne("mybatis.mapper.member.selectByMurl", murl);
+		return Sessionmurl;
 	}
 	
-	public MemberDto selectbyMemail(String memail) { //세션 이메일이 들어온다
+	public MemberDto selectbyMemail(String memail) { //유저 url이 들어온다
 		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmember;
 	}
@@ -40,6 +40,24 @@ public class MemberDao {
 		MemberDto dbmimage = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmimage;
 	}
+
+	public int countMemail(String memail) {
+		int rows = sst.selectOne("mybatis.mapper.member.countMemail", memail);
+		return rows;
+	}
+
+	public int countMnickname(String mnickname) {
+		int rows = sst.selectOne("mybatis.mapper.member.countMnickname", mnickname);
+		return rows;
+	}
+
+	public int insert(MemberDto member) {
+		int row = sst.insert("mybatis.mapper.member.insert", member);
+		return row;
+		
+	}
+
+	
 
 	
 

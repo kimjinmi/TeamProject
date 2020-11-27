@@ -12,11 +12,15 @@ public class BoardDto {
 	private int blike; // 게시글 좋아요	
 	private String bimage; // 게	시글 이미지
 	private String memail; // member email -> 아이디
+	private String murl;
 	private int cno; // Category 번호
 	private String mnickname;
 	private String ccontent;
 	private String mmyimage;
+	private String mintro;
+	private String blinkcontent;
 	
+
 	private String count;
 	public String getCount() {
 		return count;
@@ -31,6 +35,27 @@ public class BoardDto {
 	}
 	public void setRcount(String rcount) {
 		this.rcount = rcount;
+	}
+	
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
+
+	public String getMintro() {
+		return mintro;
+	}
+	public void setMintro(String mintro) {
+		this.mintro = mintro;
+	}	   
+
+	public String getBlinkcontent() {
+		return blinkcontent;
+	}
+	public void setBlinkcontent(String blinkcontent) {
+		this.blinkcontent = blinkcontent;
 	}
 	public String getMmyimage() {
 		return mmyimage;

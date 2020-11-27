@@ -230,6 +230,21 @@
 										</script>
 											
 									</li>
+									<li><a href="javascript:myneighborlist()" class="d-flex">
+											<p>이웃 관리</p></a>
+										<script type="text/javascript">
+										function myneighborlist(){
+											$.ajax({
+												url:"myneighborlist",
+												success:function(data) {
+													$("#setting_result").html(data);
+												}
+											});
+											
+										}
+										</script>
+											
+									</li>
 									<li><a href="javascript:deletemember()" class="d-flex">
 											<p>회원 탈퇴</p></a>
 										<script type="text/javascript">

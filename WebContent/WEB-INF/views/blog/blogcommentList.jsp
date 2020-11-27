@@ -22,7 +22,7 @@
 						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center">
 								<h5>
-									<a href="#">${comment.mnickname }</a>
+									<a href="#">${comment.memail }</a>
 								</h5>
 								<p class="date">
 									<fmt:formatDate value="${comment.rdate}"
@@ -30,9 +30,7 @@
 								</p>
 							</div>
 							<div class="reply-btn">
-								<a href="javascript:nextReply(${board.bno}" class="btn-reply text-uppercase"></a> <!-- 답글 -->
-								
-								
+								<a href="javascript:nextReply(${board.bno}" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
 							</div>
 						</div>
 					</div>

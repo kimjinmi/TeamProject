@@ -8,7 +8,7 @@
 		WHERE memail = #{memail} <!-- 이메일에 맞는 정보 반환 -->
 	</select>
 	
-	<select id="selectByMemail1" parameterType="String" resultType="member">
+	<select id="selectByMurl" parameterType="String" resultType="member">
 		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled, murl
 		FROM member
 		WHERE murl = #{memail} <!-- Murl을 얻을꺼 -->
@@ -16,7 +16,7 @@
 	
 	<update id="updatenickintro" parameterType="member">
 		UPDATE member SET mnickname=#{mnickname}, mintro=#{mintro}
-		WHERE memail=#{memail}
+		WHERE memail=#{memail}selectByMemail
 	</update>
 	
 	<update id="updateimage" parameterType="member">
@@ -24,6 +24,21 @@
 		WHERE memail=#{memail}
 	</update>
 	
+	<select id="countMemail" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE memail=#{memail}
+	</select>
+	
+	<select id="countMnickname" parameterType="String" resultType="int">
+		SELECT count(*)
+		FROM member
+		WHERE mnickname=#{mnickname}
+	</select>
+	
+	<insert id="insert" parameterType="member">
+		INSERT INTO member(memail, mpassword, mnickname, mphonenum, mintro, mmyimage, menabled, mrole, murl) 
+		VALUES (#{memail},#{mpassword},#{mnickname}, #{mphonenum},#{mintro},#{mmyimage},#{menabled},#{mrole},#{murl})
+	</insert>
 </mapper>
 
-	

@@ -8,7 +8,6 @@ public class ReplyDto {
 	private int firstreply; // 상위 댓글 번호
 	private String memail; // member email -> 아이디
 	private int bno; // 게시글 번호 
-	private String mnickname;
 	private Date rdate;
 	private int replysum; // 댓글 총 갯수
 	
@@ -25,12 +24,11 @@ public class ReplyDto {
 	public void setRdate(Date rdate) {
 		this.rdate = rdate;
 	}
-	public String getMnickname() {
-		return mnickname;
-	}
-	public void setMnickname(String mnickname) {
-		this.mnickname = mnickname;
-	}
+
+	/*
+	 * public String getMnickname() { return mnickname; } public void
+	 * setMnickname(String mnickname) { this.mnickname = mnickname; }
+	 */
 	public int getRno() {
 		return rno;
 	}

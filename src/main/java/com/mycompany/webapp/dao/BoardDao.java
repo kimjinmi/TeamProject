@@ -1,10 +1,11 @@
 package com.mycompany.webapp.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.logging.log4j2.Log4j2AbstractLoggerImpl;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -21,6 +22,16 @@ public class BoardDao {
 		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno",bno);
 		return board;
 	}
+	
+		//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
+		public List<BoardDto> categoryListLink(int cno, String murl) {
+			Map map = new HashMap();
+			map.put("cno", cno);
+			map.put("murl", murl);
+			List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);
+				return list;
+		}
+
 	
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
@@ -45,7 +56,6 @@ public class BoardDao {
 	
 	
 	/*------------------------- 선 -------------------------*/
-	
 	
 	public List<BoardDto> selectUserBoard(String memail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
@@ -78,6 +88,11 @@ public class BoardDao {
 
 	public int myBoardCount(String memail) {
 		int rows = sst.selectOne("mybatis.mapper.board.myBoardCount", memail);
+		return rows;
+	}
+
+	public int insert(BoardDto board) {
+		int rows = sst.insert("mybatis.mapper.board.insert", board);
 		return rows;
 	}
 

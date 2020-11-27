@@ -1,5 +1,5 @@
 ClassicEditor 
-    .create( document.querySelector('#textbox')) 
+    .create( document.querySelector('#bcontent')) 
     .then( editor => { 
         console.log( editor );
     } ) 

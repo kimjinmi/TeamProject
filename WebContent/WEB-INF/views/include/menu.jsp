@@ -21,7 +21,7 @@
 	        </li>
             <li><a href="#">BLOG</a>
             	<ul class="submenu">
-					<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${UserUrl}">BLOG</a></li>
+					<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}">BLOG</a></li>
 					<%-- <li><a href="<%=application.getContextPath()%>/blog/blog_details">BLOG_DETAILS</a></li> --%>
 					<li><a href="<%=application.getContextPath()%>/setting/content">SETTING</a></li>
 					
@@ -32,7 +32,7 @@
 			<li>
 				<div class="header-right-btn ml-40">
 					<sec:authorize access="isAnonymous()">
-						<a href="<%=application.getContextPath()%>/signup/content" class="btn btn-sm">SIGN UP</a> 
+						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn btn-sm">SIGN UP</a> 
 						<a href="<%=application.getContextPath()%>/signin/content" class="btn btn-sm">SIGN IN</a>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
