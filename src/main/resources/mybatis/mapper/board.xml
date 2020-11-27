@@ -163,8 +163,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="board">
-		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl)
-		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl} )
+		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl, blike)
+		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl}, #{blike})
 	</insert>
 
 <!--  
