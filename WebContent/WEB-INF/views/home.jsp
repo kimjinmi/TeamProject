@@ -87,7 +87,7 @@
                                     <sec:authorize access="isAnonymous()">
                                     	<p data-animation="fadeInUp" data-delay="0.4s"><strong>로그인 하세요</strong> </p>
                                     </sec:authorize>:
-                                    <a href="<%=application.getContextPath()%>/blog/blog_write" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
+                                    <a href="#" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
 									<!-- <a href="javascript:sessionconnect()" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">세션연결</a> -->
 									<script type="text/javascript">
 									function sessionconnect(){

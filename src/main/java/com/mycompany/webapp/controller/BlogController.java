@@ -137,6 +137,8 @@ public class BlogController {
 	 * logger.info("실행"); return "blog/blog_write"; }
 	 */
 
+	
+	//--------------------------- (선) 게시물 쓰기 시작 -------------------------
 	@GetMapping("/boardWrite")
 	public String boardWrite(Model model, BoardDto board) {
 		List<CategoryDto> category_list = service.categoryList();
@@ -162,6 +164,7 @@ public class BlogController {
 		out.flush();
 		out.close();
 	}
+	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
 	@GetMapping("/blogcommentlist")
 	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session)
