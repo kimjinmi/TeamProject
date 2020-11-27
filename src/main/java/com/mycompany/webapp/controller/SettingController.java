@@ -32,6 +32,13 @@ import com.mycompany.webapp.service.SettingService;
 public class SettingController {
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 	
+	@RequestMapping("/manager")
+	public String manager(MemberDto memberdto, HttpSession session, Model model) {
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		MemberDto member = service.sessionconnect(memberdto);
+		model.addAttribute("member", member);
+		return "manager/content";
+	}
 	
 	@RequestMapping("/content")
 	public String content(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject

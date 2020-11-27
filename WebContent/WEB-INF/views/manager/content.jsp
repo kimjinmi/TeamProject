@@ -91,7 +91,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>Setting</h2>
+								<h2>MANAGER</h2>
 							</div>
 						</div>
 					</div>
@@ -115,7 +115,7 @@
 								
 								<hr/>
 		                        <!-- 게시글 작성 버튼 -->
-		                        <a class="genric-btn primary e-large" href="manager">MANAGER</a>
+		                        <a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
 		                        
 		                        <!-- 게시글 작성 버튼 -->
 		                        </div>
@@ -127,18 +127,7 @@
 									
 									<li><a href="javascript:setting()" class="d-flex">
 										<p>내 페이지 설정</p></a>
-										<script type="text/javascript">
-											function setting(){
-												$.ajax({
-													url:"setting",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
 										
-										</script>
 											
 									</li>
 									<li><a href="javascript:imagechange()" class="d-flex">
