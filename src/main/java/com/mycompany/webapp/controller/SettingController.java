@@ -243,7 +243,7 @@ public class SettingController {
 		logger.info(member.getMemail());
 		logger.info(member.getMintro());
 		logger.info(member.getMnickname());
-		//service.membernickintroupdate(member);
+		service.membernickintroupdate(member);
 		return "redirect:/setting/content";
 	}
 	
