@@ -237,12 +237,13 @@ public class SettingController {
 	}
 	
 	@PostMapping("/updatenickintro")
-	public String updatenickintro(MemberDto member){
-		
+	public String updatenickintro(MemberDto member, HttpSession session){
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		member.setMemail(sessionMemail);
 		logger.info(member.getMemail());
 		logger.info(member.getMintro());
 		logger.info(member.getMnickname());
-		service.membernickintroupdate(member);
+		//service.membernickintroupdate(member);
 		return "redirect:/setting/content";
 	}
 	
