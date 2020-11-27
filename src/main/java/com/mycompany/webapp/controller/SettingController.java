@@ -71,19 +71,23 @@ public class SettingController {
 	
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		//logger.info("실행");
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		logger.info(sessionMemail);
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		
+		
 		//페이징
-		int totalRows = service.getTotalMyRow(sessionMemail);
-		logger.info("totalRows: "+ totalRows);
-		//PagerDto pager = new PagerDto(sessionMemail, 5, 5, totalRows, pageNo);
+		int totalRows = service.getTotalMyRow(SessionMurl); //
 		
-		//List<BoardDto> listpage = service.getBoardListPage(pager);
-		List<BoardDto> list = service.getBoardList(sessionMemail);
+		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
 		
-		//model.addAttribute("pager", listpage);
-		model.addAttribute("list", list);
+		
+		
+		List<BoardDto> listpage = service.getBoardListPage(pager);
+		//List<BoardDto> list = service.getBoardList(sessionMemail);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", listpage);
 	
 		return "setting/mybloglist";
 	}

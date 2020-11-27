@@ -86,8 +86,8 @@ public class BoardDao {
 		return rows;
 	}
 
-	public int myBoardCount(String memail) {
-		int rows = sst.selectOne("mybatis.mapper.board.myBoardCount", memail);
+	public int myBoardCount(String murl) {
+		int rows = sst.selectOne("mybatis.mapper.board.myBoardCount", murl);
 		return rows;
 	}
 

@@ -113,23 +113,23 @@
 	
 	
 	<!-- 선명 - 페이지별로 목록 불러오기   --> 
-	<!-- <select id="selectByPage" parameterType="pager" resultType="board">
-		select  ccontent, rnum, bno, btitle, bdate, blike, memail
-		from (select rownum as rnum, ccontent, bno, btitle, bdate, blike, memail
-		      from (select ccontent, bno, btitle, bdate, blike, memail
+	<select id="selectByPage" parameterType="pager" resultType="board">
+		select ccontent, rnum, bno, btitle, bdate, blike, murl
+		from (select rownum as rnum, ccontent, bno, btitle, bdate, blike, murl
+		      from (select ccontent, bno, btitle, bdate, blike, murl
 		            from category c, board b
-		            where b.cno = c.cno and b.memail = #{memail}
+		            where b.cno = c.cno and b.murl = #{murl}
 		            order by bdate desc
 		                )
 		      where rownum &lt;=#{endRowNo}
 		        )
 		where rnum &gt;=#{startRowNo}
-	</select>  -->
+	</select>  
 
 	<select id="myBoardCount" parameterType="String" resultType="int">
 		select count(*)
 		from board
-		where memail = #{memail}
+		where murl = #{murl}
 	</select>
 	
 	<insert id="insert" parameterType="board">

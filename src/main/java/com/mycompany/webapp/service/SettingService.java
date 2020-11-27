@@ -66,13 +66,13 @@ public class SettingService {
 
 	
 	  public List<BoardDto> getBoardListPage(PagerDto pager) { 
-		  logger.info("#######" + pager);
+		  
 		  List<BoardDto> list = boarddao.selectByPage(pager); 
 		  return list; 
 	  }
 
-	public int getTotalMyRow(String memail) {
-		int getTotalMyRow = boarddao.myBoardCount(memail);
+	public int getTotalMyRow(String murl) {
+		int getTotalMyRow = boarddao.myBoardCount(murl);
 		return getTotalMyRow;
 	}
 	  
