@@ -96,5 +96,10 @@ public class BoardDao {
 		return rows;
 	}
 
+	public int deleteByBno(int bno) {
+		int rows = sst.delete("mybatis.mapper.board.delete", bno);
+		return rows;
+	}
+
 	
 }

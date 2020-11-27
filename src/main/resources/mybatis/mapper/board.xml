@@ -155,7 +155,11 @@
 		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
 <!--  댓글 입력 -->	
-
+	
+<!--  게시글 삭제 -->
+	<delete id="deleteByBno">
+		delete from board whre bno=#{bno}
+	</delete>
 	
 	
 </mapper>

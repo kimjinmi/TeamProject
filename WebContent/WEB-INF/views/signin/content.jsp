@@ -122,14 +122,14 @@
 					<div class="section-top-border" style="padding-top: 30px;">
 						<ul>
 							<li style="padding-bottom:10px">
-								아이디와 비밀번호를 입력해 주세요
+								이메일와 비밀번호를 입력해 주세요
 							</li>
 								</ul>
 									<form method="post" action="<%=application.getContextPath()%>/SIGNIN">								
 										<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 										<div class="input-group mb-3">
                    							<input type="text" class="form-control" name="memail" value="${memail}"
-                   							placeholder='  아이디를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  아이디를 입력하세요'" 
+                   							placeholder='  이메일을 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  이메일을 입력하세요'" 
                    								style="height:45px; font-size:16px;">
 										</div>
 										<div class="input-group mb-3">
@@ -141,7 +141,7 @@
 											<input class="genric-btn info circle" type="submit" name="submit" value="SIGN IN" style="width: 100%;"></a>
 										</div>
 										<a class="ex" href="#" style="color:black; font-size:7px;">이메일 찾기></a> 
-									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signin/passwordfind" style="color: black; font-size:7px;">비밀번호 찾기></a> 
+									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signin/findpassword" style="color: black; font-size:7px;">비밀번호 찾기></a> 
 									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signup/content"
 														style="color:black; font-size:7px;">회원가입</a>
 									</form>

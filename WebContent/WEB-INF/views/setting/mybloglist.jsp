@@ -9,9 +9,27 @@
 		<div class="container">
 			
 		      <div class="row">
-		      		<div class="col-md-9"></div>
-		           <!-- <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div> -->
-		           <div class="col-md-3"><a href="#" class="genric-btn danger radius small">게시글 삭제</a></div>
+		      	<div class="col-md-9"></div>
+		           <!-- <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div> -->	          
+		           <div class="col-md-3">
+		              <c:if test="${sessionMurl == member.url}">
+		           		 <a href="javascript:boarddelete(${board.bno})" class="genric-btn danger radius small">게시글 삭제</a>
+		           		 <script type="text/javascript">
+						 function boarddelete(bno) {
+							$.ajax({
+								url : "boarddelete",
+								datd : {bno:bno},
+								method : "post",
+								success : function(data) {
+									if(data.result == "success") {
+										
+										}
+									} 
+								});
+							 }
+		           		 </script>
+		           	  </c:if>
+		           </div>
 		      </div>
 		    </div>
 
@@ -21,10 +39,10 @@
 		         	<c:forEach var="board" items="${list}">  	
 			         	<div class="row">
 			              <div class="col-sm-1">
-			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label>
+			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox" name="del_check" value="${board.bno}"></label>
 			              </div>
 			              <div class="col-sm-11">
-				              <a class="d-inline-block" href="#"><!-- 여기다가 글 클릭시 연결되는 링크 작성하기 -->
+				              <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}"><!-- 여기다가 글 클릭시 연결되는 링크 작성하기 -->
 				                <h2 class="blog-head" style="color: #2d2d2d;">${board.btitle}</h2>  
 				              </a>
 				              <ul class="blog-info-link">
@@ -68,6 +86,8 @@
 		             </div>
 	            </div>
 	        </div>
+	        
+	        
 	 
 	 <%--  <%-- <div><a>${pager.murl}</a></div> 
 	  <div class="blog_details">
@@ -94,19 +114,5 @@
 			</c:if> <a class="genric-btn default" href="javascript:mybloglist(${pager.totalPageNo})">맨끝</a></td>
 		</tr>  --%>
 		
-	<script type="text/javascript">
-			/* function boardList(pageNo) {
-				if(!pageNo) {
-					pageNo = 1;
-				}
-				$.ajax({
-					url:"boardList",
-					data:{pageNo:pageNo},
-					success:function(data) {
-						$("#setting_result").html(data);
-						
-						}
-					});
-				} */
-		</script>
+	
  

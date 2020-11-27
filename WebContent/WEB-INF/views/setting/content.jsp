@@ -187,20 +187,20 @@
 										</script>
 									</li>	
 									 <script type="text/javascript">
-			function boardList(pageNo) {
-				if(!pageNo) {
-					pageNo = 1;
-				}
-				$.ajax({
-					url:"boardList",
-					data:{pageNo:pageNo},
-					success:function(data) {
-						$("#setting_result").html(data);
-						
-						}
-					});
-				}
-		</script>
+									function boardList(pageNo) {
+										if(!pageNo) {
+											pageNo = 1;
+										}
+										$.ajax({
+											url:"boardList",
+											data:{pageNo:pageNo},
+											success:function(data) {
+												$("#setting_result").html(data);
+												
+												}
+											});
+										}
+										</script>
 								<!-- 	  <script type="text/javascript">
 										function mypagelist(pageNo) {
 											if(!pageNo) {

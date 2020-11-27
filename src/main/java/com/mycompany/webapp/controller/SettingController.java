@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -68,7 +70,7 @@ public class SettingController {
 		
 	}
 	
-	
+	//게시글 관리
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		//logger.info("실행");
@@ -91,21 +93,33 @@ public class SettingController {
 	
 		return "setting/mybloglist";
 	}
-/*	
-	@RequestMapping("/mypagelist")
-	public String mypagelist(@RequestParam(defaultValue="1") int pageNo,HttpSession session, Model model) {
-		logger.info("페이지 리스트 실행");
-		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		int totalRows = service.getTotalRows();
-		PagerDto pager = new PagerDto(5, 5, totalRows, pageNo);
-		List<BoardDto> list = service.getBoardListPage(pager);
-		//List<BoardDto> list = service.getBoardList(sessionMemail);
-		model.addAttribute("list", list);
-		model.addAttribute("pager", pager);
+	
+	//댓글 관리
+	/*@RequestMapping("/myreplylist")
+	public String myreplylist() {
 		
-		return "setting/mybloglist";
+		return "setting/myreplylist";
+	}*/
+	
+	//게시물 삭제
+	@RequestMapping("/boarddelete")
+	public void boarddelete(int bno, HttpServletResponse response, HttpServletRequest reuqest) throws Exception {
+		
+		
+		service.boardDelete(bno);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); 
+		// 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	
 	}
-	*/
+	
 	
 	@RequestMapping("/mycommentlist")
 	public String mycommentlist(HttpSession session, Model model) { //http://localhost:8080/teamproject

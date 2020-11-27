@@ -62,18 +62,22 @@ public class SettingService {
 		int totalRows = boarddao.countAll();
 		return totalRows;
 	}
-	//댓글 총 갯수 불러오기
 
-	
-	  public List<BoardDto> getBoardListPage(PagerDto pager) { 
-		  
-		  List<BoardDto> list = boarddao.selectByPage(pager); 
-		  return list; 
-	  }
+
+
+    public List<BoardDto> getBoardListPage(PagerDto pager) { 
+	  
+	    List<BoardDto> list = boarddao.selectByPage(pager); 
+	    return list; 
+    }
 
 	public int getTotalMyRow(String murl) {
 		int getTotalMyRow = boarddao.myBoardCount(murl);
 		return getTotalMyRow;
+	}
+	
+	public void boardDelete(int bno) {
+		int rows = boarddao.deleteByBno(bno);
 	}
 	  
 	  
