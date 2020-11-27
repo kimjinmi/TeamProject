@@ -129,19 +129,20 @@
                         <p>${member.mintro}</p>
                         <hr/>
                         <!-- 게시글 작성 버튼 -->
-                        <c:if test="${UserUrl=='category.murl'}" var="pbutton" scope="session">
-                        <a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
-                        </c:if>
-                        <script type="text/javascript">
-                           function boardWrite() {
-                              $.ajax({
-                                 url: "boardWrite",
-                                 success:function(data){
-                                    $("#categoryListLinkBoard").html(data);
-                                 }
-                              });
-                           }
-                        </script>
+                        <c:if test="${member.murl==SessionMurl}">		<!-- member가 가지고 있는 murl과 session에 저장된 murl이 같을 때 (내 블로그일 때) -->
+							<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+				 				 <script type="text/javascript">
+                          			 function boardWrite() {
+                            			$.ajax({
+                                 			url: "boardWrite",
+                               				success:function(data){
+                                    			$("#categoryListLinkBoard").html(data);
+                                 			}
+                              			});
+                           			}
+                       			 </script>
+						</c:if>
+                       
                         <!-- 게시글 작성 버튼 -->
                      </div>
                         
