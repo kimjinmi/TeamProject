@@ -128,33 +128,74 @@
                 <div class="row">
                     <div class="col-12">
                         <h2 class="contact-title">문의사항</h2>
+                         
                     </div>
-                    <div class="col-lg-8">
-                        <form class="form-contact contact_form" action="contactform" method="post" id="contactForm" novalidate="novalidate">
+                    <div class="col-lg-8" id="contactform">
+                        <form class="form-contact contact_form">
                             <div class="row">
 	                            <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
+                                        <input class="form-control" name="isubject" id="isubject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
                                     </div>
+                                    <span id="isubjectError" style="color:#CC3300;"></span>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder=" Enter Message"></textarea>
+                                        <textarea class="form-control w-100" name="imessage" id="imessage" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder=" Enter Message"></textarea>
                                     </div>
+                                    <span id="imessageError" style="color:#CC3300;"></span>
                                 </div>
                                 
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email" value="${sessionMemail}">
+                                        <input class="form-control valid" name="iemail" id="iemail" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email" value="${sessionMemail}">                                        
                                     </div>
+                                    <span id="iemailError" style="color:#CC3300;"></span>
                                 </div>
                                 
                             </div>
                             <div class="col-sm-12">
-                                <button type="submit" style="width: 100%" class="button button-contactForm boxed-btn">Send</button>
+                                <a style="width: 100%" href="javascript:contactform()" class="button button-contactForm boxed-btn">Send</a>
+                            </div>
+                            <div class="col-sm-12">
+	                            <span id="contact_result" style="text-align:center; color:#CC3300;">
+	                            </span>
                             </div>
                         </form>
+                        <script type="text/javascript">
+                        function contactform(){
+                        	var isubject = $("#isubject").val().trim();
+                        	if(isubject == "") { $("#isubjectError").text("필수"); }
+            				else { $("#isubjectError").text(""); }
+                        	
+                        	var imessage = $("#imessage").val().trim();
+                        	if(imessage == "") { $("#imessageError").text("필수"); }
+            				else { $("#imessageError").text(""); }
+                        	
+                        	var iemail = $("#iemail").val().trim();
+                        	if(imessage == "") { $("#iemailError").text("필수"); }
+            				else { $("#iemailError").text(""); }
+                        	
+                        	if(isubject == "" || imessage == "" || iemail == "") {
+            					return;	
+            				} 
+                        	
+                        	$.ajax({
+                        		url:"contactform",
+                        		method:"post",
+                        		data:{isubject:isubject, imessage:imessage, iemail:iemail},
+                        		success:function(data){
+                        			if(data.result == "success") {
+                        				$("#contact_result").text("문의가 완료되었습니다.");
+            						}
+                        		}
+                        	});
+            				
+            				
+                        }
+                        </script>
                     </div>
+                    
                     <div class="col-lg-3 offset-lg-1">
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-home"></i></span>
