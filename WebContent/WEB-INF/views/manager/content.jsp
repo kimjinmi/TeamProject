@@ -159,7 +159,7 @@
 											}
 											</script>
 									</li>
-									<li><a href="javascript:mybloglist()" class="d-flex">
+									<li><a href="javascript:mybloglist()" class="d-flex" >
 											<p>게시글 관리</p></a>
 										<script type="text/javascript">
 										function mybloglist(pageNo){
@@ -176,20 +176,21 @@
 										}
 										</script>	
 									</li>
-									<li><a href="javascript:mybloglist()" class="d-flex">
-											<p>댓글 관리</p></a>
-										<script type="text/javascript">
-										function mycommentlist(){
-											$.ajax({
-												url:"mycommentlist",
-												success:function(data) {
-													$("#setting_result").html(data);
-												}
-											});
-											
-										}
-										</script>
-											
+									<li><a href="javascript:mybloglist()" class="d-flex" style="padding-top: '15px';">
+										
+												<p>댓글 관리</p></a>
+											<script type="text/javascript">
+											function mycommentlist(){
+												$.ajax({
+													url:"mycommentlist",
+													success:function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+												
+											}
+											</script>
+												
 									</li>
 									
 									<!-- <li><a href="javascript:mycommentlist()" class="d-flex">
