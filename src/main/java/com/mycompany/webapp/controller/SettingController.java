@@ -22,9 +22,11 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.SettingService;
 
 @Controller
@@ -32,6 +34,13 @@ import com.mycompany.webapp.service.SettingService;
 public class SettingController {
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 	
+	@RequestMapping("/manager")
+	public String manager(MemberDto memberdto, HttpSession session, Model model) {
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		MemberDto member = service.sessionconnect(memberdto);
+		model.addAttribute("member", member);
+		return "manager/content";
+	}
 	
 	@RequestMapping("/content")
 	public String content(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
@@ -44,16 +53,59 @@ public class SettingController {
 		return "setting/content";
 	}
 	
-	@RequestMapping("/mybloglist")
-	public String mybloglist(HttpSession session, Model model) { //http://localhost:8080/teamproject
+	@RequestMapping("/myneighborlist")
+	public String myneighborlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
 
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		List<BoardDto> list = service.getBoardList(sessionMemail);
-		model.addAttribute("list", list);
-		return "setting/mybloglist";
+		String SessionMnickname = (String) session.getAttribute("SessionMnickname"); //대소문자조심
+		String SessionMurl = (String) session.getAttribute("SessionMurl"); //대소문자조심
+		logger.info("memail :"+sessionMemail);
+		logger.info("mnickname :"+SessionMnickname);
+		logger.info("murl :"+SessionMurl);
+		
+		return "setting/myneighborlist";
 		
 	}
+	
+	
+	@RequestMapping("/mybloglist")
+	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
+		//logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		
+		
+		//페이징
+		int totalRows = service.getTotalMyRow(SessionMurl); //
+		
+		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
+		
+		
+		
+		List<BoardDto> listpage = service.getBoardListPage(pager);
+		//List<BoardDto> list = service.getBoardList(sessionMemail);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", listpage);
+	
+		return "setting/mybloglist";
+	}
+/*	
+	@RequestMapping("/mypagelist")
+	public String mypagelist(@RequestParam(defaultValue="1") int pageNo,HttpSession session, Model model) {
+		logger.info("페이지 리스트 실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.getTotalRows();
+		PagerDto pager = new PagerDto(5, 5, totalRows, pageNo);
+		List<BoardDto> list = service.getBoardListPage(pager);
+		//List<BoardDto> list = service.getBoardList(sessionMemail);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		
+		return "setting/mybloglist";
+	}
+	*/
 	
 	@RequestMapping("/mycommentlist")
 	public String mycommentlist(HttpSession session, Model model) { //http://localhost:8080/teamproject

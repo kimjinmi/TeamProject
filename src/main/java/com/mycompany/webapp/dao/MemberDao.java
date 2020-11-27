@@ -15,12 +15,12 @@ public class MemberDao {
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public MemberDto selectByMurl(String murl) {
+	public MemberDto selectByMurl(String murl) { //유저 url이 들어온다
 		MemberDto Sessionmurl = sst.selectOne("mybatis.mapper.member.selectByMurl", murl);
 		return Sessionmurl;
 	}
 	
-	public MemberDto selectbyMemail(String memail) { //유저 url이 들어온다
+	public MemberDto selectbyMemail(String memail) { 
 		MemberDto dbmember = sst.selectOne("mybatis.mapper.member.selectByMemail", memail);
 		return dbmember;
 	}

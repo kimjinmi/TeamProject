@@ -141,9 +141,13 @@ public class BlogController {
 	}
 
 	@RequestMapping("boardWrite")
-	public void blog_write(BoardDto board, HttpServletResponse response) throws Exception {
+	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
+		/*
+		 * String SessionMurl =(String) session.getAttribute("SessionMurl");
+		 * board.setMurl(SessionMurl);
+		 */
 		service.boardWrite(board);
-
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();

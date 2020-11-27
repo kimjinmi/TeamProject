@@ -117,19 +117,49 @@
 <!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
 	
 	<select id="selectAll" parameterType="String" resultType="board">
-		select bno, btitle, blike, b.cno ,memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
-		from board b, category c
-		where b.cno = c.cno and memail=#{memail}
-		order by bno desc
-		
+		select c.ccontent, b.bno, b.btitle, b.bdate, b.blike, b.memail
+		from category c, board b
+		where b.cno = c.cno and b.memail = #{memail}
+		order by b.bdate desc
+	</select>
+	
+	
+	<!-- 선명 - 페이지별로 목록 불러오기   --> 
+	<select id="selectByPage" parameterType="pager" resultType="board">
+		select ccontent, rnum, bno, btitle, bdate, blike, murl
+		from (select rownum as rnum, ccontent, bno, btitle, bdate, blike, murl
+		      from (select ccontent, bno, btitle, bdate, blike, murl
+		            from category c, board b
+		            where b.cno = c.cno and b.murl = #{murl}
+		            order by bdate desc
+		                )
+		      where rownum &lt;=#{endRowNo}
+		        )
+		where rnum &gt;=#{startRowNo}
+	</select>  
+
+	<select id="myBoardCount" parameterType="String" resultType="int">
+		select count(*)
+		from board
+		where murl = #{murl}
 	</select>
 	
 	<insert id="insert" parameterType="board">
-		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent)
-		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent} )
+		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl)
+		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl} )
 	</insert>
 
-
+<!--  
+		<select id="commentinsert" parameterType="reply">
+		
+			<selectKey order="BEFORE" resultType="int" keyProperty="rno">
+			 select seq_reply_rno.nextval from dual
+			</selectKey>
+		
+			insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
+				values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
+		</select>
+-->
 
 <!--  댓글 입력값 -->
 	<insert id="commentinsert" parameterType="reply">

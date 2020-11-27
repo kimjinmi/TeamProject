@@ -1,9 +1,12 @@
+var myEditor;
+
 ClassicEditor 
-    .create( document.querySelector('#textbox')) 
+    .create( document.querySelector('#bcontent')) 
     .then( editor => { 
         console.log( editor );
+		myEditor = editor;
     } ) 
-    .catch( error => { 
-        console.error( error ); 
+    .catch( err => { 
+        console.error( err.stack ); 
     } );
 	

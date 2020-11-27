@@ -40,8 +40,8 @@
 
 			<!-- 내용 입력 시작 (board.bcontent) -->
 			<h2 style="color: #2d2d2d;">내용</h2>
-			<textarea id="bcontent" name="bcontent" style="width: 100%; height: 800px;"></textarea>
-			<span id="bcontentError" class="error"></span>
+			<textarea id="bcontent" name="bcontent" style="width: 100%; height: 100%;"></textarea>
+		    <span id="bcontentError" class="error"></span> 
 			<!-- 내용 입력 끝 (board.bcontent) -->
 		</div>
 	</div>
@@ -80,17 +80,18 @@
 					if(btitle==""){$("#btitleError").text("필수");}
 					else { $("#btitleError").text("");} 
 
-					var bcontent = $("#bcontent").val().trim();
-					if(bcontent == "") { $("#bcontentError").text("필수"); }
-					else { $("#bcontentError").text(""); }
+					var bcontent = myEditor.getData(); 
+					/* var bcontent = $("#bcontent").val(data).trim();  */
+					 if(bcontent == "") { $("#bcontentError").text("필수"); }
+					else { $("#bcontentError").text(""); } 
 
-					if (btitle == "" || bcontent == "") {
+				    if (btitle == "" || bcontent == "") {
 						return;
-					} 
+					}  
 					
 					var blinkcontent = $("#blinkcontent").val().trim();
 					var memail = $("#memail").val().trim();
-
+					
 					$.ajax({
 						url : "boardWrite",
 						method : "post",
@@ -114,3 +115,4 @@
 		<!-- 글쓰기 버튼 끝 (확인) -->
 	</div>
 </form>
+  <script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script> 

@@ -9,8 +9,15 @@ public class ReplyDto {
 	private String memail; // member email -> 아이디
 	private int bno; // 게시글 번호 
 	private Date rdate;
+	private int replysum; // 댓글 총 갯수
 	
 	
+	public int getReplynum() {
+		return replysum;
+	}
+	public void setReplynum(int replysum) {
+		this.replysum = replysum;
+	}
 	public Date getRdate() {
 		return rdate;
 	}
