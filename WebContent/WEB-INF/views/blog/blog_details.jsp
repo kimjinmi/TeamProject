@@ -179,8 +179,7 @@
 								</ul>
 							</aside>
 							<aside class="single_sidebar_widget popular_post_widget">
-								<h3 class="widget_title" style="color: #2d2d2d;">Recent
-									Posting</h3>
+								<h3 class="widget_title" style="color: #2d2d2d;">Recent Posting</h3>
 								<c:forEach var="btitle" items="${btitlelist}">
 									<div class="media post_item">
 										<img src="assets/img/post/post_1.png" alt="post">

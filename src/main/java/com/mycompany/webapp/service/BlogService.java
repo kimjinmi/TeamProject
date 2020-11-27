@@ -57,8 +57,15 @@ public class BlogService {
 		return list;
 	}
 	
-	public List<BoardDto> BoardList() {															//영아
-		List<BoardDto> list = boardDao.selectBtitleAll();
+	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때
+	public List<BoardDto> bcno(int cno, String userUrl) {
+			List<BoardDto> list = boardDao.categoryListLink(cno, userUrl);
+			return list;
+		}
+	
+	//영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물
+	public List<BoardDto> BoardList(int blike, String userUrl) {	
+		List<BoardDto> list = boardDao.selectBtitleAll(blike, userUrl);
 		return list;
 	}
 
@@ -76,12 +83,7 @@ public class BlogService {
 		replyDao.commentinsert(reply);
 	}
 
-	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때
-	public List<BoardDto> bcno(int cno, String userUrl) {
-			List<BoardDto> list = boardDao.categoryListLink(cno, userUrl);
-			return list;
-		}
-		
+
 	public void boardWrite(BoardDto board) {
 		boardDao.insert(board);
 	}

@@ -31,7 +31,17 @@ public class BoardDao {
 			List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);
 				return list;
 		}
-
+		
+		//영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물
+		public List<BoardDto> selectBtitleAll(int blike, String murl) {
+			Map map = new HashMap();
+			map.put("blike", blike);
+			map.put("murl", murl);
+			List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll", map);
+			return list;
+		}
+		
+		
 	
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
@@ -61,12 +71,7 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
 		return list;
 	}
-	
-	public List<BoardDto> selectBtitleAll() {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll");
-		return list;
-	}
-	
+
 
 	public List<BoardDto> selectByPage(PagerDto pager) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectByPage", pager);
@@ -83,6 +88,5 @@ public class BoardDao {
 		int rows = sst.insert("mybatis.mapper.board.insert", board);
 		return rows;
 	}
-
 
 }
