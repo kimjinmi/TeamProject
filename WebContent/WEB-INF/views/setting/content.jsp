@@ -173,18 +173,54 @@
 									<li><a href="javascript:mybloglist()" class="d-flex">
 										<p>게시글 관리</p></a>
 										<script type="text/javascript">
-										function mybloglist(){
+										function mybloglist(pageNo){
 											$.ajax({
 												url:"mybloglist",
+												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
 												}
 											});
 											
 										}
+										
 										</script>
+									</li>	
+									 <script type="text/javascript">
+			function boardList(pageNo) {
+				if(!pageNo) {
+					pageNo = 1;
+				}
+				$.ajax({
+					url:"boardList",
+					data:{pageNo:pageNo},
+					success:function(data) {
+						$("#setting_result").html(data);
+						
+						}
+					});
+				}
+		</script>
+								<!-- 	  <script type="text/javascript">
+										function mypagelist(pageNo) {
+											if(!pageNo) {
+												pageNo = 1;
+											}
+											$.ajax({
+												url:"mypagelist",
+												data:{pageNo:pageNo},
+												success:function(data) {
+													$("#setting_result").html(data);
+													
+													}
+												});
+											}
+									</script>
+									 -->
+									
+										 
 											
-									</li>
+									
 									<li><a href="javascript:mycommentlist()" class="d-flex">
 											<p>댓글 관리</p></a>
 										<script type="text/javascript">
