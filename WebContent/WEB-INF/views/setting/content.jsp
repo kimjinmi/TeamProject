@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -112,11 +113,12 @@
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
-								
-								<hr/>
+					
+								<sec:authorize access="hasRole('ROLE_MANAGER')">
+		                    	<hr/>
 		                        <!-- 게시글 작성 버튼 -->
-		                        <a class="genric-btn primary e-large" href="manager">MANAGER</a>
-		                        
+		                        	<a class="genric-btn primary e-large" href="manager">MANAGER</a>
+		                        </sec:authorize>
 		                        <!-- 게시글 작성 버튼 -->
 		                        </div>
 							</aside>
