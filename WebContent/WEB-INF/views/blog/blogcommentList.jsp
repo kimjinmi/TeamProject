@@ -31,8 +31,14 @@
 							</div>
 							<div class="reply-btn">
 								<a href="javascript:nextReply(${board.bno}" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
+								
 							</div>
+							
 						</div>
+						<c:if test="${comment.murl == SessionMurl}">
+									<a href="blog" class="genric-btn danger small">삭제</a>
+									<a href="blog" class="genric-btn primary small">수정</a>
+						</c:if>
 					</div>
 				</div>
 			</div>

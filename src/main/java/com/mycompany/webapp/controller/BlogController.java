@@ -76,6 +76,7 @@ public class BlogController {
 		 model.addAttribute("likelist", likelist);
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
+		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
 
 		return "blog/blog_details";
 	}

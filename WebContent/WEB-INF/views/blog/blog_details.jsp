@@ -271,8 +271,15 @@
 						<div class="navigation-top">
 							<div class="d-sm-flex justify-content-between text-center">
 								<p class="like-info">
-									<span class="align-middle"><i class="fa fa-heart"></i></span>
-									김지훈 외 좋아요 4개
+									<span class="align-middle"><a href="javascript:heartbreaker()" class="fa fa-heart" style="color:black;"></a></span>
+									<script type="text/javascript">		
+										function heartbreaker(){
+											alert("좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋아요좋아요좋아요좋아요좋아요");
+											
+											
+										}
+									</script>
+									좋아요 ${board.blike}개
 								</p>
 								<div class="col-sm-4 text-center my-2 my-sm-0">
 									<!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
