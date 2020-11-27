@@ -17,7 +17,21 @@ public class BoardDto {
 	private String ccontent;
 	private String mmyimage;
 	
-	   
+	private String count;
+	public String getCount() {
+		return count;
+	}
+	public void setCount(String count) {
+		this.count = count;
+	}
+	private String rcount;
+	
+	public String getRcount() {
+		return rcount;
+	}
+	public void setRcount(String rcount) {
+		this.rcount = rcount;
+	}
 	public String getMmyimage() {
 		return mmyimage;
 	}

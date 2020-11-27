@@ -14,7 +14,8 @@ public class PagerDto {
 	private int startRowNo;		//페이지의 시작 행 번호
 	private int endRowNo;		//페이지의 마지막 행 번호
 	
-	public PagerDto(String memail, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
+	
+	public PagerDto(String meamil, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
 		this.memail = memail;
 		this.rowsPerPage = rowsPerPage;
 		this.pagesPerGroup = pagesPerGroup;

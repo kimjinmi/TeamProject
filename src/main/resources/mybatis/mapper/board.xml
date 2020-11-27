@@ -92,30 +92,34 @@
 <!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
 	
 	<select id="selectAll" parameterType="String" resultType="board">
-		select bno, btitle, blike, b.cno ,memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
-		from board b, category c
-		where b.cno = c.cno and memail=#{memail}
-		order by bno desc
-		
+		select c.ccontent, b.bno, b.btitle, b.bdate, b.blike, b.memail
+		from category c, board b
+		where b.cno = c.cno and b.memail = #{memail}
+		order by b.bdate desc
 	</select>
-	<!-- 선명 - 페이지별로 목록 불러오기  -->
- 	<select id="selectByPage" parameterType="pager" resultType="board">
-		select rnum, cno, bno, btitle, blike, memail, bdate
-		from(
-			select rownum as rnum, cno, bno, btitle, blike, memail, bdate
-			from (
-				select cno, bno, btitle, blike, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
-				from board
-				where memail=#{memail,jdbcType=VARCHAR}
-				order by bno desc
-			)
-			where rownum &lt; = #{endRowNo}
-		)
-		where rnum &gt; = #{startRowNo}
-	</select> 
 	
+	
+	<!-- 선명 - 페이지별로 목록 불러오기   --> 
+	<!-- <select id="selectByPage" parameterType="pager" resultType="board">
+		select  ccontent, rnum, bno, btitle, bdate, blike, memail
+		from (select rownum as rnum, ccontent, bno, btitle, bdate, blike, memail
+		      from (select ccontent, bno, btitle, bdate, blike, memail
+		            from category c, board b
+		            where b.cno = c.cno and b.memail = #{memail}
+		            order by bdate desc
+		                )
+		      where rownum &lt;=#{endRowNo}
+		        )
+		where rnum &gt;=#{startRowNo}
+	</select>  -->
 
-<!-- 	
+	<select id="myBoardCount" parameterType="String" resultType="int">
+		select count(*)
+		from board
+		where memail = #{memail}
+	</select>
+
+<!--  
 		<select id="commentinsert" parameterType="reply">
 		
 			<selectKey order="BEFORE" resultType="int" keyProperty="rno">

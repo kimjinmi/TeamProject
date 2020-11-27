@@ -49,21 +49,36 @@ public class SettingController {
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
-		
-		//페이저 적용 부분
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		logger.info(sessionMemail);
-		int totalRows = service.getTotalRows();
-		PagerDto pager = new PagerDto(sessionMemail, 5, 5, totalRows, pageNo);
+		//페이징
+		int totalRows = service.getTotalMyRow(sessionMemail);
+		logger.info("totalRows: "+ totalRows);
+		//PagerDto pager = new PagerDto(sessionMemail, 5, 5, totalRows, pageNo);
 		
-		//--------------
+		//List<BoardDto> listpage = service.getBoardListPage(pager);
+		List<BoardDto> list = service.getBoardList(sessionMemail);
 		
-		List<BoardDto> list = service.getBoardList(pager);
-		model.addAttribute("pager", pager);
+		//model.addAttribute("pager", listpage);
 		model.addAttribute("list", list);
-		return "redirect:/setting/mybloglist";
-		
+	
+		return "setting/mybloglist";
 	}
+/*	
+	@RequestMapping("/mypagelist")
+	public String mypagelist(@RequestParam(defaultValue="1") int pageNo,HttpSession session, Model model) {
+		logger.info("페이지 리스트 실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.getTotalRows();
+		PagerDto pager = new PagerDto(5, 5, totalRows, pageNo);
+		List<BoardDto> list = service.getBoardListPage(pager);
+		//List<BoardDto> list = service.getBoardList(sessionMemail);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		
+		return "setting/mybloglist";
+	}
+	*/
 	
 	@RequestMapping("/mycommentlist")
 	public String mycommentlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
