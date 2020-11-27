@@ -9,14 +9,21 @@ public class ReplyDto {
 	private String memail; // member email -> 아이디
 	private int bno; // 게시글 번호 
 	private Date rdate;
-	private int replysum; // 댓글 총 갯수
+	private String mnickname;
+	private String murl;
 	
 	
-	public int getReplynum() {
-		return replysum;
+	public String getMnickname() {
+		return mnickname;
 	}
-	public void setReplynum(int replysum) {
-		this.replysum = replysum;
+	public void setMnickname(String mnickname) {
+		this.mnickname = mnickname;
+	}
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
 	}
 	public Date getRdate() {
 		return rdate;

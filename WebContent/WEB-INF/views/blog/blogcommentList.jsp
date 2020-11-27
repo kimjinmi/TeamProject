@@ -22,7 +22,7 @@
 						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center">
 								<h5>
-									<a href="#">${comment.memail }</a>
+									<a href="blog?UserUrl=${comment.murl}">${comment.mnickname }</a>
 								</h5>
 								<p class="date">
 									<fmt:formatDate value="${comment.rdate}"
