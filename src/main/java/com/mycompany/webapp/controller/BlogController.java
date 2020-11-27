@@ -81,6 +81,8 @@ public class BlogController {
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
 		 model.addAttribute("likelist", likelist);
+		 MemberDto member = service.getMimage(UserUrl); 	
+		 model.addAttribute("member", member);	
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
 		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
@@ -100,7 +102,6 @@ public class BlogController {
 		if (UserUrl == "") {
 			UserUrl += session.getAttribute("murl");
 		}
-
 		// UserUrl로 memail을 가져온다
 		List<BoardDto> list = service.getBoardList(UserUrl);
 		logger.info("list 값 : " + list);

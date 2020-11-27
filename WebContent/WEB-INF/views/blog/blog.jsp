@@ -123,7 +123,8 @@
                   
                      <aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
                      <div class="align-items-center" style="width:100%; height:100%; text-align:center;">
-                        <img src="photodownload?fileName=${member.mmyimage}" alt="" width="100" height="100" class="rounded-circle">
+                        <img src="photodownload?fileName=${member.mmyimage}" 
+                        alt="" width="100" height="100" class="rounded-circle">
                         <hr/>
                         <h2 class="contact-title">${member.mnickname}</h2>
                         <p>${member.mintro}</p>

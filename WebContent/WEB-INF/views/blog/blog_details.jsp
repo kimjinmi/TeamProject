@@ -129,7 +129,7 @@
 								<div class="align-items-center"
 									style="width: 100%; height: 100%; text-align: center;">
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/elements/d.jpg"
+										src="photodownload?fileName=${member.mmyimage}"
 										alt="" width="100" height="100" class="rounded-circle">
 									<hr />
 									<h2 class="contact-title">${member.mnickname}</h2>
@@ -148,7 +148,6 @@
 									}
 								</script>
 								</div>
-
 							</aside>
 
 							<aside class="single_sidebar_widget search_widget">
@@ -194,8 +193,7 @@
 								</ul>
 							</aside>
 							<aside class="single_sidebar_widget popular_post_widget">
-								<h3 class="widget_title" style="color: #2d2d2d;">Be Liked
-									Posting</h3>
+								<h3 class="widget_title" style="color: #2d2d2d;">Be Liked Posting</h3>
 								<c:forEach var="likelist" items="${likelist}">
 									<div class="media post_item">
 										<i class="fas fa-heart"
