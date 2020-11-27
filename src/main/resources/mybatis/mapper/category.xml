@@ -15,5 +15,12 @@
 			order by c.cno asc
 		</select>
 		
+		<select id="selectAllCount" resultType="category">	
+			Select c.cno, c.ccontent, count(*) ccount
+			FROM category c, board b
+			WHERE c.cno = b.cno(+)
+			GROUP BY c.cno, c.ccontent
+			ORDER BY c.cno asc
+		</select>
 </mapper>
 

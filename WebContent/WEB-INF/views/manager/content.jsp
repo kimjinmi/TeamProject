@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -113,25 +114,19 @@
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
 								
-								<hr/>
-		                        <!-- 게시글 작성 버튼 -->
-		                        <a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
-		                        
-		                        <!-- 게시글 작성 버튼 -->
 		                        </div>
 							</aside>
 							
 							<aside class="single_sidebar_widget post_category_widget">
-								<h4 class="widget_title" style="color: #2d2d2d;">계정 관리</h4>
+								<h4 class="widget_title" style="color: #2d2d2d;">홈페이지 관리</h4>
 								<ul class="list cat-list">
 									
 									<li><a href="javascript:setting()" class="d-flex">
-										<p>내 페이지 설정</p></a>
-										
-											
+										<p>카테고리 편집</p></a>	
 									</li>
+									
 									<li><a href="javascript:imagechange()" class="d-flex">
-										<p>프로필 사진 설정</p></a>
+										<p>전체 게시글 관리</p></a>
 										<script type="text/javascript">
 											function imagechange(){
 												$.ajax({
@@ -146,98 +141,72 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:passwordchange()" class="d-flex">
-											<p>비밀번호 변경</p></a>
-											<script type="text/javascript">
-											function passwordchange(){
+									<li><a href="javascript:imagechange()" class="d-flex">
+										<p>전체 댓글 관리</p></a>
+										<script type="text/javascript">
+											function imagechange(){
 												$.ajax({
-													url:"passwordchange",
+													url:"imagechange",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
 												});
+												
 											}
-											</script>
-									</li>
-									<li><a href="javascript:mybloglist()" class="d-flex" >
-											<p>게시글 관리</p></a>
-										<script type="text/javascript">
-										function mybloglist(pageNo){
-											if(!pageNo){
-												pageNo = 1;
-											}
-											$.ajax({
-												url:"mybloglist",
-												success:function(data) {
-													$("#setting_result").html(data);
-												}
-											});
-											
-										}
-										</script>	
-									</li>
-									<li><a href="javascript:mybloglist()" class="d-flex" style="padding-top: '15px';">
 										
-												<p>댓글 관리</p></a>
-											<script type="text/javascript">
-											function mycommentlist(){
+										</script>
+											
+									</li>
+									<li><a href="javascript:imagechange()" class="d-flex">
+										<p>문의사항 관리</p></a>
+										<script type="text/javascript">
+											function imagechange(){
 												$.ajax({
-													url:"mycommentlist",
+													url:"imagechange",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
 												});
 												
 											}
+										
+										</script>
+											
+									</li>
+									<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<li><a href="javascript:imagechange()" class="d-flex">
+											<p>매니저 관리</p></a>
+											<script type="text/javascript">
+												function imagechange(){
+													$.ajax({
+														url:"imagechange",
+														success:function(data) {
+															$("#setting_result").html(data);
+														}
+													});
+													
+												}
+											
 											</script>
 												
-									</li>
-									
-									<!-- <li><a href="javascript:mycommentlist()" class="d-flex">
-											<p>댓글 관리</p></a>
-										<script type="text/javascript">
-										function mycommentlist(){
-											$.ajax({
-												url:"mycommentlist",
-												success:function(data) {
-													$("#setting_result").html(data);
+										</li>
+										<li><a href="javascript:imagechange()" class="d-flex">
+											<p>회원 관리</p></a>
+											<script type="text/javascript">
+												function imagechange(){
+													$.ajax({
+														url:"imagechange",
+														success:function(data) {
+															$("#setting_result").html(data);
+														}
+													});
+													
 												}
-											});
 											
-										}
-										</script>
-											
-									</li> -->
-									<li><a href="javascript:myneighborlist()" class="d-flex">
-											<p>이웃 관리</p></a>
-										<script type="text/javascript">
-										function myneighborlist(){
-											$.ajax({
-												url:"myneighborlist",
-												success:function(data) {
-													$("#setting_result").html(data);
-												}
-											});
-											
-										}
-										</script>
-											
-									</li>
-									<li><a href="javascript:deletemember()" class="d-flex">
-											<p>회원 탈퇴</p></a>
-										<script type="text/javascript">
-										function deletemember(){
-											$.ajax({
-												url:"delete",
-												success:function(data) {
-													$("#setting_result").html(data);
-												}
-											});
-											
-										}
-										</script>	
-									</li>
-									
+											</script>
+												
+										</li>
+									</sec:authorize>
 								</ul>
 							</aside>
 							
@@ -253,7 +222,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-							<jsp:include page="/WEB-INF/views/setting/setting.jsp"/>
+							<jsp:include page="/WEB-INF/views/manager/editcategory.jsp"/>
 						</div>
 					</div>
 				</div>

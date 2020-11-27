@@ -23,6 +23,11 @@ public class CategoryDao {
 		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectMurl", murl);		
 		return list;
 	}
+	
+	public List<CategoryDto> selectAllCount() {				//selectAll : Service가 호출함
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectAllCount");		//id를 찾아서 모두를 실행해라
+		return list;
+	}
 
 	/*public List<CategoryDto> selectbyCno(int cno) {
 		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectbyCno");

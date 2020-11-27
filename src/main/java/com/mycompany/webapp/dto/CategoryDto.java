@@ -4,6 +4,7 @@ public class CategoryDto {
 	private int cno; // Category 번호
 	private String ccontent; // Category 내용
 	private String murl;
+	private int ccount;
 	
 	public int getCno() {
 		return cno;
@@ -23,5 +24,12 @@ public class CategoryDto {
 	public void setMurl(String murl) {
 		this.murl = murl;
 	}
+	public int getCcount() {
+		return ccount;
+	}
+	public void setCcount(int ccount) {
+		this.ccount = ccount;
+	}
+	
 	
 }

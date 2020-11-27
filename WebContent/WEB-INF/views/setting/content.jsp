@@ -113,12 +113,13 @@
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
-					
+								<hr/>
+								
 								<sec:authorize access="hasRole('ROLE_MANAGER')">
-		                    	<hr/>
-		                        <!-- 게시글 작성 버튼 -->
+									<hr/>						                    	
+		                       	 	<!-- 게시글 작성 버튼 -->
 		                        	<a class="genric-btn primary e-large" href="manager">MANAGER</a>
-		                        </sec:authorize>
+		                        </sec:authorize> 
 		                        <!-- 게시글 작성 버튼 -->
 		                        </div>
 							</aside>

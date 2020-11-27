@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
+
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.SettingService;
@@ -37,9 +38,10 @@ public class SettingController {
 	@RequestMapping("/manager")
 	public String manager(MemberDto memberdto, HttpSession session, Model model) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
-		return "manager/content";
+		return "redirect:/manager/content";
 	}
 	
 	@RequestMapping("/content")
