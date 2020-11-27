@@ -1,174 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.board">
-	
-	
+
+
 	<select id="selectByBno" parameterType="int" resultType="board">
 		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
 		from board
 		where bno = #{bno}
 	</select>
-	
+
 	<!-- 영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 -->
-	<select id="categoryListLink"  parameterType="map"  resultType="board">
+	<select id="categoryListLink" parameterType="map"
+		resultType="board">
 		select bno, btitle, bcontent, bdate, bimage, c.cno, c.ccontent
 		from board b, category c, member m
-		where m.memail=b.memail and c.cno=b.cno 
-		and m.murl=#{murl} and c.cno=#{cno}
+		where m.memail=b.memail and c.cno=b.cno and m.murl=#{murl} and c.cno=#{cno}
 	</select>
 
-	
-<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
-		<!-- 좋아요순은 데이터 12개 -->
-	<select id="selectLikeAll" resultType="board">	
-		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
+
+	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
+	<!-- 좋아요순은 데이터 12개 -->
+	<select id="selectLikeAll" resultType="board">
+		select rownum as rnum, bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
 		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
-       			 from board b, member m
-       			 where b.memail = m.memail
-       			 order by blike desc)
+				from board b, member m
+				where b.memail = m.memail
+				order by blike desc)
 		where rownum &lt;= 12
 	</select>
-	
+
 	<!-- 선: 좋아요 순으로 불러오기 ranking 카테고리별 데이터 -->
 	<!-- 좋아요순은 데이터 12개 -->
 	<select id="selectLikeCategory" parameterType="int" resultType="board">
-		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
+		select rownum as rnum, bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
 		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
-       			 from board b, member m
-       			 where b.memail = m.memail and cno = #{cno} 
-       			 order by blike desc)
+				from board b, member m
+				where b.memail = m.memail and cno = #{cno}
+				order by blike desc)
 		where rownum &lt;= 12
 	</select>
-	
-	<!-- 선: 최신순으로 불러오기 contents 총 데이터 -->
+ 
+	<!-- 선: 최신순으로 불러오기 contents 총 데이터 --> 
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
-	<select id="selectNewAll" resultType="board">	
-	    select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
+	<select id="selectNewAll" resultType="board">
+		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
 		from board b, member m, category c
 		where b.memail = m.memail and b.cno = c.cno
 		order by bdate desc
 	</select>
-	
+
 	<!-- 선: 최신순으로 불러오기 contents 카테고리별 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
-	<select id="selectNewCategory" parameterType="int" resultType="board">
+	<select id="selectNewCategory" parameterType="int"
+		resultType="board">
 		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
-       	from board b, member m, category c
-       	where b.memail = m.memail and b.cno = #{cno} and b.cno = c.cno 
-       	order by bdate desc
-	</select>
-	
-	
-	<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->
-	<!-- <select id="selectUserBoard" parameterType="String" resultType="board">
-		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
-		from board, member
-		where board.memail = member.memail AND board.memail = #{memail} 
+		from board b, member m, category c
+		where b.memail = m.memail and b.cno = #{cno} and b.cno = c.cno
 		order by bdate desc
-	</select> -->
-		
-		
-		<select id="selectUserBoard" parameterType="String" resultType="board">
-		<!-- select bno,btitle, bcontent, bdate, blike, bimage, mnickname, member.murl, category.ccontent
-		from board, member, category
-		where member.murl = #{Murl} AND member.memail = board.memail AND category.cno = board.cno
-		order by bdate desc -->
-	
-		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
-	select board.bno, btitle, bcontent, bdate, blike, bimage, mnickname,
-	member.murl, category.ccontent, comments.commentnum
-	from board, member, category, (select count(b.bno) commentnum , b.bno
-	from board b, reply r
-	where b.bno = r.bno
-	group by b.bno) comments
-	where member.murl = 'sunnynaracom' AND member.memail = board.memail AND
-	category.cno = board.cno AND
-	comments.bno = board.bno
-	order by bdate desc
-		</select>
-		
-			<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->			
-		
-		<!-- 영아 - 보드 최신순 게시물 -->
-		<select id="selectBtitleAll" resultType="board">
-		select btitle 
-		from ( select btitle  
-		from board 
-		order by bdate desc) 
+	</select>
+
+
+	<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->
+	<!-- <select id="selectUserBoard" parameterType="String" resultType="board"> 
+		select bno,btitle, bcontent, bdate, blike, bimage, mnickname from board, 
+		member where board.memail = member.memail AND board.memail = #{memail} order 
+		by bdate desc </select> -->
+
+
+	<select id="selectUserBoard" parameterType="String"
+		resultType="board">
+		<!-- select bno,btitle, bcontent, bdate, blike, bimage, mnickname, member.murl, 
+			category.ccontent from board, member, category where member.murl = #{Murl} 
+			AND member.memail = board.memail AND category.cno = board.cno order by bdate 
+			desc -->
+
+		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발 -->
+		select board.bno, btitle, bcontent, bdate, blike, bimage, mnickname, member.murl, category.ccontent, comments.commentnum
+		from board, member, category, (select count(b.bno) commentnum , b.bno
+													   from board b, reply r
+													   where b.bno = r.bno
+													   group by b.bno) comments
+		where member.murl = 'sunnynaracom' AND member.memail = board.memail AND category.cno = board.cno AND comments.bno = board.bno
+		order by bdate desc
+	</select>
+
+	<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->
+
+	<!-- 영아 - 보드 최신순 게시물 -->
+	<select id="selectBtitleAll" resultType="board">
+		select btitle
+		from ( select btitle
+				  from board
+				  order by bdate desc)
 		where rownum &lt; = 4
-		</select>
+	</select>
 
 	<select id="countAll" resultType="int">
-		select count(*) 
+		select count(*)
 		from board
 	</select>
-	
+
 
 	<select id="selectBoardComment" parameterType="int" resultType="reply">
-		<!-- select distinct rno, rcontent, reply.memail, , rdate
+		<!-- select distinct rno, rcontent, reply.memail, , rdate from board, reply, 
+			member where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail 
+			= member.memail -->
+
+		select rno, rcontent, reply.memail, rdate, member.mnickname, member.murl
 		from board, reply, member
-		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail -->
-      
-        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl
-		from board, reply, member
-		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
+		where board.bno = reply.bno AND
+		board.bno = #{bno} AND member.memail = reply.memail
 	</select>
-	
-<!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
-	
+
+	<!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기 -->
+
 	<select id="selectAll" parameterType="String" resultType="board">
 		select c.ccontent, b.bno, b.btitle, b.bdate, b.blike, b.memail
 		from category c, board b
 		where b.cno = c.cno and b.memail = #{memail}
 		order by b.bdate desc
 	</select>
-	
-	
-	<!-- 선명 - 페이지별로 목록 불러오기   --> 
+
+
+	<!-- 선명 - 페이지별로 목록 불러오기 -->
 	<select id="selectByPage" parameterType="pager" resultType="board">
 		select ccontent, rnum, bno, btitle, bdate, blike, murl
 		from (select rownum as rnum, ccontent, bno, btitle, bdate, blike, murl
-		      from (select ccontent, bno, btitle, bdate, blike, murl
-		            from category c, board b
-		            where b.cno = c.cno and b.murl = #{murl}
-		            order by bdate desc
-		                )
-		      where rownum &lt;=#{endRowNo}
-		        )
+				 from (select ccontent, bno, btitle, bdate, blike, murl
+				 		  from category c, board b
+				 		  where b.cno = c.cno and b.murl = #{murl}
+						  order by bdate desc)
+				where rownum &lt;=#{endRowNo})
 		where rnum &gt;=#{startRowNo}
-	</select>  
+	</select>
 
 	<select id="myBoardCount" parameterType="String" resultType="int">
 		select count(*)
 		from board
 		where murl = #{murl}
 	</select>
-	
+
 	<insert id="insert" parameterType="board">
 		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl)
 		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl} )
 	</insert>
 
-<!--  
-		<select id="commentinsert" parameterType="reply">
-		
-			<selectKey order="BEFORE" resultType="int" keyProperty="rno">
-			 select seq_reply_rno.nextval from dual
-			</selectKey>
-		
-			insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
-				values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
-		</select>
--->
+	<!-- <select id="commentinsert" parameterType="reply"> <selectKey order="BEFORE" 
+		resultType="int" keyProperty="rno"> select seq_reply_rno.nextval from dual 
+		</selectKey> insert into reply (rno, rcontent, firstcomment, memail, bno, 
+		rdate) values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, 
+		sysdate) </select> -->
 
-<!--  댓글 입력값 -->
+	<!-- 댓글 입력값 -->
 	<insert id="commentinsert" parameterType="reply">
 		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
-		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
+		value (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
-<!--  댓글 입력 -->	
+	<!-- 댓글 입력 -->
 
-	
-	
 </mapper>
 
