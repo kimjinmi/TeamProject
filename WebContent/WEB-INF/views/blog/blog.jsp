@@ -227,8 +227,8 @@
                                  </a>
                                  <p class="blog_list_content">${board.bcontent }</p>
                                  <ul class="blog-info-link">
-                                     <li><a href="#"><i class="fa fa-user"></i>${board.ccontent }</a></li>
-                                     <li><a href="#"><i class="fa fa-comments"></i> ${board.commentnum }</a></li>
+                                     <li><a><i class="fa fa-user"></i>${board.ccontent }</a></li>
+                                     <li><a><i class="fa fa-comments"></i> ${board.commentnum }</a></li>
                                  </ul>
                              </div>
                            </article>  
