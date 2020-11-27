@@ -72,11 +72,12 @@ public class BlogController {
 		}*/
 		
 		 bno = Integer.parseInt(request.getParameter("bno"));
-		 logger.info("bno 값 확인: "+bno);
+		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
-		 logger.info(board.getMurl());
-		 List<CategoryDto> catelist = service.categoryListMurl(board.getMurl()); 
-		 List<BoardDto> likelist = service.bLikeList(board.getMurl());			//영아		
+		 String UserUrl = board.getMurl();
+		 logger.info("###############"+board.getMurl());
+		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
+		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
 		 model.addAttribute("likelist", likelist);
@@ -129,6 +130,7 @@ public class BlogController {
 	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
 	@RequestMapping("/categoryListLinkBoard")	
 	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
+			logger.info("실행되는건가");
 			List<BoardDto> bcno = service.bcno(cno, murl);
 			model.addAttribute("bcno", bcno);
 			return "blog/categoryListLinkBoard";
