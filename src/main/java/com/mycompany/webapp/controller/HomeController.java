@@ -1,19 +1,25 @@
 package com.mycompany.webapp.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.service.HomeService;
 
@@ -79,9 +85,4 @@ public class HomeController {
 	*/
 		return "home";
 	}
-	
-	
-	
-
-	
 }
