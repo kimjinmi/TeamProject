@@ -4,7 +4,7 @@
 	
 	
 	<select id="selectByBno" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
+		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate, blike
 		from board
 		where bno = #{bno}
 	</select>
@@ -112,6 +112,7 @@
         select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
+		order by rdate asc
 	</select>
 	
 <!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
