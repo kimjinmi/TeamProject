@@ -151,7 +151,7 @@ public class BlogController {
 	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
 		String SessionMurl =(String) session.getAttribute("SessionMurl");
 		board.setMurl(SessionMurl);
-		board.setBlike(0);
+		
 		
 		service.boardWrite(board);
 		
