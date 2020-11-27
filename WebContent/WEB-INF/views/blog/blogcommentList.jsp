@@ -36,9 +36,25 @@
 							
 						</div>
 						<c:if test="${comment.murl == SessionMurl}">
-									<a href="blog" class="genric-btn danger small">삭제</a>
-									<a href="blog" class="genric-btn primary small">수정</a>
+									<a href="javascript:commentDelete(${comment.rno})" class="genric-btn danger small">삭제</a>
+									<a href="blog" class="genric-btn primary small">수정(미완성)</a>
+									
+						<script type="text/javascript">
+							function commentDelete(rno){	
+								 if(confirm("정말로 삭제 하시겠습니까?")){
+								 	$.ajax({
+										url: "commentDelete",
+										data: {rno:rno},
+										success: function(data){
+											onload();
+										}
+									}); 
+							 	}  
+							}
+						</script>
 						</c:if>
+						
+						
 					</div>
 				</div>
 			</div>
