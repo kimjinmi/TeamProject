@@ -19,10 +19,17 @@ public class BoardDto {
 	private String mmyimage;
 	private String mintro;
 	private String blinkcontent;
+	private int commentnum;
 	
 
 	   
 	
+	public int getCommentnum() {
+		return commentnum;
+	}
+	public void setCommentnum(int commentnum) {
+		this.commentnum = commentnum;
+	}
 	public String getMurl() {
 		return murl;
 	}

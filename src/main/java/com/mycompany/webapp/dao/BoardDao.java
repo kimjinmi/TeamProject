@@ -57,11 +57,13 @@ public class BoardDao {
 	
 	/*------------------------- 선 -------------------------*/
 	
-	public List<BoardDto> selectUserBoard(String memail) {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
+	
+	/* 지훈 사용자 블로그리스트 출력하기*/
+	public List<BoardDto> selectUserBoard(String Murl) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", Murl);
 		return list;
 	}
-	
+	/* 지훈 */
 	public List<BoardDto> selectBtitleAll() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll");
 		return list;

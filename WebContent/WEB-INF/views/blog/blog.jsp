@@ -42,6 +42,17 @@
    href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
    href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+   
+   <style type="text/css">
+   .blog_list_content{  	
+   			overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical;
+   }
+   </style>
+   
 </head>
 
 <body>
@@ -211,17 +222,17 @@
                                  <a class="d-inline-block" href="javascript:boardDetails(${board.bno})">
                                      <h2 class="blog-head" style="color: #2d2d2d;">${board.btitle }</h2>
                                  </a>
-                                 <p>${board.bcontent }</p>
+                                 <p class="blog_list_content">${board.bcontent }</p>
                                  <ul class="blog-info-link">
-                                     <li><a href="#"><i class="fa fa-user"></i>임시카테고리</a></li>
-                                     <li><a href="#"><i class="fa fa-comments"></i>임시댓글갯수</a></li>
+                                     <li><a href="#"><i class="fa fa-user"></i>${board.ccontent }</a></li>
+                                     <li><a href="#"><i class="fa fa-comments"></i> ${board.commentnum }</a></li>
                                  </ul>
                              </div>
                            </article>  
                            </c:forEach>
                            
                            <script type="text/javascript">
-                              function boardDetails(bno){
+                              function boardDetails(bno){    
                                  location.href="blog_details?bno="+bno;   
                               }
                            </script>
