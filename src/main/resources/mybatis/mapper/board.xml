@@ -103,7 +103,7 @@
 		member.murl, category.ccontent, comments.commentnum
 		from board, member, category, (select count(b.bno) commentnum , b.bno
 		from board b, reply r
-		where b.bno = r.bno
+		where b.bno = r.bno (+)
 		group by b.bno) comments
 		where member.murl = #{Murl} AND member.memail = board.memail AND
 		category.cno = board.cno AND
