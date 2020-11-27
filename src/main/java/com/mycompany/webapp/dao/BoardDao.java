@@ -112,5 +112,10 @@ public class BoardDao {
 		return list;
 	}
 
+	public int commentDelete(int rno) {
+		int rows = sst.delete("mybatis.mapper.board.commentDelete", rno);
+		return rows;
+	}
+
 	
 }

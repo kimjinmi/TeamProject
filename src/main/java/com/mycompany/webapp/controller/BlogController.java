@@ -170,35 +170,30 @@ public class BlogController {
 	}
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
+	
+	//////////////////////// 김지훈 댓글 리스트 시작 //////////////////////////
 	@GetMapping("/blogcommentlist")
-	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session)
-			throws IOException {
-
-		
-		  if(reply.getRcontent() != null) { logger.info("겟댓글내용");
+	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session) throws IOException {
+		  if(reply.getRcontent() != null) { 
 		  reply.setMemail((String)session.getAttribute("sessionMemail"));
-		  
-		  //reply.setMnickname((String)session.getAttribute("SessionMnickname"));
-			/*
-			 * logger.info(reply.getRcontent()); logger.info(reply.getMemail());
-			 * logger.info(reply.getMnickname());
-			 */
-		  
-		  service.commentWrite(reply);
-		  
-		  
+		  service.commentWrite(reply); 
 		  }
-		 
-		
+		  
 		int bbno = reply.getBno();
 		List<ReplyDto> commentlist = service.commentList(bbno);
-		logger.info("getBno = " + bbno);
-		logger.info("commentlist 값 = " + commentlist.toString());
 		model.addAttribute("commentlist", commentlist);
 		
-		
-
 		return "blog/blogcommentList";
 
+	}
+	//////////////////////// 김지훈 댓글 리스트 시작 //////////////////////////
+
+
+	@GetMapping("/commentDelete")
+	public void commentDelete(int rno) {
+		logger.info("나와라 commentDelete Rno = " + rno);
+		service.commentDelete(rno);
+		
+		
 	}
 }
