@@ -43,8 +43,8 @@ public class BlogService {
 			return list;
 	}*/
 
-	public List<BoardDto> getBoardList(String memail) {										//userurl이 들어옴(memail자리에)
-		List<BoardDto> list = boardDao.selectUserBoard(memail);
+	public List<BoardDto> getBoardList(String Murl) {										//userurl이 들어옴(memail자리에)
+		List<BoardDto> list = boardDao.selectUserBoard(Murl);
 		return list;
 	}
 	

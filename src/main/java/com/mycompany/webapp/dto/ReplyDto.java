@@ -9,8 +9,22 @@ public class ReplyDto {
 	private String memail; // member email -> 아이디
 	private int bno; // 게시글 번호 
 	private Date rdate;
+	private String mnickname;
+	private String murl;
 	
 	
+	public String getMnickname() {
+		return mnickname;
+	}
+	public void setMnickname(String mnickname) {
+		this.mnickname = mnickname;
+	}
+	public String getMurl() {
+		return murl;
+	}
+	public void setMurl(String murl) {
+		this.murl = murl;
+	}
 	public Date getRdate() {
 		return rdate;
 	}

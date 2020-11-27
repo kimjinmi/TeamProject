@@ -91,7 +91,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>Setting</h2>
+								<h2>MANAGER</h2>
 							</div>
 						</div>
 					</div>
@@ -115,7 +115,7 @@
 								
 								<hr/>
 		                        <!-- 게시글 작성 버튼 -->
-		                        <a class="genric-btn primary e-large" href="manager">MANAGER</a>
+		                        <a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
 		                        
 		                        <!-- 게시글 작성 버튼 -->
 		                        </div>
@@ -127,18 +127,7 @@
 									
 									<li><a href="javascript:setting()" class="d-flex">
 										<p>내 페이지 설정</p></a>
-										<script type="text/javascript">
-											function setting(){
-												$.ajax({
-													url:"setting",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
 										
-										</script>
 											
 									</li>
 									<li><a href="javascript:imagechange()" class="d-flex">
@@ -170,58 +159,41 @@
 											}
 											</script>
 									</li>
-									<li><a href="javascript:mybloglist()" class="d-flex">
-										<p>게시글 관리</p></a>
+									<li><a href="javascript:mybloglist()" class="d-flex" >
+											<p>게시글 관리</p></a>
 										<script type="text/javascript">
 										function mybloglist(pageNo){
+											if(!pageNo){
+												pageNo = 1;
+											}
 											$.ajax({
 												url:"mybloglist",
-												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
 												}
 											});
 											
 										}
+										</script>	
+									</li>
+									<li><a href="javascript:mybloglist()" class="d-flex" style="padding-top: '15px';">
 										
-										</script>
-									</li>	
-									 <script type="text/javascript">
-			function boardList(pageNo) {
-				if(!pageNo) {
-					pageNo = 1;
-				}
-				$.ajax({
-					url:"boardList",
-					data:{pageNo:pageNo},
-					success:function(data) {
-						$("#setting_result").html(data);
-						
-						}
-					});
-				}
-		</script>
-								<!-- 	  <script type="text/javascript">
-										function mypagelist(pageNo) {
-											if(!pageNo) {
-												pageNo = 1;
-											}
-											$.ajax({
-												url:"mypagelist",
-												data:{pageNo:pageNo},
-												success:function(data) {
-													$("#setting_result").html(data);
-													
+												<p>댓글 관리</p></a>
+											<script type="text/javascript">
+											function mycommentlist(){
+												$.ajax({
+													url:"mycommentlist",
+													success:function(data) {
+														$("#setting_result").html(data);
 													}
 												});
+												
 											}
-									</script>
-									 -->
+											</script>
+												
+									</li>
 									
-										 
-											
-									
-									<li><a href="javascript:mycommentlist()" style="padding-top: 15px;" class="d-flex">
+									<!-- <li><a href="javascript:mycommentlist()" class="d-flex">
 											<p>댓글 관리</p></a>
 										<script type="text/javascript">
 										function mycommentlist(){
@@ -235,7 +207,7 @@
 										}
 										</script>
 											
-									</li>
+									</li> -->
 									<li><a href="javascript:myneighborlist()" class="d-flex">
 											<p>이웃 관리</p></a>
 										<script type="text/javascript">

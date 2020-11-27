@@ -64,21 +64,42 @@ public class BoardDao {
 	
 	/*------------------------- 선 -------------------------*/
 	
-	public List<BoardDto> selectUserBoard(String memail) {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", memail);
+	
+	/* 지훈 사용자 블로그리스트 출력하기*/
+	public List<BoardDto> selectUserBoard(String Murl) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", Murl);
 		return list;
 	}
 
-
-	public List<BoardDto> selectByPage(PagerDto pager) {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectByPage", pager);
+	/* 지훈 */
+	public List<BoardDto> selectBtitleAll() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll");
 		return list;
 	}
+	//------------------------------선-------------명--------------
+
+	
+	 public List<BoardDto> selectByPage(PagerDto pager) { 
+		 List<BoardDto> listpage = sst.selectList("mybatis.mapper.board.selectByPage", pager);
+		 
+		 return listpage; 
+	 }
+	
 
 
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
 		return list;
+	}
+
+	public int countAll() {
+		int rows = sst.selectOne("mybatis.mapper.board.countAll");
+		return rows;
+	}
+
+	public int myBoardCount(String murl) {
+		int rows = sst.selectOne("mybatis.mapper.board.myBoardCount", murl);
+		return rows;
 	}
 
 	public int insert(BoardDto board) {
@@ -91,5 +112,5 @@ public class BoardDao {
 		return list;
 	}
 
-
+	
 }

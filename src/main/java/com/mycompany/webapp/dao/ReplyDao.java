@@ -24,6 +24,11 @@ public class ReplyDao {
 		int rows = sst.insert("mybatis.mapper.board.commentinsert", reply);
 		return rows;
 	}
+
+	public int countAll(int rno) {
+		int rows = sst.selectOne("mybatis.mapper.reply.countAll", rno);
+		return rows;
+	}
 	
 	
 

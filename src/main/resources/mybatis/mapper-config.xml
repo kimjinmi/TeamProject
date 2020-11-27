@@ -5,10 +5,10 @@
 	<typeAliases>
 		<typeAlias alias="category" type="com.mycompany.webapp.dto.CategoryDto" />
 		<typeAlias alias="board" type="com.mycompany.webapp.dto.BoardDto" />
-		<typeAlias alias="link" type="com.mycompany.webapp.dto.LinkDto" />
 		<typeAlias alias="member" type="com.mycompany.webapp.dto.MemberDto" />
 		<typeAlias alias="reply" type="com.mycompany.webapp.dto.ReplyDto" />
 		<typeAlias alias="pager" type="com.mycompany.webapp.dto.PagerDto" />
+		<typeAlias alias="inquiry" type="com.mycompany.webapp.dto.InquiryDto" />
 	</typeAliases> 
 </configuration>
 

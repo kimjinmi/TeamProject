@@ -42,6 +42,7 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+ <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 </head>
 
 
@@ -425,6 +426,8 @@
 										/////댓글리스트 리로드///////////////////
 											});
 											
+											
+											$("#comment").val("");
 									/* 		
 											//데이터베이스 값 입력
 											$.ajax({

@@ -144,9 +144,13 @@ public class BlogController {
 	}
 
 	@RequestMapping("boardWrite")
-	public void blog_write(BoardDto board, HttpServletResponse response) throws Exception {
+	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
+		/*
+		 * String SessionMurl =(String) session.getAttribute("SessionMurl");
+		 * board.setMurl(SessionMurl);
+		 */
 		service.boardWrite(board);
-
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
@@ -162,23 +166,29 @@ public class BlogController {
 	public String blogcommentlist(ReplyDto reply, Model model, HttpServletResponse response, HttpSession session)
 			throws IOException {
 
-		/*
-		 * if(reply.getRcontent() != null) { logger.info("겟댓글내용");
-		 * reply.setMemail((String)session.getAttribute("sessionMemail"));
-		 * 
-		 * //reply.setMnickname((String)session.getAttribute("SessionMnickname"));
-		 * logger.info(reply.getRcontent()); logger.info(reply.getMemail());
-		 * logger.info(reply.getMnickname());
-		 * 
-		 * service.commentWrite(reply);
-		 * 
-		 * 
-		 * }
-		 */
-
-		List<ReplyDto> commentlist = service.commentList(reply.getBno());
+		
+		  if(reply.getRcontent() != null) { logger.info("겟댓글내용");
+		  reply.setMemail((String)session.getAttribute("sessionMemail"));
+		  
+		  //reply.setMnickname((String)session.getAttribute("SessionMnickname"));
+			/*
+			 * logger.info(reply.getRcontent()); logger.info(reply.getMemail());
+			 * logger.info(reply.getMnickname());
+			 */
+		  
+		  service.commentWrite(reply);
+		  
+		  
+		  }
+		 
+		
+		int bbno = reply.getBno();
+		List<ReplyDto> commentlist = service.commentList(bbno);
+		logger.info("getBno = " + bbno);
 		logger.info("commentlist 값 = " + commentlist.toString());
 		model.addAttribute("commentlist", commentlist);
+		
+		
 
 		return "blog/blogcommentList";
 
