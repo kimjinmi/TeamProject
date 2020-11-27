@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 
@@ -17,7 +17,7 @@
 		</div>
 
 		<div class="col-3">
-			<input type="submit" class="genric-btn primary radius small" value="중복확인"/>
+			<a class="genric-btn primary radius small" href="#">중복확인</a>
 		</div>
 	</div>
 </form>
@@ -49,8 +49,7 @@
        		<textarea id="mintro" name="mintro" class="single-textarea" >${member.mintro}</textarea>
 		</div>
     </div>
-        <p><input type="hidden" id="memail" name="memail" 
-				class="single-input" value="${member.memail}"></p>
+      
     <div class="row">
 	    <div class="col-3"></div>
     	<div class="col-6">

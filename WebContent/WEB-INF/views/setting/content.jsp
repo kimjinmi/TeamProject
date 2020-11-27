@@ -174,6 +174,9 @@
 										<p>게시글 관리</p></a>
 										<script type="text/javascript">
 										function mybloglist(pageNo){
+											if(!pageNo) {
+												pageNo = 1;
+											}
 											$.ajax({
 												url:"mybloglist",
 												data:{pageNo:pageNo},
@@ -186,21 +189,7 @@
 										
 										</script>
 									</li>	
-									 <script type="text/javascript">
-			function boardList(pageNo) {
-				if(!pageNo) {
-					pageNo = 1;
-				}
-				$.ajax({
-					url:"boardList",
-					data:{pageNo:pageNo},
-					success:function(data) {
-						$("#setting_result").html(data);
-						
-						}
-					});
-				}
-		</script>
+									 
 								<!-- 	  <script type="text/javascript">
 										function mypagelist(pageNo) {
 											if(!pageNo) {
@@ -221,7 +210,7 @@
 										 
 											
 									
-									<li><a href="javascript:mycommentlist()" style="padding-top: 15px;" class="d-flex">
+									<li><a href="javascript:mycommentlist()" class="d-flex">
 											<p>댓글 관리</p></a>
 										<script type="text/javascript">
 										function mycommentlist(){
