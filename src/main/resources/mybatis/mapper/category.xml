@@ -15,12 +15,14 @@
 			order by c.cno asc
 		</select>
 		
+		<!-- 진미 : 카테고리랑 카테고리별 개수 구하는 쿼리 -->
 		<select id="selectAllCount" resultType="category">	
-			Select c.cno, c.ccontent, count(*) ccount
-			FROM category c, board b
-			WHERE c.cno = b.cno(+)
-			GROUP BY c.cno, c.ccontent
-			ORDER BY c.cno asc
-		</select>
+			SELECT cno, ccontent, ccount
+			FROM(SELECT b.cno con, c.ccontent ccontent, c.cno, count(b.cno) ccount, count(c.ccontent), count(c.cno)
+				FROM category c, board b
+				WHERE c.cno = b.cno(+)
+				GROUP BY b.cno, c.ccontent, c.cno
+				ORDER BY b.cno ASC)
+	</select>
 </mapper>
 

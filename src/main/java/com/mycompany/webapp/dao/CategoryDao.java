@@ -24,8 +24,8 @@ public class CategoryDao {
 		return list;
 	}
 	
-	public List<CategoryDto> selectAllCount() {				//selectAll : Service가 호출함
-		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectAllCount");		//id를 찾아서 모두를 실행해라
+	public List<CategoryDto> selectAllCount() {				
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectAllCount");		
 		return list;
 	}
 

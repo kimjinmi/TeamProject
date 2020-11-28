@@ -14,7 +14,7 @@
 			<c:forEach var="category" items="${category}">
 			<ul class="list-group">
 				<li class="list-group-item list-group-item-light">
-					<i class="fa fa-list" aria-hidden="true"></i> &nbsp;&nbsp;${category.ccontent}&nbsp;&nbsp;&nbsp;&nbsp;(${category.ccount})
+					<a href="#"><i class="fa fa-list" aria-hidden="true"></i></a>&nbsp;&nbsp;${category.ccontent}&nbsp;&nbsp;&nbsp;&nbsp;(${category.ccount})
 				</li>
 				
 			</ul>
