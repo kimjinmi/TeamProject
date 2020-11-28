@@ -42,6 +42,27 @@ public class ManagerController {
 		model.addAttribute("category", category);
 		return "manager/content";
 	}
+	
+	@RequestMapping("/categoryadd")
+	public String categoryadd(String addCategory) {
+		service.addCategory(addCategory);
+		return "redirect:/manager/content";
+	}
+	
+	@RequestMapping("/categoryedit")
+	public String categoryedit(String editid, String editCategory2) {
+		
+		int cno = Integer.parseInt(editid);
+		service.editCategory(cno, editCategory2);
+		return "redirect:/manager/content";
+	}
+	
+	@RequestMapping("/categorydelete")
+	public String categorydelete(String deleteid) {
+		int cno = Integer.parseInt(deleteid);
+		service.deleteCategory(cno);
+		return "redirect:/manager/content";
+	}
 
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {

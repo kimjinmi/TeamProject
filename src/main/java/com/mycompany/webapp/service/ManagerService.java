@@ -24,9 +24,7 @@ public class ManagerService {
 	
 	@Resource
 	private BoardDao boarddao;
-	
-	@Resource
-	private ReplyDao replydao;
+
 	
 	@Resource
 	private CategoryDao categorydao;
@@ -41,6 +39,21 @@ public class ManagerService {
 	public List<CategoryDto> getcategorylist() {
 		List<CategoryDto> list = categorydao.selectAllCount();
 		return list;
+	}
+
+	public void addCategory(String addCategory) {
+		categorydao.insert(addCategory);
+		
+	}
+
+	public void deleteCategory(int cno) {
+		categorydao.delete(cno);
+		
+	}
+
+	public void editCategory(int cno, String editCategory2) {
+		categorydao.update(cno, editCategory2);
+		
 	}
 
 }

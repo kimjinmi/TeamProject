@@ -32,27 +32,28 @@
 		</div>
 	</div>
 	<p></p>
-	
-	<div class="row" id="categoryadd">
-		<div class="col-3">
-			<b>카테고리 추가</b>
+	<form action="categoryadd" id="categoryadd"style="display: inline;">
+		<div class="row" id="categoryadd">
+			<div class="col-3">
+				<b>카테고리 추가</b>
+			</div>
+			<div class="col-8">
+				<input type="text" id="addCategory" name="addCategory" placeholder="Add Category" onblur="this.placeholder = 'Add Category'"class="single-input">
+			</div>
+			<div class="col-1">
+				<a href="#"  onclick="document.getElementById('categoryadd').submit();"><i class="fa fa-plus" ></i></a>
+			</div>
 		</div>
-		<div class="col-8">
-			<input type="text" id="addCategory" name="addCategory" placeholder="Add Category" onblur="this.placeholder = 'Add Category'"class="single-input">
-		</div>
-		<div class="col-1">
-			<a><i class="fa fa-plus" ></i></a>
-		</div>
-	</div>
+	</form>
 	<p></p>
-	<form action="categoryedit" method="post" id="categoryedit" style="display: inline;">
+	<form action="categoryedit" id="categoryedit" style="display: inline;">
 		<div class="row">
 			<div class="col-3">
 				<b>카테고리 변경</b>
 			</div>
-				<input type="hidden" id="editid">
+				<input type="hidden" id="editid" name="editid">
 			<div class="col-4">
-				<input type="text" id="editCategory1" name="editCategory1" placeholder="Edit Category" onblur="this.placeholder = 'Edit Category'"class="single-input">
+				<input type="text" id="editCategory1" name="editCategory1" placeholder="Edit Category" onblur="this.placeholder = 'Edit Category'"class="single-input" readonly>
 			</div>
 			<div class="col-4">
 				<input type="text" id="editCategory2" name="editCategory2" placeholder="Result Category" onblur="this.placeholder = 'Result Category'"class="single-input">
@@ -64,22 +65,24 @@
 		</div>
 	</form>
 	<p></p>
-	<div class="row" id="categorydelete">
-		<div class="col-3">
-			<b>카테고리 삭제</b>
+	<form action="categorydelete" id="categorydelete" style="display: inline;">
+		<div class="row" >
+			<div class="col-3">
+				<b>카테고리 삭제</b>
+			</div>
+				<input type="hidden" id="deleteid" name="deleteid">
+			<div class="col-8">
+				<input type="text" id="deleteCategory" name="deleteCategory" placeholder="Delete Category" onblur="this.placeholder = 'Delete Category'"class="single-input" readonly>
+			</div>
+			<div class="col-1">
+				<a href="#"  onclick="document.getElementById('categorydelete').submit();"><i class="fa fa-minus" ></i></a>
+			</div>
+			<p></p><div class="col" style="color: red;">
+			<i class="fas fa-exclamation-triangle"></i>
+			카테고리 삭제시 해당 카테고리 내 게시글도 모두 삭제됩니다.
+			</div>
 		</div>
-			<input type="hidden" id="deleteid">
-		<div class="col-8">
-			<input type="text" id="deleteCategory" name="deleteCategory" placeholder="Delete Category" onblur="this.placeholder = 'Delete Category'"class="single-input">
-		</div>
-		<div class="col-1">
-			<a><i class="fa fa-minus" ></i></a>
-		</div>
-		<p></p><div class="col" style="color: red;">
-		<i class="fas fa-exclamation-triangle"></i>
-		카테고리 삭제시 해당 카테고리 내 게시글도 모두 삭제됩니다.
-		</div>
-	</div>
+	</form>
 </div>
 
 	

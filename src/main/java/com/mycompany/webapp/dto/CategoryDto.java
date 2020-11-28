@@ -3,7 +3,6 @@ package com.mycompany.webapp.dto;
 public class CategoryDto {
 	private int cno; // Category 번호
 	private String ccontent; // Category 내용
-	private String editcontent; //카테고리변경내용
 	private String murl;
 	private int ccount;
 	
@@ -31,12 +30,7 @@ public class CategoryDto {
 	public void setCcount(int ccount) {
 		this.ccount = ccount;
 	}
-	public String getEditcontent() {
-		return editcontent;
-	}
-	public void setEditcontent(String editcontent) {
-		this.editcontent = editcontent;
-	}
+
 	
 	
 }

@@ -22,7 +22,23 @@
 				FROM category c, board b
 				WHERE c.cno = b.cno(+)
 				GROUP BY b.cno, c.ccontent, c.cno
-				ORDER BY b.cno ASC)
-	</select>
+				)
+			ORDER BY cno ASC
+		</select>
+		<!-- 진미 : 카테고리 추가 삭제 변경 -->
+		<insert id="insert" parameterType="String">
+			INSERT INTO category(cno, ccontent)
+			VALUES (seq_category_cno.nextval, #{ccontent})
+		</insert>
+		
+		<delete id="delete" parameterType="int">
+			DELETE FROM category
+			WHERE cno=#{cno}
+		</delete>
+		
+		<update id="update" parameterType="map">
+			UPDATE category SET ccontent=#{editccontent}
+			WHERE cno = #{cno}
+		</update>
 </mapper>
 
