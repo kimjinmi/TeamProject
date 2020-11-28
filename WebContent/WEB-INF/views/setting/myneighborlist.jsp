@@ -24,7 +24,6 @@
 					<ul class="blog-info-link">
 						<li><a href="#"><i class="fa fa-calendar"></i> 우리가 이웃이 시작
 								된 날 : ${neighbor.ndate}</a></li>
-								<p></p>
 						<li><a href="#"><i class="fa fa-minus-square"></i> 친구 삭제</a></li>
 					</ul>
 
