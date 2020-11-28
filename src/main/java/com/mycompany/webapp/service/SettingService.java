@@ -8,16 +8,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.mycompany.webapp.controller.SettingController;
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
 import com.mycompany.webapp.dao.MemberDao;
+import com.mycompany.webapp.dao.NeighborDao;
+//import com.mycompany.webapp.dao.NeighborDao;
 import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
-import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
-import com.mycompany.webapp.dto.ReplyDto;
 
 
 @Service
@@ -35,6 +35,9 @@ public class SettingService {
 	
 	@Resource
 	private CategoryDao categorydao;
+	
+	@Resource
+	private NeighborDao neighbordao;
 
 
 	public MemberDto sessionconnect(MemberDto member) {
@@ -82,12 +85,9 @@ public class SettingService {
 		return getTotalMyRow;
 	}
 
+	public List<NeighborDto> myNlist(String mymemail) {
+		List<NeighborDto>  list = neighbordao.selectNlistAll(mymemail);
+		return list;
+	}
 
-	  
-	  
-	 
-
-
-	
-	
 }

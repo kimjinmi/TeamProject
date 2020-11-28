@@ -25,14 +25,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
-
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.SettingService;
 
 @Controller
 @RequestMapping("/setting")
 public class SettingController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 	
 	@RequestMapping("/manager")
@@ -64,12 +65,16 @@ public class SettingController {
 		String SessionMurl = (String) session.getAttribute("SessionMurl"); //대소문자조심
 		logger.info("memail :"+sessionMemail);
 		logger.info("mnickname :"+SessionMnickname);
-		logger.info("murl :"+SessionMurl);
+		logger.info("murl :"+SessionMurl); 
 		
+		String memail = (String) session.getAttribute("sessionMemail");
+		List<NeighborDto> mynlist = service.myNlist(memail);
+		model.addAttribute("mynlist", mynlist);
+		logger.info("mymemail : " + memail);
 		return "setting/myneighborlist";
 		
-	}
-	
+	} 
+
 	
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
@@ -254,8 +259,5 @@ public class SettingController {
 		
 		return "setting/setting";
 	}*/
-	
-	
-	
 
 }
