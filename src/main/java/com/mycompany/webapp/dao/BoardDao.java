@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.PagerDto;
 
 @Repository
@@ -23,15 +24,21 @@ public class BoardDao {
 		return board;
 	}
 	
-		//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
-		public List<BoardDto> categoryListLink(int cno, String murl) {
-			Map map = new HashMap();
-			map.put("cno", cno);
-			map.put("murl", murl);
-			List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);
-				return list;
-		}
-
+	//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
+	public List<BoardDto> categoryListLink(int cno, String murl) {
+		Map map = new HashMap();
+		map.put("cno", cno);
+		map.put("murl", murl);
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);
+			return list;
+	}
+	
+	//영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
+	public List<BoardDto> selectBLikeList(String murl) {				//selectAll : Service가 호출함
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList", murl);		//like받은 것을 찾아서 모두를 실행해라
+		return list;
+	}
+		
 	
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
@@ -63,6 +70,7 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", Murl);
 		return list;
 	}
+
 	/* 지훈 */
 	public List<BoardDto> selectBtitleAll() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll");
@@ -77,6 +85,7 @@ public class BoardDao {
 		 return listpage; 
 	 }
 	
+
 
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
@@ -98,12 +107,24 @@ public class BoardDao {
 		return rows;
 	}
 
+
 	public int deleteByBno(int bno) {
 		int rows = sst.delete("mybatis.mapper.board.delete", bno);
 		return rows;
 	}
 
 	
+
+	public List<BoardDto> selectBLikeList1() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList1");		//like받은 것을 찾아서 모두를 실행해라
+		return list;
+	}
+
+	public int commentDelete(int rno) {
+		int rows = sst.delete("mybatis.mapper.board.commentDelete", rno);
+		return rows;
+	}
+
 
 	
 }

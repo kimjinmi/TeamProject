@@ -1,6 +1,8 @@
 package com.mycompany.webapp.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -19,9 +21,34 @@ public class CategoryDao {
 		return list;
 	}
 	
-	public List<CategoryDto> selectMurl(String UserUrl) {				
-		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectMurl", UserUrl);		
+	public List<CategoryDto> selectMurl(String murl) {				
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectMurl", murl);		
 		return list;
+	}
+	
+	public List<CategoryDto> selectAllCount() {				
+		List<CategoryDto> list = sst.selectList("mybatis.mapper.category.selectAllCount");		
+		return list;
+	}
+
+	public int insert(String addCategory) {
+		int row = sst.insert("mybatis.mapper.category.insert", addCategory);
+		return row;
+		
+	}
+
+	public int delete(int cno) {
+		int row = sst.insert("mybatis.mapper.category.delete", cno);
+		return row;
+		
+	}
+
+	public void update(int cno, String editCategory2) {
+		Map map = new HashMap();
+		map.put("cno", cno);
+		map.put("editccontent", editCategory2);
+		int row =  sst.update("mybatis.mapper.category.update", map);
+		
 	}
 
 	/*public List<CategoryDto> selectbyCno(int cno) {

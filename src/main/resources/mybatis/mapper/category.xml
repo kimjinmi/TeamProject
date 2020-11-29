@@ -9,10 +9,36 @@
 		</select>
 		
 		<select id="selectMurl" parameterType="String" resultType="category">	
-			select distinct c.cno, c.ccontent, m.murl
-			from category c, board b, member m
-			where b.cno = c.cno and m.memail = b.memail and m.murl=#{murl}
+			select distinct c.cno, c.ccontent, b.murl
+			from category c, board b
+			where b.cno = c.cno and b.murl=#{murl}
+			order by c.cno asc
 		</select>
 		
+		<!-- 진미 : 카테고리랑 카테고리별 개수 구하는 쿼리 -->
+		<select id="selectAllCount" resultType="category">	
+			SELECT cno, ccontent, ccount
+			FROM(SELECT b.cno con, c.ccontent ccontent, c.cno, count(b.cno) ccount, count(c.ccontent), count(c.cno)
+				FROM category c, board b
+				WHERE c.cno = b.cno(+)
+				GROUP BY b.cno, c.ccontent, c.cno
+				)
+			ORDER BY cno ASC
+		</select>
+		<!-- 진미 : 카테고리 추가 삭제 변경 -->
+		<insert id="insert" parameterType="String">
+			INSERT INTO category(cno, ccontent)
+			VALUES (seq_category_cno.nextval, #{ccontent})
+		</insert>
+		
+		<delete id="delete" parameterType="int">
+			DELETE FROM category
+			WHERE cno=#{cno}
+		</delete>
+		
+		<update id="update" parameterType="map">
+			UPDATE category SET ccontent=#{editccontent}
+			WHERE cno = #{cno}
+		</update>
 </mapper>
 

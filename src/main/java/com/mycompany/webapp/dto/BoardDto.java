@@ -3,6 +3,7 @@ package com.mycompany.webapp.dto;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class BoardDto {
 	private int bno; // 게시글 번호
@@ -20,10 +21,14 @@ public class BoardDto {
 	private String mintro;
 	private String blinkcontent;
 	private int commentnum;
+
+	private String count;
 	
+	/*	private MultipartFile upload;
+		private String attachPath;
+		private String Filename;*/
 
 	
-	private String count;
 	public String getCount() {
 		return count;
 	}

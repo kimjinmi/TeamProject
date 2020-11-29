@@ -4,18 +4,42 @@
 	
 	
 	<select id="selectByBno" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate
+		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate, murl, blike
 		from board
 		where bno = #{bno}
 	</select>
 	
-	<!-- 영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 -->
+	<!-- 영아 - 보드 게시물 / url & cno 가 맞을 때 -->
 	<select id="categoryListLink"  parameterType="map"  resultType="board">
-		select bno, btitle, bcontent, bdate, bimage, c.cno, c.ccontent
-		from board b, category c, member m
-		where m.memail=b.memail and c.cno=b.cno 
-		and m.murl=#{murl} and c.cno=#{cno}
+			select bno, btitle, bcontent, bdate, bimage, c.cno, c.ccontent, b.murl
+			from board b, category c
+			where c.cno=b.cno and b.murl=#{murl} and c.cno=#{cno}
+			order by bdate desc
 	</select>
+	
+	<select id="selectBLikeList" parameterType="String" resultType="board">
+		select bno, btitle, bcontent, bdate, blike, murl
+		from ( select bno, btitle, bcontent, bdate, murl, blike
+		from board 
+		order by blike desc) 
+		where murl=#{murl} and rownum &lt;=4
+		</select>	 	
+		
+	<!-- 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
+		<select id="selectBLikeList" parameterType="String" resultType="board">
+		select btitle, blike
+		from ( select btitle, blike
+		from board 
+		order by blike desc) 
+		where murl=#{murl} and rownum &lt;=4
+		</select> -->
+		
+	<!-- 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트 링크 연결 
+			<select id="bLikeListLink" parameterType="String" resultType="category">	
+			select distinct c.cno, c.ccontent, m.murl
+			from category c, board b, member m
+			where b.cno = c.cno and m.memail = b.memail and m.murl=#{murl}
+		</select> -->
 
 	
 <!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
@@ -75,28 +99,21 @@
 		order by bdate desc -->
 	
 		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
-	select board.bno, btitle, bcontent, bdate, blike, bimage, mnickname,
-	member.murl, category.ccontent, comments.commentnum
-	from board, member, category, (select count(b.bno) commentnum , b.bno
-	from board b, reply r
-	where b.bno = r.bno
-	group by b.bno) comments
-	where member.murl = 'sunnynaracom' AND member.memail = board.memail AND
-	category.cno = board.cno AND
-	comments.bno = board.bno
-	order by bdate desc
+		select board.bno, btitle, bcontent, bdate, blike, bimage, mnickname,
+		member.murl, category.ccontent, comments.commentnum
+		from board, member, category, (select count(b.bno) commentnum , b.bno
+		from board b, reply r
+		where b.bno = r.bno (+)
+		group by b.bno) comments
+		where member.murl = #{Murl} AND member.memail = board.memail AND
+		category.cno = board.cno AND
+		comments.bno = board.bno
+		order by bdate desc
+		
 		</select>
 		
 			<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->			
-		
-		<!-- 영아 - 보드 최신순 게시물 -->
-		<select id="selectBtitleAll" resultType="board">
-		select btitle 
-		from ( select btitle  
-		from board 
-		order by bdate desc) 
-		where rownum &lt; = 4
-		</select>
+
 
 	<select id="countAll" resultType="int">
 		select count(*) 
@@ -109,9 +126,9 @@
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail -->
       
-        select  rno, rcontent, reply.memail,  rdate
-		from board, reply
-		where board.bno = reply.bno AND board.bno = #{bno}
+        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl
+		from board, reply, member
+		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
 	</select>
 	
 <!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
@@ -145,8 +162,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="board">
-		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl)
-		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl} )
+		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl, blike)
+		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl}, #{blike})
 	</insert>
 
 <!--  
@@ -167,12 +184,16 @@
 		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
 <!--  댓글 입력 -->	
+
 	
 <!--  게시글 삭제 -->
 	<delete id="deleteByBno" parameterType="int">
 		delete from board where bno=#{bno}
 	</delete>
-	
+
+	<delete id="commentDelete" parameterType="int">
+		delete from reply where rno=#{rno}
+	</delete>
 	
 </mapper>
 

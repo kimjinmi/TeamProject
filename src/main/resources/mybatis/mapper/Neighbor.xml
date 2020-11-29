@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.neighbor">
+
+	<select id="selectNlistAll" parameterType="String" resultType="neighbor">
+		select nno, mymemail, nememail, ndate, nemurl, m.mmyimage
+		from neighbor n, member m
+		where n.mymemail=m.memail and mymemail=#{mymemail}
+		order by ndate desc
+	</select>
+
+</mapper>

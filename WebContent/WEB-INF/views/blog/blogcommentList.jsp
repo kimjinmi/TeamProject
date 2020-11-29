@@ -22,7 +22,7 @@
 						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center">
 								<h5>
-									<a href="#">${comment.memail }</a>
+									<a href="blog?UserUrl=${comment.murl}">${comment.mnickname }</a>
 								</h5>
 								<p class="date">
 									<fmt:formatDate value="${comment.rdate}"
@@ -31,8 +31,30 @@
 							</div>
 							<div class="reply-btn">
 								<a href="javascript:nextReply(${board.bno}" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
+								
 							</div>
+							
 						</div>
+						<c:if test="${comment.murl == SessionMurl}">
+									<a href="javascript:commentDelete(${comment.rno})" class="genric-btn danger small">삭제</a>
+									<a href="blog" class="genric-btn primary small">수정(미완성)</a>
+									
+						<script type="text/javascript">
+							function commentDelete(rno){	
+								 if(confirm("정말로 삭제 하시겠습니까?")){
+								 	$.ajax({
+										url: "commentDelete",
+										data: {rno:rno},
+										success: function(data){
+											onload();
+										}
+									}); 
+							 	}  
+							}
+						</script>
+						</c:if>
+						
+						
 					</div>
 				</div>
 			</div>

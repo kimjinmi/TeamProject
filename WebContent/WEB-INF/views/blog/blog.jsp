@@ -41,7 +41,7 @@
    href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
    href="<%=application.getContextPath()%>/resources/assets/css/style.css">
-<<<<<<< HEAD
+
    
    <style type="text/css">
    .blog_list_content{  	
@@ -53,9 +53,9 @@
    }
    </style>
    
-=======
+
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 </head>
 
 <body>
@@ -123,23 +123,27 @@
                   
                      <aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
                      <div class="align-items-center" style="width:100%; height:100%; text-align:center;">
-                        <img src="photodownload?fileName=${member.mmyimage}" alt="" width="100" height="100" class="rounded-circle">
+                        <img src="photodownload?fileName=${member.mmyimage}" 
+                        alt="" width="100" height="100" class="rounded-circle">
                         <hr/>
                         <h2 class="contact-title">${member.mnickname}</h2>
                         <p>${member.mintro}</p>
                         <hr/>
                         <!-- 게시글 작성 버튼 -->
-                        <a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
-                        <script type="text/javascript">
-                           function boardWrite() {
-                              $.ajax({
-                                 url: "boardWrite",
-                                 success:function(data){
-                                    $("#categoryListLinkBoard").html(data);
-                                 }
-                              });
-                           }
-                        </script>
+                        <c:if test="${member.murl==SessionMurl}">		<!-- member가 가지고 있는 murl과 session에 저장된 murl이 같을 때 (내 블로그일 때) -->
+							<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+				 				 <script type="text/javascript">
+                          			 function boardWrite() {
+                            			$.ajax({
+                                 			url: "boardWrite",
+                               				success:function(data){
+                                    			$("#categoryListLinkBoard").html(data);
+                                 			}
+                              			});
+                           			}
+                       			 </script>
+						</c:if>
+                       
                         <!-- 게시글 작성 버튼 -->
                      </div>
                         
@@ -172,9 +176,8 @@
                         
                         <!--    <li><a href="javascript:blogLife()" class="d-flex"></a></li> -->
                            <c:forEach var="category" items="${catelist}">
-                           
                            <li><a href="javascript:categoryListLinkBoard(${category.cno},'${category.murl}')" class="d-flex">
-                           		 ${category.ccontent}</a></li>
+                           	 ${category.ccontent}</a></li>
                              <script type="text/javascript">
 									//페이지 로드될때 댓글ajax로 가져옴
 									function categoryListLinkBoard(cno,murl){
@@ -192,17 +195,21 @@
                         </ul>
                      </aside>
                      <aside class="single_sidebar_widget popular_post_widget">
-                           <h3 class="widget_title" style="color: #2d2d2d;">Like Posting</h3>
-                           <c:forEach var="btitle" items="${btitlelist}">
-                              <div class="media post_item">
-                                 <img src="C:\temp\projectimage\blog\crab.png" alt="post">
+                           <h3 class="widget_title" style="color: #2d2d2d;">Be Liked Posting</h3>
+                           <c:forEach var="likelist" items="${likelist}">
+                           <div class="media post_item">    
+                               <i class="fas fa-heart" style="color: red;padding-top: 3px; padding-right: 3px;"></i>
+                                <h3 style="color: red;"> like : ${likelist.blike} </h3>                
                                  <div class="media-body">
-                                    <a href="blog_details.html">
-                                       <h3 style="color: #2d2d2d;">${btitle.btitle}</h3>
-                                    </a>
-                                    <p>1시간 전 작성</p>
-                                 </div>
-                              </div>
+                                	<a href="javascript:boardDetails(${likelist.bno})"><h3 style="color: #2d2d2d;">
+                                	${likelist.btitle}</h3> </a>
+		                          	<script type="text/javascript">
+										function boardDetails(bno) {
+											location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+										}
+									</script>
+										</div>
+									</div>
                            </c:forEach>
                      </aside>
                   </div>
@@ -227,8 +234,8 @@
                                  </a>
                                  <p class="blog_list_content">${board.bcontent }</p>
                                  <ul class="blog-info-link">
-                                     <li><a href="#"><i class="fa fa-user"></i>${board.ccontent }</a></li>
-                                     <li><a href="#"><i class="fa fa-comments"></i> ${board.commentnum }</a></li>
+                                     <li><a><i class="fa fa-user"></i>${board.ccontent }</a></li>
+                                     <li><a><i class="fa fa-comments"></i> ${board.commentnum }</a></li>
                                  </ul>
                              </div>
                            </article>  

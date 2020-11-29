@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.SettingService;
@@ -33,14 +34,16 @@ import com.mycompany.webapp.service.SettingService;
 @Controller
 @RequestMapping("/setting")
 public class SettingController {
+	
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
 	
 	@RequestMapping("/manager")
 	public String manager(MemberDto memberdto, HttpSession session, Model model) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
-		return "manager/content";
+		return "redirect:/manager/content";
 	}
 	
 	@RequestMapping("/content")
@@ -63,13 +66,22 @@ public class SettingController {
 		String SessionMurl = (String) session.getAttribute("SessionMurl"); //대소문자조심
 		logger.info("memail :"+sessionMemail);
 		logger.info("mnickname :"+SessionMnickname);
-		logger.info("murl :"+SessionMurl);
+		logger.info("murl :"+SessionMurl); 
 		
+		String memail = (String) session.getAttribute("sessionMemail");
+		List<NeighborDto> mynlist = service.myNlist(memail);
+		model.addAttribute("mynlist", mynlist);
+		logger.info("mymemail : " + memail);
 		return "setting/myneighborlist";
 		
+
 	}
 	
 	//게시글 관리
+
+	
+	
+
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		//logger.info("실행");
@@ -267,8 +279,9 @@ public class SettingController {
 	}
 	
 	@PostMapping("/updatenickintro")
-	public String updatenickintro(MemberDto member){
-		
+	public String updatenickintro(MemberDto member, HttpSession session){
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		member.setMemail(sessionMemail);
 		logger.info(member.getMemail());
 		logger.info(member.getMintro());
 		logger.info(member.getMnickname());
@@ -281,8 +294,5 @@ public class SettingController {
 		
 		return "setting/setting";
 	}*/
-	
-	
-	
 
 }
