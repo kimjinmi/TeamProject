@@ -22,6 +22,7 @@ public class BoardDto {
 	private int commentnum;
 	
 
+	
 	private String count;
 	public String getCount() {
 		return count;

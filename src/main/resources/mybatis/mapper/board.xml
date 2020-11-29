@@ -169,8 +169,8 @@
 <!--  댓글 입력 -->	
 	
 <!--  게시글 삭제 -->
-	<delete id="deleteByBno">
-		delete from board whre bno=#{bno}
+	<delete id="deleteByBno" parameterType="int">
+		delete from board where bno=#{bno}
 	</delete>
 	
 	

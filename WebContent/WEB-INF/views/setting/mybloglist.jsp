@@ -12,21 +12,10 @@
 		      	<div class="col-md-9"></div>
 		           <!-- <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div> -->	          
 		           <div class="col-md-3">
-		              <c:if test="${sessionMurl == member.url}">
-		           		 <a href="javascript:boarddelete(${board.bno})" class="genric-btn danger radius small">게시글 삭제</a>
-		           		 <script type="text/javascript">
-						 function boarddelete(bno) {
-							$.ajax({
-								url : "boarddelete",
-								datd : {bno:bno},
-								method : "post",
-								success : function(data) {
-									if(data.result == "success") {
-										
-										}
-									} 
-								});
-							 }
+		              <c:if test="${sessionMurl == member.murl}">
+		           		<input type="button" value="게시글 삭제" class="genric-btn danger radius small" onclick="deleteboard();"/>
+		           		 <script>
+						
 		           		 </script>
 		           	  </c:if>
 		           </div>
@@ -39,7 +28,7 @@
 		         	<c:forEach var="board" items="${list}">  	
 			         	<div class="row">
 			              <div class="col-sm-1">
-			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox" name="del_check" value="${board.bno}"></label>
+			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox" name="rowcheck"  value="${board.bno}"></label>
 			              </div>
 			              <div class="col-sm-11">
 				              <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}"><!-- 여기다가 글 클릭시 연결되는 링크 작성하기 -->

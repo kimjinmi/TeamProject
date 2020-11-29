@@ -78,7 +78,16 @@ public class SettingService {
 	
 	public void boardDelete(int bno) {
 		int rows = boarddao.deleteByBno(bno);
+		
 	}
+
+	public List<ReplyDto> getReplyListPage(PagerDto pager) {
+		
+		List<ReplyDto> list = replydao.selectByPage(pager); 
+		return list;
+	}
+
+
 	  
 	  
 	 

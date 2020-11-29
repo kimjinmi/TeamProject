@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -29,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.SettingService;
 
 @Controller
@@ -94,20 +93,16 @@ public class SettingController {
 		return "setting/mybloglist";
 	}
 	
-	//댓글 관리
-	/*@RequestMapping("/myreplylist")
-	public String myreplylist() {
-		
-		return "setting/myreplylist";
-	}*/
-	
+
 	//게시물 삭제
-	@RequestMapping("/boarddelete")
-	public void boarddelete(int bno, HttpServletResponse response, HttpServletRequest reuqest) throws Exception {
+	/*@RequestMapping("/boarddelete")
+	public void boarddelete(int bno, HttpServletResponse response,HttpServletRequest request) throws Exception {
 		
 		
 		service.boardDelete(bno);
 		
+		String[] val = request.getParameterValues("del_check");
+		logger.info("####" + val);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString(); 
@@ -119,12 +114,33 @@ public class SettingController {
 		out.close();
 	
 	}
+	*/
 	
+
 	
 	@RequestMapping("/mycommentlist")
-	public String mycommentlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
+	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo,HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		
+		
+		//페이징
+		int totalRows = service.getTotalMyRow(SessionMurl); //
+		
+		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
+		
+		
+		
+		List<ReplyDto> listcomment = service.getReplyListPage(pager);
+		//List<BoardDto> list = service.getBoardList(sessionMemail);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", listcomment);
+		logger.info("listcomment: " + listcomment);
+	
+		
+		
 		return "setting/mycommentlist";
 	}
 	
