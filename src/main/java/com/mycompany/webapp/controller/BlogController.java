@@ -60,10 +60,11 @@ public class BlogController {
 	@GetMapping("/blog_details")
 	public String board_details(HttpSession session, int bno, Model model, HttpServletRequest request) {
 		// get 값 매핑
-		/*String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다. -지훈
+		String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다. -지훈
 		if (UserUrl == "") {
+			
 			UserUrl += session.getAttribute("murl");
-		}*/
+		}
 		
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 logger.info("bno 값 확인: "+bno);
@@ -83,6 +84,7 @@ public class BlogController {
 
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
+		logger.info(reply.getRcontent());
 		service.commentWrite(reply);
 	}
 
