@@ -70,8 +70,7 @@
 
 		<!-- 글쓰기 버튼 시작 (확인) -->
 		<div style="margin-top: 12px; padding-left: 35%; margin: 20px 0px;">
-			<a href="javascript:boardWrite()"
-				class="genric-btn info-border radius" style="margin-right: 20px;">확인</a>
+			<a href="javascript:boardWrite()" class="genric-btn info-border radius" style="margin-right: 20px;">확인</a>
 			<script type="text/javascript">
 				function boardWrite() {
 					var cno = $("#cno").val();
