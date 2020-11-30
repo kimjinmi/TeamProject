@@ -24,6 +24,9 @@ public class BoardDao {
 		return board;
 	}
 	
+	
+	//-------------------------------------------------영아---------------------------------------------------//
+	
 	//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
 	public List<BoardDto> categoryListLink(int cno, String murl) {
 		Map map = new HashMap();
@@ -39,6 +42,7 @@ public class BoardDao {
 		return list;
 	}
 		
+	//-------------------------------------------------영아---------------------------------------------------//
 	
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
@@ -66,8 +70,13 @@ public class BoardDao {
 	
 	
 	/* 지훈 사용자 블로그리스트 출력하기*/
-	public List<BoardDto> selectUserBoard(String Murl) {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", Murl);
+	/*
+	 * public List<BoardDto> selectUserBoard(PagerDto pager) { List<BoardDto> list =
+	 * sst.selectList("mybatis.mapper.board.selectUserBoard", pager); return list; }
+	 */
+	
+	public List<BoardDto> selectUserBoard(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", pager);
 		return list;
 	}
 
@@ -92,7 +101,6 @@ public class BoardDao {
 		return list;
 	}
 
-	//진미 : 전체 글의 구하는거임 삭제 ㄴ, 고쳐서 사용 금지
 	public int countAll() {
 		int rows = sst.selectOne("mybatis.mapper.board.countAll");
 		return rows;
@@ -124,6 +132,16 @@ public class BoardDao {
 	public int commentDelete(int rno) {
 		int rows = sst.delete("mybatis.mapper.board.commentDelete", rno);
 		return rows;
+	}
+
+	public BoardDto boardLikeCount(int bno) {
+		BoardDto list = sst.selectOne("mybatis.mapper.board.boardLikeCount", bno);
+		return list;
+	}
+
+	public int userBoardCountAll(String userUrl) {
+		int totalRows = sst.selectOne("mybatis.mapper.board.userBoardCountAll", userUrl);
+		return totalRows;
 	}
 
 	//진미 : 전체 글의 구하는거임 삭제 ㄴ, 고쳐서 사용 금지

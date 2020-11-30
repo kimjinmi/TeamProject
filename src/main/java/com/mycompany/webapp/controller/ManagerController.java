@@ -28,6 +28,7 @@ import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.ManagerService;
 
 
@@ -79,7 +80,7 @@ public class ManagerController {
 	
 	@RequestMapping("/allboardlist")
 	public String allboardlist(Model model, @RequestParam(defaultValue = "1")int pageNo) {
-		int totalRows = service.getTotalRows();
+		int totalRows = service.getTotalBoardRows();
 		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getBoardList(pager);
 		model.addAttribute("list", list);
@@ -88,11 +89,15 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("/allreplylist")
-	public String allreplylist(Model model) {
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+	public String allreplylist(Model model, @RequestParam(defaultValue = "1")int pageNo) {
+		int totalRows = service.getTotalReplyRows();
+		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
+		List<ReplyDto> list = service.getReplyList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
 		return "manager/allreplylist";
 	}
+	 	
 	
 	@RequestMapping("/inquirylist")
 	public String inquirylist(Model model) {
@@ -134,6 +139,39 @@ public class ManagerController {
 		out.flush();
 		out.close();
 		
+	}
+	@RequestMapping("/boarddelete")
+	public void boarddelete(int bno, HttpServletResponse response) throws Exception { 
+		logger.info("##bno:"+bno);
+		service.boarddelete(bno);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("/replydelete")
+	public void replydelete(int rno, HttpServletResponse response) throws Exception { 
+		
+		service.replydelete(rno);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 	
 	@GetMapping("/managerAdd")

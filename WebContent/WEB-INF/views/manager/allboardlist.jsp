@@ -11,7 +11,21 @@ text-overflow:ellipsis;
 }
 
 </style>
+<script type="text/javascript">
+function boarddelete(bno){
+	$.ajax({
+		url:"boarddelete",
+		data:{bno:bno},
+		success:function(data){
+			if(data.result == "success"){
+				allboardlist();
+			}
+		}
+	});
+}
 
+
+</script>
 <h2 style="color: #2d2d2d; display:inline;">게시글 관리</h2>
 
 <hr style="margin-top:12px;">
@@ -20,29 +34,33 @@ text-overflow:ellipsis;
 	<table style="text-align:center; width: 90%">
 		<colgroup>
 			<col width="5%">
-			<col width="40%">
-			<col width="25%">
-			<col width="25%">
+			<col width="15%">
+			<col width="35%">
+			<col width="20%">
+			<col width="20%">
 			<col width="5%">
 		</colgroup>
 		<thead>
-			<tr style="background-color:##FBF9FF; border-spacing: 5px;">
+			<tr style="background-color:#FBF9FF;">
 				<th scope="col">no</th>
+				<th scope="col">category</th>
 				<th scope="col">title</th>
 				<th scope="col">writer</th>
 				<th scope="col">date</th>
-				<th scope="col"></th>
+				<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
 			</tr>
 		</thead>
 			<c:forEach var="board" items="${list}">
 				<tr style="border-spacing: 5px;">
 					<td>${board.bno}</td>
-					<td>${board.btitle}</td>
+					<td>${board.ccontent}</td>
+					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}">${board.btitle}</a></td>
 					<td>${board.memail}</td>
 					<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" /></td>
-					<td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+					<td><a href="javascript:boarddelete(${board.bno})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 				</tr>	
 			</c:forEach>
+			
 		
 			<tr>
 				<td colspan="5" style="text-align:center;">

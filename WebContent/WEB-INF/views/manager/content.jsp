@@ -160,9 +160,13 @@
 									<li><a href="javascript:allreplylist()" class="d-flex">
 										<p>전체 댓글 관리</p></a>
 										<script type="text/javascript">
-											function allreplylist(){
+											function allreplylist(pageNo){
+												if(!pageNo){
+													pageNo = 1;
+												}
 												$.ajax({
 													url:"allreplylist",
+													data:{pageNo:pageNo},
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
