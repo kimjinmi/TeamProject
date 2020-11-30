@@ -192,7 +192,6 @@
 										
 										</script>
 									</li>	
-<<<<<<< HEAD
 									 <script type="text/javascript">
 									function boardList(pageNo) {
 										if(!pageNo) {
@@ -208,9 +207,6 @@
 											});
 										}
 										</script>
-=======
-									 
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
 								<!-- 	  <script type="text/javascript">
 										function mypagelist(pageNo) {
 											if(!pageNo) {
@@ -232,7 +228,7 @@
 											
 									
 									<li><a href="javascript:mycommentlist()" class="d-flex">
-											<p>댓글 관리</p></a>
+											<p style="padding-top: 18px;">댓글 관리</p></a>
 										<script type="text/javascript">
 										function mycommentlist(){
 											$.ajax({
