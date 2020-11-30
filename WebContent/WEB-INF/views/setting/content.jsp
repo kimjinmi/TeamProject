@@ -116,7 +116,7 @@
 								<hr/>
 								
 								<sec:authorize access="hasRole('ROLE_MANAGER')">
-									<hr/>						                    	
+														                    	
 		                       	 	<!-- 게시글 작성 버튼 -->
 		                        	<a class="genric-btn primary e-large" href="manager">MANAGER</a>
 		                        </sec:authorize> 
@@ -192,7 +192,6 @@
 										
 										</script>
 									</li>	
-<<<<<<< HEAD
 
 									 <!-- <script type="text/javascript">
 =======

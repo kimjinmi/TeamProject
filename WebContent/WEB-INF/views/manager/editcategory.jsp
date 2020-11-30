@@ -11,7 +11,9 @@
 		document.getElementById("deleteid").value = cno;
 		document.getElementById("editCategory1").value = ccontent;
 		document.getElementById("deleteCategory").value = ccontent;
-
+		$("#categoryadd").toggle();
+		$("#categoryedit").toggle();
+		$("#categorydelete").toggle();
 		
 	}
 </script>
@@ -20,19 +22,19 @@
 		<div class="col">
 			<div style="overflow:auto; height:300px;">
 			<%-- <img src="<%=application.getContextPath()%>/resources/images/ponyo.png"> --%>
-			<c:forEach var="category" items="${category}">
-			<ul class="list-group">
-				<li class="list-group-item list-group-item-light">
-					<a href="javascript:void(0);" onclick="buttonclick(${category.cno}, '${category.ccontent}'); return false;"><i class="fa fa-list" aria-hidden="true"></i></a>&nbsp;&nbsp;${category.ccontent}&nbsp;&nbsp;(${category.ccount})
-				</li>
-				
-			</ul>
-			</c:forEach>
+				<c:forEach var="category" items="${category}">
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-light">
+							<a href="javascript:void(0);" onclick="buttonclick(${category.cno}, '${category.ccontent}'); return false;"><i class="fa fa-list" aria-hidden="true"></i></a>&nbsp;&nbsp;${category.ccontent}&nbsp;&nbsp;(${category.ccount})
+						</li>
+						
+					</ul>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
 	<p></p>
-	<form action="categoryadd" id="categoryadd"style="display: inline;">
+	<form action="categoryadd" id="categoryadd" style="display: inline;">
 		<div class="row" id="categoryadd">
 			<div class="col-3">
 				<b>카테고리 추가</b>
@@ -46,7 +48,7 @@
 		</div>
 	</form>
 	<p></p>
-	<form action="categoryedit" id="categoryedit" style="display: inline;">
+	<form action="categoryedit" id="categoryedit" style="display: none;">
 		<div class="row">
 			<div class="col-3">
 				<b>카테고리 변경</b>
@@ -65,7 +67,7 @@
 		</div>
 	</form>
 	<p></p>
-	<form action="categorydelete" id="categorydelete" style="display: inline;">
+	<form action="categorydelete" id="categorydelete" style="display: none;">
 		<div class="row" >
 			<div class="col-3">
 				<b>카테고리 삭제</b>
