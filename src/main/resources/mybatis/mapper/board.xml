@@ -197,7 +197,7 @@
 	
 	<!-- 전체게시글구하기(고치지말것) -->
 	<select id="selectListAll" parameterType="pager" resultType="board">
-		SELECT rnum, bno, bno, btitle, bdate, memail, ccontent
+		SELECT rnum, bno, btitle, bdate, memail, ccontent
 			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
 					FROM (SELECT bno, btitle, bdate, memail, ccontent
 					        FROM board b, category c
