@@ -97,11 +97,8 @@ public class BlogService {
 		return rows;
 	}
 
-
-	//----------- 선 ---------
-	/*public void upload(BoardDto board) {
-		boardDao.insert(board);
-	}*/
-	//----------- 선 ---------
+	public void boardDelete(int bno) {
+		boardDao.deleteByBno(bno);
+	}
 
 }

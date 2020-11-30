@@ -241,6 +241,26 @@ public class BlogController {
 		is.close();
 	}	
 	
+	@PostMapping("/boardDelete")
+	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
+		
+		logger.info("bno : " + bno);
+		// 게시물 삭제
+		service.boardDelete(bno);
+
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); 
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); 
+
+		// JSON 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
 	

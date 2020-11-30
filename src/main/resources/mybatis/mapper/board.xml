@@ -186,7 +186,7 @@
 <!--  댓글 입력 -->	
 
 	
-<!--  게시글 삭제 -->
+	<!--  게시글 삭제, 선이도 쓴다 -->
 	<delete id="deleteByBno" parameterType="int">
 		delete from board where bno=#{bno}
 	</delete>
