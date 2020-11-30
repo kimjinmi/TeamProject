@@ -13,6 +13,7 @@ import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
@@ -43,8 +44,14 @@ public class BlogService {
 			return list;
 	}*/
 
-	public List<BoardDto> getBoardList(String Murl) {										//userurl이 들어옴(memail자리에)
-		List<BoardDto> list = boardDao.selectUserBoard(Murl);
+	/*
+	 * public List<BoardDto> getBoardList(PagerDto pager) { //userurl이
+	 * 들어옴(memail자리에) List<BoardDto> list = boardDao.selectUserBoard(pager); return
+	 * list; }
+	 */
+	
+	public List<BoardDto> getBoardList(PagerDto pager) {										//userurl이 들어옴(memail자리에)
+		List<BoardDto> list = boardDao.selectUserBoard(pager);
 		return list;
 	}
 	
@@ -95,6 +102,17 @@ public class BlogService {
 	public int commentDelete(int rno) {
 		int rows = boardDao.commentDelete(rno);
 		return rows;
+	}
+
+	public BoardDto boardLikeCount(int bno) {
+		BoardDto list = boardDao.boardLikeCount(bno);
+		return list;
+		
+	}
+
+	public int getTotalRows(String userUrl) {
+		int totalRows = boardDao.userBoardCountAll(userUrl);
+		return totalRows;
 	}
 
 

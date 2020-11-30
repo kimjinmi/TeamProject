@@ -92,23 +92,70 @@
 	</select> -->
 		
 		
-		<select id="selectUserBoard" parameterType="String" resultType="board">
+		<select id="selectUserBoard" parameterType="pager" resultType="board">
 		<!-- select bno,btitle, bcontent, bdate, blike, bimage, mnickname, member.murl, category.ccontent
 		from board, member, category
 		where member.murl = #{Murl} AND member.memail = board.memail AND category.cno = board.cno
 		order by bdate desc -->
 	
 		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
-		select board.bno, btitle, bcontent, bdate, blike, bimage, mnickname,
-		member.murl, category.ccontent, comments.commentnum
-		from board, member, category, (select count(b.bno) commentnum , b.bno
-		from board b, reply r
-		where b.bno = r.bno (+)
-		group by b.bno) comments
-		where member.murl = #{Murl} AND member.memail = board.memail AND
-		category.cno = board.cno AND
-		comments.bno = board.bno
-		order by bdate desc
+		
+		
+		select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
+		from (
+			select rownum as rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
+			from(
+				select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as commentnum
+					from board b, member m, category c, (
+														select count(b.bno) commentnum , b.bno  
+														from board b, reply r
+														where b.bno = r.bno (+)
+														group by b.bno
+													  ) comments
+					where b.murl = #{murl} AND m.memail = b.memail AND c.cno = b.cno AND comments.bno = b.bno	
+				order by bdate desc
+				) 
+			where rownum &lt; = #{endRowNo}
+		)
+		where rnum &gt; = #{startRowNo}
+		
+	
+		<!-- select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, comnum
+		from (
+			select rownum as rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, comnum
+			from(
+				select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as comnum
+					from board b, member m, category c, (
+														select count(b.bno) commentnum , b.bno  
+														from board b, reply r
+														where b.bno = r.bno (+)
+														group by b.bno
+													  ) comments
+					where b.murl = #{murl} AND m.memail = b.memail AND c.cno = b.cno AND comments.bno = b.bno	
+					order by bdate desc
+				) 
+			where rownum &lt; = #{endRowNo} 
+		)
+		where rnum &gt; = #{startRowNo} -->
+		<!-- 
+						select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, m.murl, c.ccontent, comments.commentnum
+						
+						from board b, member m, category c, (
+														select count(b.bno) commentnum , b.bno  
+														from board b, reply r
+														where b.bno = r.bno (+)
+														group by b.bno
+														
+													  ) comments
+													  
+						where m.murl = #{murl} AND m.memail = b.memail AND c.cno = b.cno AND comments.bno = b.bno
+						
+						order by bdate desc
+		
+	 -->
+		
+		
+		
 		
 		</select>
 		
@@ -194,6 +241,17 @@
 	<delete id="commentDelete" parameterType="int">
 		delete from reply where rno=#{rno}
 	</delete>
+
+<!-- 게시물 좋아요 갯수 조회 -->
+	<select id="boardLikeCount" parameterType="int" resultType="board">
+		select blike 
+		from board
+		where bno=#{bno} 
+	</select>
 	
+<!-- 개인 사이트 블로그 게시물 페이저  -->
+<select id="userBoardCountAll" parameterType="String" resultType="int">
+	select count(*) from board where murl = #{Usermurl} 
+</select>
 </mapper>
 

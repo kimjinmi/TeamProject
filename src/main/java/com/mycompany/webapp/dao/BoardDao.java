@@ -66,8 +66,13 @@ public class BoardDao {
 	
 	
 	/* 지훈 사용자 블로그리스트 출력하기*/
-	public List<BoardDto> selectUserBoard(String Murl) {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", Murl);
+	/*
+	 * public List<BoardDto> selectUserBoard(PagerDto pager) { List<BoardDto> list =
+	 * sst.selectList("mybatis.mapper.board.selectUserBoard", pager); return list; }
+	 */
+	
+	public List<BoardDto> selectUserBoard(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", pager);
 		return list;
 	}
 
@@ -123,6 +128,16 @@ public class BoardDao {
 	public int commentDelete(int rno) {
 		int rows = sst.delete("mybatis.mapper.board.commentDelete", rno);
 		return rows;
+	}
+
+	public BoardDto boardLikeCount(int bno) {
+		BoardDto list = sst.selectOne("mybatis.mapper.board.boardLikeCount", bno);
+		return list;
+	}
+
+	public int userBoardCountAll(String userUrl) {
+		int totalRows = sst.selectOne("mybatis.mapper.board.userBoardCountAll", userUrl);
+		return totalRows;
 	}
 
 

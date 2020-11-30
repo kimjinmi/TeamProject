@@ -14,7 +14,6 @@ public class PagerDto {
 	private int startRowNo;		//페이지의 시작 행 번호
 	private int endRowNo;		//페이지의 마지막 행 번호
 	
-	
 	public PagerDto(String murl, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
 		this.murl = murl;
 		this.rowsPerPage = rowsPerPage;
@@ -38,7 +37,6 @@ public class PagerDto {
 		startRowNo = (pageNo - 1) * rowsPerPage + 1;
 		endRowNo = pageNo * rowsPerPage; 
 	}
-
 
 	public String getMurl() {
 		return murl;
