@@ -192,8 +192,8 @@
 										
 										</script>
 									</li>	
-<<<<<<< HEAD
-									 <script type="text/javascript">
+
+									 <!-- <script type="text/javascript">
 									function boardList(pageNo) {
 										if(!pageNo) {
 											pageNo = 1;
@@ -207,11 +207,8 @@
 												}
 											});
 										}
-										</script>
-=======
-									 
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
-								<!-- 	  <script type="text/javascript">
+										</script> -->
+							<!-- 	  <script type="text/javascript">
 										function mypagelist(pageNo) {
 											if(!pageNo) {
 												pageNo = 1;
