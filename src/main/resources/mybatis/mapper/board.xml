@@ -126,7 +126,7 @@
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail -->
       
-        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl
+        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl, board.bno
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
 	</select>

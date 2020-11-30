@@ -42,12 +42,14 @@
 									
 						<script type="text/javascript">
 							function commentDelete(rno){	
+									
 								 if(confirm("정말로 삭제 하시겠습니까?")){
 								 	$.ajax({
 										url: "commentDelete",
 										data: {rno:rno},
 										success: function(data){
-											onload();
+										// 삭제는 됬고  댓글 리스트를  새로고침 해야함	
+										location.href="blog_details?bno=${comment.bno}";		
 										}
 									}); 
 							 	}  

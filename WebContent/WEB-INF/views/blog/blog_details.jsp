@@ -428,28 +428,9 @@
 												success : function(data) {
 													$("#comments-area").html(data);
 												}
-												
-												
 										/////댓글리스트 리로드///////////////////
 											});
-											
-											
 											$("#comment").val("");
-									/* 		
-											//데이터베이스 값 입력
-											$.ajax({
-												url:"blogcommentlist";
-												method:"post",
-												data{comment:comment
-													},
-												success:function(data){
-													if(data.result = "success"){
-														console.log("성공하였습니다.");
-	
-													}
-												}
-											}); */
-											
 										}
 											
 											
