@@ -48,26 +48,33 @@ public class BlogService {
 		return list;
 	}
 	
-	public List<CategoryDto> categoryList() {													//영아
+	//-----------------------------------------------영아--------------------------------------------------//
+	
+				//카테고리 리스트
+	public List<CategoryDto> categoryList() {												
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
-	public List<CategoryDto> categoryListMurl(String UserUrl) {													//영아
+	
+			// 내 블로그 내의 카테고리 리스트
+	public List<CategoryDto> categoryListMurl(String UserUrl) {													
 		List<CategoryDto> list = categoryDao.selectMurl(UserUrl);
 		return list;
 	}
 	
-	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때
+			//보드 게시물 / 이메일 & cno 가 맞을 때
 	public List<BoardDto> bcno(int cno, String userUrl) {
 			List<BoardDto> list = boardDao.categoryListLink(cno, userUrl);
 			return list;
 		}
 	
-	//영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
-	public List<BoardDto> bLikeList(String userUrl) {													//영아
+		//나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
+	public List<BoardDto> bLikeList(String userUrl) {												
 		List<BoardDto> list = boardDao.selectBLikeList(userUrl);
 		return list;
 	}
+		
+	//-----------------------------------------------영아--------------------------------------------------//
 	
 	public List<ReplyDto> commentList(int bno) {
 		List<ReplyDto> list = replyDao.selectBoardComment(bno);

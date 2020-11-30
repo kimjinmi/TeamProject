@@ -191,8 +191,7 @@
 										}
 										
 										</script>
-									</li>	
-<<<<<<< HEAD
+									</li>
 
 									 <!-- <script type="text/javascript">
 =======
@@ -255,18 +254,21 @@
 									<li><a href="javascript:myneighborlist()" class="d-flex">
 											<p>이웃 관리</p></a>
 										<script type="text/javascript">
-										function myneighborlist(){
+										function myneighborlist(pageNo){
+											if(!pageNo) {
+												pageNo = 1;
+											}
 											$.ajax({
 												url:"myneighborlist",
+												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
 												}
-											});
-											
+											});			
 										}
-										</script>
-											
+										</script>					
 									</li>
+									
 									<li><a href="javascript:deletemember()" class="d-flex">
 											<p>회원 탈퇴</p></a>
 										<script type="text/javascript">
@@ -285,10 +287,9 @@
 								</ul>
 							</aside>
 							
-							
 						</div>
 					</div>
-				
+		
 				<!-- ////////////////////////////////// -->
 					<div class="col-lg-8 posts-list">
 						<div class="single-post">

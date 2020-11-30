@@ -17,30 +17,14 @@
 			order by bdate desc
 	</select>
 	
+	<!-- 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트 -->
 	<select id="selectBLikeList" parameterType="String" resultType="board">
 		select bno, btitle, bcontent, bdate, blike, murl
-		from ( select bno, btitle, bcontent, bdate, murl, blike
+		from ( select bno, btitle, bcontent, bdate, blike, murl
 		from board 
 		order by blike desc) 
 		where murl=#{murl} and rownum &lt;=4
 		</select>	 	
-		
-	<!-- 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
-		<select id="selectBLikeList" parameterType="String" resultType="board">
-		select btitle, blike
-		from ( select btitle, blike
-		from board 
-		order by blike desc) 
-		where murl=#{murl} and rownum &lt;=4
-		</select> -->
-		
-	<!-- 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트 링크 연결 
-			<select id="bLikeListLink" parameterType="String" resultType="category">	
-			select distinct c.cno, c.ccontent, m.murl
-			from category c, board b, member m
-			where b.cno = c.cno and m.memail = b.memail and m.murl=#{murl}
-		</select> -->
-
 	
 <!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
 		<!-- 좋아요순은 데이터 12개 -->

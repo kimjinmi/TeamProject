@@ -24,6 +24,9 @@ public class BoardDao {
 		return board;
 	}
 	
+	
+	//-------------------------------------------------영아---------------------------------------------------//
+	
 	//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
 	public List<BoardDto> categoryListLink(int cno, String murl) {
 		Map map = new HashMap();
@@ -39,7 +42,9 @@ public class BoardDao {
 		return list;
 	}
 		
+	//-------------------------------------------------영아---------------------------------------------------//
 	
+		
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectLikeAll");
@@ -84,8 +89,6 @@ public class BoardDao {
 		 
 		 return listpage; 
 	 }
-	
-
 
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
