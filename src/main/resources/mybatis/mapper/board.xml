@@ -184,7 +184,13 @@
 		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
 <!--  댓글 입력 -->	
+
 	
+<!--  게시글 삭제 -->
+	<delete id="deleteByBno" parameterType="int">
+		delete from board where bno=#{bno}
+	</delete>
+
 	<delete id="commentDelete" parameterType="int">
 		delete from reply where rno=#{rno}
 	</delete>

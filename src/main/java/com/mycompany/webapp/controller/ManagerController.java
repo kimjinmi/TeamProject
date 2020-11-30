@@ -63,7 +63,49 @@ public class ManagerController {
 		service.deleteCategory(cno);
 		return "redirect:/manager/content";
 	}
+	
+	@RequestMapping("/editcategory")
+	public String editcategory(Model model) {
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		return "manager/editcategory";
+	}
+	
+	@RequestMapping("/allboardlist")
+	public String allboardlist(Model model) {
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		return "manager/allboardlist";
+	}
+	
+	@RequestMapping("/allreplylist")
+	public String allreplylist(Model model) {
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		return "manager/allreplylist";
+	}
+	
+	@RequestMapping("/inquirylist")
+	public String inquirylist(Model model) {
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		return "manager/inquirylist";
+	}
 
+	@RequestMapping("/managersetting")
+	public String managersetting(Model model) {
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		return "manager/managersetting";
+	}
+	
+	@RequestMapping("/usersetting")
+	public String usersetting(Model model) {
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		return "manager/usersetting";
+	}
+	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info(fileName);

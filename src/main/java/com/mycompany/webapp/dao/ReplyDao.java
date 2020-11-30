@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 
 @Repository
@@ -28,6 +29,11 @@ public class ReplyDao {
 	public int countAll(int rno) {
 		int rows = sst.selectOne("mybatis.mapper.reply.countAll", rno);
 		return rows;
+	}
+
+	public List<ReplyDto> selectByPage(PagerDto pager) {
+		List<ReplyDto> list = sst.selectList("mybatis.mapper.reply.selectByPage", pager);
+		return list;
 	}
 	
 	

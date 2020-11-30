@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.reply">
+	
+	<select id="selectByPage" parameterType="pager" resultType="reply">
+		select rcontent, rnum, rno, rdate, murl
+		from (select rownum as rnum, rcontent, rno, rdate, murl
+		      from (select rcontent, rno, rdate, murl
+		            from reply r, board b
+		            where b.bno = r.bno and b.murl = #{murl}
+		            order by rdate desc
+		                )
+		      where rownum &lt;=#{endRowNo}
+		        )
+		where rnum &gt;=#{startRowNo}
+	</select>  
+	
+
+</mapper>
