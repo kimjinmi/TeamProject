@@ -46,9 +46,11 @@
 </head>
 
 
-<body onload="javascript:onload(${board.bno})">
+<body onload="javascript:onload()">
 	<script type="text/javascript">
-	function onload(bno){
+	function onload(){
+		var bno = ${board.bno};
+		
 		$.ajax({
 			url : "blogcommentlist",
 			method : "get",
@@ -405,7 +407,9 @@
 									<a href="javascript:commentWrite(${board.bno })"
 										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
 									<script type="text/javascript">
-										function commentWrite(bno) {								
+										function commentWrite(bno) {	
+											
+											var bno = ${board.bno};
 											// 데이터 검사	
 											var comment = $("#comment").val().trim();
 											if(comment == ""){
@@ -424,28 +428,9 @@
 												success : function(data) {
 													$("#comments-area").html(data);
 												}
-												
-												
 										/////댓글리스트 리로드///////////////////
 											});
-											
-											
 											$("#comment").val("");
-									/* 		
-											//데이터베이스 값 입력
-											$.ajax({
-												url:"blogcommentlist";
-												method:"post",
-												data{comment:comment
-													},
-												success:function(data){
-													if(data.result = "success"){
-														console.log("성공하였습니다.");
-	
-													}
-												}
-											}); */
-											
 										}
 											
 											

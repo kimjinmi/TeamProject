@@ -192,9 +192,37 @@
 										
 										</script>
 									</li>	
+<<<<<<< HEAD
 
+
+=======
+<<<<<<< HEAD
+
+									 <!-- <script type="text/javascript">
+=======
+									 <script type="text/javascript">
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+									function boardList(pageNo) {
+										if(!pageNo) {
+											pageNo = 1;
+										}
+										$.ajax({
+											url:"boardList",
+											data:{pageNo:pageNo},
+											success:function(data) {
+												$("#setting_result").html(data);
+												
+												}
+											});
+										}
+
+										</script> -->
+							<!-- 	  <script type="text/javascript">
+
+										</script>
 
 								<!-- 	  <script type="text/javascript">
+
 										function mypagelist(pageNo) {
 											if(!pageNo) {
 												pageNo = 1;
@@ -215,7 +243,7 @@
 											
 									
 									<li><a href="javascript:mycommentlist()" class="d-flex">
-											<p>댓글 관리</p></a>
+											<p style="padding-top: 18px;">댓글 관리</p></a>
 										<script type="text/javascript">
 										function mycommentlist(pageNo){
 											if(!pageNo) {
