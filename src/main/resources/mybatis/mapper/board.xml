@@ -126,7 +126,7 @@
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail -->
       
-        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl
+        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl, board.bno
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
 	</select>
@@ -184,7 +184,13 @@
 		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
 <!--  댓글 입력 -->	
+
 	
+<!--  게시글 삭제 -->
+	<delete id="deleteByBno" parameterType="int">
+		delete from board where bno=#{bno}
+	</delete>
+
 	<delete id="commentDelete" parameterType="int">
 		delete from reply where rno=#{rno}
 	</delete>

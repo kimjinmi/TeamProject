@@ -21,6 +21,7 @@ public class BoardDto {
 	private String mintro;
 	private String blinkcontent;
 	private int commentnum;
+
 	private String count;
 	
 	/*	private MultipartFile upload;

@@ -121,16 +121,28 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">홈페이지 관리</h4>
 								<ul class="list cat-list">
 									
-									<li><a href="javascript:setting()" class="d-flex">
-										<p>카테고리 편집</p></a>	
+									<li><a href="javascript:editcategory()" class="d-flex">
+										<p>카테고리 편집</p></a>
+										<script type="text/javascript">
+											function editcategory(){
+												$.ajax({
+													url:"editcategory",
+													success:function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+												
+											}
+										
+										</script>	
 									</li>
 									
-									<li><a href="javascript:imagechange()" class="d-flex">
+									<li><a href="javascript:allboardlist()" class="d-flex">
 										<p>전체 게시글 관리</p></a>
 										<script type="text/javascript">
-											function imagechange(){
+											function allboardlist(){
 												$.ajax({
-													url:"imagechange",
+													url:"allboardlist",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -141,12 +153,12 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:imagechange()" class="d-flex">
+									<li><a href="javascript:allreplylist()" class="d-flex">
 										<p>전체 댓글 관리</p></a>
 										<script type="text/javascript">
-											function imagechange(){
+											function allreplylist(){
 												$.ajax({
-													url:"imagechange",
+													url:"allreplylist",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -157,12 +169,12 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:imagechange()" class="d-flex">
+									<li><a href="javascript:inquirylist()" class="d-flex">
 										<p>문의사항 관리</p></a>
 										<script type="text/javascript">
-											function imagechange(){
+											function inquirylist(){
 												$.ajax({
-													url:"imagechange",
+													url:"inquirylist",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -174,12 +186,12 @@
 											
 									</li>
 									<sec:authorize access="hasRole('ROLE_ADMIN')">
-										<li><a href="javascript:imagechange()" class="d-flex">
+										<li><a href="javascript:managersetting()" class="d-flex">
 											<p>매니저 관리</p></a>
 											<script type="text/javascript">
-												function imagechange(){
+												function managersetting(){
 													$.ajax({
-														url:"imagechange",
+														url:"managersetting",
 														success:function(data) {
 															$("#setting_result").html(data);
 														}
@@ -190,12 +202,12 @@
 											</script>
 												
 										</li>
-										<li><a href="javascript:imagechange()" class="d-flex">
+										<li><a href="javascript:usersetting()" class="d-flex">
 											<p>회원 관리</p></a>
 											<script type="text/javascript">
-												function imagechange(){
+												function usersetting(){
 													$.ajax({
-														url:"imagechange",
+														url:"usersetting",
 														success:function(data) {
 															$("#setting_result").html(data);
 														}

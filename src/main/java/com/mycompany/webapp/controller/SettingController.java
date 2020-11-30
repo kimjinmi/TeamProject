@@ -28,6 +28,7 @@ import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.SettingService;
 
 @Controller
@@ -73,9 +74,14 @@ public class SettingController {
 		logger.info("mymemail : " + memail);
 		return "setting/myneighborlist";
 		
-	} 
+
+	}
+	
+	//게시글 관리
 
 	
+	
+
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		//logger.info("실행");
@@ -98,26 +104,55 @@ public class SettingController {
 	
 		return "setting/mybloglist";
 	}
-/*	
-	@RequestMapping("/mypagelist")
-	public String mypagelist(@RequestParam(defaultValue="1") int pageNo,HttpSession session, Model model) {
-		logger.info("페이지 리스트 실행");
-		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		int totalRows = service.getTotalRows();
-		PagerDto pager = new PagerDto(5, 5, totalRows, pageNo);
-		List<BoardDto> list = service.getBoardListPage(pager);
-		//List<BoardDto> list = service.getBoardList(sessionMemail);
-		model.addAttribute("list", list);
-		model.addAttribute("pager", pager);
+	
+
+	//게시물 삭제
+	/*@RequestMapping("/boarddelete")
+	public void boarddelete(int bno, HttpServletResponse response,HttpServletRequest request) throws Exception {
 		
-		return "setting/mybloglist";
+		
+		service.boardDelete(bno);
+		
+		String[] val = request.getParameterValues("del_check");
+		logger.info("####" + val);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); 
+		// 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	
 	}
 	*/
 	
+
+	
 	@RequestMapping("/mycommentlist")
-	public String mycommentlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
+	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo,HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		
+		
+		//페이징
+		int totalRows = service.getTotalMyRow(SessionMurl); //
+		
+		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
+		
+		
+		
+		List<ReplyDto> listcomment = service.getReplyListPage(pager);
+		//List<BoardDto> list = service.getBoardList(sessionMemail);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", listcomment);
+		logger.info("listcomment: " + listcomment);
+	
+		
+		
 		return "setting/mycommentlist";
 	}
 	
