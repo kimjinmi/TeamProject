@@ -192,25 +192,8 @@
 										
 										</script>
 									</li>	
-<<<<<<< HEAD
-									 <script type="text/javascript">
-									function boardList(pageNo) {
-										if(!pageNo) {
-											pageNo = 1;
-										}
-										$.ajax({
-											url:"boardList",
-											data:{pageNo:pageNo},
-											success:function(data) {
-												$("#setting_result").html(data);
-												
-												}
-											});
-										}
-										</script>
-=======
-									 
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
+
+
 								<!-- 	  <script type="text/javascript">
 										function mypagelist(pageNo) {
 											if(!pageNo) {
@@ -234,11 +217,16 @@
 									<li><a href="javascript:mycommentlist()" class="d-flex">
 											<p>댓글 관리</p></a>
 										<script type="text/javascript">
-										function mycommentlist(){
+										function mycommentlist(pageNo){
+											if(!pageNo) {
+												pageNo = 1;
+											}
 											$.ajax({
 												url:"mycommentlist",
+												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
+													
 												}
 											});
 											
