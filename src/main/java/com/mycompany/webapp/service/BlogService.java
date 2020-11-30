@@ -98,5 +98,10 @@ public class BlogService {
 	}
 
 
+	//----------- 선 ---------
+	/*public void upload(BoardDto board) {
+		boardDao.insert(board);
+	}*/
+	//----------- 선 ---------
 
 }
