@@ -92,6 +92,7 @@ public class BoardDao {
 		return list;
 	}
 
+	//진미 : 전체 글의 구하는거임 삭제 ㄴ, 고쳐서 사용 금지
 	public int countAll() {
 		int rows = sst.selectOne("mybatis.mapper.board.countAll");
 		return rows;
@@ -123,6 +124,12 @@ public class BoardDao {
 	public int commentDelete(int rno) {
 		int rows = sst.delete("mybatis.mapper.board.commentDelete", rno);
 		return rows;
+	}
+
+	//진미 : 전체 글의 구하는거임 삭제 ㄴ, 고쳐서 사용 금지
+	public List<BoardDto> selectByAllPage(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectListAll", pager);
+		return list;
 	}
 
 

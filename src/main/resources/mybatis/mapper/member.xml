@@ -42,7 +42,7 @@
 	</insert>
 	
 	<!-- 진미:manager 가져오기 -->
-	<select id="selectmanger" resultType="member">
+	<select id="selectmrole" resultType="member">
 		SELECT memail, mnickname, mmyimage, mrole, mphonenum, murl
 		FROM member
 		WHERE mrole=#{mrole}

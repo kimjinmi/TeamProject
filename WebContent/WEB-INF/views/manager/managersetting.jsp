@@ -6,7 +6,41 @@
 <hr style="margin-top:12px;">
 
 	<div class="container">	
-		
+		<div class="row">
+			<div class="col-3"> Add Manager </div>
+			<div class="col-8">
+				<input type="text" id="manageradd" placeholder="Add Manager Email" onblur="this.placeholder = 'Add Manager Email'" class="single-input">
+			</div>
+			<div class="col-1">
+				<a href="javascript:manageradd()"><i class="fa fa-plus"></i></a>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="col-3"></div>
+			<div class="col-8"></div>
+			<span id="adaError"></span>
+		<p></p>
+		</div>
+		<script type="text/javascript">
+		function manageradd(){
+			var memail = $("#manageradd").val().trim();
+			if(memail =="") { $("#adaError").text("필수"); return;}
+			
+			$.ajax({
+				url:"managerAdd",
+				data:{memail:memail},
+				success:function(data){
+					if(data.result == "success"){
+						managersetting();
+					}
+				}
+			});
+		}
+			</script>
+		<div class="row">
+			<div class="col-3">Manager List</div>
+		</div>
 		<div class="row"style="overflow:auto; height:800px;">
 			<c:forEach var="manager" items="${manager}">
 				<div class="col-3">
