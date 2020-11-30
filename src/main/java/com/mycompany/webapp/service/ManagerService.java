@@ -56,4 +56,16 @@ public class ManagerService {
 		
 	}
 
+	public List<MemberDto> getmanagerlist(String role) {
+		List<MemberDto> list = memberdao.selectmanager(role);
+		return list;
+	}
+
+	public void managerDelete(MemberDto member) {
+		memberdao.updaterole(member);
+		
+	}
+
+
+
 }

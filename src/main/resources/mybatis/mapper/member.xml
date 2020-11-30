@@ -40,5 +40,17 @@
 		INSERT INTO member(memail, mpassword, mnickname, mphonenum, mintro, mmyimage, menabled, mrole, murl) 
 		VALUES (#{memail},#{mpassword},#{mnickname}, #{mphonenum},#{mintro},#{mmyimage},#{menabled},#{mrole},#{murl})
 	</insert>
+	
+	<!-- 진미:manager 가져오기 -->
+	<select id="selectmanger" resultType="member">
+		SELECT memail, mnickname, mmyimage, mrole, mphonenum, murl
+		FROM member
+		WHERE mrole=#{mrole}
+	</select>
+	
+	<update id="updaterole" parameterType="member">
+		UPDATE member SET mrole=#{mrole}
+		WHERE memail=#{memail}
+	</update>
 </mapper>
 

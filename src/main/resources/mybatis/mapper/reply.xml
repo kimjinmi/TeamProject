@@ -3,16 +3,17 @@
 <mapper namespace="mybatis.mapper.reply">
 	
 	<select id="selectByPage" parameterType="pager" resultType="reply">
-		select rcontent, rnum, rno, rdate, murl
-		from (select rownum as rnum, rcontent, rno, rdate, murl
-		      from (select rcontent, rno, rdate, murl
-		            from reply r, board b
-		            where b.bno = r.bno and b.murl = #{murl}
-		            order by rdate desc
-		                )
+		select rnum, rno, rcontent, rdate, bno, btitle, murl, mnickname, memail
+		 from (select rownum as rnum, rno, rcontent, rdate, bno, btitle, murl, mnickname, memail
+		      from (select rno, rcontent, rdate, r.bno, btitle, b.murl, mnickname, r.memail 
+              		from reply r, board b, member m
+                	where  r.bno = b.bno and b.murl = m.murl and b.murl = #{murl}
+                	order by r.rdate desc
+		            )
 		      where rownum &lt;=#{endRowNo}
 		        )
 		where rnum &gt;=#{startRowNo}
+            
 	</select>  
 	
 

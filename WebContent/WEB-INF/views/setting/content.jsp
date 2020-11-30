@@ -116,7 +116,7 @@
 								<hr/>
 								
 								<sec:authorize access="hasRole('ROLE_MANAGER')">
-									<hr/>						                    	
+														                    	
 		                       	 	<!-- 게시글 작성 버튼 -->
 		                        	<a class="genric-btn primary e-large" href="manager">MANAGER</a>
 		                        </sec:authorize> 
@@ -192,6 +192,9 @@
 										
 										</script>
 									</li>	
+
+
+=======
 <<<<<<< HEAD
 
 									 <!-- <script type="text/javascript">
@@ -211,13 +214,14 @@
 												}
 											});
 										}
-<<<<<<< HEAD
+
 										</script> -->
 							<!-- 	  <script type="text/javascript">
-=======
+
 										</script>
+
 								<!-- 	  <script type="text/javascript">
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 										function mypagelist(pageNo) {
 											if(!pageNo) {
 												pageNo = 1;
@@ -240,11 +244,16 @@
 									<li><a href="javascript:mycommentlist()" class="d-flex">
 											<p style="padding-top: 18px;">댓글 관리</p></a>
 										<script type="text/javascript">
-										function mycommentlist(){
+										function mycommentlist(pageNo){
+											if(!pageNo) {
+												pageNo = 1;
+											}
 											$.ajax({
 												url:"mycommentlist",
+												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
+													
 												}
 											});
 											
