@@ -16,13 +16,13 @@
 				</select>
 			</div>
 			<!-- 카테고리 선택 끝 (div) -->
-
+			
 			<!-- 실험 -->
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text">파일</span>
+			<div class="input-group mb-3" style="margin: 3px 0; height: 30px;">
+				<div class="input-group-prepend" >
+					<span class="input-group-text">메인 사진을 선택해주세요</span>
 				</div>
-				<input type="file" id="attach" name="attach" class="form-control">
+				<input style="height: 30px;" type="file" id="attach" name="attach" class="form-control">
 			</div>
 			<!-- 실험 -->
 			
