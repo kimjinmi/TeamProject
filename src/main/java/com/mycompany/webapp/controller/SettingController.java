@@ -131,7 +131,7 @@ public class SettingController {
 
 	
 	@RequestMapping("/mycommentlist")
-	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo,HttpSession session, Model model) { //http://localhost:8080/teamproject
+	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
@@ -145,11 +145,10 @@ public class SettingController {
 		
 		
 		List<ReplyDto> listcomment = service.getReplyListPage(pager);
-		//List<BoardDto> list = service.getBoardList(sessionMemail);
 		
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", listcomment);
-		logger.info("listcomment: " + listcomment);
+		logger.info("#########" + SessionMurl);
 	
 		
 		
