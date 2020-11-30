@@ -24,11 +24,19 @@ public class BoardDto {
 
 	private String count;
 	
-	/*	private MultipartFile upload;
+	private MultipartFile bphotoAttach;
+	
+	/*	
 		private String attachPath;
 		private String Filename;*/
 
-	
+
+	public MultipartFile getBphotoAttach() {
+		return bphotoAttach;
+	}
+	public void setBphotoAttach(MultipartFile bphotoAttach) {
+		this.bphotoAttach = bphotoAttach;
+	}
 	public String getCount() {
 		return count;
 	}

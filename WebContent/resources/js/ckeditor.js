@@ -2,11 +2,10 @@ var myEditor;
 
 ClassicEditor 
     .create( document.querySelector('#bcontent'), {
-	ckfinder: {
-        uploadUrl: '/blog/fileupload' 
-		// '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-    }
-}) 
+		ckfinder: {
+	        uploadUrl: "/teamproject/blog/upload"
+	    }
+	}) 
     .then( editor => { 
         console.log( editor );
 		myEditor = editor;
