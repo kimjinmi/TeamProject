@@ -191,9 +191,8 @@
 										}
 										
 										</script>
-									</li>
-
-									 <!-- <script type="text/javascript">
+									</li>	
+<!-- <script type="text/javascript">
 =======
 									 <script type="text/javascript">
 >>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject

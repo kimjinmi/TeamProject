@@ -2,6 +2,17 @@ package com.mycompany.webapp.dto;
 
 public class PagerDto {
 	private String murl;
+	private int rno;
+
+	public int getRno() {
+		return rno;
+	}
+
+
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+	
 	private int totalRows;		//전체 행수
 	private int totalPageNo;	//전체 페이지 수
 	private int totalGroupNo;	//전체 그룹 수
@@ -17,7 +28,11 @@ public class PagerDto {
 
 	
 	public PagerDto(String murl, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
+		this(rowsPerPage, pagesPerGroup, totalRows, pageNo);
 		this.murl = murl;
+		}
+	
+	public PagerDto(int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {	
 		this.rowsPerPage = rowsPerPage;
 		this.pagesPerGroup = pagesPerGroup;
 		this.totalRows = totalRows;

@@ -1,6 +1,8 @@
 package com.mycompany.webapp.dao;
 
-import java.util.List; 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -55,6 +57,16 @@ public class MemberDao {
 		int row = sst.insert("mybatis.mapper.member.insert", member);
 		return row;
 		
+	}
+
+	public List<MemberDto> selectmrole(String role) {
+		List<MemberDto> list = sst.selectList("mybatis.mapper.member.selectmrole", role);
+		return list;
+	}
+
+	public int updaterole(MemberDto member) {
+		int rows = sst.update("mybatis.mapper.member.updaterole", member);
+		return rows;
 	}
 
 	

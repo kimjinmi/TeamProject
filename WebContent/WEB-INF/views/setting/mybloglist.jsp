@@ -12,7 +12,7 @@
 		      	<div class="col-md-9"></div>
 		           <!-- <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div> -->	          
 		           <div class="col-md-3">
-		              <c:if test="${sessionMurl == member.murl}">
+		              <c:if test="${SessionMurl == board.murl}">
 		           		<input type="button" value="게시글 삭제" class="genric-btn danger radius small" onclick="deleteboard();"/>
 		           		 <script>
 						

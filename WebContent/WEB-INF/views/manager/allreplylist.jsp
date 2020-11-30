@@ -2,10 +2,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 
-<h2 style="color: #2d2d2d; display:inline;">댓글 관리</h2>
+ <h2 style="color: #2d2d2d; display:inline;">댓글 관리</h2>
 
 <hr style="margin-top:12px;">
-<script type="text/javascript">
+<%--<script type="text/javascript">
 	function buttonclick(cno, ccontent){
 		document.getElementById("editid").value = cno;
 		document.getElementById("deleteid").value = cno;
@@ -19,7 +19,7 @@
 	<div class="row">
 		<div class="col">
 			<div style="overflow:auto; height:300px;">
-			<%-- <img src="<%=application.getContextPath()%>/resources/images/ponyo.png"> --%>
+			<img src="<%=application.getContextPath()%>/resources/images/ponyo.png">
 			<c:forEach var="category" items="${category}">
 			<ul class="list-group">
 				<li class="list-group-item list-group-item-light">
@@ -83,7 +83,7 @@
 			</div>
 		</div>
 	</form>
-</div>
+</div> --%>
 
 	
 

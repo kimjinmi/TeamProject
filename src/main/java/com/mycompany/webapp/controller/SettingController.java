@@ -170,7 +170,7 @@ public class SettingController {
 	*/
 
 	@RequestMapping("/mycommentlist")
-	public String mycommentlist(@RequestParam(defaultValue = "1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
+	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
