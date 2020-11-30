@@ -12,8 +12,10 @@ import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
 import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.ReplyDao;
+import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 
 @Service
 public class ManagerService {
@@ -25,6 +27,7 @@ public class ManagerService {
 	@Resource
 	private BoardDao boarddao;
 
+	
 	
 	@Resource
 	private CategoryDao categorydao;
@@ -57,13 +60,23 @@ public class ManagerService {
 	}
 
 	public List<MemberDto> getmanagerlist(String role) {
-		List<MemberDto> list = memberdao.selectmanager(role);
+		List<MemberDto> list = memberdao.selectmrole(role);
 		return list;
 	}
 
-	public void managerDelete(MemberDto member) {
+	public void managerChange(MemberDto member) {
 		memberdao.updaterole(member);
 		
+	}
+
+	public int getTotalRows() {
+		int totalRows = boarddao.countAll();
+		return totalRows;
+	}
+
+	public List<BoardDto> getBoardList(PagerDto pager) {
+		List<BoardDto> list = boarddao.selectByAllPage(pager);
+		return list;
 	}
 
 

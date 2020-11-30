@@ -59,8 +59,8 @@ public class MemberDao {
 		
 	}
 
-	public List<MemberDto> selectmanager(String role) {
-		List<MemberDto> list = sst.selectList("mybatis.mapper.member.selectmanger", role);
+	public List<MemberDto> selectmrole(String role) {
+		List<MemberDto> list = sst.selectList("mybatis.mapper.member.selectmrole", role);
 		return list;
 	}
 

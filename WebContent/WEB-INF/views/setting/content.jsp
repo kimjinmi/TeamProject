@@ -192,12 +192,7 @@
 										
 										</script>
 									</li>	
-
-
-=======
-<<<<<<< HEAD
-
-									 <!-- <script type="text/javascript">
+<!-- <script type="text/javascript">
 =======
 									 <script type="text/javascript">
 >>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
@@ -242,7 +237,7 @@
 											
 									
 									<li><a href="javascript:mycommentlist()" class="d-flex">
-											<p style="padding-top: 18px;">댓글 관리</p></a>
+											<p>댓글 관리</p></a>
 										<script type="text/javascript">
 										function mycommentlist(pageNo){
 											if(!pageNo) {

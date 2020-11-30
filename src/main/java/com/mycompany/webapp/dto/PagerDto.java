@@ -27,7 +27,11 @@ public class PagerDto {
 	
 	
 	public PagerDto(String murl, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
+		this(rowsPerPage, pagesPerGroup, totalRows, pageNo);
 		this.murl = murl;
+		}
+	
+	public PagerDto(int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {	
 		this.rowsPerPage = rowsPerPage;
 		this.pagesPerGroup = pagesPerGroup;
 		this.totalRows = totalRows;

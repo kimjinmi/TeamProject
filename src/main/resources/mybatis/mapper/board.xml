@@ -195,5 +195,16 @@
 		delete from reply where rno=#{rno}
 	</delete>
 	
+	<!-- 전체게시글구하기(고치지말것) -->
+	<select id="selectListAll" parameterType="pager" resultType="board">
+		SELECT rnum, bno, bno, btitle, bdate, memail
+			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail
+					FROM (SELECT bno, btitle, bdate, memail
+					        FROM BOARD
+					        ORDER BY bdate DESC)
+							WHERE rownum &lt;=#{endRowNo})
+			WHERE rnum &gt;= #{startRowNo}
+	</select>
+	
 </mapper>
 
