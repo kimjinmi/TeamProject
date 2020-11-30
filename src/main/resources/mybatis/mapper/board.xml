@@ -67,7 +67,7 @@
 	<!-- 선: 최신순으로 불러오기 contents 총 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewAll" resultType="board">	
-	  	 select bno, btitle, bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
+	  	 select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
          from board b, member m, category c
        	 where b.memail = m.memail and b.cno = c.cno
        	 order by bdate desc
@@ -76,7 +76,7 @@
 	<!-- 선: 최신순으로 불러오기 contents 카테고리별 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewCategory" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
+		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
        	from board b, member m, category c
        	where b.memail = m.memail and b.cno = #{cno} and b.cno = c.cno 
        	order by bdate desc
@@ -162,8 +162,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="board">
-		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl, blike)
-		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl}, #{blike})
+		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl, blike, bimage)
+		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl}, #{blike}, #{bimage})
 	</insert>
 
 <!--  

@@ -163,8 +163,13 @@ public class BlogController {
 	}
 
 	@RequestMapping("boardWrite")
-	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
-
+	public void blog_write(Model model, MultipartFile attach, HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {			
+		if (!attach.isEmpty()) {
+			String saveFileName = new Date().getTime() + "_" + attach.getOriginalFilename();
+			attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
+			board.setBimage(saveFileName);
+		}
+		
 		String SessionMurl =(String) session.getAttribute("SessionMurl");
 		board.setMurl(SessionMurl);
 		board.setBlike(0);
@@ -179,6 +184,21 @@ public class BlogController {
 		out.println(json);
 		out.flush();
 		out.close();
+		
+		/*String SessionMurl =(String) session.getAttribute("SessionMurl");
+		board.setMurl(SessionMurl);
+		board.setBlike(0);
+		service.boardWrite(board);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();*/
 	}
 	
 	@RequestMapping("/upload")
@@ -187,7 +207,8 @@ public class BlogController {
 		if(!upload.isEmpty()) {
 			String originalFileName = upload.getOriginalFilename();
 			originalFileName += new Date().getTime() + "-" + originalFileName;
-			File saveFile = new File("D:/MyWorkspace/photo/board/" + originalFileName);
+			//File saveFile = new File("D:/MyWorkspace/photo/board/" + originalFileName);
+			File saveFile = new File("C:/temp/projectimage/boardContent/" + originalFileName);
 			upload.transferTo(saveFile);
 			jsonObject.put("uploaded", 1);
 			jsonObject.put("fileName", originalFileName);
@@ -204,7 +225,8 @@ public class BlogController {
 	@GetMapping("/boardImageDownload")
 	public void boardImageDownload(String fileName, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		// 파일의 데이터를 읽기 위한 입력 스트림 얻기
-		String saveFilePath = "D:/MyWorkspace/photo/board/" + fileName;
+		//String saveFilePath = "D:/MyWorkspace/photo/board/" + fileName;
+		String saveFilePath = "C:/temp/projectimage/boardContent/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 
 		// Content-Type 헤더 구성 (파일의 종류)

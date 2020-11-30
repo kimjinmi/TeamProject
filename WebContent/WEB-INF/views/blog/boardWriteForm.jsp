@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<form id="boardWriteForm" >
+<form id="boardWriteForm" action="boardUpload" enctype="multipart/form-data">
 	<div class="single-post">
 		<div class="blog_write">
 			<h3 style="color: #2d2d2d;">게시글 작성</h3>
@@ -16,7 +16,16 @@
 				</select>
 			</div>
 			<!-- 카테고리 선택 끝 (div) -->
-
+			
+			<!-- 실험 -->
+			<div class="input-group mb-3" style="margin: 3px 0; height: 30px;">
+				<div class="input-group-prepend" >
+					<span class="input-group-text">메인 사진을 선택해주세요</span>
+				</div>
+				<input style="height: 30px;" type="file" id="attach" name="attach" class="form-control">
+			</div>
+			<!-- 실험 -->
+			
 			<!-- 제목 입력 시작 (board.btitle) -->
 			<div class="input-group mb-3">
 				<input id="btitle" type="text" name="btitle" class="form-control"
@@ -97,17 +106,36 @@
 
 					var blinkcontent = $("#blinkcontent").val().trim();
 					var memail = $("#memail").val().trim();
+					
+					
+					var file = document.querySelector("#attach");
+					var multipart = new FormData();
+					
+					multipart.append("btitle", btitle);
+					multipart.append("bcontent", bcontent);
+					multipart.append("cno", cno);
+					multipart.append("blinkcontent", blinkcontent);
+					multipart.append("memail", memail);
+					
+					if(file.files.length != 0) {
+						// 사용자가 파일을 선택했을 경우
+						multipart.append("attach", file.files[0]);
+					}
 
 					$.ajax({
 						url : "boardWrite",
 						method : "post",
-						data : {
+						data : multipart,
+							/*  {
 							btitle : btitle,
 							bcontent : bcontent,
 							memail : memail,
 							blinkcontent : blinkcontent,
 							cno : cno
-						},
+						} */
+						cache: false, // 파일을 메모리에 저장하지 않도록 설정
+						processData: false, // 파일을 가공하지 않도록 설정
+						contentType: false, 
 						success : function(data) {
 							if (data.result == "success") {
 								location.href = "blog?UserUrl=${SessionMurl}";
