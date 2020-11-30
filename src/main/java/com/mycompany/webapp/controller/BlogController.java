@@ -1,8 +1,8 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -177,7 +177,7 @@ public class BlogController {
 		out.close();
 	}
 	
-	/*@RequestMapping("imageUpload.do")
+	@RequestMapping(value = "fileupload")
 	public void imageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
 	    response.setCharacterEncoding("utf-8"); // 한글깨짐을 방지하기위해 문자셋 설정
 	    response.setContentType("text/html; charset=utf-8");  // 마찬가지로 파라미터로 전달되는 response 객체의 한글 설정
@@ -196,7 +196,7 @@ public class BlogController {
 	    printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
 	            + "','이미지가 업로드되었습니다.')" + "</script>");
 	    printWriter.flush();
-	}*/
+	}
 	
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 

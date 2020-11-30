@@ -43,7 +43,7 @@
    href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 
    
-   <style type="text/css">
+<style type="text/css">
    .blog_list_content{  	
    			overflow: hidden;
             text-overflow: ellipsis;
@@ -51,9 +51,11 @@
             -webkit-line-clamp: 3; 
             -webkit-box-orient: vertical;
    }
-   </style>
+	.ck-editor__editable {
+	       min-height: 800px;
+	}
+</style>
    
-
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 
 </head>

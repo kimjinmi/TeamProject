@@ -41,7 +41,7 @@
 			<!-- 내용 입력 시작 (board.bcontent) -->
 			<h2 style="color: #2d2d2d;">내용</h2>
 			<textarea id="bcontent" name="bcontent" style="width: 100%; height: 100%;"></textarea>
-		    <span id="bcontentError" class="error"></span> 
+		    <span id="bcontentError" class="error"></span>
 			<!-- 내용 입력 끝 (board.bcontent) -->
 		</div>
 	</div>
