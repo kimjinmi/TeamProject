@@ -43,4 +43,16 @@
 		where rnum &gt;=#{startRowNo}
 	</select>  
 
+	<!-- 친구 여부 파악  -->
+	<select id="neighorexistCount" parameterType="map" resultType="int">
+		SELECT count(*)
+		FROM neighbor
+		WHERE nemurl=#{userUrl} AND mymemail=#{memail}
+	</select>
+	
+	<!-- 친구추가 -->
+	<insert id="insert" parameterType="neighbor">
+		INSERT INTO neighbor(nno, mymemail, nememail, nemurl, ndate)
+		VALUES (SEQ_NEIGHBOR_NNO.nextval, #{mymemail}, #{nememail}, #{nemurl}, sysdate)
+	</insert>
 </mapper>

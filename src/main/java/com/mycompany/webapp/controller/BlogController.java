@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.BlogService;
@@ -77,14 +78,12 @@ public class BlogController {
 		 * 
 		 * UserUrl += session.getAttribute("murl"); }
 		 */
-		
+		 
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
-		 logger.info("###############"+board.getMurl());
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
-		 logger.info("###############"+board.getMurl());
 		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
@@ -94,6 +93,15 @@ public class BlogController {
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
 		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
+		 
+		//진미(친구추가버튼)
+		String memail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		int existRows = -1;
+		if(!SessionMurl.equals(UserUrl)){
+			existRows = service.neighorexist(UserUrl, memail);
+		}
+		model.addAttribute("existRows", existRows);
 
 		return "blog/blog_details";
 	}
@@ -114,13 +122,22 @@ public class BlogController {
 		// UserUrl로 memail을 가져온다
 		/* List<BoardDto> list = service.getBoardList(UserUrl); */
 		
+		//진미(친구추가버튼)
+		String memail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		int existRows = -1;
+		if(!SessionMurl.equals(UserUrl)){
+			existRows = service.neighorexist(UserUrl, memail);
+		}
+		model.addAttribute("existRows", existRows);
+		
 		int totalRows = service.getTotalRows(UserUrl); // 개인당 블로그 게시물 수 
 		logger.info("토탈 : " + totalRows);
 		PagerDto pager = new PagerDto(UserUrl, 3, 5, totalRows, pageNo); // 페이저로 게시물 가져오기
-		 List<BoardDto> list = service.getBoardList(pager); 
+		List<BoardDto> list = service.getBoardList(pager); 
 		logger.info("list 값 : " + list);
 		
-		String memail = (String) session.getAttribute("sessionMemail");
+		
 		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
 		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
@@ -132,6 +149,7 @@ public class BlogController {
 		logger.info(catelist.toString()); 																// 영아
 		logger.info("blog.jsp 컨트롤러 실행");
 		logger.info(member.getMurl());
+		
 		return "blog/blog";
 	}
 	
@@ -352,6 +370,26 @@ public class BlogController {
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
 		return "blog/blogList";
+	}
+	
+	//진미 친구추가구현
+	@RequestMapping("/neighborAdd")
+	public void neighborAdd(NeighborDto neighbor,HttpSession session, HttpServletResponse response) throws Exception {
+		String memail = (String) session.getAttribute("sessionMemail");
+		neighbor.setMymemail(memail);
+		service.addneighbor(neighbor);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+
 	}
 	
 }

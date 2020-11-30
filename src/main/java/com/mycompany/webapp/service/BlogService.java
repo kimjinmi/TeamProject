@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
 import com.mycompany.webapp.dao.MemberDao;
+import com.mycompany.webapp.dao.NeighborDao;
 import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 
@@ -29,10 +31,10 @@ public class BlogService {
 	private ReplyDao replyDao;
 	
 	@Resource
-	private MemberDao updateimageDao;
+	private MemberDao memberDao;
 	
 	@Resource
-	private MemberDao memberDao;
+	private NeighborDao neighborDao;
 
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
@@ -124,6 +126,18 @@ public class BlogService {
 	public int getTotalRows(String userUrl) {
 		int totalRows = boardDao.userBoardCountAll(userUrl);
 		return totalRows;
+	}
+
+	//-------------진미 친구구현
+	public int neighorexist(String userUrl, String memail) {
+		int existRows = neighborDao.neighorexist(userUrl, memail);
+		return existRows;
+	}
+
+	//친구추가
+	public void addneighbor(NeighborDto neighbor) {
+		neighborDao.insertneighbor(neighbor);
+		
 	}
 
 
