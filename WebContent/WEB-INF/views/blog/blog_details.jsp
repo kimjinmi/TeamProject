@@ -45,9 +45,16 @@
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 </head>
 
+<script type="text/javascript">
+
+
+
+</script>
+
 
 <body onload="javascript:onload()">
 	<script type="text/javascript">
+	var heart__status = false;
 	function onload(){
 		var bno = ${board.bno};
 		
@@ -59,8 +66,22 @@
 			},
 			success : function(data) {
 				$("#comments-area").html(data);
+				alert("댓글 온로드");
 			}
 		});
+		
+		
+		$.ajax({
+			url : "heartStatus",
+			method : "get",
+			data : {bno:bno},
+			success : function(data){
+				$("#heartbox").html(data);
+				alert("하트박스 온로드");
+			}
+		});
+		
+	
 	}
    </script>
 
@@ -267,18 +288,24 @@
 
 
 						<div class="navigation-top">
-							<div class="d-sm-flex justify-content-between text-center">
+							<div id="heartbox" class="d-sm-flex justify-content-between text-center">
+								<!-- 
 								<p class="like-info">
-									<span class="align-middle"><a href="javascript:heartbreaker()" class="fa fa-heart" style="color:black;"></a></span>
+									<span  class="align-middle"><a id="heart" href="javascript:heartbreaker()" class="fa fa-heart" style="color:black;"></a></span>
 									<script type="text/javascript">		
 										function heartbreaker(){
-											alert("좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋요좋아요좋아요좋아요좋아요좋아요좋아요좋아요");
-											
-											
+											heart__status = !heart__status;
+											if(heart__status == true){
+											$("#heart").css("color", "red");
+											}else{
+												$("#heart").css("color", "black");	
+											}
 										}
 									</script>
 									좋아요 ${board.blike}개
 								</p>
+								
+								 -->
 								<div class="col-sm-4 text-center my-2 my-sm-0">
 									<!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
 								</div>
@@ -428,6 +455,7 @@
 												success : function(data) {
 													$("#comments-area").html(data);
 												}
+
 										/////댓글리스트 리로드///////////////////
 											});
 											$("#comment").val("");

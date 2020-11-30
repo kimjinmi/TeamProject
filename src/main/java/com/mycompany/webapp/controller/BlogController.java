@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,11 +28,13 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.BlogService;
 
@@ -102,27 +105,37 @@ public class BlogController {
 	}
 
 	@RequestMapping("/blog")
-	public String blog(String murl, HttpSession session, Model model, HttpServletRequest request) { // http://localhost:8080/teamproject
+	public String blog(@RequestParam(defaultValue="1")int pageNo, String murl, HttpSession session, Model model, HttpServletRequest request) { // http://localhost:8080/teamproject
 		// get 값 매핑
 		String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다. -지훈
 		if (UserUrl == "") {
 			UserUrl += session.getAttribute("murl");
 		}
 		// UserUrl로 memail을 가져온다
-		List<BoardDto> list = service.getBoardList(UserUrl);
+		/* List<BoardDto> list = service.getBoardList(UserUrl); */
+		
+		int totalRows = service.getTotalRows(UserUrl); // 개인당 블로그 게시물 수 
+		logger.info("토탈 : " + totalRows);
+		PagerDto pager = new PagerDto(UserUrl, 3, 5, totalRows, pageNo); // 페이저로 게시물 가져오기
+		 List<BoardDto> list = service.getBoardList(pager); 
 		logger.info("list 값 : " + list);
+		
 		String memail = (String) session.getAttribute("sessionMemail");
 		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
 		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
-		model.addAttribute("list", list);
+		/* model.addAttribute("list", list); */
 		model.addAttribute("catelist", catelist);													 // 영아
-		model.addAttribute("member", member);													// 영아
+		model.addAttribute("member", member);	
+		// 영아
 		model.addAttribute("likelist", likelist);													// 영아
 		logger.info(catelist.toString()); 																// 영아
-		logger.info("실행");
+		logger.info("blog.jsp 컨트롤러 실행");
+		logger.info(member.getMurl());
 		return "blog/blog";
 	}
+	
+
 
 	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
@@ -298,5 +311,27 @@ public class BlogController {
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
+	
+	@GetMapping("/heartStatus")
+	public String heartStatus(int bno, Model model) {
+		logger.info("##############     heartStatus 실행 ##################");
+		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 가져온다.
+		model.addAttribute("likecount", "likecount");
+		logger.info("heartStatus 실행");
+		logger.info("좋아요 갯수는 : " + likecount.getBlike());
+		return "blog/heartStatus";
+	}
 
+	
+	@GetMapping("/blogList")
+	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
+		logger.info("blogList 컨트롤러 실행");
+		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
+		PagerDto pager = new PagerDto(murl, 2, 5, totalRows, pageNo);
+		List<BoardDto> list = service.getBoardList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "blog/blogList";
+	}
+	
 }

@@ -56,11 +56,30 @@
 	}
 </style>
    
+   
+
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 
 </head>
 
-<body>
+<body onload="javascript:boardList('${member.murl}')">
+	<script type="text/javascript">
+	function boardList(murl, pageNo){
+			
+			if(!pageNo){
+				pageNo=1;
+			}
+			
+			$.ajax({
+				url:"blogList",
+				data: {murl:murl, pageNo:pageNo},
+				success:function(data){
+					$("#categoryListLinkBoard").html(data);
+				}
+			});
+			
+		}
+	</script>
    <!-- ? Preloader Start -->
    <div id="preloader-active">
       <div
@@ -220,7 +239,7 @@
             <!-- ////////////////////////////////// -->
                <div id="categoryListLinkBoard" class="col-lg-8 mb-5 mb-lg-0">
                         <!-- blog_item 시작 -->
-                       <c:forEach var="board" items="${list}">
+                     <%--   <c:forEach var="board" items="${list}">
                         <article class="blog_item">   
                         
                            <div class="blog_item_img">
@@ -247,7 +266,7 @@
                               function boardDetails(bno){    
                                  location.href="blog_details?bno="+bno;   
                               }
-                           </script>
+                           </script> --%>
                            <!-- blog_item 끝 -->
                            
                            
@@ -292,6 +311,8 @@
                                         </a>
                                     </li>
                                 </ul>
+                                
+                                
                             </nav>  
                             <!-- page 네비게이션 끝 -->
                         </div>
