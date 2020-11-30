@@ -6,12 +6,27 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class NeighborDto {
 
-	int nno;		//이웃 번호
-	String mymemail;		//내 이메일	
-	String nememail;		//이웃 이메일
+	private int nno;		//이웃 번호
+	private String mymemail;		//내 이메일	
+	private String nememail;		//이웃 이메일
 	@DateTimeFormat(pattern = "yyyy-MM-dd") private Date ndate; //  이웃 된 날짜
-	String nemurl;		//이웃 murl
+	private String nemurl;		//이웃 murl
+	private String mmyimage;
+	private String mnickname;
 	
+	
+	public String getMnickname() {
+		return mnickname;
+	}
+	public void setMnickname(String mnickname) {
+		this.mnickname = mnickname;
+	}
+	public String getMmyimage() {
+		return mmyimage;
+	}
+	public void setMmyimage(String mmyimage) {
+		this.mmyimage = mmyimage;
+	}
 	public int getNno() {
 		return nno;
 	}

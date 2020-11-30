@@ -140,9 +140,13 @@
 									<li><a href="javascript:allboardlist()" class="d-flex">
 										<p>전체 게시글 관리</p></a>
 										<script type="text/javascript">
-											function allboardlist(){
+											function allboardlist(pageNo){
+												if(!pageNo){
+													pageNo = 1;
+												}
 												$.ajax({
 													url:"allboardlist",
+													data : {pageNo:pageNo},
 													success:function(data) {
 														$("#setting_result").html(data);
 													}

@@ -13,9 +13,15 @@ public class PagerDto {
 	private int rowsPerPage;	//페이지당 행 수 
 	private int startRowNo;		//페이지의 시작 행 번호
 	private int endRowNo;		//페이지의 마지막 행 번호
+	private String mymemail;
+
 	
 	public PagerDto(String murl, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
+		this(rowsPerPage, pagesPerGroup, totalRows, pageNo);
 		this.murl = murl;
+		}
+	
+	public PagerDto(int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {	
 		this.rowsPerPage = rowsPerPage;
 		this.pagesPerGroup = pagesPerGroup;
 		this.totalRows = totalRows;
@@ -36,6 +42,15 @@ public class PagerDto {
 		
 		startRowNo = (pageNo - 1) * rowsPerPage + 1;
 		endRowNo = pageNo * rowsPerPage; 
+	}
+
+	
+	public String getMymemail() {
+		return mymemail;
+	}
+
+	public void setMymemail(String mymemail) {
+		this.mymemail = mymemail;
 	}
 
 	public String getMurl() {

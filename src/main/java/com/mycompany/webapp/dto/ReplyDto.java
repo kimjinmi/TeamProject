@@ -11,8 +11,15 @@ public class ReplyDto {
 	private Date rdate;
 	private String mnickname;
 	private String murl;
+	private String btitle;
 	
 	
+	public String getBtitle() {
+		return btitle;
+	}
+	public void setBtitle(String btitle) {
+		this.btitle = btitle;
+	}
 	public String getMnickname() {
 		return mnickname;
 	}

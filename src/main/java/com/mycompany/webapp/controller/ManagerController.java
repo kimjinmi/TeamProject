@@ -2,8 +2,10 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,9 +22,12 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.service.ManagerService;
 
 
@@ -72,9 +78,12 @@ public class ManagerController {
 	}
 	
 	@RequestMapping("/allboardlist")
-	public String allboardlist(Model model) {
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+	public String allboardlist(Model model, @RequestParam(defaultValue = "1")int pageNo) {
+		int totalRows = service.getTotalRows();
+		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
+		List<BoardDto> list = service.getBoardList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
 		return "manager/allboardlist";
 	}
 	
@@ -94,8 +103,8 @@ public class ManagerController {
 
 	@RequestMapping("/managersetting")
 	public String managersetting(Model model) {
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+		List<MemberDto> manager = service.getmanagerlist("ROLE_MANAGER");
+		model.addAttribute("manager", manager);
 		return "manager/managersetting";
 	}
 	
@@ -105,10 +114,53 @@ public class ManagerController {
 		model.addAttribute("category", category);
 		return "manager/usersetting";
 	}
+	@GetMapping("/managerDelete")
+	public void managerDelete(String memail, HttpServletResponse response, MemberDto member) throws Exception {
+		String mrole = "ROLE_USER";
+		member.setMemail(memail);
+		member.setMrole(mrole);
+		logger.info(memail);
+		
+		service.managerChange(member);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+		
+	}
+	
+	@GetMapping("/managerAdd")
+	public void managerAdd(String memail, HttpServletResponse response, MemberDto member) throws Exception {
+		String mrole = "ROLE_MANAGER";
+		member.setMemail(memail);
+		member.setMrole(mrole);
+		logger.info(memail);
+		
+		service.managerChange(member);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+		
+	}
+	
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info(fileName);
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
 		String saveFilePath = "C:/temp/projectimage/member/" + fileName;

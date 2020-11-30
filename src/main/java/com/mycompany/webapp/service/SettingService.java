@@ -73,8 +73,6 @@ public class SettingService {
 		return totalRows;
 	}
 
-
-
     public List<BoardDto> getBoardListPage(PagerDto pager) { 
 	  
 	    List<BoardDto> list = boarddao.selectByPage(pager); 
@@ -89,7 +87,6 @@ public class SettingService {
 	
 	public void boardDelete(int bno) {
 		int rows = boarddao.deleteByBno(bno);
-		
 	}
 
 	public List<ReplyDto> getReplyListPage(PagerDto pager) {
@@ -98,15 +95,35 @@ public class SettingService {
 		return list;
 	}
 
-
-	  
-	  
-	 
-
-
+	//---------------------------------------영아 - 이웃 리스트 ------------------------------------------
+	
+						//내 이웃 리스트	
 	public List<NeighborDto> myNlist(String mymemail) {
 		List<NeighborDto>  list = neighbordao.selectNlistAll(mymemail);
 		return list;
 	}
+
+						//내 이웃 삭제
+	public void nDelete(int nno) {
+		int rows = neighbordao.deleteByNno(nno);	
+	}
+	
+						//내 이웃 리스트 페이지 작성 과정1 - 내 이웃의 수 
+	public int getTotalMyRownList(String mymemail) {
+		int totalMyRows = neighbordao.myNeighborCount(mymemail);
+		logger.info(" 2222222222222222totalMyRows : " + totalMyRows);
+		
+		return totalMyRows;
+	}
+	
+						//내 이웃 리스트 페이지 작성 과정 2 - 페이저
+	public List<NeighborDto> getNighborList(PagerDto pager) { 
+	    List<NeighborDto> list = neighbordao.selectByPageNeList(pager); 
+	    logger.info("444444444444list : " + list);
+	    
+	    return list; 
+    }
+	
+	//---------------------------------------영아------------------------------------------
 
 }

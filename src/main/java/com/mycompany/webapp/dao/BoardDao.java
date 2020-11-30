@@ -24,6 +24,9 @@ public class BoardDao {
 		return board;
 	}
 	
+	
+	//-------------------------------------------------영아---------------------------------------------------//
+	
 	//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
 	public List<BoardDto> categoryListLink(int cno, String murl) {
 		Map map = new HashMap();
@@ -39,6 +42,7 @@ public class BoardDao {
 		return list;
 	}
 		
+	//-------------------------------------------------영아---------------------------------------------------//
 	
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
@@ -138,6 +142,12 @@ public class BoardDao {
 	public int userBoardCountAll(String userUrl) {
 		int totalRows = sst.selectOne("mybatis.mapper.board.userBoardCountAll", userUrl);
 		return totalRows;
+	}
+
+	//진미 : 전체 글의 구하는거임 삭제 ㄴ, 고쳐서 사용 금지
+	public List<BoardDto> selectByAllPage(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectListAll", pager);
+		return list;
 	}
 
 
