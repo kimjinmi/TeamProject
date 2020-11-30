@@ -11,22 +11,29 @@
 	<div class="container"
 		style="background-color: #fbf9ff; padding: 30px;">
 		<c:forEach var="likelist" items="${mynlist}">
-			<div class="row">
+			<div class="row" style="padding-bottom : 30px;'">
 				<div class="col-sm-3">
-					<img src="photodownload?fileName=${neighbor.mmyimage}" alt=""
+					<img src="photodownload?fileName=${likelist.mmyimage}" alt=""
 						width="100" height="100" class="rounded-circle">
 				</div>
 				<div class="col-sm-9">
 					<a class="d-inline-block" href="#">
-						<h2 class="blog-head" style="color: #2d2d2d;">${neighbor.nemurl}</h2>
+						<h2 class="blog-head" style="color: #FF1493;  font-weight: bolder;">${likelist.mnickname}</h2>
 					</a>
 					<p></p>
-					<ul class="blog-info-link">
-						<li><a href="#"><i class="fa fa-calendar"></i> 우리가 이웃이 시작
-								된 날 : ${neighbor.ndate}</a></li>
-						<li><a href="#"><i class="fa fa-minus-square"></i> 친구 삭제</a></li>
-					</ul>
+					<ul class="blog-info-link" style="padding-top: 5px;">
+						<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${likelist.nemurl}" style="color: #FF73BE;"><i class="fas fa-map-marker-alt"></i>
+						내 이웃 주소 : ${likelist.nememail}</a></li>
 
+					</ul>
+					<ul class="blog-info-link" style="padding-top: 5px;">
+						<li><a href="#"style="color: #FF7DC8;"><i class="fa fa-calendar"></i> 
+						우리가 이웃이 시작된 날 : ${likelist.ndate}</a></li>
+					</ul>
+					<ul class="blog-info-link" style="padding-top: 5px;">
+						<li><a href="#" style="color: #EE0000; font-weight: bolder;"><i class="fa fa-minus-square"></i>
+						 친구 삭제</a></li>
+					</ul>
 				</div>
 			</div>
 		</c:forEach>

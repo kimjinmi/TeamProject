@@ -69,17 +69,20 @@ public class BlogController {
 	@GetMapping("/blog_details")
 	public String board_details(HttpSession session, int bno, Model model, HttpServletRequest request) {
 		// get 값 매핑
-		/*String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다. -지훈
-		if (UserUrl == "") {
-			UserUrl += session.getAttribute("murl");
-		}*/
+		/*
+		 * String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은
+		 * useurl의 값을 받는다. -지훈 if (UserUrl == "") {
+		 * 
+		 * UserUrl += session.getAttribute("murl"); }
+		 */
 		
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
-		 String UserUrl = board.getMurl();
+		 String UserUrl = board.getMurl(); 
 		 logger.info("###############"+board.getMurl());
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
+		 logger.info("###############"+board.getMurl());
 		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
@@ -95,6 +98,7 @@ public class BlogController {
 
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
+		logger.info(reply.getRcontent());
 		service.commentWrite(reply);
 	}
 
@@ -250,9 +254,10 @@ public class BlogController {
 	}
 
 	@GetMapping("/commentDelete")
-	public void commentDelete(int rno) {
+	public String commentDelete(int rno) {
 		logger.info("나와라 commentDelete Rno = " + rno);
-		service.commentDelete(rno);		
+		service.commentDelete(rno);	 // 해당 rno 삭제완료
+		return "blog/blogcommentList";
 	}
 
 }
