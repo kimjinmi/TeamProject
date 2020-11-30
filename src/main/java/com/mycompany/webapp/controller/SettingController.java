@@ -60,12 +60,12 @@ public class SettingController {
 	public String myneighborlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
 
-		String sessionMemail = (String) session.getAttribute("sessionMemail");
+	/*	String sessionMemail = (String) session.getAttribute("sessionMemail");
 		String SessionMnickname = (String) session.getAttribute("SessionMnickname"); //대소문자조심
 		String SessionMurl = (String) session.getAttribute("SessionMurl"); //대소문자조심
 		logger.info("memail :"+sessionMemail);
 		logger.info("mnickname :"+SessionMnickname);
-		logger.info("murl :"+SessionMurl); 
+		logger.info("murl :"+SessionMurl); */
 		
 		String memail = (String) session.getAttribute("sessionMemail");
 		List<NeighborDto> mynlist = service.myNlist(memail);

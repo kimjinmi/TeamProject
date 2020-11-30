@@ -3,9 +3,9 @@
 <mapper namespace="mybatis.mapper.neighbor">
 
 	<select id="selectNlistAll" parameterType="String" resultType="neighbor">
-		select nno, mymemail, nememail, ndate, nemurl, m.mmyimage
+		select nno, mymemail, nememail, ndate, nemurl, m.mmyimage, m.mnickname
 		from neighbor n, member m
-		where n.mymemail=m.memail and mymemail=#{mymemail}
+		where m.memail=n.nememail and mymemail=#{mymemail}
 		order by ndate desc
 	</select>
 
