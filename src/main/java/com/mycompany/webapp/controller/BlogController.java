@@ -163,8 +163,20 @@ public class BlogController {
 	}
 
 	@RequestMapping("boardWrite")
-	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
-
+	public void blog_write(Model model, MultipartFile attach, HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
+		String saveFileName = null;
+		
+		if (!attach.isEmpty()) {
+			saveFileName = new Date().getTime() + "_" + attach.getOriginalFilename();
+			try {
+				attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
+				board.setBimage(saveFileName);
+			} catch (Exception e) {
+			}
+		}else {
+			board.setBimage("unnamed.png");
+		}
+		
 		String SessionMurl =(String) session.getAttribute("SessionMurl");
 		board.setMurl(SessionMurl);
 		board.setBlike(0);
@@ -179,6 +191,21 @@ public class BlogController {
 		out.println(json);
 		out.flush();
 		out.close();
+		
+		/*String SessionMurl =(String) session.getAttribute("SessionMurl");
+		board.setMurl(SessionMurl);
+		board.setBlike(0);
+		service.boardWrite(board);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();*/
 	}
 	
 	@RequestMapping("/upload")
