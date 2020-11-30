@@ -20,14 +20,16 @@ text-overflow:ellipsis;
 	<table style="text-align:center; width: 90%">
 		<colgroup>
 			<col width="5%">
-			<col width="40%">
-			<col width="25%">
-			<col width="25%">
+			<col width="15%">
+			<col width="35%">
+			<col width="20%">
+			<col width="20%">
 			<col width="5%">
 		</colgroup>
 		<thead>
 			<tr style="background-color:##FBF9FF; border-spacing: 5px;">
 				<th scope="col">no</th>
+				<th scope="col">category</th>
 				<th scope="col">title</th>
 				<th scope="col">writer</th>
 				<th scope="col">date</th>
@@ -37,7 +39,8 @@ text-overflow:ellipsis;
 			<c:forEach var="board" items="${list}">
 				<tr style="border-spacing: 5px;">
 					<td>${board.bno}</td>
-					<td>${board.btitle}</td>
+					<td>${board.ccontent}</td>
+					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}">${board.btitle}</a></td>
 					<td>${board.memail}</td>
 					<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" /></td>
 					<td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>

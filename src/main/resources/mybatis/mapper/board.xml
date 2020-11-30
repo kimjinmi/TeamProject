@@ -197,10 +197,11 @@
 	
 	<!-- 전체게시글구하기(고치지말것) -->
 	<select id="selectListAll" parameterType="pager" resultType="board">
-		SELECT rnum, bno, bno, btitle, bdate, memail
-			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail
-					FROM (SELECT bno, btitle, bdate, memail
-					        FROM BOARD
+		SELECT rnum, bno, bno, btitle, bdate, memail, ccontent
+			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
+					FROM (SELECT bno, btitle, bdate, memail, ccontent
+					        FROM board b, category c
+					        WHERE b.cno = c.cno 
 					        ORDER BY bdate DESC)
 							WHERE rownum &lt;=#{endRowNo})
 			WHERE rnum &gt;= #{startRowNo}
