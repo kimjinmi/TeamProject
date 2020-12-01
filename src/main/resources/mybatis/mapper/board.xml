@@ -106,7 +106,6 @@
 			where rownum &lt; = #{endRowNo}
 		)
 		where rnum &gt; = #{startRowNo}
-
 		
 	
 		<!-- select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, comnum
@@ -277,9 +276,27 @@
 		delete from liked where bno=#{bno} AND memail = #{sessionMemail}
 	</delete>
 	
+	<!-- search 이용 -->
+	<select id="userBoardSearchCount" parameterType="search" resultType="int">
+		select count(*)
+		from board
+		where ${value} like '%'|| #{search}||'%'
+	</select>
+	
 	<select id="searchList" parameterType="map" resultType="board">
 		select * from board where btitle like '%' ||  #{searchContent} || '%'  OR bcontent like '%' ||  #{searchContent} || '%'
 		AND murl = #{murl}
+	</select>
+	
+	<select id="searchListUser" parameterType="pager" resultType="board">
+		SELECT rnum, bno, btitle, bdate, memail, ccontent
+			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
+					FROM (SELECT bno, btitle, bdate, memail, ccontent
+					        FROM board b, category c
+					        WHERE b.cno = c.cno and ${value} like '%'|| #{murl}||'%' 
+					        ORDER BY bdate DESC)
+							WHERE rownum &lt;=#{endRowNo})
+			WHERE rnum &gt;= #{startRowNo}
 	</select>
 </mapper>
 

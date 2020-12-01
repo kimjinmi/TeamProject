@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.SearchDto;
 
 @Repository
 public class BoardDao {
@@ -190,11 +191,23 @@ public class BoardDao {
 	}
 
 
+	public int countSearchAll(SearchDto search) {
+		int row = sst.selectOne("mybatis.mapper.board.userBoardSearchCount", search);
+		return row;
+	}
+
+
 	public List<BoardDto> searchList(String searchContent, String murl) {
 		Map map = new HashMap();
 		map.put("searchContent", searchContent);
 		map.put("murl", murl);
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchList", map);
+		return list;
+	}
+
+
+	public List<BoardDto> selectByAllPageUser(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchListUser", pager);
 		return list;
 	}
 

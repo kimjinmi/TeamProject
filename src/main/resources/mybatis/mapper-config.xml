@@ -8,6 +8,7 @@
 		<typeAlias alias="member" type="com.mycompany.webapp.dto.MemberDto" />
 		<typeAlias alias="reply" type="com.mycompany.webapp.dto.ReplyDto" />
 		<typeAlias alias="pager" type="com.mycompany.webapp.dto.PagerDto" />
+		<typeAlias alias="search" type="com.mycompany.webapp.dto.SearchDto" />
 		<typeAlias alias="inquiry" type="com.mycompany.webapp.dto.InquiryDto" />
 		<typeAlias alias="neighbor" type="com.mycompany.webapp.dto.NeighborDto" />
 	</typeAliases> 

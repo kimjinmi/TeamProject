@@ -150,16 +150,18 @@ $.ajax({
 										<li><a href="javascript:usersetting()" class="d-flex">
 											<p>회원 관리</p></a>
 											<script type="text/javascript">
-												function usersetting(){
+												function usersetting(pageNo){
+													if(!pageNo) {
+															pageNo = 1;
+													}
 													$.ajax({
 														url:"usersetting",
+														data: {pageNo:pageNo},
 														success:function(data) {
 															$("#setting_result").html(data);
 														}
 													});
-													
 												}
-											
 											</script>
 												
 										</li>
