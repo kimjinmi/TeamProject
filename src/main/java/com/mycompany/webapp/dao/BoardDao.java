@@ -116,13 +116,10 @@ public class BoardDao {
 		return rows;
 	}
 
-
 	public int deleteByBno(int bno) {
 		int rows = sst.delete("mybatis.mapper.board.deleteByBno", bno);
 		return rows;
 	}
-
-	
 
 	public List<BoardDto> selectBLikeList1() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList1");		//like받은 것을 찾아서 모두를 실행해라
@@ -150,6 +147,4 @@ public class BoardDao {
 		return list;
 	}
 
-
-	
 }
