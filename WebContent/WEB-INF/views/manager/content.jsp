@@ -159,20 +159,16 @@
 												
 											}
 											
-											function searchboard(pageNo){
-												if(!pageNo){
-													pageNo = 1;
-												}
-												var value = $("#value").val();
-												var search = $("#search").val();
+											function boarddelete(bno){
 												$.ajax({
-													url:"searchboard",
-													data:{value:value,search:search,pageNo:pageNo},
+													url:"boarddelete",
+													data:{bno:bno},
 													success:function(data){
-														$("#setting_result").html(data);
+														if(data.result == "success"){
+															allboardlist();
+														}
 													}
 												});
-												
 											}
 										
 										</script>

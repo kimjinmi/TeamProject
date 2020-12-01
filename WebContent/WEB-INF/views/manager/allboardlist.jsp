@@ -12,26 +12,29 @@ text-overflow:ellipsis;
 
 </style>
 <script type="text/javascript">
-function boarddelete(bno){
+
+function searchboard(pageNo){
+	if(!pageNo){
+		pageNo = 1;
+	}
+	var value = $("#value").val();
+	var search = $("#search").val();
 	$.ajax({
-		url:"boarddelete",
-		data:{bno:bno},
+		url:"searchboard",
+		data:{value:value,search:search,pageNo:pageNo},
 		success:function(data){
-			if(data.result == "success"){
-				allboardlist();
-			}
+			$("#setting_result").html(data);
 		}
 	});
+	
 }
-
-
 
 </script>
 <h2 style="color: #2d2d2d; display:inline;">게시글 관리</h2>
 
 <hr style="margin-top:12px;">
 	<div class="container">
-		<form method="post" id="searchboard" action="javascript:searchboard()">
+		<form method="post" id="searchboard" action="">
 			<div class="form-group row">
 				<div class="form-select col-2">
 					<select name="value" id="value">
@@ -44,7 +47,7 @@ function boarddelete(bno){
 					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
 				</div>
 				<div class="col-2">
-					<a href="#" onclick="document.getElementById('searchboard').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
+					<a href="javascript:searchboard()"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</form>

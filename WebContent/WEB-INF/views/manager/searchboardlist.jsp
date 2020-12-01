@@ -12,17 +12,7 @@ text-overflow:ellipsis;
 
 </style>
 <script type="text/javascript">
-function boarddelete(bno){
-	$.ajax({
-		url:"boarddelete",
-		data:{bno:bno},
-		success:function(data){
-			if(data.result == "success"){
-				allboardlist();
-			}
-		}
-	});
-}
+
 
 
 </script>
@@ -43,7 +33,7 @@ function boarddelete(bno){
 					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" value="${search}">
 				</div>
 				<div class="col-2">
-					<a href="#" onclick="document.getElementById('searchboard').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
+					<a href="javascript:searchboard()"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</form>
@@ -72,6 +62,11 @@ function boarddelete(bno){
 				<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
 			</tr>
 		</thead>
+			<tr>
+				<td colspan="5" style="text-align:center;">
+					<b>총 ${totalRows}개의 게시물이 존재합니다.</b>
+				</td>
+			</tr>
 			<c:forEach var="board" items="${list}">
 				<tr style="border-spacing: 5px;">
 					<td>${board.bno}</td>

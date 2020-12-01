@@ -98,11 +98,6 @@ public class SettingService {
 	}
 
 
-	  
-	  
-	 
-
-
 	public List<NeighborDto> myNlist(String mymemail) {
 		List<NeighborDto>  list = neighbordao.selectNlistAll(mymemail);
 		return list;

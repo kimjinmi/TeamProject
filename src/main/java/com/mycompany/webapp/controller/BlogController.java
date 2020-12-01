@@ -53,21 +53,6 @@ public class BlogController {
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
 
-	@GetMapping("/dbConnect")
-	public String dbConnect() {
-
-		Connection connect;
-		try {
-			connect = dataSource.getConnection();
-			connect.close();
-			logger.info("dbConnected");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return "blog/blog_details";
-	}
-
-
 	@GetMapping("/blog_details")
 	public String board_details(HttpSession session, int bno, Model model, HttpServletRequest request) {
 		// get 값 매핑
@@ -82,9 +67,7 @@ public class BlogController {
 		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
-		 logger.info("###############"+board.getMurl());
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
-		 logger.info("###############"+board.getMurl());
 		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
@@ -204,7 +187,7 @@ public class BlogController {
 	            + "','이미지가 업로드되었습니다.')" + "</script>");
 	    printWriter.flush();
 	}*/
-=======
+
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		// 게시물 삭제
@@ -222,7 +205,7 @@ public class BlogController {
 		out.flush();
 		out.close();
 	}
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
+
 	
 	@GetMapping("/boardUpdate")
 	public String boardUpdateForm(BoardDto board, int bno, Model model) {
@@ -338,8 +321,7 @@ public class BlogController {
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
-<<<<<<< HEAD
-=======
+
 	
 	@GetMapping("/heartStatus")
 	public String heartStatus(int bno, Model model, HttpSession session) {
@@ -352,9 +334,7 @@ public class BlogController {
 		 model.addAttribute("likecount", likecount);
 		return "blog/heartSatatus";
 	}
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
 
-	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
 		logger.info("blogList 컨트롤러 실행");
