@@ -122,8 +122,8 @@ public class BlogService {
 		return totalRows;
 	}
 
-	public int heartCheck(String sessionMurl, int bno) {
-		int row = boardDao.heartCheck(sessionMurl, bno);
+	public int heartCheck(String SessionMemail, int bno) {
+		int row = boardDao.heartCheck(SessionMemail, bno);
 		return row;
 	}
 
