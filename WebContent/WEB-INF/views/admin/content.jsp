@@ -43,6 +43,14 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 </head>
+<script type="text/javascript">
+$.ajax({
+	url:"managersetting",
+	success:function(data) {
+		$("#setting_result").html(data);
+	}
+});
+</script>
 
 <body>
 	<!-- ? Preloader Start -->
@@ -92,7 +100,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>MANAGER</h2>
+								<h2>ADMIN</h2>
 							</div>
 						</div>
 					</div>
@@ -113,12 +121,7 @@
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
-								<hr/>
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-														                    	
-		                       	 	<!-- 게시글 작성 버튼 -->
-		                        	<a class="genric-btn primary e-large" href="admin">ADMIN</a>
-		                        </sec:authorize>
+								
 		                        </div>
 							</aside>
 							
@@ -126,78 +129,56 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">홈페이지 관리</h4>
 								<ul class="list cat-list">
 									
-									<li><a href="javascript:editcategory()" class="d-flex">
-										<p>카테고리 편집</p></a>
-										<script type="text/javascript">
-											function editcategory(){
-												$.ajax({
-													url:"editcategory",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-										
-										</script>	
-									</li>
 									
-									<li><a href="javascript:allboardlist()" class="d-flex">
-										<p>전체 게시글 관리</p></a>
-										<script type="text/javascript">
-											function allboardlist(pageNo){
-												if(!pageNo){
-													pageNo = 1;
+									
+										<li><a href="javascript:managersetting()" class="d-flex">
+											<p>매니저 관리</p></a>
+											<script type="text/javascript">
+												function managersetting(){
+													$.ajax({
+														url:"managersetting",
+														success:function(data) {
+															$("#setting_result").html(data);
+														}
+													});
+													
 												}
-												$.ajax({
-													url:"allboardlist",
-													data : {pageNo:pageNo},
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-										
-										</script>
 											
-									</li>
-									<li><a href="javascript:allreplylist()" class="d-flex">
-										<p>전체 댓글 관리</p></a>
-										<script type="text/javascript">
-											function allreplylist(pageNo){
-												if(!pageNo){
-													pageNo = 1;
+											</script>
+												
+										</li>
+										<li><a href="javascript:usersetting()" class="d-flex">
+											<p>회원 관리</p></a>
+											<script type="text/javascript">
+												function usersetting(){
+													$.ajax({
+														url:"usersetting",
+														success:function(data) {
+															$("#setting_result").html(data);
+														}
+													});
+													
 												}
-												$.ajax({
-													url:"allreplylist",
-													data:{pageNo:pageNo},
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-										
-										</script>
 											
-									</li>
-									<li><a href="javascript:inquirylist()" class="d-flex">
-										<p>문의사항 관리</p></a>
-										<script type="text/javascript">
-											function inquirylist(){
-												$.ajax({
-													url:"inquirylist",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
+											</script>
 												
-											}
-										
-										</script>
+										</li>
+										<li><a href="javascript:disabledmember()" class="d-flex">
+											<p>차단 회원 관리</p></a>
+											<script type="text/javascript">
+												function disabledmember(){
+													$.ajax({
+														url:"disabledmember",
+														success:function(data) {
+															$("#setting_result").html(data);
+														}
+													});
+													
+												}
 											
-									</li>
+											</script>
+												
+										</li>
 									
 								</ul>
 							</aside>
@@ -214,7 +195,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-							<jsp:include page="/WEB-INF/views/manager/editcategory.jsp"/>
+							<jsp:include page="/WEB-INF/views/admin/managersetting.jsp"/>
 						</div>
 					</div>
 				</div>

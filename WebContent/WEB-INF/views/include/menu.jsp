@@ -26,6 +26,12 @@
 			
 					<%-- <li><a href="<%=application.getContextPath()%>/blog/blog_details">BLOG_DETAILS</a></li> --%>
 					<li><a href="<%=application.getContextPath()%>/setting/content">SETTING</a></li>
+					<sec:authorize access="hasRole('ROLE_MANAGER')">
+						<li><a href="<%=application.getContextPath()%>/manager/content">MANAGER</a></li>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<li><a href="<%=application.getContextPath()%>/admin/content">ADMIN</a></li>
+					</sec:authorize>
 					
 				</ul>
 			</li>
