@@ -308,8 +308,9 @@
 		where ${value} like '%'|| #{search}||'%'
 	</select>
 	
-	<select id="searchList" parameterType="String" resultType="board">
+	<select id="searchList" parameterType="map" resultType="board">
 		select * from board where btitle like '%' ||  #{searchContent} || '%'  OR bcontent like '%' ||  #{searchContent} || '%'
+		AND murl = #{murl}
 	</select>
 	
 	<select id="searchListUser" parameterType="pager" resultType="board">

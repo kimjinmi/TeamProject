@@ -61,6 +61,7 @@ public class BlogController {
 		try {
 			connect = dataSource.getConnection();
 			connect.close();
+			logger.info("dbConnected");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,9 +80,12 @@ public class BlogController {
 		 */
 		
 		 bno = Integer.parseInt(request.getParameter("bno"));
+		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
+		 logger.info("###############"+board.getMurl());
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
+		 logger.info("###############"+board.getMurl());
 		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
@@ -103,6 +107,7 @@ public class BlogController {
 
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
+		logger.info(reply.getRcontent());
 		service.commentWrite(reply);
 	}
 
@@ -387,15 +392,21 @@ public class BlogController {
 	}
 	
 	@GetMapping("/heartStatus")
-	public String heartStatus(int bno, Model model) {
-		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 가져온다.
-		model.addAttribute("likecount", "likecount");
-		return "blog/heartStatus";
+	public String heartStatus(int bno, Model model, HttpSession session) {
+		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 model.addAttribute("likecount", likecount);
+		 String SessionMemail = (String) session.getAttribute("SessionMemail");
+		 int heartCheck = service.heartCheck(SessionMemail, bno); 
+		
+		 logger.info("하트체크 : " + heartCheck);
+		 model.addAttribute("heartCheck", heartCheck);
+		 model.addAttribute("likecount", likecount);
+		return "blog/heartSatatus";
 	}
 
 	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
+		logger.info("blogList 컨트롤러 실행");
 		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
 		PagerDto pager = new PagerDto(murl, 2, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getBoardList(pager);
@@ -422,6 +433,42 @@ public class BlogController {
 		out.flush();
 		out.close();
 
+	}
+	
+	@PostMapping("/heartClick")
+	public String heartClick(int bno, HttpSession session, int heartCheck) {
+		
+		// 검정 하트일때만 실행
+		if(heartCheck  == 0) {
+		logger.info("좋아요 더하기");
+		service.likeadd(bno);
+		service.likeinfo(bno, (String) session.getAttribute("sessionMemail"));
+		}else if(heartCheck > 0) {
+		// 빨간 하트일때만 실행
+			logger.info("좋아요 빼기");
+		service.likedsub(bno);
+		service.likeinfoDelete(bno, (String) session.getAttribute("sessionMemail"));
+		}
+		
+		return "blog/heartSatatus";
+	}
+	
+	@GetMapping("/addComment") // 대댓글 구현중 - 지훈
+	public String addComment(int rno, Model model) {
+		//service.addComment(rno); // 받은 rno를 가져가서 rno를 first로 하는 댓글을 추가한다. insert문
+		
+		
+		
+		return "blog/blogcommentList";
+	}
+	
+	@GetMapping("/boardSearch") //  검색기능 구현중 - 지훈 
+	public String boardSearch(String searchContent, String murl, Model model, @RequestParam(defaultValue="1")int pageNo) {
+		logger.info("boardSearch 실행");
+		
+		List<BoardDto> list = service.searchList(searchContent, murl);
+		model.addAttribute("list", list);
+		return "blog/blogList";
 	}
 	
 }

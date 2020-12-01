@@ -201,13 +201,16 @@ public class BoardDao {
 		return row;
 	}
 
-	public List<BoardDto> searchList(String searchContent) {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchList", searchContent);
+	public List<BoardDto> searchList(String searchContent, String murl) {
+		Map map = new HashMap();
+		map.put("searchContent", searchContent);
+		map.put("murl", murl);
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchList", map);
 		return list;
 	}
 
 	public List<BoardDto> selectByAllPageUser(PagerDto pager) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchListUser", pager);
 		return list;
-	}
+	} 
 }

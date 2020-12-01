@@ -174,8 +174,8 @@ public class BlogService {
 		replyDao.addComent(rno);
 	}
 
-	public List<BoardDto> searchList(String searchContent) {
-		List<BoardDto> list = boardDao.searchList(searchContent);
+	public List<BoardDto> searchList(String searchContent, String murl) {
+		List<BoardDto> list = boardDao.searchList(searchContent, murl);
 		return list;
 	}
 

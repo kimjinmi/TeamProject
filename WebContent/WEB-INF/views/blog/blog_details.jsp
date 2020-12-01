@@ -43,12 +43,6 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
- 
- <style type="text/css">
- 	.ck-editor__editable {
-	       min-height: 800px;
-	}
- </style>
 </head>
 
 <script type="text/javascript">
@@ -72,7 +66,7 @@
 			},
 			success : function(data) {
 				$("#comments-area").html(data);
-				alert("댓글 온로드");
+				
 			}
 		});
 		
@@ -82,13 +76,14 @@
 			method : "get",
 			data : {bno:bno},
 			success : function(data){
-				$("#heartbox").html(data);
-				alert("하트박스 온로드");
+				$("#heartbox_p").html(data);
+				
 			}
 		});
-		
-	
 	}
+	
+	
+	
    </script>
 
 	<!-- ? Preloader Start -->
@@ -161,7 +156,7 @@
 										src="photodownload?fileName=${member.mmyimage}"
 										alt="" width="100" height="100" class="rounded-circle">
 									<hr />
-									<h2 class="contact-title">${member.mnickname}</h2>
+									<a href="blog?UserUrl=${member.murl }"><h2  class="contact-title">${member.mnickname}</h2></a>
 									<p>${member.mintro}</p>
 									<hr />
 									<!-- 게시글 작성 버튼 -->
@@ -316,9 +311,9 @@
 
 						<div class="navigation-top">
 							<div id="heartbox" class="d-sm-flex justify-content-between text-center">
-								<!-- 
-								<p class="like-info">
-									<span  class="align-middle"><a id="heart" href="javascript:heartbreaker()" class="fa fa-heart" style="color:black;"></a></span>
+								
+								<p class="like-info" id="heartbox_p">
+									<%-- <span  class="align-middle"><a id="heart" href="javascript:heartbreaker()" class="fa fa-heart" style="color:black;"></a></span>
 									<script type="text/javascript">		
 										function heartbreaker(){
 											heart__status = !heart__status;
@@ -330,9 +325,9 @@
 										}
 									</script>
 									좋아요 ${board.blike}개
-								</p>
+ --%>								</p>
 								
-								 -->
+								 
 								<div class="col-sm-4 text-center my-2 my-sm-0">
 									<!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
 								</div>
@@ -343,7 +338,7 @@
 									<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
 									<li><a href="#"><i class="fab fa-behance"></i></a></li>
 									<c:if test="${sessionMemail == board.memail}">
-										<li style="margin-right: 4px;"><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
+										<li style="padding-right: 15px;"><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
 										<script type="text/javascript">
 											function boardUpdate(bno) {
 												$.ajax({
@@ -355,7 +350,7 @@
 												});
 											}
 										</script>		
-										<li style="margin-right: 10px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
+										<li style="padding-left: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
 										<script type="text/javascript">
 											function boardDelete(bno) {
 												$.ajax({
@@ -373,7 +368,7 @@
 									</c:if>
 								</ul>
 							</div>
-							<div class="navigation-area">
+<!-- 							<div class="navigation-area">
 								<div class="row">
 									<div
 										class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
@@ -388,18 +383,18 @@
 										</div>
 										<div class="detials">
 											<p>이전 게시물</p>
-											<!-- <a href="#">
+											<a href="#">
 												<h4 style="color: #2d2d2d;">Space The Final Frontier</h4>
-											</a> -->
+											</a>
 										</div>
 									</div>
 									<div
 										class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 										<div class="detials">
 											<p>다음 게시글</p>
-											<!-- <a href="#">
+											<a href="#">
 												<h4 style="color: #2d2d2d;">Telescopes 101</h4>
-											</a> -->
+											</a>
 										</div>
 										<div class="arrow">
 											<a href="#"> <span class="lnr text-white ti-arrow-right"></span>
@@ -412,9 +407,9 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
-						<div class="blog-author">
+						<div class="blog-author" style="margin-top:10px">
 							<div class="media align-items-center">
 								<img
 									src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
@@ -429,7 +424,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="comments-area" id="comments-area">
+						<div class="comments-area" id="comments-area" style="margin-top:20px">
 							<%-- <h4>댓글</h4>
 
 							<!-- -----------------------------------댓글 폼1 시작----------------------------------------- -->
