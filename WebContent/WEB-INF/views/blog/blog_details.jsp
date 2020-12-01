@@ -338,7 +338,7 @@
 									<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
 									<li><a href="#"><i class="fab fa-behance"></i></a></li>
 									<c:if test="${sessionMemail == board.memail}">
-										<li style="padding-right: 15px;"><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
+										<li><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
 										<script type="text/javascript">
 											function boardUpdate(bno) {
 												$.ajax({
@@ -350,7 +350,7 @@
 												});
 											}
 										</script>		
-										<li style="padding-left: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
+										<li style="margin-right: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
 										<script type="text/javascript">
 											function boardDelete(bno) {
 												$.ajax({

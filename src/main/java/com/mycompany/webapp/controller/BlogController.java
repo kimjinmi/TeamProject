@@ -149,7 +149,13 @@ public class BlogController {
 	}
 
 	@RequestMapping("boardWrite")
-	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
+	public void blog_write(Model model, MultipartFile attach, HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
+		if (!attach.isEmpty()) {
+			String saveFileName = new Date().getTime() + "_" + attach.getOriginalFilename();
+			attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
+			board.setBimage(saveFileName);
+		}
+		
 		String SessionMurl =(String) session.getAttribute("SessionMurl");
 		board.setMurl(SessionMurl);
 		board.setBlike(0);
@@ -166,28 +172,46 @@ public class BlogController {
 		out.close();
 	}
 	
-	/*@RequestMapping("imageUpload.do")
-	public void imageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
-	    response.setCharacterEncoding("utf-8"); // 한글깨짐을 방지하기위해 문자셋 설정
-	    response.setContentType("text/html; charset=utf-8");  // 마찬가지로 파라미터로 전달되는 response 객체의 한글 설정
-	    String fileName = upload.getOriginalFilename();    // 업로드한 파일 이름
-	    byte[] bytes = upload.getBytes();  // 파일을 바이트 배열로 변환
-	
-	    String uploadPath = "C:/temp/projectimage/board";  // 이미지를 업로드할 디렉토리
-	    
-	    OutputStream out = new FileOutputStream(new File(uploadPath + fileName));
-	    out.write(bytes);
-	    
-	    String callback = request.getParameter("CKEditorFuncNum");  // 클라이언트에 결과 표시
-	
-<<<<<<< HEAD
-	    PrintWriter printWriter = response.getWriter();
-	    String fileUrl = request.getContextPath() + "/images/" + fileName;
-	    printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
-	            + "','이미지가 업로드되었습니다.')" + "</script>");
-	    printWriter.flush();
-	}*/
+	@RequestMapping("/upload")
+	public void upload(MultipartFile upload, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		JSONObject jsonObject = new JSONObject();
+		if(!upload.isEmpty()) {
+			String originalFileName = upload.getOriginalFilename();
+			originalFileName += new Date().getTime() + "-" + originalFileName;
+			//File saveFile = new File("D:/MyWorkspace/photo/board/" + originalFileName);
+			File saveFile = new File("C:/temp/projectimage/boardContent/" + originalFileName);
+			upload.transferTo(saveFile);
+			jsonObject.put("uploaded", 1);
+			jsonObject.put("fileName", originalFileName);
+			jsonObject.put("url", "http://localhost:8080/teamproject/blog/boardImageDownload?fileName=" + originalFileName);
+		} 
+		String json = jsonObject.toString();
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
+	}
 
+	@GetMapping("/boardImageDownload")
+	public void boardImageDownload(String fileName, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		// 파일의 데이터를 읽기 위한 입력 스트림 얻기
+		//String saveFilePath = "D:/MyWorkspace/photo/board/" + fileName;
+		String saveFilePath = "C:/temp/projectimage/boardContent/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+
+		// Content-Type 헤더 구성 (파일의 종류)
+		String fileType = request.getServletContext().getMimeType(fileName);
+		response.setContentType(fileType);
+
+		// 응답 HTTP의 본문 구성 (body)
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os);
+		os.flush();
+		os.close();
+		is.close();
+	}	
+		
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		// 게시물 삭제
