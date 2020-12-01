@@ -29,6 +29,41 @@ function boarddelete(bno){
 <h2 style="color: #2d2d2d; display:inline;">게시글 관리</h2>
 
 <hr style="margin-top:12px;">
+	<div class="container">
+		<form method="post" id="searchboard" action="javascript:searchboard()">
+			<div class="form-group row">
+				<div class="form-select col-2">
+					<select name="value" id="value">
+						<option value="btitle" selected>title</option>
+						<option value="bcontent">content</option>
+						<option value="memail">writer</option>
+					</select><br>
+				</div>
+				<div class="col-8">
+					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input">
+				</div>
+				<div class="col-2">
+					<a href="#" onclick="document.getElementById('searchboard').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</form>
+	</div>
+		<script type="text/javascript">
+		function searchboard(){
+			var value = $("#value").val();
+			var search = $("#search").val();
+			$.ajax({
+				url:"searchboard",
+				data:{value:value,search:search},
+				success:function(data){
+					$("#setting_result").html(data);
+				}
+			});
+			
+		}
+		</script>
+	
+	<p></p>
 
 
 	<table style="text-align:center; width: 90%">
@@ -84,6 +119,8 @@ function boarddelete(bno){
 					<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})">맨끝</a>
 					
 				</td>
+			</tr>
+			<tr>
 			</tr>
 		
 	</table>

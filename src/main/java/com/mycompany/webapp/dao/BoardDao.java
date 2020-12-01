@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.SearchDto;
 
 @Repository
 public class BoardDao {
@@ -187,6 +188,12 @@ public class BoardDao {
 		map.put("sessionMemail", sessionMemail);
 		sst.delete("mybatis.mapper.board.likeinfoDelete", map);
 		
+	}
+
+
+	public int countSearchAll(SearchDto search) {
+		int row = sst.selectOne("mybatis.mapper.board.userBoardSearchCount", search);
+		return row;
 	}
 
 
