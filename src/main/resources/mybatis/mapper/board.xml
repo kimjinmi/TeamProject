@@ -95,7 +95,7 @@
 			from(
 				select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as commentnum
 					from board b, member m, category c, (
-														select count(b.bno) commentnum , b.bno  
+														select count(r.bno) as commentnum , b.bno  
 														from board b, reply r
 														where b.bno = r.bno (+)
 														group by b.bno
@@ -233,7 +233,7 @@
 
 <!-- 게시물 좋아요 갯수 조회 -->
 	<select id="boardLikeCount" parameterType="int" resultType="board">
-		select blike 
+		select *
 		from board
 		where bno=#{bno} 
 	</select>
@@ -280,5 +280,47 @@
 	</update>	
 	<!-- 게시물 수정 업데이트 (선) -->
 	
+	<select id="heartCheck" parameterType="map" resultType="int">
+		select count(*) from liked where bno= #{bno} AND memail=#{SessionMemail}
+	</select>
+	
+	<update id="likeadd" parameterType="int">
+		update board set blike = nvl(to_number(blike), 0) + 1 where bno = #{bno}
+	</update>
+	
+	<update id="likesub" parameterType="int">
+		update board set blike = nvl(to_number(blike), 0) - 1 where bno = #{bno}
+	</update>
+	
+	<insert id="likeinfo" parameterType="map">
+		insert into liked(lno, bno, memail, ldate)
+		values (seq_liked_lno.nextval, #{bno}, #{sessionMemail}, sysdate)
+	</insert>
+	
+	<delete id="likeinfoDelete" parameterType="map">	
+		delete from liked where bno=#{bno} AND memail = #{sessionMemail}
+	</delete>
+	
+	<!-- search 이용 -->
+	<select id="userBoardSearchCount" parameterType="search" resultType="int">
+		select count(*)
+		from board
+		where ${value} like '%'|| #{search}||'%'
+	</select>
+	
+	<select id="searchList" parameterType="String" resultType="board">
+		select * from board where btitle like '%' ||  #{searchContent} || '%'  OR bcontent like '%' ||  #{searchContent} || '%'
+	</select>
+	
+	<select id="searchListUser" parameterType="pager" resultType="board">
+		SELECT rnum, bno, btitle, bdate, memail, ccontent
+			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
+					FROM (SELECT bno, btitle, bdate, memail, ccontent
+					        FROM board b, category c
+					        WHERE b.cno = c.cno and ${value} like '%'|| #{murl}||'%' 
+					        ORDER BY bdate DESC)
+							WHERE rownum &lt;=#{endRowNo})
+			WHERE rnum &gt;= #{startRowNo}
+	</select>
 </mapper>
 

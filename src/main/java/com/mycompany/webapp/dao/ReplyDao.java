@@ -48,6 +48,11 @@ public class ReplyDao {
 		return rows;
 		
 	}
+
+	public void addComent(int rno) {
+		sst.insert("mybatis.mapper.reply.addComent", rno);
+		
+	}
 	
 	
 

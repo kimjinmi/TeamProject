@@ -44,6 +44,7 @@ public class HomeController {
 			logger.info(member.getMnickname());
 			
 			session.setAttribute("SessionMnickname", member.getMnickname());
+			session.setAttribute("SessionMemail", member.getMemail());
 			session.setAttribute("SessionMurl", member.getMurl());
 		}
 		return "home";

@@ -133,14 +133,11 @@
                         <div class="about-caption mb-50">
                             <!-- Section Tittle -->
                             <div class="section-tittle mb-35">
-                                <h2>Hassle-Free Drone<br> Photography</h2>
+                                <h2>Show me the<br> Hobbys </h2>
                             </div>
-                            <p class="about-cap-top">Inasfa reprehenderit in voluptate velit esse 
-                            cillum reeut cupidatatfug nulla pariatur.</p>
-                            <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse 
-                                cillum reeut cupidatatfug nulla pariatur. Excepteur sintxsdfas 
-                            occaecat.</p>
-                            <a href="#" class="btn black-btn">Explore services</a>
+                            <p class="about-cap-top">당신의 취미를 공유하세요</p>
+                            <p>자바 공부를 해요</p>
+                            <a href="#" class="btn black-btn">지금 가입하기</a>
                         </div>
                     </div>
                     <div class="offset-xl-0 col-xl-6 offset-lg-0 col-lg-6 col-md-9 offset-md-1 offset-sm-1">
@@ -149,8 +146,8 @@
                                 <img src="assets/img/gallery/about1.png" alt="">
                             </div>
                             <div class="img-cap">
-                                <span>20</span>
-                                <p>Years of experience</p>
+                                <span>No. 1</span>
+                                <p>Project Team</p>
                             </div>
                         </div>
                     </div>
@@ -169,7 +166,7 @@
                                 <img src="assets/img/gallery/services1.png" alt="">
                             </div>
                             <div class="cat-cap">
-                                <h5><a href="services.html">Residential Real Estate Photography</a></h5>
+                                <h5><a href="services.html">김진미</a></h5>
                                 <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur.</p>
                             </div>
                         </div>
@@ -180,7 +177,7 @@
                                 <img src="assets/img/gallery/services2.png" alt="">
                             </div>
                             <div class="cat-cap">
-                                <h5><a href="services.html">Commercial Real Estate Photography</a></h5>
+                                <h5><a href="services.html">피영아</a></h5>
                                 <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur.</p>
                             </div>
                         </div>
@@ -191,7 +188,19 @@
                                 <img src="assets/img/gallery/services3.png" alt="">
                             </div>
                             <div class="cat-cap">
-                                <h5><a href="services.html">Construction Site Monitoring</a></h5>
+                                <h5><a href="services.html">조선명</a></h5>
+                                <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <div class="col-lg-4">
+                        <div class="single-cat">
+                            <div class="cat-icon">
+                                <img src="assets/img/gallery/services3.png" alt="">
+                            </div>
+                            <div class="cat-cap">
+                                <h5><a href="services.html">이선</a></h5>
                                 <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur.</p>
                             </div>
                         </div>
@@ -202,7 +211,7 @@
                                 <img src="assets/img/gallery/services2.png" alt="">
                             </div>
                             <div class="cat-cap">
-                                <h5><a href="services.html">Commercial Real Estate Photography</a></h5>
+                                <h5><a href="services.html">김지훈</a></h5>
                                 <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur.</p>
                             </div>
                         </div>

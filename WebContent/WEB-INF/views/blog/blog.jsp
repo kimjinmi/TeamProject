@@ -147,7 +147,7 @@
                         <img src="photodownload?fileName=${member.mmyimage}" 
                         alt="" width="100" height="100" class="rounded-circle">
                         <hr/>
-                        <h2 class="contact-title">${member.mnickname}</h2>
+                        <a href="blog?UserUrl=${member.murl }"><h2 class="contact-title">${member.mnickname}</h2></a>
                         <p>${member.mintro}</p>
                         <hr/>
                         <!-- 게시글 작성 버튼 -->
@@ -193,7 +193,7 @@
                         <form action="#">
                            <div class="form-group">
                               <div class="input-group mb-3">
-                                 <input type="text" class="form-control"
+                                 <input id="searchbox" type="text" class="form-control"
                                     placeholder='검색어를 입력하세요' onfocus="this.placeholder = ''"
                                     onblur="this.placeholder = '검색어를 입력하세요'">
                                  <div class="input-group-append">
@@ -203,9 +203,22 @@
                                  </div>
                               </div>
                            </div>
-                           <button
-                              class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                              type="submit">검색하기</button>
+                           <a href="javascript:search()" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">검색하기</a>
+                           <script type="text/javascript">
+                           		function search(){
+                           			var searchContent = $("#searchbox").val().trim();
+                           			alert("search 메소드 실행");
+                           			$.ajax({
+                           				url:"boardSearch",
+                           				method:"get",
+                           				data:{searchContent:searchContent},
+                           				success:function(data){
+                           					alert("boardSearch ajax 실행");
+                           				}
+                           			});
+                           			
+                           		}
+                           </script>
                         </form>
                      </aside>
                      

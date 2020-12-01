@@ -77,7 +77,7 @@ public class BlogController {
 		 * 
 		 * UserUrl += session.getAttribute("murl"); }
 		 */
-		 
+		
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 

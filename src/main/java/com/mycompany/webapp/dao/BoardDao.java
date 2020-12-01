@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.SearchDto;
 
 @Repository
 public class BoardDao {
@@ -93,6 +94,8 @@ public class BoardDao {
 		 
 		 return listpage; 
 	 }
+	
+
 
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
@@ -114,10 +117,13 @@ public class BoardDao {
 		return rows;
 	}
 
+
 	public int deleteByBno(int bno) {
 		int rows = sst.delete("mybatis.mapper.board.deleteByBno", bno);
 		return rows;
 	}
+
+	
 
 	public List<BoardDto> selectBLikeList1() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList1");		//like받은 것을 찾아서 모두를 실행해라
@@ -160,4 +166,63 @@ public class BoardDao {
 		return rows;
 	}
 
+
+	public int heartCheck(String SessionMemail, int bno) {
+		Map map = new HashMap();
+		map.put("SessionMemail", SessionMemail);
+		map.put("bno", bno);	
+		int row  = sst.selectOne("mybatis.mapper.board.heartCheck", map);
+		return row;
+	}
+
+
+	public void likeadd(int bno) {
+		sst.update("mybatis.mapper.board.likeadd", bno);
+		
+	}
+
+
+	public void likeinfo(int bno, String sessionMemail) {
+		Map map = new HashMap();
+		map.put("bno", bno);
+		map.put("sessionMemail", sessionMemail);
+		sst.insert("mybatis.mapper.board.likeinfo", map);
+		
+	}
+
+
+	public void likesub(int bno) {
+		sst.update("mybatis.mapper.board.likesub", bno);
+		
+	}
+
+
+	public void likeinfoDelete(int bno, String sessionMemail) {
+		Map map = new HashMap();
+		map.put("bno", bno);
+		map.put("sessionMemail", sessionMemail);
+		sst.delete("mybatis.mapper.board.likeinfoDelete", map);
+		
+	}
+
+
+	public int countSearchAll(SearchDto search) {
+		int row = sst.selectOne("mybatis.mapper.board.userBoardSearchCount", search);
+		return row;
+	}
+
+
+	public List<BoardDto> searchList(String searchContent) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchList", searchContent);
+		return list;
+	}
+
+
+	public List<BoardDto> selectByAllPageUser(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchListUser", pager);
+		return list;
+	}
+
+
+	
 }
