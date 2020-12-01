@@ -43,14 +43,6 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 </head>
-<script type="text/javascript">
-$.ajax({
-	url:"managersetting",
-	success:function(data) {
-		$("#setting_result").html(data);
-	}
-});
-</script>
 
 <body>
 	<!-- ? Preloader Start -->
@@ -110,7 +102,7 @@ $.ajax({
 		<!-- Hero End -->
 		<!--? Blog Area Start -->
 		<section class="blog_area single-post-area section-padding">
-			<div class="container" style="margin: 0px 55px;">
+			<div class="container">
 				<div class="row">
 				<div class="col-lg-4">
 						<div class="blog_right_sidebar">

@@ -13,12 +13,25 @@ text-overflow:ellipsis;
 </style>
 <script type="text/javascript">
 
-function searchboard(pageNo){
+function searchboardfirst(pageNo){
 	if(!pageNo){
 		pageNo = 1;
 	}
 	var value = $("#value").val();
 	var search = $("#search").val();
+	$.ajax({
+		url:"searchboard",
+		data:{value:value,search:search,pageNo:pageNo},
+		success:function(data){
+			$("#setting_result").html(data);
+		}
+	});
+	
+}
+function searchboard(pageNo,value,search){
+	if(!pageNo){
+		pageNo = 1;
+	}
 	$.ajax({
 		url:"searchboard",
 		data:{value:value,search:search,pageNo:pageNo},
@@ -34,20 +47,23 @@ function searchboard(pageNo){
 
 <hr style="margin-top:12px;">
 	<div class="container">
-		<form method="post" id="searchboard" action="">
-			<div class="form-group row">
-				<div class="form-select col-2">
-					<select name="value" id="value">
-						<option value="btitle" selected>title</option>
-						<option value="bcontent">content</option>
-						<option value="memail">writer</option>
-					</select><br>
+		<form method="post" id="searchboard" >
+			<div class="row">
+				<div class="col-md-2" style="padding: 10px;">
+					<div class="form-select">
+						<select name="value" id="value" style="padding: 8px;">
+							<option value="btitle" selected>title</option>
+							<option value="bcontent">content</option>
+							<option value="memail">writer</option>
+						</select>
+					</div>
+					
 				</div>
-				<div class="col-8">
+				<div class="col-md-8" style="padding: 10px;">
 					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
 				</div>
-				<div class="col-2">
-					<a href="javascript:searchboard()"><i class="fa fa-search" aria-hidden="true"></i></a>
+				<div class="col-md-2" style="padding: 10px;">
+					<a href="javascript:searchboardfirst()"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</form>

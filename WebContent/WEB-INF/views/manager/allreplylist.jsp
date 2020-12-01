@@ -63,24 +63,24 @@ function replydelete(rno){
 		
 			<tr>
 				<td colspan="5" style="text-align:center;">
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(1)">처음</a>
+					<a class="genric-btn primary-border small" href="javascript:allreplylist(1)">처음</a>
 					
 					<c:if test="${pager.groupNo >1}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.startPageNo-1})">이전</a>
+						<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.startPageNo-1})">이전</a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 						<c:if test="${pager.pageNo == i}">
-							<a class="genric-btn primary small" href="javascript:allboardlist(${i})">${i}</a>
+							<a class="genric-btn primary small" href="javascript:allreplylist(${i})">${i}</a>
 						</c:if>
 						<c:if test="${pager.pageNo != i}">
-							<a class="genric-btn primary-border small" href="javascript:allboardlist(${i})">${i}</a>
+							<a class="genric-btn primary-border small" href="javascript:allreplylist(${i})">${i}</a>
 						</c:if>
 					</c:forEach>
 					<c:if test="${pager.groupNo <pager.totalGroupNo}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.endPageNo+1})">다음</a>
+						<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.endPageNo+1})">다음</a>
 					</c:if>
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})">맨끝</a>
+					<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.totalPageNo})">맨끝</a>
 					
 				</td>
 			</tr>
