@@ -195,11 +195,11 @@
 										
 										</script>
 									</li>	
-<<<<<<< HEAD
 
 
 
 
+	
 
 
 									 <!-- <script type="text/javascript">

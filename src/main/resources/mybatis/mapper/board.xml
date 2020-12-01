@@ -88,9 +88,6 @@
 	
 		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
 		
-<<<<<<< HEAD
-=======
-		
 		select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
 		from (
 			select rownum as rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
@@ -147,7 +144,7 @@
 		
 		
 		
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
+
 		</select>
 		
 			<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->			
@@ -223,11 +220,6 @@
 		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
 <!--  댓글 입력 -->	
-
-	<!-- 선명 - 게시물 관리 탭에서 게시물 리스트 삭제 -->
-	<delete id="deleteBlog">
-		delete from board where bno = #{bno} and murl = #{murl}
-	</delete>
 	
 	<!--  게시글 삭제, 선이도 씀 -->
 	<delete id="deleteByBno" parameterType="int">
