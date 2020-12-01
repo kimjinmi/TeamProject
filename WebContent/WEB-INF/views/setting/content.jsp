@@ -13,7 +13,7 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="resources/assets/img/favicon.ico">
  
- <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+
  
 <!-- CSS here -->
 <link rel="stylesheet"
@@ -55,7 +55,7 @@
 			<div class="preloader-inner position-relative">
 				<div class="preloader-circle"></div>
 				<div class="preloader-img pere-text">
-					<img src="assets/img/logo/loder.png" alt="">
+				<!-- 	<img src="assets/img/logo/loder.png" alt="">  -->
 				</div>
 			</div>
 		</div>

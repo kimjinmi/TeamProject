@@ -107,10 +107,9 @@ public class SettingService {
 		List<NeighborDto>  list = neighbordao.selectNlistAll(mymemail);
 		return list;
 	}
-
-	public void deletebloglist(int bno) {
-		int rows = boarddao.deletebloglist(bno);
-		
+	//게시물관리 게시물 삭제
+	public void deleteBlog(BoardDto board) {
+		int rows = boarddao.deleteBlog(board);
 	}
 
 						//내 이웃 삭제

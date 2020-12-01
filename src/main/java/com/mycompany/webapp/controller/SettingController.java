@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -124,41 +125,44 @@ public class SettingController {
 		
 		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
 		
-		List<BoardDto> listpage = service.getBoardListPage(pager);
+		List<BoardDto> blogList = service.getBoardListPage(pager);
 		//List<BoardDto> list = service.getBoardList(sessionMemail);
 		
 		model.addAttribute("pager", pager);
-		model.addAttribute("list", listpage);
-	
+		model.addAttribute("blogList", blogList);
+		
 		return "setting/mybloglist";
 	}
 	
 
-	/*선명- 게시물 리스트 전체,개별삭제 */
-	@ResponseBody
-	@RequestMapping(value = "/deletebloglist", method=RequestMethod.POST)
-	public int deletebloglist(HttpSession session, @RequestParam(value= "chbox[]") List<String> chArr, BoardDto board) throws Exception {
-	logger.info("deletebloglist");
-	
-	MemberDto member = (MemberDto)session.getAttribute("board");
-	String murl = board.getMurl();
-	
-	int result = 0;
-	int bno = 0;
-
-	if(board != null) {
-		board.setMurl(murl);
+	/*선명- 게시물 관리 리스트 전체,개별삭제 */
+	@RequestMapping("/deleteBlog")
+	public void deleteBlog(@RequestParam(value="chbox[]")List<String> chbox,  HttpSession session, HttpServletResponse response, BoardDto board) throws Exception {
 		
-		for(String i : chArr) {
+		logger.info("chbox.length======>"+ chbox.size());
+		
+		
+//		List<String> chbox = (List<String>) request.getParameter("chbox"); 
+		String murl = (String) session.getAttribute("SessionMurl");
+		int bno = 0;
+		
+		for(String i : chbox) {
+			logger.info("chbox.value======>"+i);
 			bno = Integer.parseInt(i);
-			board.setBno(bno);
-			service.deletebloglist(bno);
-			
+			service.boardDelete(bno);
 		}
-		result = 1;
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //결과가 {} 면 JSONObject / 결과가 배열 - [] 면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); //{"result","success"}
+
+		//응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8"); //json 응답 만드는것
+		out.println(json);
+		out.flush();
+		out.close();
 	}
-	return result;
-}
 
 	/*선명 - 댓글 관리*/
 	@RequestMapping("/mycommentlist")

@@ -85,17 +85,15 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll");
 		return list;
 	}
-	//------------------------------선-------------명--------------
-
 	
+
+	//선명 보드 페이저
 	 public List<BoardDto> selectByPage(PagerDto pager) { 
 		 List<BoardDto> listpage = sst.selectList("mybatis.mapper.board.selectByPage", pager);
 		 
 		 return listpage; 
 	 }
 	
-
-
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
 		return list;
@@ -135,9 +133,9 @@ public class BoardDao {
 	}
 
 	
-//임시 게시물별로 삭제
-	public int deletebloglist(int bno) {
-		int rows = sst.delete("mybatis.mapper.board.deletebloglist", bno);
+// 선명 : 임시 게시물별로 삭제
+	public int deleteBlog(BoardDto board) {
+		int rows = sst.delete("mybatis.mapper.board.deleteBlog", board);
 		return rows;
 	}
 
