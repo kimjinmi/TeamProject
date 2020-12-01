@@ -53,9 +53,9 @@ public class SettingController {
 
 	@RequestMapping("/content")
 	public String content(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		logger.info(sessionMemail);
+		
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
@@ -192,23 +192,23 @@ public class SettingController {
 
 	@RequestMapping("/delete")
 	public String delete(HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "setting/delete";
 	}
 
 	@RequestMapping("/passwordchange")
 	public String imagechange(HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "setting/passwordchange";
 	}
 
 	@RequestMapping("/setting")
 	public String setting(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		logger.info(sessionMemail);
+		
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
@@ -217,31 +217,16 @@ public class SettingController {
 
 	@RequestMapping("/imagechange")
 	public String imagechange(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		logger.info(sessionMemail);
+		
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
 		return "setting/imagechange";
 	}
 
-	/*	@RequestMapping("/sessionconnect")
-		public String sessionconnect(MemberDto memberdto, HttpSession session, Model model) {
-			
-			memberdto.setMemail("jinmikim88@gmail.com");
-			MemberDto member =service.sessionconnect(memberdto);
-			
-			session.setAttribute("sessionMemail", memberdto.getMemail());
-			model.addAttribute("member", member);
-			return "setting/content";
-		}
-		
-		@RequestMapping("/sessiondelete")
-		public String sessiondelete(HttpSession session) {
-			session.invalidate();		
-			return "setting/content";
-		}*/
+	
 
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response)
@@ -278,21 +263,16 @@ public class SettingController {
 
 	@RequestMapping("/photoenroll")
 	public String photoenroll(MemberDto member, HttpSession session, Model model) throws Exception, IOException {
-		//memberdto.setMmyimage("winter.PNG");
-		//model.addAttribute("member", member);
-		logger.info("사진 :" + member.getMmyimage());
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		if (!member.getMphotoAttach().isEmpty()) {
 			String originalFileName = member.getMphotoAttach().getOriginalFilename();
 			String saveName = new Date().getTime() + "_" + originalFileName;
-			logger.info("file name : " + originalFileName);
 			File dest = new File("C:/temp/projectimage/member/" + saveName);
 			member.setMemail(sessionMemail);
 			member.getMphotoAttach().transferTo(dest);
 			member.setMmyimage(saveName);
 			service.memberimageupdate(member);
 		} else {
-			logger.info("사진 :" + member.getMmyimage());
 			model.addAttribute("error", "파일이 존재하지 않음");
 		}
 		return "redirect:/setting/content";
@@ -313,9 +293,6 @@ public class SettingController {
 	public String updatenickintro(MemberDto member, HttpSession session) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		member.setMemail(sessionMemail);
-		logger.info(member.getMemail());
-		logger.info(member.getMintro());
-		logger.info(member.getMnickname());
 		service.membernickintroupdate(member);
 		return "redirect:/setting/content";
 	}
