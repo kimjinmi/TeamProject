@@ -401,7 +401,7 @@ public class BlogController {
 		return "blog/heartSatatus";
 	}
 	
-	@GetMapping("/addComment")
+	@GetMapping("/addComment") // 대댓글 구현중 - 지훈
 	public String addComment(int rno, Model model) {
 		//service.addComment(rno); // 받은 rno를 가져가서 rno를 first로 하는 댓글을 추가한다. insert문
 		
@@ -410,7 +410,7 @@ public class BlogController {
 		return "blog/blogcommentList";
 	}
 	
-	@GetMapping("/boardSearch")
+	@GetMapping("/boardSearch") //  검색기능 구현중 - 지훈 
 	public String boardSearch(String searchContent, Model model) {
 		logger.info("boardSearch 실행");
 		List<BoardDto> list = service.searchList(searchContent);
