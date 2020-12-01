@@ -12,7 +12,7 @@
 		      	<div class="col-md-9"></div>
 		           <div class="col-md-3">
 		           	<div class="allCheck">
-		           		<label for="allCheck">전체 선택<input type="checkbox" name="allCheck" id="allCheck"></label>
+		           		<label for="allCheck">게시글 전체 선택<input type="checkbox" name="allCheck" id="allCheck"></label>
 		           		
 		           		<script type="text/javascript">
 						$("#allCheck").click(function() {
@@ -31,8 +31,7 @@
 		          	
 		           	<div class="delBtn">
 		           		<button type="button" class="selectDelete_btn">선택 삭제</button>
-		           	</div>
-		           	  
+ 
 		           		 <script>
 							$(".selectDelete_btn").click(function() {
 								var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -58,8 +57,9 @@
 									});
 								}
 							}); 
+						
 		           		 </script>
-		           	 
+		           	 </div>
 		           </div>
 		      </div>
 		    </div>

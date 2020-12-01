@@ -155,6 +155,31 @@ public class SettingController {
 		out.flush();
 		out.close();
 	}
+	/*선명 - 댓글 관리 리스트 전체,개별삭제 */
+	@RequestMapping("/deleteReply")
+	public void deleteReply(@RequestParam(value="chbox[]")List<String> chbox, HttpSession session, HttpServletResponse response, ReplyDto reply) throws Exception {
+		
+		logger.info("chbox.length======>"+ chbox.size());
+		String murl = (String) session.getAttribute("SessionMurl");
+		int rno = 0;
+		
+		for(String i : chbox) {
+			logger.info("chbox.value======>"+i);
+			rno = Integer.parseInt(i);
+			service.replyDelete(rno);
+		}
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //결과가 {} 면 JSONObject / 결과가 배열 - [] 면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); //{"result","success"}
+
+		//응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8"); //json 응답 만드는것
+		out.println(json);
+		out.flush();
+		out.close();
+	}
 
 	/*선명 - 댓글 관리*/
 	@RequestMapping("/mycommentlist")
@@ -166,10 +191,10 @@ public class SettingController {
 		//페이징
 		int totalRows = service.getTotalMyRow(SessionMurl); //
 		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
-		List<ReplyDto> listcomment = service.getReplyListPage(pager);
+		List<ReplyDto> replyList = service.getReplyListPage(pager);
 		
 		model.addAttribute("pager", pager);
-		model.addAttribute("list", listcomment);
+		model.addAttribute("replyList", replyList);
 		
 	
 		return "setting/mycommentlist";

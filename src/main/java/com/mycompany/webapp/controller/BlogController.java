@@ -129,7 +129,7 @@ public class BlogController {
 			return "blog/categoryListLinkBoard";
 		}
 
-	
+	 
 	/*
 	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
 	 * Model model) { //http://localhost:8080/teamproject String memail = (String)
