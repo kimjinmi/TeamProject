@@ -43,6 +43,13 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+ 
+ <style type="text/css">
+	.ck-editor__editable {
+	       min-height: 800px;
+	}
+</style>
+ 
 </head>
 
 <script type="text/javascript">
