@@ -16,5 +16,24 @@
             
 	</select>  
 	
+	<select id="countAll" resultType="int">
+		SELECT count(*) 
+		FROM reply
+	</select>
+	
+	<select id="selectListAll" parameterType="pager" resultType="reply">
+		SELECT rnum, rno, btitle, rcontent, memail, bno, rdate
+			FROM (SELECT rownum as rnum, rno, btitle, rcontent, memail, bno, rdate
+					FROM (SELECT rno, btitle, rcontent, r.memail, r.bno, rdate
+					        FROM board b, reply r
+					        WHERE r.bno = b.cno 
+					        ORDER BY rdate DESC)
+							WHERE rownum &lt;=#{endRowNo})
+			WHERE rnum &gt;= #{startRowNo}
+	</select>
+	
+	<delete id="deleteByRno" parameterType="int">
+		delete from reply where rno=#{rno}
+	</delete>
 
 </mapper>

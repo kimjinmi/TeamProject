@@ -1,6 +1,8 @@
 package com.mycompany.webapp.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -45,7 +47,21 @@ public class NeighborDao {
 		return list;
 	}
 
-	
 	//-------------------------------------------------영아---------------------------------------------------//
+	
+	//진미
+	public int neighorexist(String userUrl, String memail) {
+		Map map = new HashMap();
+		map.put("userUrl", userUrl);
+		map.put("memail", memail);
+		int existRows = sst.selectOne("mybatis.mapper.neighbor.neighorexistCount", map);
+		return existRows;
+	}
+
+
+	public int insertneighbor(NeighborDto neighbor) {
+		int rows = sst.insert("mybatis.mapper.neighbor.insert", neighbor);
+		return rows;
+	}
 	
 }

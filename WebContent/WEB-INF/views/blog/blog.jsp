@@ -165,7 +165,26 @@
                        			 </script>
 						</c:if>
                        
-                        <!-- 게시글 작성 버튼 -->
+                       
+                        <!-- 친구 추가 버튼 -->
+                        <c:if test="${existRows==0}">
+                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
+                        		<script type="text/javascript">
+                        			function neighborAdd(memail, murl){
+                        				$.ajax({
+                        					url:"neighborAdd",
+                        					data:{nememail:memail, nemurl:murl},
+                        					success:function(data){
+                        						if(data.result == "success"){
+                        							location.href = "blog?UserUrl="+murl;
+                        						}
+                        					}
+                        					
+                        				});
+                        			}
+                        		</script>
+                        	
+                        </c:if>
                      </div>
                         
                      </aside>

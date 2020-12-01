@@ -114,6 +114,15 @@ public class BlogController {
 		// UserUrl로 memail을 가져온다
 		/* List<BoardDto> list = service.getBoardList(UserUrl); */
 		
+		//진미(친구추가버튼)
+		String memail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		int existRows = -1;
+		if(!SessionMurl.equals(UserUrl)){
+			existRows = service.neighorexist(UserUrl, memail);
+		}
+		model.addAttribute("existRows", existRows);
+		
 		int totalRows = service.getTotalRows(UserUrl); // 개인당 블로그 게시물 수 
 		logger.info("토탈 : " + totalRows);
 		PagerDto pager = new PagerDto(UserUrl, 3, 5, totalRows, pageNo); // 페이저로 게시물 가져오기
@@ -136,6 +145,13 @@ public class BlogController {
 	}
 	
 
+	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
+	@RequestMapping("/categoryListLinkBoard")	
+	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
+			List<BoardDto> bcno = service.bcno(cno, murl);
+			model.addAttribute("bcno", bcno);
+			return "blog/categoryListLinkBoard";
+		}
 
 	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
@@ -254,6 +270,25 @@ public class BlogController {
 		is.close();
 	}	
 	
+	@PostMapping("/boardDelete")
+	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
+		
+		// 게시물 삭제
+		service.boardDelete(bno);
+
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); 
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); 
+
+		// JSON 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
 	
@@ -336,6 +371,26 @@ public class BlogController {
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
 		return "blog/blogList";
+	}
+	
+	//진미 친구추가구현
+	@RequestMapping("/neighborAdd")
+	public void neighborAdd(NeighborDto neighbor,HttpSession session, HttpServletResponse response) throws Exception {
+		String memail = (String) session.getAttribute("sessionMemail");
+		neighbor.setMymemail(memail);
+		service.addneighbor(neighbor);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+
 	}
 	
 }

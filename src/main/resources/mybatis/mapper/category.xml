@@ -2,24 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.category">
 	
-	<!-- ////////////////////////////////영아/////////////////////// -->
+		<!-- ////////////////////////////////////영아////////////////////////////// -->
 		<select id="selectAll" resultType="category">	
 			select cno, ccontent
 			from category
 			Order by cno asc
 		</select>
 		
-		<!-- 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트 링크 연결 -->
+		<!-- 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트 링크 연결 -->
 		<select id="selectMurl" parameterType="String" resultType="category">	
 			select distinct c.cno, c.ccontent, b.murl
 			from category c, board b
 			where b.cno = c.cno and b.murl=#{murl}
 			order by c.cno asc
-			
-			
 		</select>
 		
-		<!-- ////////////////////////////////영아/////////////////////// -->
+			<!-- ////////////////////////////////////영아////////////////////////////// -->
 		
 		<!-- 진미 : 카테고리랑 카테고리별 개수 구하는 쿼리 -->
 		<select id="selectAllCount" resultType="category">	

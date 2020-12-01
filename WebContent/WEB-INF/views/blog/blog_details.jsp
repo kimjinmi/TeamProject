@@ -158,18 +158,39 @@
 									<h2 class="contact-title">${member.mnickname}</h2>
 									<p>${member.mintro}</p>
 									<hr />
-									<a class="genric-btn primary e-large"
-										href="javascript:boardWrite()">POSTING</a>
-									<script type="text/javascript">
-									function boardWrite() {
-										$.ajax({
-											url: "boardWrite",
-											success:function(data){
-												$("#test").html(data);
-											}
-										});
-									}
-								</script>
+									<!-- 게시글 작성 버튼 -->
+			                        <c:if test="${member.murl==SessionMurl}">		<!-- member가 가지고 있는 murl과 session에 저장된 murl이 같을 때 (내 블로그일 때) -->
+										<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+							 				 <script type="text/javascript">
+			                          			 function boardWrite() {
+			                            			$.ajax({
+			                                 			url: "boardWrite",
+			                               				success:function(data){
+			                                    			$("#categoryListLinkBoard").html(data);
+			                                 			}
+			                              			});
+			                           			}
+			                       			 </script>
+									</c:if>
+								<!-- 친구 추가 버튼 -->
+			                        <c:if test="${existRows==0}">
+			                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
+			                        		<script type="text/javascript">
+			                        			function neighborAdd(memail, murl){
+			                        				$.ajax({
+			                        					url:"neighborAdd",
+			                        					data:{nememail:memail, nemurl:murl},
+			                        					success:function(data){
+			                        						if(data.result == "success"){
+			                        							location.href = "blog?UserUrl="+murl;
+			                        						}
+			                        					}
+			                        					
+			                        				});
+			                        			}
+			                        		</script>
+			                        	
+			                        </c:if>
 								</div>
 							</aside>
 
@@ -251,7 +272,7 @@
 									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
 									<li><i class="fa fa-calendar" style="color: #999999"></i>
 										<fmt:formatDate value="${board.bdate}"
-											pattern="yyyy-MM-dd HH:mm:ss" /></a></li>
+											pattern="yyyy-MM-dd HH:mm:ss" /></li>
 								</ul>
 								<p class="excert">${board.bcontent}</p>
 								<!-- <p class="excert">학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
@@ -315,6 +336,35 @@
 									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 									<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
 									<li><a href="#"><i class="fab fa-behance"></i></a></li>
+									<c:if test="${sessionMemail == board.memail}">
+										<li style="padding-right: 15px;"><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
+										<script type="text/javascript">
+											function boardUpdate(bno) {
+												$.ajax({
+													url:"boardUpdate",
+													data:{bno:bno},
+													success:function(data) {
+														$("#categoryListLinkBoard").html(data);
+													}
+												});
+											}
+										</script>		
+										<li style="padding-left: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
+										<script type="text/javascript">
+											function boardDelete(bno) {
+												$.ajax({
+													url:"boardDelete",
+													data:{bno:bno},
+													method:"post",
+													success:function(data) {
+														if(data.result == "success") {
+															location.href = "blog?UserUrl=${SessionMurl}";
+														}
+													}
+												});
+											}
+										</script>			
+									</c:if>
 								</ul>
 							</div>
 <!-- 							<div class="navigation-area">

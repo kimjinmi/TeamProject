@@ -53,9 +53,9 @@ public class SettingController {
 
 	@RequestMapping("/content")
 	public String content(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		logger.info(sessionMemail);
+		
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
@@ -64,25 +64,7 @@ public class SettingController {
 
 	//---------------------------------------영아, 이웃 관리 시작------------------------------------------
 
-	/*	@RequestMapping("/myneighborlist")
-		public String myneighborlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
-			logger.info("실행");
-	
-			String sessionMemail = (String) session.getAttribute("sessionMemail");
-			String SessionMnickname = (String) session.getAttribute("SessionMnickname"); //대소문자조심
-			String SessionMurl = (String) session.getAttribute("SessionMurl"); //대소문자조심
-			logger.info("memail :"+sessionMemail);
-			logger.info("mnickname :"+SessionMnickname);
-			logger.info("murl :"+SessionMurl); 
-			
-			String memail = (String) session.getAttribute("sessionMemail");
-			List<NeighborDto> mynlist = service.myNlist(memail);
-			model.addAttribute("mynlist", mynlist);
-			logger.info("mymemail : " + memail);
-			return "setting/myneighborlist";
-		}
-	*/
-	//이웃 삭제
+				//이웃 삭제
 	@PostMapping("/nDelete") //void - jsp로 이동하지 않겠다
 	public void nDelete(int nno, HttpServletResponse response) throws Exception { //아래 response.getWriter();에서 runtimeexception이 생기므로 예외처리해줌
 
@@ -102,7 +84,7 @@ public class SettingController {
 		out.close();
 	}
 
-	//이웃 리스트 페이지
+				//이웃 리스트 페이지
 	@GetMapping("/myneighborlist")
 	public String myneighborlist(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) { //http://localhost:8080/teamproject
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
@@ -192,23 +174,23 @@ public class SettingController {
 
 	@RequestMapping("/delete")
 	public String delete(HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "setting/delete";
 	}
 
 	@RequestMapping("/passwordchange")
 	public String imagechange(HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "setting/passwordchange";
 	}
 
 	@RequestMapping("/setting")
 	public String setting(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		logger.info(sessionMemail);
+		
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
@@ -217,31 +199,16 @@ public class SettingController {
 
 	@RequestMapping("/imagechange")
 	public String imagechange(MemberDto memberdto, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		logger.info(sessionMemail);
+		
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
 		return "setting/imagechange";
 	}
 
-	/*	@RequestMapping("/sessionconnect")
-		public String sessionconnect(MemberDto memberdto, HttpSession session, Model model) {
-			
-			memberdto.setMemail("jinmikim88@gmail.com");
-			MemberDto member =service.sessionconnect(memberdto);
-			
-			session.setAttribute("sessionMemail", memberdto.getMemail());
-			model.addAttribute("member", member);
-			return "setting/content";
-		}
-		
-		@RequestMapping("/sessiondelete")
-		public String sessiondelete(HttpSession session) {
-			session.invalidate();		
-			return "setting/content";
-		}*/
+	
 
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response)
@@ -278,21 +245,16 @@ public class SettingController {
 
 	@RequestMapping("/photoenroll")
 	public String photoenroll(MemberDto member, HttpSession session, Model model) throws Exception, IOException {
-		//memberdto.setMmyimage("winter.PNG");
-		//model.addAttribute("member", member);
-		logger.info("사진 :" + member.getMmyimage());
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		if (!member.getMphotoAttach().isEmpty()) {
 			String originalFileName = member.getMphotoAttach().getOriginalFilename();
 			String saveName = new Date().getTime() + "_" + originalFileName;
-			logger.info("file name : " + originalFileName);
 			File dest = new File("C:/temp/projectimage/member/" + saveName);
 			member.setMemail(sessionMemail);
 			member.getMphotoAttach().transferTo(dest);
 			member.setMmyimage(saveName);
 			service.memberimageupdate(member);
 		} else {
-			logger.info("사진 :" + member.getMmyimage());
 			model.addAttribute("error", "파일이 존재하지 않음");
 		}
 		return "redirect:/setting/content";
@@ -313,9 +275,6 @@ public class SettingController {
 	public String updatenickintro(MemberDto member, HttpSession session) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		member.setMemail(sessionMemail);
-		logger.info(member.getMemail());
-		logger.info(member.getMintro());
-		logger.info(member.getMnickname());
 		service.membernickintroupdate(member);
 		return "redirect:/setting/content";
 	}

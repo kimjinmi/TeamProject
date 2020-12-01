@@ -16,6 +16,7 @@ import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class ManagerService {
@@ -27,6 +28,8 @@ public class ManagerService {
 	@Resource
 	private BoardDao boarddao;
 
+	@Resource
+	private ReplyDao replydao;
 	
 	
 	@Resource
@@ -69,7 +72,7 @@ public class ManagerService {
 		
 	}
 
-	public int getTotalRows() {
+	public int getTotalBoardRows() {
 		int totalRows = boarddao.countAll();
 		return totalRows;
 	}
@@ -78,6 +81,29 @@ public class ManagerService {
 		List<BoardDto> list = boarddao.selectByAllPage(pager);
 		return list;
 	}
+
+	public void boarddelete(int bno) {
+		boarddao.deleteByBno(bno);
+		
+		
+	}
+
+	public int getTotalReplyRows() {
+		int totalRows = replydao.countAll();
+		return totalRows;
+	}
+
+	public List<ReplyDto> getReplyList(PagerDto pager) {
+		List<ReplyDto> list = replydao.selectByAllPage(pager);
+		return list;
+	}
+
+	public void replydelete(int rno) {
+		replydao.deleteByRno(rno);
+		
+	}
+
+	
 
 
 

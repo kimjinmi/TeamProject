@@ -33,17 +33,10 @@ public class SignupController {
 	
 	@RequestMapping("/signupcheck")
 	public String signupcheck() { //http://localhost:8080/teamproject
-		logger.info("실행");
+
 		return "signup/signupcheck";
 	}
 
-	/*	@RequestMapping("/signup")
-		public String signup() {
-				MemberDto mememail = service.getMemail();
-			
-			logger.info("test실행");
-			return "signup/signup";
-		}*/
 
 	@PostMapping("/signupcheckform")
 	public String signupcheckform(String paramemail,Model model) {
