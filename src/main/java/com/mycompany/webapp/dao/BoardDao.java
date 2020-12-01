@@ -65,8 +65,6 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectNewCategory", cno);
 		return list;
 	}	
-	
-	
 	/*------------------------- 선 -------------------------*/
 	
 	
@@ -123,8 +121,6 @@ public class BoardDao {
 		return rows;
 	}
 
-	
-
 	public List<BoardDto> selectBLikeList1() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList1");		//like받은 것을 찾아서 모두를 실행해라
 		return list;
@@ -151,6 +147,7 @@ public class BoardDao {
 		return list;
 	}
 
+	// ------ 선 - 게시물 수정 ------
 	public BoardDto selectContentBno(int bno) {
 		BoardDto board = sst.selectOne("mybatis.mapper.board.selectContentBno", bno);
 		return board;
@@ -165,6 +162,7 @@ public class BoardDao {
 		}
 		return rows;
 	}
+	// ------ 선 - 게시물 수정 ------
 
 
 	public int heartCheck(String SessionMemail, int bno) {
@@ -175,10 +173,8 @@ public class BoardDao {
 		return row;
 	}
 
-
 	public void likeadd(int bno) {
 		sst.update("mybatis.mapper.board.likeadd", bno);
-		
 	}
 
 
@@ -187,42 +183,31 @@ public class BoardDao {
 		map.put("bno", bno);
 		map.put("sessionMemail", sessionMemail);
 		sst.insert("mybatis.mapper.board.likeinfo", map);
-		
 	}
-
 
 	public void likesub(int bno) {
-		sst.update("mybatis.mapper.board.likesub", bno);
-		
+		sst.update("mybatis.mapper.board.likesub", bno);	
 	}
-
 
 	public void likeinfoDelete(int bno, String sessionMemail) {
 		Map map = new HashMap();
 		map.put("bno", bno);
 		map.put("sessionMemail", sessionMemail);
 		sst.delete("mybatis.mapper.board.likeinfoDelete", map);
-		
 	}
-
 
 	public int countSearchAll(SearchDto search) {
 		int row = sst.selectOne("mybatis.mapper.board.userBoardSearchCount", search);
 		return row;
 	}
 
-
 	public List<BoardDto> searchList(String searchContent) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchList", searchContent);
 		return list;
 	}
 
-
 	public List<BoardDto> selectByAllPageUser(PagerDto pager) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchListUser", pager);
 		return list;
 	}
-
-
-	
 }

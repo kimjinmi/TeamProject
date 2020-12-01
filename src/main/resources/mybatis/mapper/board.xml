@@ -30,8 +30,8 @@
 		
 			<!-- ////////////////////////////////////영아////////////////////////////// -->
 	
-<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
-		<!-- 좋아요순은 데이터 12개 -->
+	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
+	<!-- 좋아요순은 데이터 12개 -->
 	<select id="selectLikeAll" resultType="board">	
 		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
 		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro

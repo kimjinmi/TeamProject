@@ -120,7 +120,6 @@ public class BlogService {
 	public BoardDto boardLikeCount(int bno) {
 		BoardDto list = boardDao.boardLikeCount(bno);
 		return list;
-		
 	}
 
 	public int getTotalRows(String userUrl) {
@@ -146,7 +145,6 @@ public class BlogService {
 
 	public void likeadd(int bno) {
 		boardDao.likeadd(bno);
-		
 	}
 
 	// 게시물 수정 bno 얻기 (선)
@@ -159,32 +157,26 @@ public class BlogService {
 	public void boardUpdate(BoardDto board) {
 		boardDao.update(board);
 	}
+	
 	public void likeinfo(int bno, String sessionMemail) {
 		boardDao.likeinfo(bno, sessionMemail);
-		
 	}
 
 	public void likedsub(int bno) {
 		boardDao.likesub(bno);
-		
 	}
 
 	public void likeinfoDelete(int bno, String sessionMemail) {
 		boardDao.likeinfoDelete(bno, sessionMemail);
-		
 	}
 
 	public void addComment(int rno) {
 		replyDao.addComent(rno);
-		
 	}
 
 	public List<BoardDto> searchList(String searchContent) {
 		List<BoardDto> list = boardDao.searchList(searchContent);
 		return list;
 	}
-
-	
-	
 
 }
