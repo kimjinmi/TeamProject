@@ -1,7 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<script type="text/javascript">
+var replyinreply = false; 
+var togglehide;
+</script>
 <h4>댓글</h4>
 <c:forEach var="comment" items="${commentlist}">
 	<div class="comment-list">
@@ -30,7 +33,19 @@
 								</p>
 							</div>
 							<div class="reply-btn">
-								<a href="#" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
+								<a href="javascript:testing()" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
+								<script type="text/javascript">
+								  function testing(){
+									  replyinreply = !replyinreply;
+									  alert(replyinreply);
+									  
+									  if(replyinreply == true){
+										  
+									  }else{
+										  
+									  }
+								  }
+								</script>
 								
 				
 							</div>

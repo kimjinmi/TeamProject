@@ -113,4 +113,27 @@ public class SettingService {
 		
 	}
 
+						//내 이웃 삭제
+	public void nDelete(int nno) {
+		int rows = neighbordao.deleteByNno(nno);	
+	}
+	
+						//내 이웃 리스트 페이지 작성 과정1 - 내 이웃의 수 
+	public int getTotalMyRownList(String mymemail) {
+		int totalMyRows = neighbordao.myNeighborCount(mymemail);
+		logger.info(" 2222222222222222totalMyRows : " + totalMyRows);
+		
+		return totalMyRows;
+	}
+	
+						//내 이웃 리스트 페이지 작성 과정 2 - 페이저
+	public List<NeighborDto> getNighborList(PagerDto pager) { 
+	    List<NeighborDto> list = neighbordao.selectByPageNeList(pager); 
+	    logger.info("444444444444list : " + list);
+	    
+	    return list; 
+    }
+	
+	//---------------------------------------영아------------------------------------------
+
 }

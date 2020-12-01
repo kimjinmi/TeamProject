@@ -43,7 +43,7 @@
    href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 
    
-   <style type="text/css">
+<style type="text/css">
    .blog_list_content{  	
    			overflow: hidden;
             text-overflow: ellipsis;
@@ -51,14 +51,35 @@
             -webkit-line-clamp: 3; 
             -webkit-box-orient: vertical;
    }
-   </style>
+	.ck-editor__editable {
+	       min-height: 800px;
+	}
+</style>
+   
    
 
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
 
 </head>
 
-<body>
+<body onload="javascript:boardList('${member.murl}')">
+	<script type="text/javascript">
+	function boardList(murl, pageNo){
+			
+			if(!pageNo){
+				pageNo=1;
+			}
+			
+			$.ajax({
+				url:"blogList",
+				data: {murl:murl, pageNo:pageNo},
+				success:function(data){
+					$("#categoryListLinkBoard").html(data);
+				}
+			});
+			
+		}
+	</script>
    <!-- ? Preloader Start -->
    <div id="preloader-active">
       <div
@@ -144,7 +165,26 @@
                        			 </script>
 						</c:if>
                        
-                        <!-- 게시글 작성 버튼 -->
+                       
+                        <!-- 친구 추가 버튼 -->
+                        <c:if test="${existRows==0}">
+                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
+                        		<script type="text/javascript">
+                        			function neighborAdd(memail, murl){
+                        				$.ajax({
+                        					url:"neighborAdd",
+                        					data:{nememail:memail, nemurl:murl},
+                        					success:function(data){
+                        						if(data.result == "success"){
+                        							location.href = "blog?UserUrl="+murl;
+                        						}
+                        					}
+                        					
+                        				});
+                        			}
+                        		</script>
+                        	
+                        </c:if>
                      </div>
                         
                      </aside>
@@ -218,7 +258,7 @@
             <!-- ////////////////////////////////// -->
                <div id="categoryListLinkBoard" class="col-lg-8 mb-5 mb-lg-0">
                         <!-- blog_item 시작 -->
-                       <c:forEach var="board" items="${list}">
+                     <%--   <c:forEach var="board" items="${list}">
                         <article class="blog_item">   
                         
                            <div class="blog_item_img">
@@ -245,7 +285,7 @@
                               function boardDetails(bno){    
                                  location.href="blog_details?bno="+bno;   
                               }
-                           </script>
+                           </script> --%>
                            <!-- blog_item 끝 -->
                            
                            
@@ -290,6 +330,8 @@
                                         </a>
                                     </li>
                                 </ul>
+                                
+                                
                             </nav>  
                             <!-- page 네비게이션 끝 -->
                         </div>

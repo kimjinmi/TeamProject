@@ -1,92 +1,90 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
+<style>
+tr, th, td{
+padding: 10px;
+overflow:hidden;
+text-overflow:ellipsis;
 
+
+}
+
+</style>
+<script type="text/javascript">
+function replydelete(rno){
+	$.ajax({
+		url:"replydelete",
+		data:{rno:rno},
+		success:function(data){
+			if(data.result == "success"){
+				allreplylist();
+			}
+		}
+	});
+}
+</script>
 <h2 style="color: #2d2d2d; display:inline;">댓글 관리</h2>
 
 <hr style="margin-top:12px;">
-<script type="text/javascript">
-	function buttonclick(cno, ccontent){
-		document.getElementById("editid").value = cno;
-		document.getElementById("deleteid").value = cno;
-		document.getElementById("editCategory1").value = ccontent;
-		document.getElementById("deleteCategory").value = ccontent;
 
-		
-	}
-</script>
-<div class="container">	
-	<div class="row">
-		<div class="col">
-			<div style="overflow:auto; height:300px;">
-			<%-- <img src="<%=application.getContextPath()%>/resources/images/ponyo.png"> --%>
-			<c:forEach var="category" items="${category}">
-			<ul class="list-group">
-				<li class="list-group-item list-group-item-light">
-					<a href="javascript:void(0);" onclick="buttonclick(${category.cno}, '${category.ccontent}'); return false;"><i class="fa fa-list" aria-hidden="true"></i></a>&nbsp;&nbsp;${category.ccontent}&nbsp;&nbsp;(${category.ccount})
-				</li>
-				
-			</ul>
+
+	<table style="text-align:center; width: 90%">
+		<colgroup>
+			<col width="5%">
+			<col width="20%">
+			<col width="30%">
+			<col width="20%">
+			<col width="20%">
+			<col width="5%">
+		</colgroup>
+		<thead>
+			<tr style="background-color:#FBF9FF;">
+				<th scope="col">no</th>
+				<th scope="col">title</th>
+				<th scope="col">reply</th>
+				<th scope="col">replywriter</th>
+				<th scope="col">date</th>
+				<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
+			</tr>
+		</thead>
+			<c:forEach var="reply" items="${list}">
+				<tr style="border-spacing: 5px;">
+					<td>${reply.rno}</td>
+					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${reply.bno}">${reply.btitle}</a></td>
+					<td>${reply.rcontent}</td>
+					<td>${reply.memail}</td>
+					<td><fmt:formatDate value="${reply.rdate}" pattern="yyyy-MM-dd" /></td>
+					<td><a href="javascript:replydelete(${reply.rno})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+				</tr>	
 			</c:forEach>
-			</div>
-		</div>
-	</div>
-	<p></p>
-	<form action="categoryadd" id="categoryadd"style="display: inline;">
-		<div class="row" id="categoryadd">
-			<div class="col-3">
-				<b>카테고리 추가</b>
-			</div>
-			<div class="col-8">
-				<input type="text" id="addCategory" name="addCategory" placeholder="Add Category" onblur="this.placeholder = 'Add Category'"class="single-input">
-			</div>
-			<div class="col-1">
-				<a href="#"  onclick="document.getElementById('categoryadd').submit();"><i class="fa fa-plus" ></i></a>
-			</div>
-		</div>
-	</form>
-	<p></p>
-	<form action="categoryedit" id="categoryedit" style="display: inline;">
-		<div class="row">
-			<div class="col-3">
-				<b>카테고리 변경</b>
-			</div>
-				<input type="hidden" id="editid" name="editid">
-			<div class="col-4">
-				<input type="text" id="editCategory1" name="editCategory1" placeholder="Edit Category" onblur="this.placeholder = 'Edit Category'"class="single-input" readonly>
-			</div>
-			<div class="col-4">
-				<input type="text" id="editCategory2" name="editCategory2" placeholder="Result Category" onblur="this.placeholder = 'Result Category'"class="single-input">
-			</div>
-			<div class="col-1">
-				<a href="#" onclick="document.getElementById('categoryedit').submit();"><i class="fa fa-cogs"></i></a>
-			</div>
 			
-		</div>
-	</form>
-	<p></p>
-	<form action="categorydelete" id="categorydelete" style="display: inline;">
-		<div class="row" >
-			<div class="col-3">
-				<b>카테고리 삭제</b>
-			</div>
-				<input type="hidden" id="deleteid" name="deleteid">
-			<div class="col-8">
-				<input type="text" id="deleteCategory" name="deleteCategory" placeholder="Delete Category" onblur="this.placeholder = 'Delete Category'"class="single-input" readonly>
-			</div>
-			<div class="col-1">
-				<a href="#"  onclick="document.getElementById('categorydelete').submit();"><i class="fa fa-minus" ></i></a>
-			</div>
-			<p></p><div class="col" style="color: red;">
-			<i class="fas fa-exclamation-triangle"></i>
-			카테고리 삭제시 해당 카테고리 내 게시글도 모두 삭제됩니다.
-			</div>
-		</div>
-	</form>
-</div>
-
-	
-
-
+		
+			<tr>
+				<td colspan="5" style="text-align:center;">
+					<a class="genric-btn primary-border small" href="javascript:allboardlist(1)">처음</a>
+					
+					<c:if test="${pager.groupNo >1}">
+						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.startPageNo-1})">이전</a>
+					</c:if>
+					
+					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+						<c:if test="${pager.pageNo == i}">
+							<a class="genric-btn primary small" href="javascript:allboardlist(${i})">${i}</a>
+						</c:if>
+						<c:if test="${pager.pageNo != i}">
+							<a class="genric-btn primary-border small" href="javascript:allboardlist(${i})">${i}</a>
+						</c:if>
+					</c:forEach>
+					<c:if test="${pager.groupNo <pager.totalGroupNo}">
+						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.endPageNo+1})">다음</a>
+					</c:if>
+					<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})">맨끝</a>
+					
+				</td>
+			</tr>
+		
+	</table>
 
 					

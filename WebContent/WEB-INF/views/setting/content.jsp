@@ -195,6 +195,7 @@
 										
 										</script>
 									</li>	
+<<<<<<< HEAD
 
 
 
@@ -203,6 +204,10 @@
 
 									 <!-- <script type="text/javascript">
 
+=======
+<!-- <script type="text/javascript">
+=======
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
 									 <script type="text/javascript">
 
 									function boardList(pageNo) {
@@ -218,14 +223,13 @@
 												}
 											});
 										}
-
+<<<<<<< HEAD
 										</script> -->
 							<!-- 	  <script type="text/javascript">
-
+=======
 										</script>
-
 								<!-- 	  <script type="text/javascript">
-
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
 										function mypagelist(pageNo) {
 											if(!pageNo) {
 												pageNo = 1;
@@ -248,16 +252,11 @@
 									<li><a href="javascript:mycommentlist()" class="d-flex">
 											<p style="padding-top: 18px;">댓글 관리</p></a>
 										<script type="text/javascript">
-										function mycommentlist(pageNo){
-											if(!pageNo) {
-												pageNo = 1;
-											}
+										function mycommentlist(){
 											$.ajax({
 												url:"mycommentlist",
-												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
-													
 												}
 											});
 											
@@ -268,18 +267,21 @@
 									<li><a href="javascript:myneighborlist()" class="d-flex">
 											<p>이웃 관리</p></a>
 										<script type="text/javascript">
-										function myneighborlist(){
+										function myneighborlist(pageNo){
+											if(!pageNo) {
+												pageNo = 1;
+											}
 											$.ajax({
 												url:"myneighborlist",
+												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
 												}
-											});
-											
+											});			
 										}
-										</script>
-											
+										</script>					
 									</li>
+									
 									<li><a href="javascript:deletemember()" class="d-flex">
 											<p>회원 탈퇴</p></a>
 										<script type="text/javascript">
@@ -298,10 +300,9 @@
 								</ul>
 							</aside>
 							
-							
 						</div>
 					</div>
-				
+		
 				<!-- ////////////////////////////////// -->
 					<div class="col-lg-8 posts-list">
 						<div class="single-post">

@@ -51,7 +51,7 @@ public class HomeController {
 	
 	@RequestMapping("/elements")
 	public String elements() { //http://localhost:8080/teamproject
-		logger.info("실행");
+	
 		return "elements";
 	}
 	

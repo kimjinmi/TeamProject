@@ -12,8 +12,11 @@ import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
 import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.ReplyDao;
+import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class ManagerService {
@@ -25,6 +28,9 @@ public class ManagerService {
 	@Resource
 	private BoardDao boarddao;
 
+	@Resource
+	private ReplyDao replydao;
+	
 	
 	@Resource
 	private CategoryDao categorydao;
@@ -55,5 +61,50 @@ public class ManagerService {
 		categorydao.update(cno, editCategory2);
 		
 	}
+
+	public List<MemberDto> getmanagerlist(String role) {
+		List<MemberDto> list = memberdao.selectmrole(role);
+		return list;
+	}
+
+	public void managerChange(MemberDto member) {
+		memberdao.updaterole(member);
+		
+	}
+
+	public int getTotalBoardRows() {
+		int totalRows = boarddao.countAll();
+		return totalRows;
+	}
+
+	public List<BoardDto> getBoardList(PagerDto pager) {
+		List<BoardDto> list = boarddao.selectByAllPage(pager);
+		return list;
+	}
+
+	public void boarddelete(int bno) {
+		boarddao.deleteByBno(bno);
+		
+		
+	}
+
+	public int getTotalReplyRows() {
+		int totalRows = replydao.countAll();
+		return totalRows;
+	}
+
+	public List<ReplyDto> getReplyList(PagerDto pager) {
+		List<ReplyDto> list = replydao.selectByAllPage(pager);
+		return list;
+	}
+
+	public void replydelete(int rno) {
+		replydao.deleteByRno(rno);
+		
+	}
+
+	
+
+
 
 }

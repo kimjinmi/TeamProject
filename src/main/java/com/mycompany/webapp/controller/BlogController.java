@@ -1,7 +1,6 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,11 +27,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.NeighborDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.BlogService;
 
@@ -103,20 +103,20 @@ public class BlogController {
 	}
 
 	@RequestMapping("/blog")
-	public String blog(String murl, HttpSession session, Model model, HttpServletRequest request) { // http://localhost:8080/teamproject
+	public String blog(@RequestParam(defaultValue="1")int pageNo, String murl, HttpSession session, Model model, HttpServletRequest request) { // http://localhost:8080/teamproject
 		// get 값 매핑
 		String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은 useurl의 값을 받는다. -지훈
 		if (UserUrl == "") {
 			UserUrl += session.getAttribute("murl");
 		}
 		// UserUrl로 memail을 가져온다
-		List<BoardDto> list = service.getBoardList(UserUrl);
-		logger.info("list 값 : " + list);
+		//List<BoardDto> list = service.getBoardList(UserUrl);
+		//logger.info("list 값 : " + list);
 		String memail = (String) session.getAttribute("sessionMemail");
 		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
 		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
-		model.addAttribute("list", list);
+		//model.addAttribute("list", list);
 		model.addAttribute("catelist", catelist);													 // 영아
 		model.addAttribute("member", member);													// 영아
 		model.addAttribute("likelist", likelist);													// 영아
@@ -260,4 +260,35 @@ public class BlogController {
 		return "blog/blogcommentList";
 	}
 
+	
+	@GetMapping("/blogList")
+	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
+		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
+		PagerDto pager = new PagerDto(murl, 2, 5, totalRows, pageNo);
+		List<BoardDto> list = service.getBoardList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "blog/blogList";
+	}
+	
+	//진미 친구추가구현
+	@RequestMapping("/neighborAdd")
+	public void neighborAdd(NeighborDto neighbor,HttpSession session, HttpServletResponse response) throws Exception {
+		String memail = (String) session.getAttribute("sessionMemail");
+		neighbor.setMymemail(memail);
+		service.addneighbor(neighbor);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+
+	}
+	
 }
