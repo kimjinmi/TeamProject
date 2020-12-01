@@ -15,23 +15,23 @@ public class SigninController {
 	
 	@RequestMapping("/content")
 	public String content() { //http://localhost:8080/teamproject
-		logger.info("실행");
 		return "signin/content";
 	}
 	
 	@GetMapping("/login")
 	public String login() {
-		logger.info("실행");
 		return "signin/content";
 	}
 	
 	/*
-	 * @RequestMapping("/findpassword") public String findpassword(String memail,
-	 * Model model) { logger.info("비밀번호 찾기 실행");
-	 * 
-	 * String result = service.findPassword; model.addAttribute("memail", memail);
-	 * return "signin/findpassword"; }
+	  @RequestMapping("/findpassword") public String findpassword(String memail, Model model) { 
+	  logger.info("비밀번호 찾기 실행");
+	  
+	  String result = service.findPassword; model.addAttribute("memail", memail);
+	  return "signin/findpassword"; 
+	 }
 	 */
+	
 	@RequestMapping("/resetpassword")
 	public String resetpassword() {
 		logger.info("실행");

@@ -125,6 +125,13 @@ public class BoardDao {
 		return rows;
 	}
 
+	
+//임시 게시물별로 삭제
+	public int deletebloglist(int bno) {
+		int rows = sst.delete("mybatis.mapper.board.deletebloglist", bno);
+		return rows;
+	}
+
 
 	
 }

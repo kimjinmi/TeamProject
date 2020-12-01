@@ -63,7 +63,6 @@ public class SettingService {
 	}
 
 	public List<BoardDto> getBoardList(String sessionMemail) {
-		logger.info("#######" + sessionMemail);
 		List<BoardDto> list = boarddao.selectAll(sessionMemail);
 		return list;
 	}
@@ -107,6 +106,11 @@ public class SettingService {
 	public List<NeighborDto> myNlist(String mymemail) {
 		List<NeighborDto>  list = neighbordao.selectNlistAll(mymemail);
 		return list;
+	}
+
+	public void deletebloglist(int bno) {
+		int rows = boarddao.deletebloglist(bno);
+		
 	}
 
 }

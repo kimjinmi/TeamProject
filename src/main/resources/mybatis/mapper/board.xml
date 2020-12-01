@@ -194,6 +194,10 @@
 	<delete id="commentDelete" parameterType="int">
 		delete from reply where rno=#{rno}
 	</delete>
-	
+
+<!-- 게시글 삭제(From Setting) -->
+	<delete id="deletebloglist" parameterType="board">
+		delete from board where bno=#{bno} and murl=#{mrul}
+	</delete>
 </mapper>
 

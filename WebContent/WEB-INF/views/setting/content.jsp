@@ -13,6 +13,8 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="resources/assets/img/favicon.ico">
  
+ <script src="/resources/jquery/jquery-3.3.1.min.js"></script>
+ 
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/bootstrap.min.css">
@@ -42,6 +44,7 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+
 </head>
 
 <body>
@@ -192,16 +195,16 @@
 										
 										</script>
 									</li>	
-<<<<<<< HEAD
 
 
-=======
-<<<<<<< HEAD
+
+
+
 
 									 <!-- <script type="text/javascript">
-=======
+
 									 <script type="text/javascript">
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
 									function boardList(pageNo) {
 										if(!pageNo) {
 											pageNo = 1;

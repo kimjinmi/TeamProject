@@ -10,14 +10,57 @@
 			
 		      <div class="row">
 		      	<div class="col-md-9"></div>
-		           <!-- <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div> -->	          
 		           <div class="col-md-3">
-		              <c:if test="${SessionMurl == board.murl}">
-		           		<input type="button" value="게시글 삭제" class="genric-btn danger radius small" onclick="deleteboard();"/>
+		           	<div class="allCheck">
+		           		<label for="allCheck">전체 선택<input type="checkbox" id="allCheck"></label>
+		           		
+		           		<script type="text/javascript">
+						$("#allCheck").click(function() {
+							var chk = $("#allCheck").prop("checked");
+							if(chk) {
+								$(".chBox").prop("checked", true);
+							} else {
+								$(".chBox").prop("checked", false);
+							}
+						});
+		           		</script>
+		           		
+		           	</div>
+		           </div> 	          
+		           <div class="col-md-3">
+		          	
+		           	<div class="delBtn">
+		           		<button type="button" class="selectDelete_btn">선택 삭제</button>
+		           	</div>
+		           	  
 		           		 <script>
-						
+							$(".selectDelete_btn").click(function() {
+								var confirm_val = confirm("삭제하시겠습니까?");
+
+								if(confirm_val) {
+									var checkArr = new Array();
+
+									$("input[class='chBox']:checked").each(function() {
+										checkArr.push($(this).attr("data-boardNum"));
+									});
+
+									$.ajax({
+										url : "deletebloglist",
+										type : "POST",
+										data : {chbox:checkArr},
+										success : function(result) {
+
+											if(result == 1) {
+												location.href = "/setting/mybloglist";
+											} else  {
+												alert("삭제 실패");
+											}
+										}
+									});
+								}
+							});
 		           		 </script>
-		           	  </c:if>
+		           	 
 		           </div>
 		      </div>
 		    </div>
@@ -28,18 +71,57 @@
 		         	<c:forEach var="board" items="${list}">  	
 			         	<div class="row">
 			              <div class="col-sm-1">
-			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox" name="rowcheck"  value="${board.bno}"></label>
+			              	<div class="checkBox">
+			              		<label for="confirm-checkbox"><input type="checkbox" name="chBox" class="chBox" data-boardNum="${board.bno}"></label>
+			              		
+			              		<script>
+									$(".chBox").click(function() {
+										$("#allCheck").prop("checked", false);
+									});
+			              		</script>
+			              		
+			              	</div>
 			              </div>
 			              <div class="col-sm-11">
 				              <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}"><!-- 여기다가 글 클릭시 연결되는 링크 작성하기 -->
 				                <h2 class="blog-head" style="color: #2d2d2d;">${board.btitle}</h2>  
 				              </a>
 				              <ul class="blog-info-link">
-				              	 <li><a href="#"><i class="fa fa-file"></i> 좋아요수 ${board.blike}</a></li> 
+				              	 <li><a href="#"><i class="fa fa-file"></i> 좋아요 ${board.blike}</a></li> 
 				              	 <li><a href="#"><i class="fa fa-file"></i> ${board.ccontent}</a></li> 
 				                 <li><a href="#"><i class="fa fa-calendar"></i>
-				                 <fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd HH:mm:ss" /></a></li>  
+				                 <fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd HH:mm:ss" /></a>
+				                 </li>  
 				              </ul>
+				              <div class="delete">
+				              	<button type="button" class="delete ${board.bno}btn" data-boardNum="${board.bno}">삭제</button>
+				              	
+				              	<script>
+									$(".delete ${board.bno} btn").click(function() {
+										var confirm_val = confirm("삭제하시겠습니까?");
+
+										if(confirm_val) {
+											var checkArr = new Array();
+
+											check.push($(this).attr("data-boardNum"));
+
+											$.ajax({
+												url : "/setting/deleteboard",
+												type : "POST"
+												data : {chbox:chkArr},
+												success : function(result) {
+
+													if(result == 1) {
+														location.href = "/setting/mybloglist";
+													} else {
+														alert("삭제 실패");
+													}
+												}
+											});
+										}	
+									});
+				              	</script>
+				              </div>
 			              </div>
 			             </div>
 			             <p></p>

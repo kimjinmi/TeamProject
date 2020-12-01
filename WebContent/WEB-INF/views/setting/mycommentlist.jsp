@@ -12,12 +12,10 @@
 		      	<div class="col-md-9"></div>
 		           <!-- <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div> -->	          
 		           <div class="col-md-3">
-		              <c:if test="${SessionMurl == reply.murl}">
+		            
 		           		<input type="button" value="댓글 삭제" class="genric-btn danger radius small"/>
-		           		 <script>
-						
-		           		 </script>
-		           	  </c:if>
+		           	
+		           	
 		           </div>
 		      </div>
 		    </div>
@@ -28,10 +26,10 @@
 		         	<c:forEach var="replylist" items="${list}">  	
 			         	<div class="row">
 			              <div class="col-sm-1">
-			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox" name="rowcheck"  value="${reply.rno}"></label>
+			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox" name="rowcheck"  value="${replylist.rno}"></label>
 			              </div>
 			              <div class="col-sm-11">
-				              <a class="d-inline-block" href="#">
+				              <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${replylist.bno}">
 				                <h2 class="blog-head" style="color: #2d2d2d;">${replylist.btitle}</h2>  
 				              </a>
 				              <ul class="blog-info-link">

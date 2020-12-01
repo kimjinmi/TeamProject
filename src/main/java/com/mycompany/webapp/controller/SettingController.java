@@ -22,7 +22,9 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.MemberDto;
@@ -36,7 +38,7 @@ import com.mycompany.webapp.service.SettingService;
 public class SettingController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
-	
+
 	@RequestMapping("/manager")
 	public String manager(MemberDto memberdto, HttpSession session, Model model) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
@@ -77,24 +79,16 @@ public class SettingController {
 
 	}
 	
-	//게시글 관리
-
-	
-	
-
+	// 선명- 게시글 관리
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		//logger.info("실행");
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
-		
 		
 		//페이징
 		int totalRows = service.getTotalMyRow(SessionMurl); //
 		
 		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
-		
-		
 		
 		List<BoardDto> listpage = service.getBoardListPage(pager);
 		//List<BoardDto> list = service.getBoardList(sessionMemail);
@@ -106,52 +100,48 @@ public class SettingController {
 	}
 	
 
-	//게시물 삭제
-	/*@RequestMapping("/boarddelete")
-	public void boarddelete(int bno, HttpServletResponse response,HttpServletRequest request) throws Exception {
-		
-		
-		service.boardDelete(bno);
-		
-		String[] val = request.getParameterValues("del_check");
-		logger.info("####" + val);
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
-		String json = jsonObject.toString(); 
-		// 응답 보내기
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json;charset=utf-8");
-		out.println(json);
-		out.flush();
-		out.close();
+	/*선명- 게시물 리스트 전체,개별삭제 */
+	@ResponseBody
+	@RequestMapping(value = "/deletebloglist", method=RequestMethod.POST)
+	public int deletebloglist(HttpSession session, @RequestParam(value= "chbox[]") List<String> chArr, BoardDto board) throws Exception {
+	logger.info("deletebloglist");
 	
-	}
-	*/
+	MemberDto member = (MemberDto)session.getAttribute("board");
+	String murl = board.getMurl();
 	
+	int result = 0;
+	int bno = 0;
 
-	
+	if(board != null) {
+		board.setMurl(murl);
+		
+		for(String i : chArr) {
+			bno = Integer.parseInt(i);
+			board.setBno(bno);
+			service.deletebloglist(bno);
+			
+		}
+		result = 1;
+	}
+	return result;
+}
+
+	/*선명 - 댓글 관리*/
 	@RequestMapping("/mycommentlist")
 	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		logger.info("실행");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
 		
-		
 		//페이징
 		int totalRows = service.getTotalMyRow(SessionMurl); //
-		
 		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
-		
-		
-		
 		List<ReplyDto> listcomment = service.getReplyListPage(pager);
 		
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", listcomment);
-		logger.info("#########" + SessionMurl);
+		
 	
-		
-		
 		return "setting/mycommentlist";
 	}
 	
