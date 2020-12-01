@@ -75,7 +75,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>Sign up</h2>
+								<h2>Error</h2>
 							</div>
 						</div>
 					</div>
@@ -91,29 +91,16 @@
 		 		<div class="col-md-3"></div>
 					<div class="col-md-6">
 						<section class="sample-text-area" style="padding-bottom: 0; padding-top: 70px;">
+						<p><a href="<%=application.getContextPath()%>/" class="genric-btn info radius" style="width: 100%;">HOME</a></p>
 							<hr align="left" style="border: solid 1px black; width: 100%;">
 							<div class="container box_1170" style="text-align: center; padding-bottom: 20px;">
 							<img src="<%=application.getContextPath()%>/resources/images/error404.gif"> 
 							
-										<h3 class="text-heading" style="font-size: 30px; padding-top: 30px; padding-bottom: 0;">이미 회원으로 등록되어 있습니다.</h3>
+										
 							</div>
 						</section>
 
 				</div>
-			</div>
-			<div class="row">
-	 			<div class="col-md-3"></div>
-			<!-- <div class="col-md-3">
-					<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 70px;">
-						<a href="#" class="genric-btn info-border radius" style="width: 100%;">아이디 찾기</a>
-					</div>
-				</div> -->
-				<div class="col-md-6">
-					<div class="button-group-area mt-40">
-						<a href="<%=application.getContextPath()%>/" class="genric-btn info radius" style="width: 100%; padding-left: 30px;">HOME</a>
-					</div>
-				</div>
-				<div class="col-md-3"></div>
 			</div>
 		</div>
 				<!-- End Align Area -->
