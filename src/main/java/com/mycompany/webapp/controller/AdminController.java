@@ -59,17 +59,38 @@ public class AdminController {
 		return "admin/managersetting";
 	}
 	
+	//----------------------------------------------------------------영아--------------------------------------------------------------------//
+	
+			//admin - 회원 관리 - abled된 사람들(1)을 찾아서 enabled(0)으로 바꾸기
+			
+	/*	@RequestMapping("/usersetting")
+				public String usersetting(Model model) {
+					List<MemberDto> mabled = service.pickedAbledPerson(1);
+					model.addAttribute("mabled", mabled);
+				return "admin/usersetting";
+				}
+				*/
+	
+				//admin - 회원 관리 - abled된 사람들(1)을 찾아서 enabled(0)으로 바꾸기
 	@RequestMapping("/usersetting")
-	public String usersetting(Model model) {
-
-	return "admin/usersetting";
+	public String usersetting (@RequestParam(defaultValue="1")int pageNo, Model model, HttpSession session) {
+		
+		int totalRows = service.getTotalMyRownList();
+		PagerDto pager = new PagerDto(3, 5, totalRows, pageNo);		
+		List<MemberDto> mabled = service.pickedAbledPerson(pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("mabled", mabled);
+		return "admin/usersetting";
 	}
 	
+					//admin - 차단 회원 관리
 	@RequestMapping("/disabledmember")
 	public String disabledmember(Model model) {
 
 	return "admin/disabledmember";
 	}
+	
+	//----------------------------------------------------------------영아--------------------------------------------------------------------//
 	
 	@GetMapping("/managerDelete")
 	public void managerDelete(String memail, HttpServletResponse response, MemberDto member) throws Exception {

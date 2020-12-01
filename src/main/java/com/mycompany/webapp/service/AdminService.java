@@ -40,7 +40,7 @@ public class AdminService {
 		MemberDto dbmember = memberdao.selectbyMemail(member.getMemail());
 		return dbmember;
 		
-	}
+	} 
 	
 	
 	public List<MemberDto> getmanagerlist(String role) {
@@ -53,10 +53,18 @@ public class AdminService {
 		
 	}
 
+	//-------------------------------------영아---------------------------------------
 	
+			// 이메일을 지정해서 한 사람을 선택하고 활성화(1) 되있던 것을 비활성화(0)으로 바꿈
 
+	public int getTotalMyRownList() {
+		int totalMyRows = memberdao.menabledThing();
+		return totalMyRows;
+	}
 	
-
-
-
+	public List<MemberDto> pickedAbledPerson(PagerDto pager) {
+		List<MemberDto> list = memberdao.selectenabled(pager);
+		return list;
+	}
+	
 }

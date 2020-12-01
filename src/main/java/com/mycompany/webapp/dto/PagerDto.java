@@ -14,7 +14,7 @@ public class PagerDto {
 	private int startRowNo;		//페이지의 시작 행 번호
 	private int endRowNo;		//페이지의 마지막 행 번호
 	private String mymemail;
-
+	private int menabled;
 	
 	public PagerDto(String murl, int rowsPerPage, int pagesPerGroup, int totalRows, int pageNo) {
 		this(rowsPerPage, pagesPerGroup, totalRows, pageNo);
@@ -45,6 +45,16 @@ public class PagerDto {
 	}
 
 	
+	
+	
+	public int getMenabled() {
+		return menabled;
+	}
+
+	public void setMenabled(int menabled) {
+		this.menabled = menabled;
+	}
+
 	public String getMymemail() {
 		return mymemail;
 	}
