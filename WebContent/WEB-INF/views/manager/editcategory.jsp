@@ -77,7 +77,7 @@
 				<input type="text" id="deleteCategory" name="deleteCategory" placeholder="Delete Category" onblur="this.placeholder = 'Delete Category'"class="single-input" readonly>
 			</div>
 			<div class="col-1">
-				<a href="#"  onclick="document.getElementById('categorydelete').submit();"><i class="fa fa-minus" ></i></a>
+				<a href="#" onclick="document.getElementById('categorydelete').submit();"><i class="fa fa-minus" ></i></a>
 			</div>
 			<p></p><div class="col" style="color: red;">
 			<i class="fas fa-exclamation-triangle"></i>

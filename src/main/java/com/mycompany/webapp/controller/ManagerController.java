@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -29,6 +30,7 @@ import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
+import com.mycompany.webapp.dto.SearchDto;
 import com.mycompany.webapp.service.ManagerService;
 
 
@@ -75,6 +77,7 @@ public class ManagerController {
 	
 	@RequestMapping("/categorydelete")
 	public String categorydelete(String deleteid) {
+		
 		int cno = Integer.parseInt(deleteid);
 		service.deleteCategory(cno);
 		return "redirect:/manager/content";
@@ -90,22 +93,38 @@ public class ManagerController {
 	@RequestMapping("/allboardlist")
 	public String allboardlist(Model model, @RequestParam(defaultValue = "1")int pageNo) {
 		int totalRows = service.getTotalBoardRows();
-		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
+		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getBoardList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
 		return "manager/allboardlist";
 	}
+
+	@RequestMapping("/searchboard")
+	public String searchboard(Model model, SearchDto searchdto, @RequestParam(defaultValue = "1")int pageNo) {
+		String value = searchdto.getValue();
+		String search = searchdto.getSearch();
+		int totalRows = service.getSearchTotalBoardRows(searchdto);
+		
+		PagerDto pager = new PagerDto(value, search, 8, 5, totalRows, pageNo);
+		List<BoardDto> list = service.getUserBoardList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		model.addAttribute("search", search);
+		return "manager/searchboardlist";
+	}
 	
 	@RequestMapping("/allreplylist")
 	public String allreplylist(Model model, @RequestParam(defaultValue = "1")int pageNo) {
 		int totalRows = service.getTotalReplyRows();
-		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
+		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
 		List<ReplyDto> list = service.getReplyList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
 		return "manager/allreplylist";
 	}
+	
+
 	 	
 	
 	@RequestMapping("/inquirylist")
