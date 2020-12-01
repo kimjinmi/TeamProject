@@ -34,6 +34,7 @@ public class ContactController {
 	@RequestMapping("/contactform")
 	public void contactform(InquiryDto inquiry, HttpServletResponse response){
 		inquiry.setIresult(false);
+		service.inquirywrite(inquiry);
 		logger.info(inquiry.getIsubject());
 		logger.info(inquiry.getImessage());
 		logger.info(inquiry.getIemail());

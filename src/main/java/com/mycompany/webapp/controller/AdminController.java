@@ -29,97 +29,56 @@ import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
+import com.mycompany.webapp.service.AdminService;
 import com.mycompany.webapp.service.ManagerService;
 
 
 @Controller
-@RequestMapping("/manager")
-public class ManagerController {
-	private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
+@RequestMapping("/admin")
+public class AdminController {
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	@Resource
-	private ManagerService service; 
-	
-	@RequestMapping("/admin")
-	public String admin(MemberDto memberdto, HttpSession session, Model model) {
-		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		memberdto.setMemail(sessionMemail);
-		MemberDto member = service.sessionconnect(memberdto);
-		model.addAttribute("member", member);
-		return "redirect:/admin/content";
-	}
-	
+	private AdminService service; 
+
 	@RequestMapping("/content")
 	public String content(MemberDto memberdto, HttpSession session, Model model) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
-		return "manager/content";
+		List<MemberDto> manager = service.getmanagerlist("ROLE_MANAGER");
+		model.addAttribute("manager", manager);
+		return "admin/content";
 	}
 	
-	@RequestMapping("/categoryadd")
-	public String categoryadd(String addCategory) {
-		service.addCategory(addCategory);
-		return "redirect:/manager/content";
-	}
-	
-	@RequestMapping("/categoryedit")
-	public String categoryedit(String editid, String editCategory2) {
-		
-		int cno = Integer.parseInt(editid);
-		service.editCategory(cno, editCategory2);
-		return "redirect:/manager/content";
-	}
-	
-	@RequestMapping("/categorydelete")
-	public String categorydelete(String deleteid) {
-		int cno = Integer.parseInt(deleteid);
-		service.deleteCategory(cno);
-		return "redirect:/manager/content";
-	}
-	
-	@RequestMapping("/editcategory")
-	public String editcategory(Model model) {
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
-		return "manager/editcategory";
-	}
-	
-	@RequestMapping("/allboardlist")
-	public String allboardlist(Model model, @RequestParam(defaultValue = "1")int pageNo) {
-		int totalRows = service.getTotalBoardRows();
-		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
-		List<BoardDto> list = service.getBoardList(pager);
-		model.addAttribute("list", list);
-		model.addAttribute("pager", pager);
-		return "manager/allboardlist";
-	}
-	
-	@RequestMapping("/allreplylist")
-	public String allreplylist(Model model, @RequestParam(defaultValue = "1")int pageNo) {
-		int totalRows = service.getTotalReplyRows();
-		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
-		List<ReplyDto> list = service.getReplyList(pager);
-		model.addAttribute("list", list);
-		model.addAttribute("pager", pager);
-		return "manager/allreplylist";
-	}
-	 	
-	
-	@RequestMapping("/inquirylist")
-	public String inquirylist(Model model) {
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
-		return "manager/inquirylist";
-	}
 
+	@RequestMapping("/managersetting")
+	public String managersetting(Model model) {
+		List<MemberDto> manager = service.getmanagerlist("ROLE_MANAGER");
+		model.addAttribute("manager", manager);
+		return "admin/managersetting";
+	}
 	
-	@RequestMapping("/boarddelete")
-	public void boarddelete(int bno, HttpServletResponse response) throws Exception { 
-		logger.info("##bno:"+bno);
-		service.boarddelete(bno);
+	@RequestMapping("/usersetting")
+	public String usersetting(Model model) {
+
+	return "admin/usersetting";
+	}
+	
+	@RequestMapping("/disabledmember")
+	public String disabledmember(Model model) {
+
+	return "admin/disabledmember";
+	}
+	
+	@GetMapping("/managerDelete")
+	public void managerDelete(String memail, HttpServletResponse response, MemberDto member) throws Exception {
+		String mrole = "ROLE_USER";
+		member.setMemail(memail);
+		member.setMrole(mrole);
+		logger.info(memail);
+		
+		service.managerChange(member);
 		//JSON 생성
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
@@ -131,12 +90,18 @@ public class ManagerController {
 		out.println(json);
 		out.flush();
 		out.close();
+		
 	}
 	
-	@RequestMapping("/replydelete")
-	public void replydelete(int rno, HttpServletResponse response) throws Exception { 
+	
+	@GetMapping("/managerAdd")
+	public void managerAdd(String memail, HttpServletResponse response, MemberDto member) throws Exception {
+		String mrole = "ROLE_MANAGER";
+		member.setMemail(memail);
+		member.setMrole(mrole);
+		logger.info(memail);
 		
-		service.replydelete(rno);
+		service.managerChange(member);
 		//JSON 생성
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
@@ -148,9 +113,8 @@ public class ManagerController {
 		out.println(json);
 		out.flush();
 		out.close();
+		
 	}
-	
-
 	
 	
 	@GetMapping("/photodownload")
