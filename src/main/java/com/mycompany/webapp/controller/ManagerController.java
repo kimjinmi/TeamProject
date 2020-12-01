@@ -102,12 +102,16 @@ public class ManagerController {
 
 	@RequestMapping("/searchboard")
 	public String searchboard(Model model, SearchDto searchdto, @RequestParam(defaultValue = "1")int pageNo) {
-		logger.info(searchdto.getValue());
-		logger.info(searchdto.getSearch());
+		String value = searchdto.getValue();
+		String search = searchdto.getSearch();
 		int totalRows = service.getSearchTotalBoardRows(searchdto);
-		logger.info("msg :" + totalRows);
-		//List<BoardDto> list = service.getBoardList(pager);
-		return "manager/allboardlist";
+		
+		PagerDto pager = new PagerDto(value, search, 8, 5, totalRows, pageNo);
+		List<BoardDto> list = service.getUserBoardList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		model.addAttribute("search", search);
+		return "manager/searchboardlist";
 	}
 	
 	@RequestMapping("/allreplylist")

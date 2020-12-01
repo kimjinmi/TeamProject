@@ -25,7 +25,6 @@ function boarddelete(bno){
 }
 
 
-
 </script>
 <h2 style="color: #2d2d2d; display:inline;">게시글 관리</h2>
 
@@ -41,7 +40,7 @@ function boarddelete(bno){
 					</select><br>
 				</div>
 				<div class="col-8">
-					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
+					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" value="${search}">
 				</div>
 				<div class="col-2">
 					<a href="#" onclick="document.getElementById('searchboard').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -49,9 +48,7 @@ function boarddelete(bno){
 			</div>
 		</form>
 	</div>
-		<script type="text/javascript">
 		
-		</script>
 	
 	<p></p>
 
@@ -89,24 +86,24 @@ function boarddelete(bno){
 		
 			<tr>
 				<td colspan="5" style="text-align:center;">
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(1)">처음</a>
+					<a class="genric-btn primary-border small" href="javascript:searchboard(1)">처음</a>
 					
 					<c:if test="${pager.groupNo >1}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.startPageNo-1})">이전</a>
+						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.startPageNo-1})">이전</a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 						<c:if test="${pager.pageNo == i}">
-							<a class="genric-btn primary small" href="javascript:allboardlist(${i})">${i}</a>
+							<a class="genric-btn primary small" href="javascript:searchboard(${i})">${i}</a>
 						</c:if>
 						<c:if test="${pager.pageNo != i}">
-							<a class="genric-btn primary-border small" href="javascript:allboardlist(${i})">${i}</a>
+							<a class="genric-btn primary-border small" href="javascript:searchboard(${i})">${i}</a>
 						</c:if>
 					</c:forEach>
 					<c:if test="${pager.groupNo <pager.totalGroupNo}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.endPageNo+1})">다음</a>
+						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.endPageNo+1})">다음</a>
 					</c:if>
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})">맨끝</a>
+					<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo})">맨끝</a>
 					
 				</td>
 			</tr>

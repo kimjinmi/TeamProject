@@ -111,6 +111,11 @@ public class ManagerService {
 		
 	}
 
+	public List<BoardDto> getUserBoardList(PagerDto pager) {
+		List<BoardDto> list = boarddao.selectByAllPageUser(pager);
+		return list;
+	}
+
 	
 
 

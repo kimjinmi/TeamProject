@@ -158,6 +158,22 @@
 												});
 												
 											}
+											
+											function searchboard(pageNo){
+												if(!pageNo){
+													pageNo = 1;
+												}
+												var value = $("#value").val();
+												var search = $("#search").val();
+												$.ajax({
+													url:"searchboard",
+													data:{value:value,search:search,pageNo:pageNo},
+													success:function(data){
+														$("#setting_result").html(data);
+													}
+												});
+												
+											}
 										
 										</script>
 											

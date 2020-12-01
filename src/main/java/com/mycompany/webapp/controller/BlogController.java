@@ -401,4 +401,22 @@ public class BlogController {
 		return "blog/heartSatatus";
 	}
 	
+	@GetMapping("/addComment")
+	public String addComment(int rno, Model model) {
+		//service.addComment(rno); // 받은 rno를 가져가서 rno를 first로 하는 댓글을 추가한다. insert문
+		
+		
+		
+		return "blog/blogcommentList";
+	}
+	
+	@GetMapping("/boardSearch")
+	public String boardSearch(String searchContent, Model model) {
+		logger.info("boardSearch 실행");
+		List<BoardDto> list = service.searchList(searchContent);
+		model.addAttribute("list", list);
+		
+		return "blog/blogList";
+	}
+	
 }

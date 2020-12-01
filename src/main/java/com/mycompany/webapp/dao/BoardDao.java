@@ -197,5 +197,17 @@ public class BoardDao {
 	}
 
 
+	public List<BoardDto> searchList(String searchContent) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchList", searchContent);
+		return list;
+	}
+
+
+	public List<BoardDto> selectByAllPageUser(PagerDto pager) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchListUser", pager);
+		return list;
+	}
+
+
 	
 }

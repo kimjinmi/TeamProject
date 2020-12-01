@@ -156,7 +156,7 @@
 										src="photodownload?fileName=${member.mmyimage}"
 										alt="" width="100" height="100" class="rounded-circle">
 									<hr />
-									<h2 class="contact-title">${member.mnickname}</h2>
+									<a href="blog?UserUrl=${member.murl }"><h2  class="contact-title">${member.mnickname}</h2></a>
 									<p>${member.mintro}</p>
 									<hr />
 									<!-- 게시글 작성 버튼 -->
