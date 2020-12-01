@@ -313,13 +313,17 @@ public class BlogController {
 	}
 	
 	@GetMapping("/heartStatus")
-	public String heartStatus(int bno, Model model) {
+	public String heartStatus(int bno, Model model, HttpSession session) {
 		logger.info("##############     heartStatus 실행 ##################");
 		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 가져온다.
-		model.addAttribute("likecount", "likecount");
+		model.addAttribute("likecount", likecount);
 		logger.info("heartStatus 실행");
 		logger.info("좋아요 갯수는 : " + likecount.getBlike());
-		return "blog/heartStatus";
+		String SessionMemail = (String) session.getAttribute("SessionMemail");
+		
+		
+		int row = service.heartCheck(SessionMemail, bno);
+		return "blog/heartSatatus";
 	}
 
 	

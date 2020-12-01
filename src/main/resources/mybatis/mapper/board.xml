@@ -267,5 +267,8 @@
 			WHERE rnum &gt;= #{startRowNo}
 	</select>
 	
+	<select id="heartCheck" parameterType="map" resultType="int">
+		select count(*) from liked where bno=#{bno} AND memail=#{SessionMemail}
+	</select>
 </mapper>
 

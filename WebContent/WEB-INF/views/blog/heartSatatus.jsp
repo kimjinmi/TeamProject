@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<p class="like-info">
 	<span class="align-middle"><a id="heart" href="javascript:heartbreaker()" class="fa fa-heart" style="color: black;"></a></span>
 	<script type="text/javascript">
 			function heartbreaker(){
@@ -17,4 +16,3 @@
 	</script>
 	<!-- board.blike갯수 조사 -->
 	좋아요 ${likecount.blike}개 
-</p>

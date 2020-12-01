@@ -151,5 +151,14 @@ public class BoardDao {
 	}
 
 
+	public int heartCheck(String SessionMemail, int bno) {
+		Map map = new HashMap();
+		map.put("SessionMemail", SessionMemail);
+		map.put("bno", bno);	
+		int row  = sst.selectOne("mybatis.mapper.board.heartCheck", map);
+		return row;
+	}
+
+
 	
 }

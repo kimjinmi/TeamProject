@@ -17,7 +17,7 @@ var togglehide;
 
 				<div class="media align-items-center">
 					<div style="margin-right: 23px">
-						<img class="rounded-circle" width="100px" height="100px"
+						<img class="rounded-circle" width="70px" height="70px"
 							src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
 					</div>
 					<div class="desc">

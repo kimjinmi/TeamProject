@@ -122,6 +122,11 @@ public class BlogService {
 		return totalRows;
 	}
 
+	public int heartCheck(String sessionMurl, int bno) {
+		int row = boardDao.heartCheck(sessionMurl, bno);
+		return row;
+	}
+
 
 	//----------- 선 ---------
 	/*public void upload(BoardDto board) {
