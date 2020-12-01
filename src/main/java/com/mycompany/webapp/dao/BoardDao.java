@@ -190,5 +190,11 @@ public class BoardDao {
 	}
 
 
+	public List<BoardDto> searchList(String searchContent) {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchList", searchContent);
+		return list;
+	}
+
+
 	
 }

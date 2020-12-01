@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div class="col-xl-2 col-lg-2">
 	<div class="logo">
 		<br/>
@@ -21,9 +23,12 @@
 	        </li>
             <li><a href="#">BLOG</a>
             	<ul class="submenu">
-					<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}">BLOG</a></li>
-
-			
+            		<c:if test="${SessionMurl == null }">
+            		<li><a href="<%=application.getContextPath()%>/signin/content">BLOG</a></li>
+            		</c:if>
+            		<c:if test="${SessionMurl != null }">
+            		<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}">BLOG</a></li>
+            		</c:if>
 					<%-- <li><a href="<%=application.getContextPath()%>/blog/blog_details">BLOG_DETAILS</a></li> --%>
 					<li><a href="<%=application.getContextPath()%>/setting/content">SETTING</a></li>
 					<sec:authorize access="hasRole('ROLE_MANAGER')">

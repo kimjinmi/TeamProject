@@ -95,7 +95,7 @@
 			from(
 				select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as commentnum
 					from board b, member m, category c, (
-														select count(b.bno) commentnum , b.bno  
+														select count(r.bno) as commentnum , b.bno  
 														from board b, reply r
 														where b.bno = r.bno (+)
 														group by b.bno
@@ -106,6 +106,7 @@
 			where rownum &lt; = #{endRowNo}
 		)
 		where rnum &gt; = #{startRowNo}
+
 		
 	
 		<!-- select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, comnum
@@ -276,6 +277,8 @@
 		delete from liked where bno=#{bno} AND memail = #{sessionMemail}
 	</delete>
 	
-	
+	<select id="searchList" parameterType="String" resultType="board">
+		select * from board where btitle like '%' ||  #{searchContent} || '%'  OR bcontent like '%' ||  #{searchContent} || '%'
+	</select>
 </mapper>
 

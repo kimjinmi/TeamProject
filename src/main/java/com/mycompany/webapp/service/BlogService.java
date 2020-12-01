@@ -164,7 +164,18 @@ public class BlogService {
 		
 	}
 
+	public void addComment(int rno) {
+		replyDao.addComent(rno);
+		
+	}
 
+	public List<BoardDto> searchList(String searchContent) {
+		List<BoardDto> list = boardDao.searchList(searchContent);
+		return list;
+	}
+
+	
+	
 	//----------- 선 ---------
 	/*public void upload(BoardDto board) {
 		boardDao.insert(board);
