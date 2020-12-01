@@ -151,6 +151,21 @@ public class BoardDao {
 		return list;
 	}
 
+	public BoardDto selectContentBno(int bno) {
+		BoardDto board = sst.selectOne("mybatis.mapper.board.selectContentBno", bno);
+		return board;
+	}
+	
+	public int update(BoardDto board) {
+		int rows;
+		if(board.getBimage() != null) {
+			rows = sst.update("mybatis.mapper.board.update", board);
+		} else {
+			rows = sst.update("mybatis.mapper.board.updateNoImage", board);
+		}
+		return rows;
+	}
+
 
 	public int heartCheck(String SessionMemail, int bno) {
 		Map map = new HashMap();

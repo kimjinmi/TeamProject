@@ -92,9 +92,15 @@ public class BlogController {
 		 model.addAttribute("likelist", likelist);
 		 MemberDto member = service.getMimage(UserUrl); 	
 		 model.addAttribute("member", member);	
-		 logger.info("날짜형식 테스트 : " + board.getBdate());
-		 logger.info("bno 값 출력 1 : " + bno);
-		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
+		 
+		//진미(친구추가버튼)
+		String memail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		int existRows = -1;
+		if(!SessionMurl.equals(UserUrl)){
+			existRows = service.neighorexist(UserUrl, memail);
+		}
+		model.addAttribute("existRows", existRows);
 
 		return "blog/blog_details";
 	}
@@ -125,26 +131,20 @@ public class BlogController {
 		model.addAttribute("existRows", existRows);
 		
 		int totalRows = service.getTotalRows(UserUrl); // 개인당 블로그 게시물 수 
-		logger.info("토탈 : " + totalRows);
 		PagerDto pager = new PagerDto(UserUrl, 3, 5, totalRows, pageNo); // 페이저로 게시물 가져오기
-		 List<BoardDto> list = service.getBoardList(pager); 
-		logger.info("list 값 : " + list);
+		List<BoardDto> list = service.getBoardList(pager); 
 		
 		
+		// 영아 - catelist, likelist
 		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
 		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
 		/* model.addAttribute("list", list); */
 		model.addAttribute("catelist", catelist);													 // 영아
 		model.addAttribute("member", member);	
-		// 영아
 		model.addAttribute("likelist", likelist);													// 영아
-		logger.info(catelist.toString()); 																// 영아
-		logger.info("blog.jsp 컨트롤러 실행");
-		logger.info(member.getMurl());
 		return "blog/blog";
 	}
-	
 
 	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
 	@RequestMapping("/categoryListLinkBoard")	
@@ -154,6 +154,7 @@ public class BlogController {
 			return "blog/categoryListLinkBoard";
 		}
 
+	
 	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
@@ -163,7 +164,6 @@ public class BlogController {
 		return "blog/blog_write";
 	}*/
 	
-
 	
 	/*
 	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
@@ -264,7 +264,6 @@ public class BlogController {
 	
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
-		
 		// 게시물 삭제
 		service.boardDelete(bno);
 
@@ -281,6 +280,63 @@ public class BlogController {
 		out.close();
 	}
 	
+	@GetMapping("/boardUpdate")
+	public String boardUpdateForm(BoardDto board, int bno, Model model) {
+		List<CategoryDto> category_list = service.categoryList();
+		model.addAttribute("category_list", category_list);
+		
+		board = service.getBoardContentBno(bno);
+		model.addAttribute("board", board);
+		return "blog/boardUpdateForm";
+	}
+	
+	@PostMapping("/boardUpdate")
+	public void boardUpdate(MultipartFile attach, BoardDto board, HttpSession session, HttpServletResponse response) throws IOException {
+		String SessionMurl =(String) session.getAttribute("SessionMurl");
+		board.setMurl(SessionMurl);
+		
+		if (attach != null && !attach.isEmpty()) {
+			String saveFileName = new Date().getTime() + "_" + attach.getOriginalFilename();
+			attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
+			board.setBimage(saveFileName);
+		}
+		
+		// 서비스를 이용해서 게시물 수정
+		service.boardUpdate(board);
+
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); // {} -> jsonObject, [] -> jsonArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // { "result" : "success" } 가 들어가 있다.
+
+		// JSON 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+
+	@GetMapping("/download")
+	public void download(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+	
+		ServletContext application = request.getServletContext();
+		String fileType = application.getMimeType(fileName);
+		response.setContentType(fileType);
+
+		response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\"");
+		
+		int fileSize = (int) new File(saveFilePath).length();
+		response.setContentLength(fileSize);
+		
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os); 
+		os.flush();
+		os.close();
+		is.close();
+	}
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
 	
@@ -293,8 +349,6 @@ public class BlogController {
 		  }
 			int bbno = reply.getBno();
 			List<ReplyDto> commentlist = service.commentList(bbno);
-			logger.info("getBno = " + bbno);
-			logger.info("commentlist 값 = " + commentlist.toString());
 			model.addAttribute("commentlist", commentlist);
 			return "blog/blogcommentList";
 
@@ -302,7 +356,6 @@ public class BlogController {
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info(fileName);
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
 		String saveFilePath = "C:/temp/projectimage/member/" + fileName;
@@ -334,7 +387,6 @@ public class BlogController {
 
 	@GetMapping("/commentDelete")
 	public String commentDelete(int rno) {
-		logger.info("나와라 commentDelete Rno = " + rno);
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}

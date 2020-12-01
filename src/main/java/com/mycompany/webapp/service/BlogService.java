@@ -149,6 +149,16 @@ public class BlogService {
 		
 	}
 
+	// 게시물 수정 bno 얻기 (선)
+	public BoardDto getBoardContentBno(int bno) {
+		BoardDto board = boardDao.selectContentBno(bno);
+		return board;
+	}
+	
+	// 게시물 수정 update (선)
+	public void boardUpdate(BoardDto board) {
+		boardDao.update(board);
+	}
 	public void likeinfo(int bno, String sessionMemail) {
 		boardDao.likeinfo(bno, sessionMemail);
 		
@@ -176,10 +186,5 @@ public class BlogService {
 
 	
 	
-	//----------- 선 ---------
-	/*public void upload(BoardDto board) {
-		boardDao.insert(board);
-	}*/
-	//----------- 선 ---------
 
 }
