@@ -61,7 +61,6 @@ public class BlogController {
 		try {
 			connect = dataSource.getConnection();
 			connect.close();
-			logger.info("dbConnected");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -80,7 +79,6 @@ public class BlogController {
 		 */
 		 
 		 bno = Integer.parseInt(request.getParameter("bno"));
-		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
@@ -90,9 +88,6 @@ public class BlogController {
 		 model.addAttribute("likelist", likelist);
 		 MemberDto member = service.getMimage(UserUrl); 	
 		 model.addAttribute("member", member);	
-		 logger.info("날짜형식 테스트 : " + board.getBdate());
-		 logger.info("bno 값 출력 1 : " + bno);
-		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
 		 
 		//진미(친구추가버튼)
 		String memail = (String) session.getAttribute("sessionMemail");
@@ -108,7 +103,6 @@ public class BlogController {
 
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
-		logger.info(reply.getRcontent());
 		service.commentWrite(reply);
 	}
 
@@ -132,29 +126,30 @@ public class BlogController {
 		model.addAttribute("existRows", existRows);
 		
 		int totalRows = service.getTotalRows(UserUrl); // 개인당 블로그 게시물 수 
-		logger.info("토탈 : " + totalRows);
 		PagerDto pager = new PagerDto(UserUrl, 3, 5, totalRows, pageNo); // 페이저로 게시물 가져오기
 		List<BoardDto> list = service.getBoardList(pager); 
-		logger.info("list 값 : " + list);
 		
 		
+		// 영아 - catelist, likelist
 		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
 		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
 		/* model.addAttribute("list", list); */
 		model.addAttribute("catelist", catelist);													 // 영아
 		model.addAttribute("member", member);	
-		// 영아
 		model.addAttribute("likelist", likelist);													// 영아
-		logger.info(catelist.toString()); 																// 영아
-		logger.info("blog.jsp 컨트롤러 실행");
-		logger.info(member.getMurl());
-		
 		return "blog/blog";
 	}
+
+	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
+	@RequestMapping("/categoryListLinkBoard")	
+	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
+			List<BoardDto> bcno = service.bcno(cno, murl);
+			model.addAttribute("bcno", bcno);
+			return "blog/categoryListLinkBoard";
+		}
+
 	
-
-
 	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
@@ -164,16 +159,6 @@ public class BlogController {
 		return "blog/blog_write";
 	}*/
 	
-	
-	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
-	@RequestMapping("/categoryListLinkBoard")	
-	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
-			logger.info("실행되는건가");
-			List<BoardDto> bcno = service.bcno(cno, murl);
-			model.addAttribute("bcno", bcno);
-			return "blog/categoryListLinkBoard";
-		}
-
 	
 	/*
 	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
@@ -275,7 +260,6 @@ public class BlogController {
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		
-		logger.info("bno : " + bno);
 		// 게시물 삭제
 		service.boardDelete(bno);
 
@@ -304,8 +288,6 @@ public class BlogController {
 		  }
 			int bbno = reply.getBno();
 			List<ReplyDto> commentlist = service.commentList(bbno);
-			logger.info("getBno = " + bbno);
-			logger.info("commentlist 값 = " + commentlist.toString());
 			model.addAttribute("commentlist", commentlist);
 			return "blog/blogcommentList";
 
@@ -313,7 +295,6 @@ public class BlogController {
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info(fileName);
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
 		String saveFilePath = "C:/temp/projectimage/member/" + fileName;
@@ -345,25 +326,20 @@ public class BlogController {
 
 	@GetMapping("/commentDelete")
 	public String commentDelete(int rno) {
-		logger.info("나와라 commentDelete Rno = " + rno);
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
 	
 	@GetMapping("/heartStatus")
 	public String heartStatus(int bno, Model model) {
-		logger.info("##############     heartStatus 실행 ##################");
 		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 가져온다.
 		model.addAttribute("likecount", "likecount");
-		logger.info("heartStatus 실행");
-		logger.info("좋아요 갯수는 : " + likecount.getBlike());
 		return "blog/heartStatus";
 	}
 
 	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
-		logger.info("blogList 컨트롤러 실행");
 		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
 		PagerDto pager = new PagerDto(murl, 2, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getBoardList(pager);

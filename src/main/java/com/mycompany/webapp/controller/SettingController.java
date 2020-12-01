@@ -64,25 +64,7 @@ public class SettingController {
 
 	//---------------------------------------영아, 이웃 관리 시작------------------------------------------
 
-	/*	@RequestMapping("/myneighborlist")
-		public String myneighborlist(HttpSession session, Model model) { //http://localhost:8080/teamproject
-			logger.info("실행");
-	
-			String sessionMemail = (String) session.getAttribute("sessionMemail");
-			String SessionMnickname = (String) session.getAttribute("SessionMnickname"); //대소문자조심
-			String SessionMurl = (String) session.getAttribute("SessionMurl"); //대소문자조심
-			logger.info("memail :"+sessionMemail);
-			logger.info("mnickname :"+SessionMnickname);
-			logger.info("murl :"+SessionMurl); 
-			
-			String memail = (String) session.getAttribute("sessionMemail");
-			List<NeighborDto> mynlist = service.myNlist(memail);
-			model.addAttribute("mynlist", mynlist);
-			logger.info("mymemail : " + memail);
-			return "setting/myneighborlist";
-		}
-	*/
-	//이웃 삭제
+				//이웃 삭제
 	@PostMapping("/nDelete") //void - jsp로 이동하지 않겠다
 	public void nDelete(int nno, HttpServletResponse response) throws Exception { //아래 response.getWriter();에서 runtimeexception이 생기므로 예외처리해줌
 
@@ -102,7 +84,7 @@ public class SettingController {
 		out.close();
 	}
 
-	//이웃 리스트 페이지
+				//이웃 리스트 페이지
 	@GetMapping("/myneighborlist")
 	public String myneighborlist(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) { //http://localhost:8080/teamproject
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
