@@ -259,7 +259,6 @@ public class BlogController {
 	
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
-		
 		// 게시물 삭제
 		service.boardDelete(bno);
 
@@ -276,6 +275,63 @@ public class BlogController {
 		out.close();
 	}
 	
+	@GetMapping("/boardUpdate")
+	public String boardUpdateForm(BoardDto board, int bno, Model model) {
+		List<CategoryDto> category_list = service.categoryList();
+		model.addAttribute("category_list", category_list);
+		
+		board = service.getBoardContentBno(bno);
+		model.addAttribute("board", board);
+		return "blog/boardUpdateForm";
+	}
+	
+	@PostMapping("/boardUpdate")
+	public void boardUpdate(MultipartFile attach, BoardDto board, HttpSession session, HttpServletResponse response) throws IOException {
+		String SessionMurl =(String) session.getAttribute("SessionMurl");
+		board.setMurl(SessionMurl);
+		
+		if (attach != null && !attach.isEmpty()) {
+			String saveFileName = new Date().getTime() + "_" + attach.getOriginalFilename();
+			attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
+			board.setBimage(saveFileName);
+		}
+		
+		// 서비스를 이용해서 게시물 수정
+		service.boardUpdate(board);
+
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); // {} -> jsonObject, [] -> jsonArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // { "result" : "success" } 가 들어가 있다.
+
+		// JSON 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+
+	@GetMapping("/download")
+	public void download(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+	
+		ServletContext application = request.getServletContext();
+		String fileType = application.getMimeType(fileName);
+		response.setContentType(fileType);
+
+		response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\"");
+		
+		int fileSize = (int) new File(saveFilePath).length();
+		response.setContentLength(fileSize);
+		
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os); 
+		os.flush();
+		os.close();
+		is.close();
+	}
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
 	

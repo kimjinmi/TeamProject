@@ -93,8 +93,6 @@ public class BoardDao {
 		 
 		 return listpage; 
 	 }
-	
-
 
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
@@ -145,6 +143,21 @@ public class BoardDao {
 	public List<BoardDto> selectByAllPage(PagerDto pager) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectListAll", pager);
 		return list;
+	}
+
+	public BoardDto selectContentBno(int bno) {
+		BoardDto board = sst.selectOne("mybatis.mapper.board.selectContentBno", bno);
+		return board;
+	}
+	
+	public int update(BoardDto board) {
+		int rows;
+		if(board.getBimage() != null) {
+			rows = sst.update("mybatis.mapper.board.update", board);
+		} else {
+			rows = sst.update("mybatis.mapper.board.updateNoImage", board);
+		}
+		return rows;
 	}
 
 }

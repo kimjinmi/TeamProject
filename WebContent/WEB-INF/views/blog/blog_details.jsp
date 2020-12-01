@@ -43,6 +43,12 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+ 
+ <style type="text/css">
+ 	.ck-editor__editable {
+	       min-height: 800px;
+	}
+ </style>
 </head>
 
 <script type="text/javascript">
@@ -337,7 +343,7 @@
 									<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
 									<li><a href="#"><i class="fab fa-behance"></i></a></li>
 									<c:if test="${sessionMemail == board.memail}">
-										<li style="padding-right: 15px;"><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
+										<li style="margin-right: 4px;"><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
 										<script type="text/javascript">
 											function boardUpdate(bno) {
 												$.ajax({
@@ -349,7 +355,7 @@
 												});
 											}
 										</script>		
-										<li style="padding-left: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
+										<li style="margin-right: 10px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
 										<script type="text/javascript">
 											function boardDelete(bno) {
 												$.ajax({

@@ -1,10 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<form id="boardWriteForm" action="boardUpload" enctype="multipart/form-data">
+<script>
+	var loadFile = function(event){
+		var output = document.getElementById('id_view');
+		output.src = URL.createObjectURL(event.target.files[0]);
+	};
+</script>
+
+<form id="boardUpdateForm" action="boardUpload" enctype="multipart/form-data">
+	<input type="hidden" id="bno" name="bno" value="${board.bno}" />
+	
 	<div class="single-post">
 		<div class="blog_write">
-			<h3 style="color: #2d2d2d;">게시글 작성</h3>
+			<h3 style="color: #2d2d2d;">게시글 수정</h3>
 			<hr style="margin-top: 12px;">
 			<!-- 카테고리 선택 시작 (div) -->
 			<div class="select box" id="default-select"
@@ -18,21 +27,21 @@
 			<!-- 카테고리 선택 끝 (div) -->
 			
 			<!-- 실험 -->
+			<div class="mb-3" style="border: solid 0.1px #F6F6F6; width: 153px; height: 153px; ">
+				<img id="id_view" width="150" height="150" src="download?fileName=${board.bimage}"/>
+			</div>
 			<div class="input-group mb-3" style="margin: 3px 0; height: 30px;">
 				<div class="input-group-prepend" >
-					<span class="input-group-text">메인 사진을 선택해주세요</span>
+					<span class="input-group-text">사진 수정</span>
 				</div>
-				<input style="height: 30px;" type="file" id="attach" name="attach" class="form-control">
+				<input style="height: 30px;" type="file" id="attach" name="attach" class="form-control" onchange="loadFile(event)">
 			</div>
 			<!-- 실험 -->
 			
 			<!-- 제목 입력 시작 (board.btitle) -->
 			<div class="input-group mb-3">
-				<input id="btitle" type="text" name="btitle" class="form-control"
-					placeholder='  제목' onfocus="this.placeholder = ''"
-					onblur="this.placeholder = '  제목'"
-					style="height: 45px; font-size: 16px;"> <span
-					id="btitleError" class="error"></span>
+				<input id="btitle" type="text" name="btitle" value="${board.btitle}" class="form-control" style="height: 45px; font-size: 16px;">
+				<span id="btitleError" class="error"></span>
 			</div>
 			<!-- 제목 입력 끝 (board.btitle) -->
 
@@ -49,7 +58,7 @@
 			<!-- 내용 입력 시작 (board.bcontent) -->
 			<h2 style="color: #2d2d2d;">내용</h2>
 			<textarea id="bcontent" name="bcontent"
-				style="width: 100%; height: 1000px;"></textarea>
+				style="width: 100%; height: 1000px;">${board.bcontent}</textarea>
 			<span id="bcontentError" class="error"></span>
 			<!-- 내용 입력 끝 (board.bcontent) -->
 		</div>
@@ -65,8 +74,7 @@
 			<div class="input-group mb-3">
 				<input id="blinkcontent" name="blinkcontent" type="text"
 					class="form-control" style="font-size: 12px; margin: 0px 8px;"
-					placeholder='홍보할 링크를 입력하세요' onfocus="this.placeholder = ''"
-					onblur="this.placeholder = '홍보할 링크를 입력하세요'">
+					value="${board.blinkcontent}">
 			</div>
 			<!-- 홍보링크 입력 끝 -->
 
@@ -79,12 +87,13 @@
 
 		<!-- 글쓰기 버튼 시작 (확인) -->
 		<div style="margin-top: 12px; padding-left: 35%; margin: 20px 0px;">
-			<a href="javascript:boardWrite()"
+			<a href="javascript:boardUpdate()"
 				class="genric-btn info-border radius" style="margin-right: 20px;">확인</a>
 			<script type="text/javascript">
-				function boardWrite() {
+				function boardUpdate() {
+					var bno = $("#bno").val();
 					var cno = $("#cno").val();
-
+					
 					var btitle = $("#btitle").val().trim();
 					if (btitle == "") {
 						$("#btitleError").text("필수");
@@ -93,7 +102,6 @@
 					}
 
 					var bcontent = myEditor.getData();
-					/* var bcontent = $("#bcontent").val(data).trim();  */
 					if (bcontent == "") {
 						$("#bcontentError").text("필수");
 					} else {
@@ -107,7 +115,6 @@
 					var blinkcontent = $("#blinkcontent").val().trim();
 					var memail = $("#memail").val().trim();
 					
-					
 					var file = document.querySelector("#attach");
 					var multipart = new FormData();
 					
@@ -116,6 +123,7 @@
 					multipart.append("cno", cno);
 					multipart.append("blinkcontent", blinkcontent);
 					multipart.append("memail", memail);
+					multipart.append("bno", bno);
 					
 					if(file.files.length != 0) {
 						// 사용자가 파일을 선택했을 경우
@@ -123,28 +131,21 @@
 					}
 
 					$.ajax({
-						url : "boardWrite",
+						url : "boardUpdate",
 						method : "post",
 						data : multipart,
-							/*  {
-							btitle : btitle,
-							bcontent : bcontent,
-							memail : memail,
-							blinkcontent : blinkcontent,
-							cno : cno
-						} */
 						cache: false, // 파일을 메모리에 저장하지 않도록 설정
 						processData: false, // 파일을 가공하지 않도록 설정
 						contentType: false, 
 						success : function(data) {
 							if (data.result == "success") {
-								location.href = "blog?UserUrl=${SessionMurl}";
+								location.href = "blog?UserUrl=${SessionMurl}"; 
 							}
 						}
 					});
 				}
 			</script>
-			<a href="blog" class="genric-btn danger-border radius">취소</a>
+			<a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}" class="genric-btn danger-border radius">취소</a>
 		</div>
 		<!-- 글쓰기 버튼 끝 (확인) -->
 	</div>
