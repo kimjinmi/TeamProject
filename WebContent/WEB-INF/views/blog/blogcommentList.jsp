@@ -17,7 +17,7 @@ var togglehide;
 
 				<div class="media align-items-center">
 					<div style="margin-right: 23px">
-						<img class="rounded-circle" width="100px" height="100px"
+						<img class="rounded-circle" width="70px" height="70px"
 							src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
 					</div>
 					<div class="desc">
@@ -33,17 +33,20 @@ var togglehide;
 								</p>
 							</div>
 							<div class="reply-btn">
-								<a href="javascript:testing()" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
+								<a href="javascript:addComment(${comment.rno })" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
+								
 								<script type="text/javascript">
-								  function testing(){
-									  replyinreply = !replyinreply;
-									  alert(replyinreply);
+								  function addComment(rno){
 									  
-									  if(replyinreply == true){
+									  $.ajax({
+										  url: "addComment",
+										  data: {rno:rno },
+										  method:"get",
+										  success:function(data){
+											  alert("addComment success 실행");
+										  }
 										  
-									  }else{
-										  
-									  }
+									  });
 								  }
 								</script>
 								
@@ -64,7 +67,9 @@ var togglehide;
 										data: {rno:rno},
 										success: function(data){
 										// 삭제는 됬고  댓글 리스트를  새로고침 해야함	
-										location.href="blog_details?bno=${comment.bno}";		
+										onload();
+										
+										//location.href="blog_details?bno=${comment.bno}";		
 										}
 									}); 
 							 	}  

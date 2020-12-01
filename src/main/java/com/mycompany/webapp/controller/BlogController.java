@@ -195,13 +195,90 @@ public class BlogController {
 	    
 	    String callback = request.getParameter("CKEditorFuncNum");  // 클라이언트에 결과 표시
 	
+<<<<<<< HEAD
 	    PrintWriter printWriter = response.getWriter();
 	    String fileUrl = request.getContextPath() + "/images/" + fileName;
 	    printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
 	            + "','이미지가 업로드되었습니다.')" + "</script>");
 	    printWriter.flush();
 	}*/
+=======
+	@PostMapping("/boardDelete")
+	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
+		// 게시물 삭제
+		service.boardDelete(bno);
+
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); 
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); 
+
+		// JSON 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
 	
+	@GetMapping("/boardUpdate")
+	public String boardUpdateForm(BoardDto board, int bno, Model model) {
+		List<CategoryDto> category_list = service.categoryList();
+		model.addAttribute("category_list", category_list);
+		
+		board = service.getBoardContentBno(bno);
+		model.addAttribute("board", board);
+		return "blog/boardUpdateForm";
+	}
+	
+	@PostMapping("/boardUpdate")
+	public void boardUpdate(MultipartFile attach, BoardDto board, HttpSession session, HttpServletResponse response) throws IOException {
+		String SessionMurl =(String) session.getAttribute("SessionMurl");
+		board.setMurl(SessionMurl);
+		
+		if (attach != null && !attach.isEmpty()) {
+			String saveFileName = new Date().getTime() + "_" + attach.getOriginalFilename();
+			attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
+			board.setBimage(saveFileName);
+		}
+		
+		// 서비스를 이용해서 게시물 수정
+		service.boardUpdate(board);
+
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); // {} -> jsonObject, [] -> jsonArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // { "result" : "success" } 가 들어가 있다.
+
+		// JSON 응답 보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+
+	@GetMapping("/download")
+	public void download(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+	
+		ServletContext application = request.getServletContext();
+		String fileType = application.getMimeType(fileName);
+		response.setContentType(fileType);
+
+		response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\"");
+		
+		int fileSize = (int) new File(saveFilePath).length();
+		response.setContentLength(fileSize);
+		
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os); 
+		os.flush();
+		os.close();
+		is.close();
+	}
 	//--------------------------- (선) 게시물 쓰기 끝 -------------------------
 
 	
@@ -259,10 +336,26 @@ public class BlogController {
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
+<<<<<<< HEAD
+=======
+	
+	@GetMapping("/heartStatus")
+	public String heartStatus(int bno, Model model, HttpSession session) {
+		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 model.addAttribute("likecount", likecount);
+		 String SessionMemail = (String) session.getAttribute("SessionMemail");
+		 int heartCheck = service.heartCheck(SessionMemail, bno); 
+		
+		 logger.info("하트체크 : " + heartCheck);
+		 model.addAttribute("heartCheck", heartCheck);
+		 model.addAttribute("likecount", likecount);
+		return "blog/heartSatatus";
+	}
+>>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
 
 	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
+		logger.info("blogList 컨트롤러 실행");
 		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
 		PagerDto pager = new PagerDto(murl, 2, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getBoardList(pager);
@@ -289,6 +382,42 @@ public class BlogController {
 		out.flush();
 		out.close();
 
+	}
+	
+	@PostMapping("/heartClick")
+	public String heartClick(int bno, HttpSession session, int heartCheck) {
+		
+		// 검정 하트일때만 실행
+		if(heartCheck  == 0) {
+		logger.info("좋아요 더하기");
+		service.likeadd(bno);
+		service.likeinfo(bno, (String) session.getAttribute("sessionMemail"));
+		}else if(heartCheck > 0) {
+		// 빨간 하트일때만 실행
+			logger.info("좋아요 빼기");
+		service.likedsub(bno);
+		service.likeinfoDelete(bno, (String) session.getAttribute("sessionMemail"));
+		}
+		
+		return "blog/heartSatatus";
+	}
+	
+	@GetMapping("/addComment") // 대댓글 구현중 - 지훈
+	public String addComment(int rno, Model model) {
+		//service.addComment(rno); // 받은 rno를 가져가서 rno를 first로 하는 댓글을 추가한다. insert문
+		
+		
+		
+		return "blog/blogcommentList";
+	}
+	
+	@GetMapping("/boardSearch") //  검색기능 구현중 - 지훈 
+	public String boardSearch(String searchContent, String murl, Model model, @RequestParam(defaultValue="1")int pageNo) {
+		logger.info("boardSearch 실행");
+		
+		List<BoardDto> list = service.searchList(searchContent, murl);
+		model.addAttribute("list", list);
+		return "blog/blogList";
 	}
 	
 }

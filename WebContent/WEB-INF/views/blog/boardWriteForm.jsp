@@ -144,7 +144,7 @@
 					});
 				}
 			</script>
-			<a href="blog" class="genric-btn danger-border radius">취소</a>
+			<a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}" class="genric-btn danger-border radius">취소</a>
 		</div>
 		<!-- 글쓰기 버튼 끝 (확인) -->
 	</div>

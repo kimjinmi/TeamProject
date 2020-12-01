@@ -89,23 +89,15 @@ public class SettingController {
 
 				//이웃 리스트 페이지
 	@GetMapping("/myneighborlist")
-	public String myneighborlist(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) { //http://localhost:8080/teamproject
+	public String myneighborlist(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) { 
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
 		//페이징
-		logger.info("    !!!!!!!!!!!!SessionMemail: " + sessionMemail);
-		int totalRows = service.getTotalMyRownList(sessionMemail); //
-		logger.info("    !!!!!!!!!!!!totalRows: " + totalRows);
-
+		int totalRows = service.getTotalMyRownList(sessionMemail);
 		PagerDto pager = new PagerDto(sessionMemail, 3, 5, totalRows, pageNo);
-		logger.info(" 33333333333333pager : " + pager);
-
 		List<NeighborDto> list = service.getNighborList(pager);
-		logger.info("555555555555555ist : " + list);
-
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", list);
-
 		return "setting/myneighborlist";
 	}
 	

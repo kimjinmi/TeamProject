@@ -36,4 +36,8 @@
 		delete from reply where rno=#{rno}
 	</delete>
 
+	<insert id="addComent" parameterType="int">
+		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
+		valuse(seq_reply_rno.nextval, #{rcontent}, #{rno}, #{meamil}, #{bno}, sysdate )
+	</insert>
 </mapper>

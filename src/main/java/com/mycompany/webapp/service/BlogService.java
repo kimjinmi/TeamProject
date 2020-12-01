@@ -120,12 +120,16 @@ public class BlogService {
 	public BoardDto boardLikeCount(int bno) {
 		BoardDto list = boardDao.boardLikeCount(bno);
 		return list;
-		
 	}
 
 	public int getTotalRows(String userUrl) {
 		int totalRows = boardDao.userBoardCountAll(userUrl);
 		return totalRows;
+	}
+
+	public int heartCheck(String SessionMemail, int bno) {
+		int row = boardDao.heartCheck(SessionMemail, bno);
+		return row;
 	}
 
 	//-------------진미 친구구현
@@ -137,14 +141,42 @@ public class BlogService {
 	//친구추가
 	public void addneighbor(NeighborDto neighbor) {
 		neighborDao.insertneighbor(neighbor);
-		
 	}
 
+	public void likeadd(int bno) {
+		boardDao.likeadd(bno);
+	}
 
-	//----------- 선 ---------
-	/*public void upload(BoardDto board) {
-		boardDao.insert(board);
-	}*/
-	//----------- 선 ---------
+	// 게시물 수정 bno 얻기 (선)
+	public BoardDto getBoardContentBno(int bno) {
+		BoardDto board = boardDao.selectContentBno(bno);
+		return board;
+	}
+	
+	// 게시물 수정 update (선)
+	public void boardUpdate(BoardDto board) {
+		boardDao.update(board);
+	}
+	
+	public void likeinfo(int bno, String sessionMemail) {
+		boardDao.likeinfo(bno, sessionMemail);
+	}
+
+	public void likedsub(int bno) {
+		boardDao.likesub(bno);
+	}
+
+	public void likeinfoDelete(int bno, String sessionMemail) {
+		boardDao.likeinfoDelete(bno, sessionMemail);
+	}
+
+	public void addComment(int rno) {
+		replyDao.addComent(rno);
+	}
+
+	public List<BoardDto> searchList(String searchContent, String murl) {
+		List<BoardDto> list = boardDao.searchList(searchContent, murl);
+		return list;
+	}
 
 }

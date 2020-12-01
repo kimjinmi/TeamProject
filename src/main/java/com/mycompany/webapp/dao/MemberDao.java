@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 
 @Repository
 public class MemberDao {
@@ -70,9 +71,16 @@ public class MemberDao {
 	}
 
 	
-
 	
-
+	public int menabledThing() {
+		int totalRows = sst.selectOne("mybatis.mapper.member.menabledThing");
+		return totalRows;
+	}
 	
+	public List<MemberDto> selectenabled(PagerDto pager) {
+		List<MemberDto> list = sst.selectList("mybatis.mapper.member.selectPageList",pager);
+		return list;
+	}
+
 
 }

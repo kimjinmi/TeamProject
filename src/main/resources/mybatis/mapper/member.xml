@@ -52,5 +52,23 @@
 		UPDATE member SET mrole=#{mrole}
 		WHERE memail=#{memail}
 	</update>
-</mapper>
 
+	<!-- 영아 : enabled 1인 사람 중 이메일 지정해서 불러오기 -->
+	
+	<select id="menabledThing" parameterType="int" resultType="int"> 
+	select count(*)
+	from member
+	where menabled=1
+	</select>
+	
+	<select id="selectPageList" resultType="member"> 
+	select memail, menabled, mnickname, mphonenum, mintro, mmyimage
+	from (
+		select rownum as rnum, memail, menabled, mnickname, mphonenum, mintro, mmyimage
+		from member
+		where menabled=1 and rownum &lt;=#{endRowNo}
+	)
+	where rnum &gt;=#{startRowNo}
+	</select>
+	
+</mapper>
