@@ -66,7 +66,7 @@
 			},
 			success : function(data) {
 				$("#comments-area").html(data);
-				alert("댓글 온로드");
+				
 			}
 		});
 		
@@ -77,12 +77,13 @@
 			data : {bno:bno},
 			success : function(data){
 				$("#heartbox_p").html(data);
-				alert("하트박스 온로드");
+				
 			}
 		});
-		
-	
 	}
+	
+	
+	
    </script>
 
 	<!-- ? Preloader Start -->

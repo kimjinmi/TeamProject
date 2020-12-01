@@ -232,7 +232,7 @@
 
 <!-- 게시물 좋아요 갯수 조회 -->
 	<select id="boardLikeCount" parameterType="int" resultType="board">
-		select blike 
+		select *
 		from board
 		where bno=#{bno} 
 	</select>
@@ -256,7 +256,26 @@
 	</select>
 	
 	<select id="heartCheck" parameterType="map" resultType="int">
-		select count(*) from liked where bno=#{bno} AND memail=#{SessionMemail}
+		select count(*) from liked where bno= #{bno} AND memail=#{SessionMemail}
 	</select>
+	
+	<update id="likeadd" parameterType="int">
+		update board set blike = nvl(to_number(blike), 0) + 1 where bno = #{bno}
+	</update>
+	
+	<update id="likesub" parameterType="int">
+		update board set blike = nvl(to_number(blike), 0) - 1 where bno = #{bno}
+	</update>
+	
+	<insert id="likeinfo" parameterType="map">
+		insert into liked(lno, bno, memail, ldate)
+		values (seq_liked_lno.nextval, #{bno}, #{sessionMemail}, sysdate)
+	</insert>
+	
+	<delete id="likeinfoDelete" parameterType="map">	
+		delete from liked where bno=#{bno} AND memail = #{sessionMemail}
+	</delete>
+	
+	
 </mapper>
 

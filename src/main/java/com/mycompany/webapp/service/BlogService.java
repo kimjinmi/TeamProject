@@ -128,11 +128,11 @@ public class BlogService {
 		return totalRows;
 	}
 
-<<<<<<< HEAD
 	public int heartCheck(String SessionMemail, int bno) {
 		int row = boardDao.heartCheck(SessionMemail, bno);
 		return row;
-=======
+	}
+
 	//-------------진미 친구구현
 	public int neighorexist(String userUrl, String memail) {
 		int existRows = neighborDao.neighorexist(userUrl, memail);
@@ -142,8 +142,26 @@ public class BlogService {
 	//친구추가
 	public void addneighbor(NeighborDto neighbor) {
 		neighborDao.insertneighbor(neighbor);
+	}
+
+	public void likeadd(int bno) {
+		boardDao.likeadd(bno);
 		
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+	}
+
+	public void likeinfo(int bno, String sessionMemail) {
+		boardDao.likeinfo(bno, sessionMemail);
+		
+	}
+
+	public void likedsub(int bno) {
+		boardDao.likesub(bno);
+		
+	}
+
+	public void likeinfoDelete(int bno, String sessionMemail) {
+		boardDao.likeinfoDelete(bno, sessionMemail);
+		
 	}
 
 

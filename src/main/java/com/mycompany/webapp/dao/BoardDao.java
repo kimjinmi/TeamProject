@@ -160,5 +160,35 @@ public class BoardDao {
 	}
 
 
+	public void likeadd(int bno) {
+		sst.update("mybatis.mapper.board.likeadd", bno);
+		
+	}
+
+
+	public void likeinfo(int bno, String sessionMemail) {
+		Map map = new HashMap();
+		map.put("bno", bno);
+		map.put("sessionMemail", sessionMemail);
+		sst.insert("mybatis.mapper.board.likeinfo", map);
+		
+	}
+
+
+	public void likesub(int bno) {
+		sst.update("mybatis.mapper.board.likesub", bno);
+		
+	}
+
+
+	public void likeinfoDelete(int bno, String sessionMemail) {
+		Map map = new HashMap();
+		map.put("bno", bno);
+		map.put("sessionMemail", sessionMemail);
+		sst.delete("mybatis.mapper.board.likeinfoDelete", map);
+		
+	}
+
+
 	
 }

@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.BlogService;
@@ -129,7 +130,7 @@ public class BlogController {
 		 List<BoardDto> list = service.getBoardList(pager); 
 		logger.info("list 값 : " + list);
 		
-		String memail = (String) session.getAttribute("sessionMemail");
+		
 		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
 		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
@@ -162,15 +163,6 @@ public class BlogController {
 		return "blog/blog_write";
 	}*/
 	
-	
-	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
-	@RequestMapping("/categoryListLinkBoard")	
-	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
-			logger.info("실행되는건가");
-			List<BoardDto> bcno = service.bcno(cno, murl);
-			model.addAttribute("bcno", bcno);
-			return "blog/categoryListLinkBoard";
-		}
 
 	
 	/*
@@ -349,15 +341,13 @@ public class BlogController {
 	
 	@GetMapping("/heartStatus")
 	public String heartStatus(int bno, Model model, HttpSession session) {
-		logger.info("##############     heartStatus 실행 ##################");
-		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 가져온다.
-		model.addAttribute("likecount", likecount);
-		logger.info("heartStatus 실행");
-		logger.info("좋아요 갯수는 : " + likecount.getBlike());
-		String SessionMemail = (String) session.getAttribute("SessionMemail");
+		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 model.addAttribute("likecount", likecount);
+		 String SessionMemail = (String) session.getAttribute("SessionMemail");
+		 int heartCheck = service.heartCheck(SessionMemail, bno); 
 		
-		
-		int row = service.heartCheck(SessionMemail, bno);
+		 logger.info("하트체크 : " + heartCheck);
+		 model.addAttribute("heartCheck", heartCheck);
+		 model.addAttribute("likecount", likecount);
 		return "blog/heartSatatus";
 	}
 
@@ -391,6 +381,24 @@ public class BlogController {
 		out.flush();
 		out.close();
 
+	}
+	
+	@PostMapping("/heartClick")
+	public String heartClick(int bno, HttpSession session, int heartCheck) {
+		
+		// 검정 하트일때만 실행
+		if(heartCheck  == 0) {
+		logger.info("좋아요 더하기");
+		service.likeadd(bno);
+		service.likeinfo(bno, (String) session.getAttribute("sessionMemail"));
+		}else if(heartCheck > 0) {
+		// 빨간 하트일때만 실행
+			logger.info("좋아요 빼기");
+		service.likedsub(bno);
+		service.likeinfoDelete(bno, (String) session.getAttribute("sessionMemail"));
+		}
+		
+		return "blog/heartSatatus";
 	}
 	
 }
