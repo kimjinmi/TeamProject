@@ -277,8 +277,9 @@
 		delete from liked where bno=#{bno} AND memail = #{sessionMemail}
 	</delete>
 	
-	<select id="searchList" parameterType="String" resultType="board">
+	<select id="searchList" parameterType="map" resultType="board">
 		select * from board where btitle like '%' ||  #{searchContent} || '%'  OR bcontent like '%' ||  #{searchContent} || '%'
+		AND murl = #{murl}
 	</select>
 </mapper>
 

@@ -411,11 +411,11 @@ public class BlogController {
 	}
 	
 	@GetMapping("/boardSearch") //  검색기능 구현중 - 지훈 
-	public String boardSearch(String searchContent, Model model) {
+	public String boardSearch(String searchContent, String murl, Model model, @RequestParam(defaultValue="1")int pageNo) {
 		logger.info("boardSearch 실행");
-		List<BoardDto> list = service.searchList(searchContent);
-		model.addAttribute("list", list);
 		
+		List<BoardDto> list = service.searchList(searchContent, murl);
+		model.addAttribute("list", list);
 		return "blog/blogList";
 	}
 	

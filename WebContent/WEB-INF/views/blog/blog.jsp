@@ -211,7 +211,7 @@
                            			$.ajax({
                            				url:"boardSearch",
                            				method:"get",
-                           				data:{searchContent:searchContent},
+                           				data:{searchContent:searchContent, murl:${member.murl}},
                            				success:function(data){
                            					alert("boardSearch ajax 실행");
                            				}
