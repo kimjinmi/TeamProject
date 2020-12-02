@@ -11,9 +11,9 @@ var togglehide;
 		<div class="single-comment justify-content-between d-flex">
 
 			<div class="user justify-content-between d-flex">
-				<div class="thumb">
+				<!-- <div class="thumb">
 					<img src="assetsx/img/blog/comment_1.png" alt="">
-				</div>
+				</div> -->
 
 				<div class="media align-items-center">
 					<div style="margin-right: 23px">
@@ -22,6 +22,7 @@ var togglehide;
 					</div>
 					<div class="desc" id="desc">
 						<p class="comment">${comment.rcontent}</p>
+						<p class="comment" id="${comment.rno }"><input type="text"/></p>
 						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center">
 								<h5>
@@ -44,31 +45,44 @@ var togglehide;
 										  method:"get",
 										  success:function(data){
 											  alert("addComment success 실행");
-										  }
-										  
+										  }			  
 									  });
 								  }
 								</script>
-								
-					
 							</div>
-							
 						</div>
 						<c:if test="${comment.murl == SessionMurl}">
 									<a href="javascript:commentDelete(${comment.rno})" class="genric-btn danger small">삭제</a>
 									<a href="javascript:commentModify(${comment.rno })" class="genric-btn primary small">수정(미완성)</a>
 									
 						<script type="text/javascript">
-							function commentModify(rno){
-								alert("commentModify");
-								 var tags = '<textarea name="test" id="test" cols="30" rows="30"></textarea>';	 
+						 	function commentModify(rno){
+						 		
+						 		$("#${comment.rno}").toggle();
+						 		
+								/* alert("commentModify 실행");
+						 		$.ajax({
+						 			url : "commentModify",
+						 			data : {rno:rno, rcontent:rcontent},
+						 			method : "post",
+						 			success: function(data){
+						 				alert("commentModify 실행");
+						 				onload();
+						 			}
+						 			
+						 			
+						 		}); */
+								
+								
+								
+								/*  var tags = '<textarea name="test" id="test" cols="30" rows="30"></textarea>';	 
 								 alert(tags);
-								${"#desc"}.html(tags);
+									${"#desc"}.html(tags); */
 								
 							}
-						
+						 
 							function commentDelete(rno){	
-									
+								alert(${comment.rno});
 								 if(confirm("정말로 삭제 하시겠습니까?")){
 								 	$.ajax({
 										url: "commentDelete",
@@ -76,19 +90,13 @@ var togglehide;
 										success: function(data){
 										// 삭제는 됬고  댓글 리스트를  새로고침 해야함	
 										onload();
-										
 										//location.href="blog_details?bno=${comment.bno}";		
 										}
 									}); 
 							 	}  
 							}
 						</script>	
-						</c:if>
-						
-						
-						
-									
-								
+						</c:if>	
 					</div>
 				</div>
 			

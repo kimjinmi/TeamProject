@@ -501,4 +501,13 @@ public class BlogController {
 		return "blog/neighborlist";
 	}
 	
+	@PostMapping("/commentModify")
+	public String commentModify(int rno, String rcontent) {
+		logger.info("commentModify 컨트롤러 실행");
+		logger.info("rno = "+rno);
+		logger.info("rcontent = " + rcontent);
+		
+		return "blog/blogcommentList";
+	}
+	
 }
