@@ -9,7 +9,10 @@ public class DisabledDto {
 	private int dno;	//비활성화 유저 번호
 	private String memail;	//비활성화 유저 이메일
 	private String dreason;	//비활성화 된 이유
-	@DateTimeFormat(pattern="yyyy-MM-dd") private Date date;	//비활성화된 날짜
+	@DateTimeFormat(pattern="yyyy-MM-dd") private Date ddate;	//비활성화된 날짜
+	private String mmyimage;
+	private String mnickname;
+	
 	public int getDno() {
 		return dno;
 	}
@@ -28,12 +31,23 @@ public class DisabledDto {
 	public void setDreason(String dreason) {
 		this.dreason = dreason;
 	}
-	public Date getDate() {
-		return date;
+	public Date getDdate() {
+		return ddate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(Date ddate) {
+		this.ddate = ddate;
 	}
-	
+	public String getMmyimage() {
+		return mmyimage;
+	}
+	public void setMmyimage(String mmyimage) {
+		this.mmyimage = mmyimage;
+	}
+	public String getMnickname() {
+		return mnickname;
+	}
+	public void setMnickname(String mnickname) {
+		this.mnickname = mnickname;
+	}
 	
 }

@@ -9,19 +9,17 @@
 	values (SEQ_DISABLED_DNO.nextval, #{memail}, #{dreason}, sysdate)
 	</insert>
 
-	<select id="mdisabledThing" parameterType="int" resultType="int"> 
+	<select id="mdisabledThing" resultType="int"> 
 		SELECT count(*)
-		FROM member
-		WHERE menabled=0
+		FROM disabled
 	</select>
 
 	<select id="DisabledPageList" resultType="disabled">
-	     
-        	SELECT dno, memail, dreason, ddate
+        	SELECT dno, memail, dreason, ddate, mmyimage, mnickname
 		FROM (
-			SELECT rownum as rnum, dno, memail, dreason, ddate
-			FROM disabled
-			WHERE rownum &lt;=#{endRowNo}
+			SELECT rownum as rnum, dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
+			FROM disabled d, member m
+			WHERE d.memail = m.memail and rownum &lt;=#{endRowNo}
 		)
 		WHERE rnum &gt;=#{startRowNo}
 	</select>	
@@ -32,6 +30,13 @@
      from disabled d, member m
      where d.memail = m.memail and d.memail=#{memail}
 	</select> -->
+	
+		<!-- 영아 : 활성화인 회원을 비활성화(0)으로 변경하기 
+	<select id="changeToEnabled" parameterType="String" resultType="member">
+		UPDATE member
+	    SET menabled=1
+	    WHERE memail=#{memail}
+	</select>-->
 	
 	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
 </mapper>

@@ -134,6 +134,11 @@ public class SettingService {
 		return rows;
 	}
 
+	/*public int getTotalMyLikeRow(String sessionMemail) {
+		int totalMyRows = neighbordao.mylikeCount(sessionMemail);
+		return totalMyRows;
+	}*/
+
 
 	
 	//---------------------------------------영아------------------------------------------

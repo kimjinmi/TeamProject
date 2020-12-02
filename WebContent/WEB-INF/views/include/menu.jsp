@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <div class="col-xl-2 col-lg-2">
 	<div class="logo">
 		<br/>
@@ -13,7 +14,7 @@
 		<ul id="navigation">
 			<li><a href="<%=application.getContextPath()%>/">HOME</a></li>
 			<li><a href="<%=application.getContextPath()%>/aboutus/about">ABOUT</a></li>
-			<li><a href="#">PROJECT</a>
+			<li><a href="#">STORY</a>
 	            <ul class="submenu">
 					<li><a href="<%=application.getContextPath()%>/ranking/ranking">RANKING</a></li>
 					<li><a href="<%=application.getContextPath()%>/contents/contents">CONTENTS</a></li>
@@ -42,16 +43,14 @@
 			<li>
 				<div class="header-right-btn ml-40">
 					<sec:authorize access="isAnonymous()">
-						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn btn-sm">SIGN UP</a> 
-						<a href="<%=application.getContextPath()%>/signin/content" class="btn btn-sm">SIGN IN</a>
+						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn" style="border-radius: 20px;">SIGN UP</a> 
+						<a href="<%=application.getContextPath()%>/signin/content" style="margin-left: 3px; border-radius: 20px;" class="btn">SIGN IN</a>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<form method="post" action="<%=application.getContextPath()%>/SIGNOUT">
-							
-							<input class="btn btn-info" type="submit" value='SIGNOUT'/>
+							<input style="color: #fff" class="btn" type="submit" value='SIGNOUT'/>
 						</form>
 					</sec:authorize>
-				
 				</div>
 			</li>
 		</ul>
