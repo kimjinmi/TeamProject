@@ -155,6 +155,26 @@ public class SettingController {
 		out.flush();
 		out.close();
 	}
+
+	/*선명 - 댓글 관리*/
+	@RequestMapping("/mycommentlist")
+	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
+		
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		
+		//페이징
+		int totalRows = service.getTotalReplyRows(SessionMurl); //
+		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
+		List<ReplyDto> replyList = service.getReplyListPage(pager);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("replyList", replyList);
+		
+	
+		return "setting/mycommentlist";
+	}
+	
 	/*선명 - 댓글 관리 리스트 전체,개별삭제 */
 	@RequestMapping("/deleteReply")
 	public void deleteReply(@RequestParam(value="chbox[]")List<String> chbox, HttpSession session, HttpServletResponse response, ReplyDto reply) throws Exception {

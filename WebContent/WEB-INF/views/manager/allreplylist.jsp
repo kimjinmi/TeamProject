@@ -2,16 +2,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<style>
-tr, th, td{
-padding: 10px;
-overflow:hidden;
-text-overflow:ellipsis;
-
-
-}
-
-</style>
 <script type="text/javascript">
 function replydelete(rno){
 	$.ajax({
@@ -25,14 +15,14 @@ function replydelete(rno){
 	});
 }
 </script>
-<h2 style="color: #2d2d2d; display:inline;">댓글 관리</h2>
+	<h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allboardlist()">게시글 관리</a></h2>/
+	<u><h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allreplylist()">댓글 관리</a></h2></u>
 
 <hr style="margin-top:12px;">
 
 
 	<table style="text-align:center; width: 90%">
 		<colgroup>
-			<col width="5%">
 			<col width="20%">
 			<col width="30%">
 			<col width="20%">
@@ -41,7 +31,6 @@ function replydelete(rno){
 		</colgroup>
 		<thead>
 			<tr style="background-color:#FBF9FF;">
-				<th scope="col">no</th>
 				<th scope="col">title</th>
 				<th scope="col">reply</th>
 				<th scope="col">replywriter</th>
@@ -51,7 +40,6 @@ function replydelete(rno){
 		</thead>
 			<c:forEach var="reply" items="${list}">
 				<tr style="border-spacing: 5px;">
-					<td>${reply.rno}</td>
 					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${reply.bno}">${reply.btitle}</a></td>
 					<td>${reply.rcontent}</td>
 					<td>${reply.memail}</td>
@@ -62,7 +50,7 @@ function replydelete(rno){
 			
 		
 			<tr>
-				<td colspan="5" style="text-align:center;">
+				<td colspan="4" style="text-align:center;">
 					<a class="genric-btn primary-border small" href="javascript:allreplylist(1)">처음</a>
 					
 					<c:if test="${pager.groupNo >1}">

@@ -53,6 +53,13 @@ public class ReplyDao {
 		sst.insert("mybatis.mapper.reply.addComent", rno);
 		
 	}
+
+	public int myReplyCount(String memail) {
+		int rows = sst.selectOne("mybatis.mapper.reply.myReplyCount", memail);
+		return rows;
+	}
+
+
 	
 	
 
