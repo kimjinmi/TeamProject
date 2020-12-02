@@ -29,33 +29,7 @@ function searchboarddelete(bno,value,search){
 <h2 style="color: #2d2d2d; display:inline;">게시글 관리</h2>
 
 <hr style="margin-top:12px;">
-	<div class="container">
-		<form method="post" id="searchboard">
-			<div class="row">
-				<div class="col-md-2" style="padding: 10px;">
-					<div class="form-select">
-						<select name="value" id="value" style="padding: 8px;">
-							<option value="btitle" selected>title</option>
-							<option value="bcontent">content</option>
-							<option value="memail">writer</option>
-						</select>
-					</div>
-					
-				</div>
-				<div class="col-md-8" style="padding: 10px;">
-					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
-				</div>
-				<div class="col-md-2" style="padding: 10px;">
-					<a href="javascript:searchboardfirst()"><i class="fa fa-search" aria-hidden="true"></i></a>
-				</div>
-			</div>
-		</form>
-	</div>
-		
-	
 	<p></p>
-
-
 	<table style="text-align:center; width: 90%">
 		<colgroup>
 			<col width="5%">
@@ -122,6 +96,29 @@ function searchboarddelete(bno,value,search){
 			</tr>
 		
 	</table>
+	<p></p>
+	<div class="container">
+		<form method="post" id="searchboard">
+			<div class="row">
+				<div class="col-md-2" style="padding: 10px;">
+					<div class="form-select">
+						<select name="value" id="value" style="padding: 8px;">
+							<option value="btitle" selected>title</option>
+							<option value="bcontent">content</option>
+							<option value="memail">writer</option>
+						</select>
+					</div>
+					
+				</div>
+				<div class="col-md-8" style="padding: 10px;">
+					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
+				</div>
+				<div class="col-md-2" style="padding: 10px;">
+					<a href="javascript:searchboardfirst()"><i class="fa fa-search" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</form>
+	</div>
 		
 
 	

@@ -21,25 +21,22 @@
 					
 	            </ul>
 	        </li>
-            <li><a href="#">BLOG</a>
-            	<ul class="submenu">
-            		<c:if test="${SessionMurl == null }">
-            		<li><a href="<%=application.getContextPath()%>/signin/content">BLOG</a></li>
-            		</c:if>
-            		<c:if test="${SessionMurl != null }">
-            		<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}">BLOG</a></li>
-            		</c:if>
-					<%-- <li><a href="<%=application.getContextPath()%>/blog/blog_details">BLOG_DETAILS</a></li> --%>
-					<li><a href="<%=application.getContextPath()%>/setting/content">SETTING</a></li>
-					<sec:authorize access="hasRole('ROLE_MANAGER')">
-						<li><a href="<%=application.getContextPath()%>/manager/content">MANAGER</a></li>
-					</sec:authorize>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<li><a href="<%=application.getContextPath()%>/admin/content">ADMIN</a></li>
-					</sec:authorize>
-					
-				</ul>
-			</li>
+	        <sec:authorize access="isAuthenticated()">
+	            <li><a href="#">BLOG</a>
+	            	<ul class="submenu">
+	            		<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}">BLOG</a></li>
+	            		
+						<%-- <li><a href="<%=application.getContextPath()%>/blog/blog_details">BLOG_DETAILS</a></li> --%>
+						<li><a href="<%=application.getContextPath()%>/setting/content">SETTING</a></li>
+						<sec:authorize access="hasRole('ROLE_MANAGER')">
+							<li><a href="<%=application.getContextPath()%>/manager/content">MANAGER</a></li>
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_ADMIN')">
+							<li><a href="<%=application.getContextPath()%>/admin/content">ADMIN</a></li>
+						</sec:authorize>
+					</ul>
+				</li>
+			</sec:authorize>
 			<li><a href="<%=application.getContextPath()%>/contact/contact">CONTANCT</a></li>
 			<!-- Header btn -->
 			<li>

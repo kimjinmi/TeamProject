@@ -137,7 +137,7 @@
       <!-- Hero End -->
       <!--? Blog Area Start -->
       <section class="blog_area single-post-area section-padding">
-         <div class="container" style="margin: 0px 55px;">
+         <div class="container" >
             <div class="row">
                <div class="col-lg-4">
                   <div class="blog_right_sidebar">
@@ -151,39 +151,41 @@
                         <p>${member.mintro}</p>
                         <hr/>
                         <!-- 게시글 작성 버튼 -->
-                        <c:if test="${member.murl==SessionMurl}">		<!-- member가 가지고 있는 murl과 session에 저장된 murl이 같을 때 (내 블로그일 때) -->
-							<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
-				 				 <script type="text/javascript">
-                          			 function boardWrite() {
-                            			$.ajax({
-                                 			url: "boardWrite",
-                               				success:function(data){
-                                    			$("#categoryListLinkBoard").html(data);
-                                 			}
-                              			});
-                           			}
-                       			 </script>
-						</c:if>
+                        <c:if test="${SessionMurl != null}">
+	                        <c:if test="${member.murl==SessionMurl}">		<!-- member가 가지고 있는 murl과 session에 저장된 murl이 같을 때 (내 블로그일 때) -->
+								<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+					 				 <script type="text/javascript">
+	                          			 function boardWrite() {
+	                            			$.ajax({
+	                                 			url: "boardWrite",
+	                               				success:function(data){
+	                                    			$("#categoryListLinkBoard").html(data);
+	                                 			}
+	                              			});
+	                           			}
+	                       			 </script>
+							</c:if>
                        
                        
                         <!-- 친구 추가 버튼 -->
-                        <c:if test="${existRows==0}">
-                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
-                        		<script type="text/javascript">
-                        			function neighborAdd(memail, murl){
-                        				$.ajax({
-                        					url:"neighborAdd",
-                        					data:{nememail:memail, nemurl:murl},
-                        					success:function(data){
-                        						if(data.result == "success"){
-                        							location.href = "blog?UserUrl="+murl;
-                        						}
-                        					}
-                        					
-                        				});
-                        			}
-                        		</script>
-                        	
+	                        <c:if test="${existRows==0}">
+	                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
+	                        		<script type="text/javascript">
+	                        			function neighborAdd(memail, murl){
+	                        				$.ajax({
+	                        					url:"neighborAdd",
+	                        					data:{nememail:memail, nemurl:murl},
+	                        					success:function(data){
+	                        						if(data.result == "success"){
+	                        							location.href = "blog?UserUrl="+murl;
+	                        						}
+	                        					}
+	                        					
+	                        				});
+	                        			}
+	                        		</script>
+	                        	
+	                        </c:if>
                         </c:if>
                      </div>
                         
