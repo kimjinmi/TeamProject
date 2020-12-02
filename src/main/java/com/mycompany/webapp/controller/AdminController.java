@@ -55,7 +55,7 @@ public class AdminController {
 		return "admin/managersetting";
 	}
 	
-	//----------------------------------------------------------------영아--------------------------------------------------------------------//
+	//-------------------------------------------------------------영아 --- 시작 -----------------------------------------------------------------//
 	
 			//admin - 회원 관리 - abled된 사람들(1)을 찾아서 enabled(0)으로 바꾸기
 			
@@ -84,6 +84,7 @@ public class AdminController {
 	public String disabledmember(@RequestParam(defaultValue="1")int pageNo, Model model, HttpSession session) {
 		
 		int totalRows = service.mdisabledRows();
+		logger.info("totalRows" + totalRows);
 		PagerDto pager = new PagerDto(3, 5, totalRows, pageNo);
 		List<DisabledDto> mdisabled = service.pickedDisabledPerson(pager);
 		model.addAttribute("pager", pager);
@@ -92,7 +93,7 @@ public class AdminController {
 	return "admin/disabledmember";
 	}
 	
-	//----------------------------------------------------------------영아--------------------------------------------------------------------//
+	//-------------------------------------------------------------영아 - 끝 ---------------------------------------------------------------//
 	
 	@GetMapping("/managerDelete")
 	public void managerDelete(String memail, HttpServletResponse response, MemberDto member) throws Exception {

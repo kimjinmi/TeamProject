@@ -10,14 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
+import com.mycompany.webapp.dao.DisabledDao;
 import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.ReplyDao;
-import com.mycompany.webapp.dto.BoardDto;
-import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
-import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class AdminService {
@@ -32,9 +30,11 @@ public class AdminService {
 	@Resource
 	private ReplyDao replydao;
 	
-	
 	@Resource
 	private CategoryDao categorydao;
+	
+	@Resource
+	private DisabledDao disableddao;
 	
 	public MemberDto sessionconnect(MemberDto member) {
 		//logger.info("service: "+member.getMemail());
@@ -54,7 +54,7 @@ public class AdminService {
 		
 	}
 
-	//-------------------------------------영아---------------------------------------
+	//-------------------------------------영아- 시작--------------------------------------
 	
 			// 이메일을 지정해서 한 사람을 선택하고 활성화(1) 되있던 것을 비활성화(0)으로 바꿈
 
@@ -70,14 +70,15 @@ public class AdminService {
 
 			//비활성화 된 회원들의 행 구하기
 	public int mdisabledRows() {
-		int totalMRows = memberdao.mdisabledThing();
+		int totalMRows = disableddao.mdisabledThing();
 		return totalMRows;
 	}
 
 			//비활성화 된 사람들 목록 페이저 만들기
 	public List<DisabledDto> pickedDisabledPerson(PagerDto pager) {
-		List<DisabledDto> list = memberdao.selectdisabled(pager);
-		return list;
+		List<DisabledDto> disPageList = disableddao.DisabledPageList(pager);
+		return disPageList;
 	}
 	
+	//-------------------------------------영아- 끝 -------------------------------------
 }
