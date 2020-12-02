@@ -189,4 +189,9 @@ public class BlogService {
 		return list;
 	}
 
+	public void commentModify(int rno, String rcontent) {
+		boardDao.commentModify(rno, rcontent);
+		
+	}
+
 }

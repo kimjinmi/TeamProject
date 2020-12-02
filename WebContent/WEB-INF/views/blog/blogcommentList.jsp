@@ -6,7 +6,7 @@ var replyinreply = false;
 var togglehide;
 </script>
 <h4>댓글</h4>
-<c:forEach var="comment" items="${commentlist}">
+<c:forEach var="comment" items="${commentlist}" varStatus = "status">
 	<div class="comment-list">
 		<div class="single-comment justify-content-between d-flex">
 
@@ -22,7 +22,7 @@ var togglehide;
 					</div>
 					<div class="desc" id="desc">
 						<p class="comment">${comment.rcontent}</p>
-						<p class="comment" id="${comment.rno }"><input type="text"/></p>
+						
 						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center">
 								<h5>
@@ -53,25 +53,22 @@ var togglehide;
 						</div>
 						<c:if test="${comment.murl == SessionMurl}">
 									<a href="javascript:commentDelete(${comment.rno})" class="genric-btn danger small">삭제</a>
-									<a href="javascript:commentModify(${comment.rno })" class="genric-btn primary small">수정(미완성)</a>
+									<a href="javascript:commentModify(${status.index})" class="genric-btn primary small">수정</a>
+									
+									<hr/>
+									<p class="comment" id="comment${status.index}" style="display:none; text-align: right;">
+										<textarea class="form-control w-100" name="comment" id="modify_content" cols="100" rows="2" placeholder="수정할 댓글을 입력하세요"></textarea>
+										<a href="javascript:modify(${comment.rno })" class="genric-btn success medium small">작성하기</a>		
+											
+									</p>
 									
 						<script type="text/javascript">
-						 	function commentModify(rno){
-						 		
-						 		$("#${comment.rno}").toggle();
+						 	function commentModify(number){
+						 	
+						 		$("#comment"+number).toggle();
 						 		
 								/* alert("commentModify 실행");
-						 		$.ajax({
-						 			url : "commentModify",
-						 			data : {rno:rno, rcontent:rcontent},
-						 			method : "post",
-						 			success: function(data){
-						 				alert("commentModify 실행");
-						 				onload();
-						 			}
-						 			
-						 			
-						 		}); */
+						 		 */
 								
 								
 								
@@ -95,7 +92,24 @@ var togglehide;
 									}); 
 							 	}  
 							}
-						</script>	
+							
+							function modify(rno){
+								
+								 var rcontent1 = $("#modify_content").val().trim();
+								 
+								
+								
+								$.ajax({
+						 			url : "commentModify",
+						 			data : {rno:rno, rcontent:rcontent1},
+						 			method : "post",
+						 			success: function(data){
+						 				onload();
+						 			}
+						 		});
+							}
+						</script>
+										
 						</c:if>	
 					</div>
 				</div>

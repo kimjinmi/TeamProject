@@ -278,6 +278,12 @@
 	</update>
 	<!-- 게시물 수정 업데이트 (선) -->
 	
+	<update id="commentModify" parameterType="map">
+		update reply
+		set rcontent=#{rcontent}
+		where rno = #{rno}
+	</update>
+	
 	<!-- 게시물 수정 업데이트 (선) -->
 	<update id="updateNoImage" parameterType="board">
 		update board
