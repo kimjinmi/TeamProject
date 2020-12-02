@@ -63,7 +63,7 @@ ul, li {
 	vertical-align: middle;
 	width: 10px;
 	height: 10px;
-	border: 2px solid #666;
+	border: 2px solid #D1B2FF;
 	background: #fff;
 	transition: 0.3s;
 	border-radius: 50%;
@@ -96,19 +96,19 @@ ul, li {
 }
 
 #pos1:checked ~.pos>label:nth-child(1) {
-	background: #666;
+	background: #A091B7;
 }
 
 #pos2:checked ~.pos>label:nth-child(2) {
-	background: #666;
+	background: #A091B7;
 }
 
 #pos3:checked ~.pos>label:nth-child(3) {
-	background: #666;
+	background: #A091B7;
 }
 
 #pos4:checked ~.pos>label:nth-child(4) {
-	background: #666;
+	background: #A091B7;
 }
 /*---------------- 선 추가 ----------------*/
 
@@ -539,13 +539,12 @@ hr {
 }
 
 .btn:hover {
-	background-position: left;
-	background-color: #FF5F21;
-	color: #fff;
 	/* background-position: left;
-	background-image: linear-gradient(to left, #FF5F21, #e6571e, #FF5F21)
-		!important;
-	color: #fff */
+	background-color: #FF5F21;
+	color: #ffffff !important; */
+	background-position: left;
+	background-color: #A091B7 !important;
+	color: #ffffff !important; 
 }
 
 .btn.focus, .btn:focus {
@@ -683,7 +682,7 @@ hr {
 }
 
 .main-btn:hover {
-	color: #FF5E00 !important
+	color: #A091B7 !important
 }
 
 .main-btn:hover::before {
@@ -2978,7 +2977,8 @@ transition
 }
 
 .header-sticky.sticky-bar {
-	background: #FF7B47
+	/* background: #FF7B47 */
+	background: #A091B7;
 }
 
 .header-sticky.sticky-bar.sticky .main-menu ul li a {

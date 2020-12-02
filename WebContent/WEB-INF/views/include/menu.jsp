@@ -43,15 +43,14 @@
 			<li>
 				<div class="header-right-btn ml-40">
 					<sec:authorize access="isAnonymous()">
-						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn">SIGN UP</a> 
-						<a href="<%=application.getContextPath()%>/signin/content" style="margin-left: 3px;" class="btn">SIGN IN</a>
+						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn" style="border-radius: 20px;">SIGN UP</a> 
+						<a href="<%=application.getContextPath()%>/signin/content" style="margin-left: 3px; border-radius: 20px;" class="btn">SIGN IN</a>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<form method="post" action="<%=application.getContextPath()%>/SIGNOUT">
 							<input style="color: #fff" class="btn" type="submit" value='SIGNOUT'/>
 						</form>
 					</sec:authorize>
-				
 				</div>
 			</li>
 		</ul>
