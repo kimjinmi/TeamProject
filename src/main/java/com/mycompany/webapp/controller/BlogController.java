@@ -490,4 +490,15 @@ public class BlogController {
 		return "blog/blogList";
 	}
 	
+	@RequestMapping("/neighborlist")
+	public String neighborlist(@RequestParam(defaultValue="1")int pageNo, HttpSession session, Model model) {
+		String memail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.neighborlistRows(memail);
+		PagerDto pager = new PagerDto(memail, 4, 4, totalRows, pageNo);
+		List<NeighborDto> list = service.getNeighborList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "blog/neighborlist";
+	}
+	
 }

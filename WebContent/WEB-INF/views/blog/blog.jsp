@@ -78,6 +78,13 @@
 				}
 			});
 			
+			$.ajax({
+				url : "neighborlist",
+				success : function(data){
+					$("#neighborlist").html(data);	
+				}
+			});
+			
 		}
 	</script>
    <!-- ? Preloader Start -->
@@ -274,7 +281,22 @@
                     	<c:if test="${member.murl==SessionMurl}">
 		                     <aside class="single_sidebar_widget popular_post_widget">
 		                           <h3 class="widget_title" style="color: #2d2d2d;">Neighbor List</h3>
-		                           <div id="neighbor list">neighbor list 추가중</div>
+		                           <div id="neighborlist"></div>
+		                           <script type="text/javascript">
+			                           function neighborlist(pageNo){
+			                        		if(!pageNo){
+			                        			pageNo = 1;
+			                        		}
+			                        		$.ajax({
+			                        			url:"neighborlist",
+			                        			data:{pageNo:pageNo},
+			                        			success:function(data) {
+			                        				$("#neighborlist").html(data);
+			                        			}
+			                        		});
+			                        		
+			                        	}
+		                           </script>
 		                     </aside>
 	                     </c:if>
 	                 </c:if>

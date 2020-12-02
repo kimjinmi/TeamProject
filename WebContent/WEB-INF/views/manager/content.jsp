@@ -145,7 +145,7 @@
 									<li><a href="javascript:allboardlist()" class="d-flex">
 										<p>전체 데이터 관리</p></a>
 										<script type="text/javascript">
-											function allboardlist(pageNo){
+											function (pageNo){
 												if(!pageNo){
 													pageNo = 1;
 												}
