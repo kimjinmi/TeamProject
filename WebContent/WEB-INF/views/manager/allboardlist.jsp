@@ -90,10 +90,10 @@ function allreplylist(pageNo){
 		
 			<tr>
 				<td colspan="4" style="text-align:center;">
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(1)">처음</a>
+					<a class="genric-btn primary-border small" href="javascript:allboardlist(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
 					
 					<c:if test="${pager.groupNo >1}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.startPageNo-1})">이전</a>
+						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.startPageNo-1})"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
@@ -105,9 +105,9 @@ function allreplylist(pageNo){
 						</c:if>
 					</c:forEach>
 					<c:if test="${pager.groupNo <pager.totalGroupNo}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.endPageNo+1})">다음</a>
+						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.endPageNo+1})"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 					</c:if>
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})">맨끝</a>
+					<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 					
 				</td>
 			</tr>
