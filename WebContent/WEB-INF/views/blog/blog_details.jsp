@@ -416,21 +416,27 @@
 								</div>
 							</div> -->
 						</div>
-						<div class="blog-author" style="margin-top:10px">
-							<div class="media align-items-center">
-								<img
-									src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
-									alt="">
-								<div class="media-body">
-									<p>돼지고기 마늘 상추 양파 된장 쌈장 고추장 와사비</p>
-									<a
-										href="https://www.coupang.com/vp/products/306264774?itemId=965657775&vendorItemId=5265041997&sourceType=srp_product_ads&isAddedCart="
-										target="_blank">
-										<h4>지금 바로 구매하기</h4>
-									</a>
-								</div>
+						
+						<c:if test="${board.blinkcontent != null }">
+							<hr/ style="margin:12px; width:100%;">
+							<div class="blog-author" style="margin:0px; padding:12px;">
+								<div class="media align-items-center">
+								<%-- 	<img
+										src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
+										alt=""> --%>
+									<div class="media-body">
+									<a class="fa fa-external-link" style="color:black; font-size:20px;"></a>
+										<a
+											href="https://www.coupang.com/vp/products/306264774?itemId=965657775&vendorItemId=5265041997&sourceType=srp_product_ads&isAddedCart="
+											target="_blank">
+											<h5> 구매하기 </h5>
+										</a>
+									</div>
 							</div>
 						</div>
+						
+						</c:if>
+			
 						<div class="comments-area" id="comments-area" style="margin-top:20px">
 							<%-- <h4>댓글</h4>
 
