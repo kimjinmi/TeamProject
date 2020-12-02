@@ -91,7 +91,7 @@
 		 		<div class="col-md-3"></div>
 					<div class="col-md-6">
 						<section class="sample-text-area" style="padding-bottom: 0; padding-top: 70px;">
-						<p><a href="<%=application.getContextPath()%>/" class="genric-btn info radius" style="width: 100%;">HOME</a></p>
+						<p><a href="<%=application.getContextPath()%>/" class="genric-btn info radius" style="width: 100%;">GO BACK HOME</a></p>
 							<hr align="left" style="border: solid 1px black; width: 100%;">
 							<div class="container box_1170" style="text-align: center; padding-bottom: 20px;">
 							<img src="<%=application.getContextPath()%>/resources/images/error500.gif"> 

@@ -98,20 +98,10 @@ public class SettingService {
 	}
 
 
-	  
-	  
-	 
-
-
 	public List<NeighborDto> myNlist(String mymemail) {
 		List<NeighborDto>  list = neighbordao.selectNlistAll(mymemail);
 		return list;
 	}
-	//게시물관리 게시물 삭제
-	public void deleteBlog(BoardDto board) {
-		int rows = boarddao.deleteBlog(board);
-	}
-
 						//내 이웃 삭제
 	public void nDelete(int nno) {
 		int rows = neighbordao.deleteByNno(nno);	
@@ -128,6 +118,23 @@ public class SettingService {
 	    List<NeighborDto> list = neighbordao.selectByPageNeList(pager); 
 	    return list; 
     }
+
+	public int getTotalRows(String sessionMurl) {
+		int rows = replydao.countAll();
+		return rows;
+	}
+
+	public void replyDelete(int rno) {
+		int rows = replydao.deleteByRno(rno);
+		
+	}
+
+	public int getTotalReplyRows(String murl) {
+		int rows = replydao.myReplyCount(murl);
+		return rows;
+	}
+
+
 	
 	//---------------------------------------영아------------------------------------------
 

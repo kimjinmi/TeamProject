@@ -179,4 +179,14 @@ public class BlogService {
 		return list;
 	}
 
+	public int neighborlistRows(String memail) {
+		int row = neighborDao.myNeighborCount(memail);
+		return row;
+	}
+
+	public List<NeighborDto> getNeighborList(PagerDto pager) {
+		List<NeighborDto> list = neighborDao.selectByPageNeList(pager);
+		return list;
+	}
+
 }

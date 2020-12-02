@@ -43,6 +43,13 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
  <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+ 
+ <style type="text/css">
+	.ck-editor__editable {
+	       min-height: 800px;
+	}
+</style>
+ 
 </head>
 
 <script type="text/javascript">
@@ -56,6 +63,7 @@
 	<script type="text/javascript">
 	var heart__status = false;
 	function onload(){
+		
 		var bno = ${board.bno};
 		
 		$.ajax({
@@ -76,10 +84,17 @@
 			method : "get",
 			data : {bno:bno},
 			success : function(data){
-				$("#heartbox_p").html(data);
-				
+				$("#heartbox_p").html(data);	
 			}
 		});
+		
+		$.ajax({
+			url : "neighborlist",
+			success : function(data){
+				$("#neighborlist").html(data);	
+			}
+		});
+		
 	}
 	
 	
@@ -143,7 +158,7 @@
 		<!-- Hero End -->
 		<!--? Blog Area Start -->
 		<section class="blog_area single-post-area section-padding">
-			<div class="container" style="margin: 0px 55px;">
+			<div class="container">
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
@@ -256,6 +271,30 @@
 									</div>
 								</c:forEach>
 							</aside>
+							<c:if test="${SessionMurl != null}">
+		                    	<c:if test="${member.murl==SessionMurl}">
+				                     <aside class="single_sidebar_widget popular_post_widget">
+				                           <h3 class="widget_title" style="color: #2d2d2d;">Neighbor List</h3>
+				                           <div id="neighborlist"></div>
+				                           
+				                           <script type="text/javascript">
+					                           function neighborlist(pageNo){
+					                        		if(!pageNo){
+					                        			pageNo = 1;
+					                        		}
+					                        		$.ajax({
+					                        			url:"neighborlist",
+					                        			data:{pageNo:pageNo},
+					                        			success:function(data) {
+					                        				$("#neighborlist").html(data);
+					                        			}
+					                        		});
+					                        		
+					                        	}
+				                           </script>
+				                     </aside>
+			                     </c:if>
+			                 </c:if>
 						</div>
 					</div>
 
@@ -269,8 +308,8 @@
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
 								<ul class="blog-info-link mt-3 mb	-4">
-									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
-									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
+									<li><a href="#"><i class="fa fa-user"></i>${board.mnickname }</a></li>
+								<!-- 	<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li> -->
 									<li><i class="fa fa-calendar" style="color: #999999"></i>
 										<fmt:formatDate value="${board.bdate}"
 											pattern="yyyy-MM-dd HH:mm:ss" /></li>
@@ -338,7 +377,7 @@
 									<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
 									<li><a href="#"><i class="fab fa-behance"></i></a></li>
 									<c:if test="${sessionMemail == board.memail}">
-										<li style="padding-right: 15px;"><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
+										<li><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
 										<script type="text/javascript">
 											function boardUpdate(bno) {
 												$.ajax({
@@ -350,7 +389,7 @@
 												});
 											}
 										</script>		
-										<li style="padding-left: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
+										<li style="margin-right: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
 										<script type="text/javascript">
 											function boardDelete(bno) {
 												$.ajax({
@@ -482,8 +521,22 @@
 									</div>
 								</div>
 								<div class="form-group">
+								<c:if test="${SessionMemail == null }">
+									<a href="javascript:needLogin()"
+										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
+								</c:if>
+								<script type="text/javascript">
+									function needLogin(){
+										
+										location.href="<%=application.getContextPath()%>/signin/content";
+									}
+								</script>
+								
+								<c:if test="${SessionMemail != null }">
 									<a href="javascript:commentWrite(${board.bno })"
 										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
+								</c:if>
+									
 									<script type="text/javascript">
 										function commentWrite(bno) {	
 											

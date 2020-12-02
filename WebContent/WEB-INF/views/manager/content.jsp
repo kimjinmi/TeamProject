@@ -102,7 +102,7 @@
 		<!-- Hero End -->
 		<!--? Blog Area Start -->
 		<section class="blog_area single-post-area section-padding">
-			<div class="container" style="margin: 0px 55px;">
+			<div class="container" >
 				<div class="row">
 				<div class="col-lg-4">
 						<div class="blog_right_sidebar">
@@ -143,9 +143,9 @@
 									</li>
 									
 									<li><a href="javascript:allboardlist()" class="d-flex">
-										<p>전체 게시글 관리</p></a>
+										<p>전체 데이터 관리</p></a>
 										<script type="text/javascript">
-											function allboardlist(pageNo){
+											function (pageNo){
 												if(!pageNo){
 													pageNo = 1;
 												}
@@ -159,45 +159,22 @@
 												
 											}
 											
-											function searchboard(pageNo){
-												if(!pageNo){
-													pageNo = 1;
-												}
-												var value = $("#value").val();
-												var search = $("#search").val();
+											function boarddelete(bno){
 												$.ajax({
-													url:"searchboard",
-													data:{value:value,search:search,pageNo:pageNo},
+													url:"boarddelete",
+													data:{bno:bno},
 													success:function(data){
-														$("#setting_result").html(data);
+														if(data.result == "success"){
+															allboardlist();
+														}
 													}
 												});
-												
 											}
 										
 										</script>
 											
 									</li>
-									<li><a href="javascript:allreplylist()" class="d-flex">
-										<p>전체 댓글 관리</p></a>
-										<script type="text/javascript">
-											function allreplylist(pageNo){
-												if(!pageNo){
-													pageNo = 1;
-												}
-												$.ajax({
-													url:"allreplylist",
-													data:{pageNo:pageNo},
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-										
-										</script>
-											
-									</li>
+									
 									<li><a href="javascript:inquirylist()" class="d-flex">
 										<p>문의사항 관리</p></a>
 										<script type="text/javascript">
@@ -233,6 +210,8 @@
 							<jsp:include page="/WEB-INF/views/manager/editcategory.jsp"/>
 						</div>
 					</div>
+				</div>
+				</div>
 				</div>
 		</section>
 		<!-- Blog Area End -->

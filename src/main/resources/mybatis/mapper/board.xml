@@ -141,6 +141,12 @@
 		
 	 -->
 
+		
+		
+		
+
+		
+
 		</select>
 		
 			<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->			
@@ -303,9 +309,9 @@
 	
 	<!-- search 이용 -->
 	<select id="userBoardSearchCount" parameterType="search" resultType="int">
-		select count(*)
-		from board
-		where ${value} like '%'|| #{search}||'%'
+		SELECT count(*)
+		FROM board b, category c
+		WHERE b.cno = c.cno and ${value} like '%'|| #{search}||'%'
 	</select>
 	
 	<select id="searchList" parameterType="map" resultType="board">

@@ -60,7 +60,6 @@ public class BlogController {
 		try {
 			connect = dataSource.getConnection();
 			connect.close();
-			logger.info("dbConnected");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,12 +78,9 @@ public class BlogController {
 		 */
 		
 		 bno = Integer.parseInt(request.getParameter("bno"));
-		 //logger.info("bno 값 확인: "+bno);
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
-		 logger.info("###############"+board.getMurl());
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
-		 logger.info("###############"+board.getMurl());
 		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
@@ -100,7 +96,6 @@ public class BlogController {
 
 	@PostMapping("/blogcommentlist")
 	public void blogcommentwrite(ReplyDto reply) {
-		logger.info(reply.getRcontent());
 		service.commentWrite(reply);
 	}
 
@@ -112,21 +107,42 @@ public class BlogController {
 			UserUrl += session.getAttribute("murl");
 		}
 		// UserUrl로 memail을 가져온다
-		//List<BoardDto> list = service.getBoardList(UserUrl);
-		//logger.info("list 값 : " + list);
+		/* List<BoardDto> list = service.getBoardList(UserUrl); */
+		
+		//진미(친구추가버튼)
 		String memail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		int existRows = -1;
+		if(!SessionMurl.equals(UserUrl)){
+			existRows = service.neighorexist(UserUrl, memail);
+		}
+		model.addAttribute("existRows", existRows);
+		
+		int totalRows = service.getTotalRows(UserUrl); // 개인당 블로그 게시물 수 
+		PagerDto pager = new PagerDto(UserUrl, 3, 5, totalRows, pageNo); // 페이저로 게시물 가져오기
+		List<BoardDto> list = service.getBoardList(pager); 
+		
+		
+		// 영아 - catelist, likelist
 		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
 		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
-		//model.addAttribute("list", list);
+		/* model.addAttribute("list", list); */
 		model.addAttribute("catelist", catelist);													 // 영아
 		model.addAttribute("member", member);													// 영아
 		model.addAttribute("likelist", likelist);													// 영아
-		logger.info(catelist.toString()); 																// 영아
-		logger.info("실행");
 		return "blog/blog";
 	}
 
+	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
+	@RequestMapping("/categoryListLinkBoard")	
+	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
+			List<BoardDto> bcno = service.bcno(cno, murl);
+			model.addAttribute("bcno", bcno);
+			return "blog/categoryListLinkBoard";
+		}
+
+	
 	/*@RequestMapping("/blog_write")
 	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
 		String memail = (String) session.getAttribute("sessionMemail");
@@ -137,15 +153,6 @@ public class BlogController {
 	}*/
 	
 	
-	//영아 - 보드 게시물 / 이메일 & cno 가 맞을 때 리스트 링크연결
-	@RequestMapping("/categoryListLinkBoard")	
-	public String categoryListLinkBoard(int cno, String murl, Model model, HttpServletRequest request) {			
-			logger.info("실행되는건가");
-			List<BoardDto> bcno = service.bcno(cno, murl);
-			model.addAttribute("bcno", bcno);
-			return "blog/categoryListLinkBoard";
-		}
-
 	
 	/*
 	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
@@ -166,7 +173,13 @@ public class BlogController {
 	}
 
 	@RequestMapping("boardWrite")
-	public void blog_write(HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {	
+	public void blog_write(Model model, MultipartFile attach, HttpSession session, BoardDto board, HttpServletResponse response) throws Exception {			
+		if (!attach.isEmpty()) {
+			String saveFileName = new Date().getTime() + "_" + attach.getOriginalFilename();
+			attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
+			board.setBimage(saveFileName);
+		}
+		
 		String SessionMurl =(String) session.getAttribute("SessionMurl");
 		board.setMurl(SessionMurl);
 		board.setBlike(0);
@@ -181,29 +194,63 @@ public class BlogController {
 		out.println(json);
 		out.flush();
 		out.close();
+		
+		/*String SessionMurl =(String) session.getAttribute("SessionMurl");
+		board.setMurl(SessionMurl);
+		board.setBlike(0);
+		service.boardWrite(board);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString();
+		
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();*/
 	}
 	
-	/*@RequestMapping("imageUpload.do")
-	public void imageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload) throws Exception {
-	    response.setCharacterEncoding("utf-8"); // 한글깨짐을 방지하기위해 문자셋 설정
-	    response.setContentType("text/html; charset=utf-8");  // 마찬가지로 파라미터로 전달되는 response 객체의 한글 설정
-	    String fileName = upload.getOriginalFilename();    // 업로드한 파일 이름
-	    byte[] bytes = upload.getBytes();  // 파일을 바이트 배열로 변환
+	@RequestMapping("/upload")
+	public void upload(MultipartFile upload, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		JSONObject jsonObject = new JSONObject();
+		if(!upload.isEmpty()) {
+			String originalFileName = upload.getOriginalFilename();
+			originalFileName += new Date().getTime() + "-" + originalFileName;
+			//File saveFile = new File("D:/MyWorkspace/photo/board/" + originalFileName);
+			File saveFile = new File("C:/temp/projectimage/boardContent/" + originalFileName);
+			upload.transferTo(saveFile);
+			jsonObject.put("uploaded", 1);
+			jsonObject.put("fileName", originalFileName);
+			jsonObject.put("url", "http://localhost:8080/teamproject/blog/boardImageDownload?fileName=" + originalFileName);
+		} 
+		String json = jsonObject.toString();
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
+	}
 	
-	    String uploadPath = "C:/temp/projectimage/board";  // 이미지를 업로드할 디렉토리
-	    
-	    OutputStream out = new FileOutputStream(new File(uploadPath + fileName));
-	    out.write(bytes);
-	    
-	    String callback = request.getParameter("CKEditorFuncNum");  // 클라이언트에 결과 표시
+	@GetMapping("/boardImageDownload")
+	public void boardImageDownload(String fileName, HttpServletResponse response, HttpServletRequest request) throws Exception {
+		// 파일의 데이터를 읽기 위한 입력 스트림 얻기
+		//String saveFilePath = "D:/MyWorkspace/photo/board/" + fileName;
+		String saveFilePath = "C:/temp/projectimage/boardContent/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+
+		// Content-Type 헤더 구성 (파일의 종류)
+		String fileType = request.getServletContext().getMimeType(fileName);
+		response.setContentType(fileType);
+
+		// 응답 HTTP의 본문 구성 (body)
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os);
+		os.flush();
+		os.close();
+		is.close();
+	}	
 	
-<<<<<<< HEAD
-	    PrintWriter printWriter = response.getWriter();
-	    String fileUrl = request.getContextPath() + "/images/" + fileName;
-	    printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
-	            + "','이미지가 업로드되었습니다.')" + "</script>");
-	    printWriter.flush();
-	}*/
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		// 게시물 삭제
@@ -291,8 +338,6 @@ public class BlogController {
 		  }
 			int bbno = reply.getBno();
 			List<ReplyDto> commentlist = service.commentList(bbno);
-			logger.info("getBno = " + bbno);
-			logger.info("commentlist 값 = " + commentlist.toString());
 			model.addAttribute("commentlist", commentlist);
 			return "blog/blogcommentList";
 
@@ -300,7 +345,6 @@ public class BlogController {
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		logger.info(fileName);
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
 		String saveFilePath = "C:/temp/projectimage/member/" + fileName;
@@ -329,10 +373,40 @@ public class BlogController {
 		os.close();
 		is.close();
 	}
+	
+	@GetMapping("/boardphotodownload")
+	public void boardphotodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//파일의 데이터를 읽기 위한 입력 스트림 얻기
+		String saveFilePath = "C:/temp/projectimage/boardContent/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+		
+		//응답 HTTP 헤더 구성
+		//1) Content-Type 헤더 구성(파일 종류)
+		ServletContext application = request.getServletContext();
+		String fileType = application.getMimeType(fileName);
+		response.setContentType(fileType);
+		
+		//다운로드할 실제 파일 이름 구성
+		//split메소드는 배열로 리턴됨
+
+		//attachment; : 브라우저가 해당 파일을 다운로드(없으면 보여줄 수 있으면 브라우저에서 보여줌, 보여줄 수 없으면 다운로드
+		response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\"");
+		
+		//3)Content-Length 헤더 구성(다운로드할 파일의 크기를 지정)
+		int fileSize = (int) new File(saveFilePath).length();
+		response.setContentLength(fileSize);
+		
+		//응답 HTTP의 바디(본문) 구성
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os); //스프링에서 제공
+		os.flush();
+		os.close();
+		is.close();
+	}
 
 	@GetMapping("/commentDelete")
 	public String commentDelete(int rno) {
-		logger.info("나와라 commentDelete Rno = " + rno);
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
@@ -349,9 +423,9 @@ public class BlogController {
 		return "blog/heartSatatus";
 	}
 
+	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
-		logger.info("blogList 컨트롤러 실행");
 		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
 		PagerDto pager = new PagerDto(murl, 2, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getBoardList(pager);
@@ -414,6 +488,17 @@ public class BlogController {
 		List<BoardDto> list = service.searchList(searchContent, murl);
 		model.addAttribute("list", list);
 		return "blog/blogList";
+	}
+	
+	@RequestMapping("/neighborlist")
+	public String neighborlist(@RequestParam(defaultValue="1")int pageNo, HttpSession session, Model model) {
+		String memail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.neighborlistRows(memail);
+		PagerDto pager = new PagerDto(memail, 4, 4, totalRows, pageNo);
+		List<NeighborDto> list = service.getNeighborList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "blog/neighborlist";
 	}
 	
 }

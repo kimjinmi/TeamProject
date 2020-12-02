@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.reply">
-	
+	<!-- 선명 - 댓글관리탭 페이징 -->
 	<select id="selectByPage" parameterType="pager" resultType="reply">
 		select rnum, rno, rcontent, rdate, bno, btitle, murl, mnickname, memail
 		 from (select rownum as rnum, rno, rcontent, rdate, bno, btitle, murl, mnickname, memail
@@ -14,6 +14,12 @@
 		        )
 		where rnum &gt;=#{startRowNo}
             
+	</select>
+	
+	<select id="myReplyCount" parameterType="String" resultType="int">
+		select count(*)
+		from reply r, board b
+		 where r.bno = b.bno and b.murl = #{murl}
 	</select>  
 	
 	<select id="countAll" resultType="int">
@@ -35,6 +41,7 @@
 	<delete id="deleteByRno" parameterType="int">
 		delete from reply where rno=#{rno}
 	</delete>
+	
 
 	<insert id="addComent" parameterType="int">
 		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)

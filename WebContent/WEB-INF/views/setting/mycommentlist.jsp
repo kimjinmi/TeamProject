@@ -10,33 +10,80 @@
 			
 		      <div class="row">
 		      	<div class="col-md-9"></div>
-		           <!-- <div class="col-md-3">게시글 전체 선택 <label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox"></label></div> -->	          
-		           <div class="col-md-3">
-		            
-		           		<input type="button" value="댓글 삭제" class="genric-btn danger radius small"/>
-		           	
-		           	
-		           </div>
-		      </div>
-		    </div>
+		            <div class="col-md-3">
+		            	<div class="allCheck">
+		            		<label for="allCheck">댓글 전체 선택 <input type="checkbox" name="allCheck" id="allCheck" ></label>
+		            		
+		            		<script type="text/javascript">
+							$("#allCheck").click(function() {
+								var chk = $("#allCheck").prop("checked");
+								if(chk) {
+									$(".chBox").prop("checked", true);
+								} else {
+									$(".chBox").prop("checked", false);
+								}
+							});
+		            		</script>
+		            		
+		            	</div> 	
+		            </div>	          
+		      	     <div class="col-md-3">
+		            	<div class="delBtn">
+		           			<button type="button" class="selectDelete_btn">선택 삭제</button>
+		           			
+		           			<script>
+							$(".selectDelete_btn").click(function() {
+								var confirm_val = confirm("정말 삭제하시겠습니까?");
 
+								if(confirm_val) {
+									var checkArr = new Array();
+
+									$("input[class='chBox']:checked").each(function() {
+										checkArr.push($(this).attr("id"));
+									});
+
+									$.ajax({
+										url : "deleteReply",
+										type : "post",
+										data : {chbox:checkArr},
+										success : function(data) {
+											if(data.result == "success") {
+												mycommentlist();
+											}
+										}
+									});
+								}
+							});
+		           			</script>
+		           		</div>
+		            </div>
+		 	   </div>
+			</div>
     	
         	<div class="blog_details">
 	        	<div class="container" style="background-color: #fbf9ff; padding:30px;">
-		         	<c:forEach var="replylist" items="${list}">  	
+		         	<c:forEach var="replyList" items="${replyList}">  	
 			         	<div class="row">
 			              <div class="col-sm-1">
-			              	<label for="confirm-checkbox"><input type="checkbox" id="confirm-checkbox" name="rowcheck"  value="${replylist.rno}"></label>
+			              	<div class="checkBox">
+			              		<label for="chBox"><input type="checkbox" id="${replyList.rno}" name="chBox" class="chBox"></label>
+			              		
+			              		<script>
+								$(".chBox").click(function() {
+									$("#allCheck").prop("checked", false)
+								});
+			              		</script>
+			             	</div>
 			              </div>
 			              <div class="col-sm-11">
-				              <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${replylist.bno}">
-				                <h2 class="blog-head" style="color: #2d2d2d;">${replylist.btitle}</h2>  
+				              <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${replyList.bno}">
+				                <h2 class="blog-head" style="color: #2d2d2d;">${replyList.btitle}</h2>  
 				              </a>
 				              <ul class="blog-info-link">
-				              	 <li><a href="#"><i class="fa fa-file"></i>${replylist.rcontent}</a></li>
-				              	 <li><a href="#"><i class="fa fa-file"></i>${replylist.memail}</a></li>  
+				              	 <li><a href="#"><i class="fa fa-file"></i>${replyList.rcontent}</a></li>
+				              	 <li><a href="#"><i class="fa fa-file"></i>${replyList.memail}</a></li>  
 				                 <li><a href="#"><i class="fa fa-calendar"></i>
-				                 <fmt:formatDate value="${replylist.rdate}" pattern="yyyy-MM-dd HH:mm:ss" /></a></li>  
+				                 <fmt:formatDate value="${replyList.rdate}" pattern="yyyy-MM-dd HH:mm:ss" /></a></li>  
 				              </ul>
 			              </div>
 			             </div>

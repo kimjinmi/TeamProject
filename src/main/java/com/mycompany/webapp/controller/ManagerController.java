@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -105,12 +106,24 @@ public class ManagerController {
 		String value = searchdto.getValue();
 		String search = searchdto.getSearch();
 		int totalRows = service.getSearchTotalBoardRows(searchdto);
+		String searchvalue = null;
+		if(value.equals("btitle")) {
+			searchvalue="title";
+		}else if(value.equals("bcontent")) {
+			searchvalue="content";
+		}else if(value.equals("b.memail")) {
+			searchvalue="blogwriter";
+		}else if(value.equals("ccontent")) {
+			searchvalue="category";
+		}
 		
-		PagerDto pager = new PagerDto(value, search, 8, 5, totalRows, pageNo);
+		PagerDto pager = new PagerDto(value, search, 5, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getUserBoardList(pager);
+		model.addAttribute("totalRows", totalRows);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
-		model.addAttribute("search", search);
+		model.addAttribute("searchdto", searchdto);
+		model.addAttribute("searchvalue", searchvalue);
 		return "manager/searchboardlist";
 	}
 	

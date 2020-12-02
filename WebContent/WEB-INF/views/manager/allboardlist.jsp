@@ -12,72 +12,73 @@ text-overflow:ellipsis;
 
 </style>
 <script type="text/javascript">
-function boarddelete(bno){
+
+function searchboardfirst(pageNo){
+	if(!pageNo){
+		pageNo = 1;
+	}
+	var value = $("#value").val();
+	var search = $("#search").val();
 	$.ajax({
-		url:"boarddelete",
-		data:{bno:bno},
+		url:"searchboard",
+		data:{value:value,search:search,pageNo:pageNo},
 		success:function(data){
-			if(data.result == "success"){
-				allboardlist();
-			}
+			$("#tableresult").html(data);
 		}
 	});
-}
-
-
-
-</script>
-<h2 style="color: #2d2d2d; display:inline;">게시글 관리</h2>
-
-<hr style="margin-top:12px;">
-	<div class="container">
-		<form method="post" id="searchboard" action="javascript:searchboard()">
-			<div class="form-group row">
-				<div class="form-select col-2">
-					<select name="value" id="value">
-						<option value="btitle" selected>title</option>
-						<option value="bcontent">content</option>
-						<option value="memail">writer</option>
-					</select><br>
-				</div>
-				<div class="col-8">
-					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
-				</div>
-				<div class="col-2">
-					<a href="#" onclick="document.getElementById('searchboard').submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
-				</div>
-			</div>
-		</form>
-	</div>
-		<script type="text/javascript">
-		
-		</script>
 	
-	<p></p>
-
-
-	<table style="text-align:center; width: 90%">
-		<colgroup>
-			<col width="5%">
-			<col width="15%">
-			<col width="35%">
-			<col width="20%">
-			<col width="20%">
-			<col width="5%">
-		</colgroup>
-		<thead>
-			<tr style="background-color:#FBF9FF;">
-				<th scope="col">no</th>
-				<th scope="col">category</th>
-				<th scope="col">title</th>
-				<th scope="col">writer</th>
-				<th scope="col">date</th>
-				<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
-			</tr>
-		</thead>
+}
+function searchboard(pageNo,value,search){
+	if(!pageNo){
+		pageNo = 1;
+	}
+	$.ajax({
+		url:"searchboard",
+		data:{value:value,search:search,pageNo:pageNo},
+		success:function(data){
+			$("#tableresult").html(data);
+		}
+	});
+	
+}
+function allreplylist(pageNo){
+	if(!pageNo){
+		pageNo = 1;
+	}
+	$.ajax({
+		url:"allreplylist",
+		data:{pageNo:pageNo},
+		success:function(data) {
+			$("#tableresult").html(data);
+		}
+	});
+	
+}
+</script>
+<div id="tableresult">
+	<u><h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allboardlist()">게시글 관리</a></h2></u>/
+	<h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allreplylist()">댓글 관리</a></h2>
+	
+	<hr style="margin-top:12px;">
+		<table style="text-align:center; width: 90%">
+			<colgroup>
+				<col width="20%">
+				<col width="35%">
+				<col width="20%">
+				<col width="20%">
+				<col width="5%">
+			</colgroup>
+			<thead>
+				<tr style="background-color:#FBF9FF;">
+					<th scope="col">category</th>
+					<th scope="col">title</th>
+					<th scope="col">blogwriter</th>
+					<th scope="col">date</th>
+					<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
+				</tr>
+			</thead>
 			<c:forEach var="board" items="${list}">
 				<tr style="border-spacing: 5px;">
-					<td>${board.bno}</td>
 					<td>${board.ccontent}</td>
 					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}">${board.btitle}</a></td>
 					<td>${board.memail}</td>
@@ -88,7 +89,7 @@ function boarddelete(bno){
 			
 		
 			<tr>
-				<td colspan="5" style="text-align:center;">
+				<td colspan="4" style="text-align:center;">
 					<a class="genric-btn primary-border small" href="javascript:allboardlist(1)">처음</a>
 					
 					<c:if test="${pager.groupNo >1}">
@@ -110,10 +111,36 @@ function boarddelete(bno){
 					
 				</td>
 			</tr>
-			<tr>
-			</tr>
+		</table>
+</div>
+	<div class="container">
+		<form method="post" id="searchboard" >
+			<div class="row">
+				<div class="col-md-2" style="padding: 10px;">
+					<div class="form-select">
+						<select name="value" id="value" style="padding: 8px;">
+							<option value="ccontent">category</option>
+							<option value="btitle">title</option>
+							<option value="bcontent">content</option>
+							<option value="b.memail">blogwriter</option>
+						</select>
+					</div>
+					
+				</div>
+				<div class="col-md-8" style="padding: 10px;">
+					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
+				</div>
+				<div class="col-md-2" style="padding: 10px;">
+					<a href="javascript:searchboardfirst()"><i class="fa fa-search" aria-hidden="true"></i></a>
+				</div>
+			</div>
+		</form>
+	</div>
+		<script type="text/javascript">
 		
-	</table>
+		</script>
+	
+	<p></p>
 		
 
 	
