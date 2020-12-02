@@ -16,11 +16,14 @@
 		</div>
 	</div>
 	<p></p> -->
-	<div class="row" style="height: 10px; padding-bottom: 5%;">
+	<div class="row" style="height: 50px; padding-bottom: 10%;">
 		<div class="col-4" style="padding-top: 0.5%;">Add to Disabled Member</div>
 		<div class="col-8">
-			<input type="text" placeholder="해당 회원을 비활성화 하려는 이유를 작성하세요."
-				onblur="this.placeholder = 'Please write why you want him or her to disable whatever they do on our website.'"
+			<input type="text" id="reason" placeholder="해당 회원의 이메일을 작성하세요."
+				onblur="this.placeholder = 'Please write down user's Email Address.'"
+				class="single-input" style="font-weight: bold;">
+			<input type="text" id="reason" placeholder="해당 회원을 비활성화 하려는 이유를 작성하세요."
+				onblur="this.placeholder = 'Please write down the reason.'"
 				class="single-input" style="font-weight: bold;">
 		</div>
 	</div>
@@ -48,7 +51,7 @@
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item"><i class="fa fa-user"
 						aria-hidden="true"></i> Email : ${mabled.memail}</li>
-					<li class="list-group-item"><i class="fa fa-bookmark"
+					<li class="list-group-item"><i class="fa fa-user"
 						aria-hidden="true"></i> Nickname : ${mabled.mnickname}</li>
 					<li class="list-group-item"><i class="fa fa-bookmark"
 						aria-hidden="true"></i> User Intro : ${mabled.mintro}</li>
@@ -58,9 +61,29 @@
 				</ul>
 			</div>
 			<div class="col-3" style="padding-top: 30px;">
-				<a
-					style="width: 90%; height: 65%; font-size: large; font-weight: bold; padding-top: 5%;"
-					class="genric-btn danger" href="javascript:adddisabledmember()">선택 회원 차단하기</a>
+				<a style="width: 90%; height: 65%; font-size: large; font-weight: bold; padding-top: 5%;"
+					class="genric-btn danger" href="javascript:adddisabledmember(${mabled.memail})">선택 회원 차단하기</a>
+					<script type="text/javascript">
+						function adddisabledmember(memail) {
+							var memail = $("#memail").val().trim();
+                        	if(memail == "") { 
+                        		$("#memailError").text("필수"); 
+                        		}	else {
+                        				$("#memailError").text(""); }
+							
+							
+							$.ajax({
+								url:"adddisabledmember",
+								data:{memail:memail},
+								success: function(data) {
+									if(data.result == "success") {
+										usersetting();
+									}
+								}							
+							});
+						}				
+					
+					</script>
 			</div>
 		</c:forEach>
 

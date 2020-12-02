@@ -2,7 +2,6 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -24,13 +23,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.MemberDto;
-import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.PagerDto;
-import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.AdminService;
-import com.mycompany.webapp.service.ManagerService;
 
 
 @Controller
@@ -83,9 +79,15 @@ public class AdminController {
 		return "admin/usersetting";
 	}
 	
-					//admin - 차단 회원 관리
+				//admin - 차단 회원 관리
 	@RequestMapping("/disabledmember")
-	public String disabledmember(Model model) {
+	public String disabledmember(@RequestParam(defaultValue="1")int pageNo, Model model, HttpSession session) {
+		
+		int totalRows = service.mdisabledRows();
+		PagerDto pager = new PagerDto(3, 5, totalRows, pageNo);
+		List<DisabledDto> mdisabled = service.pickedDisabledPerson(pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("mdisabled", mdisabled);
 
 	return "admin/disabledmember";
 	}

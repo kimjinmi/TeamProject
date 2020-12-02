@@ -88,9 +88,6 @@
 	
 		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
 		
-<<<<<<< HEAD
-=======
-		
 		select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
 		from (
 			select rownum as rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
@@ -143,11 +140,7 @@
 						order by bdate desc
 		
 	 -->
-		
-		
-		
-		
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
+
 		</select>
 		
 			<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->			

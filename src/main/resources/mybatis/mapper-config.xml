@@ -11,6 +11,7 @@
 		<typeAlias alias="search" type="com.mycompany.webapp.dto.SearchDto" />
 		<typeAlias alias="inquiry" type="com.mycompany.webapp.dto.InquiryDto" />
 		<typeAlias alias="neighbor" type="com.mycompany.webapp.dto.NeighborDto" />
+		<typeAlias alias="disabled" type="com.mycompany.webapp.dto.DisabledDto" />
 	</typeAliases> 
 </configuration>
 

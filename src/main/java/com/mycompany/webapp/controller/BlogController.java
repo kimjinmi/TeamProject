@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
@@ -202,7 +204,6 @@ public class BlogController {
 	            + "','이미지가 업로드되었습니다.')" + "</script>");
 	    printWriter.flush();
 	}*/
-=======
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		// 게시물 삭제
@@ -220,7 +221,6 @@ public class BlogController {
 		out.flush();
 		out.close();
 	}
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
 	
 	@GetMapping("/boardUpdate")
 	public String boardUpdateForm(BoardDto board, int bno, Model model) {
@@ -336,9 +336,7 @@ public class BlogController {
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
-<<<<<<< HEAD
-=======
-	
+
 	@GetMapping("/heartStatus")
 	public String heartStatus(int bno, Model model, HttpSession session) {
 		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 model.addAttribute("likecount", likecount);
@@ -350,9 +348,7 @@ public class BlogController {
 		 model.addAttribute("likecount", likecount);
 		return "blog/heartSatatus";
 	}
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject.git
 
-	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
 		logger.info("blogList 컨트롤러 실행");
