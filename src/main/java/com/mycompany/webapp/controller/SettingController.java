@@ -323,5 +323,25 @@ public class SettingController {
 		
 		return "setting/setting";
 	}*/
+	
+	@RequestMapping("/mylikelist")
+	public String mylikelist(@RequestParam(defaultValue = "1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
+		//logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		String SessionMurl = (String) session.getAttribute("SessionMurl");
+		
+		//페이징
+		/*int totalRows = service.getTotalMyLikeRow(sessionMemail); //
+		
+		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
+		
+		List<BoardDto> blogList = service.getBoardListPage(pager);*/
+		//List<BoardDto> list = service.getBoardList(sessionMemail);
+		
+//		model.addAttribute("pager", pager);
+//		model.addAttribute("blogList", blogList);
+		
+		return "setting/mylikelist";
+	}
 
 }
