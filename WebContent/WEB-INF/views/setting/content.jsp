@@ -252,9 +252,13 @@
 									<li><a href="javascript:mycommentlist()" class="d-flex">
 											<p style="padding-top: 18px;">댓글 관리</p></a>
 										<script type="text/javascript">
-										function mycommentlist(){
+										function mycommentlist(pageNo){
+											if(!pageNo) {
+												pageNo = 1;
+											}
 											$.ajax({
 												url:"mycommentlist",
+												data:{pageNo:pageNo},
 												success:function(data) {
 													$("#setting_result").html(data);
 												}

@@ -119,10 +119,22 @@ public class SettingService {
 	    return list; 
     }
 
+	public int getTotalRows(String sessionMurl) {
+		int rows = replydao.countAll();
+		return rows;
+	}
+
 	public void replyDelete(int rno) {
 		int rows = replydao.deleteByRno(rno);
 		
 	}
+
+	public int getTotalReplyRows(String murl) {
+		int rows = replydao.myReplyCount(murl);
+		return rows;
+	}
+
+
 	
 	//---------------------------------------영아------------------------------------------
 
