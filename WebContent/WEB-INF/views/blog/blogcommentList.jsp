@@ -60,8 +60,9 @@ var togglehide;
 									
 						<script type="text/javascript">
 							function commentModify(rno){
-								var tags = '<textarea name="test" id="test" cols="30" rows="4"></textarea>';
-								alert("테스트");
+								alert("commentModify");
+								 var tags = '<textarea name="test" id="test" cols="30" rows="30"></textarea>';	 
+								 alert(tags);
 								${"#desc"}.html(tags);
 								
 							}

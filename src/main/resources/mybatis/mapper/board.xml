@@ -88,11 +88,11 @@
 	
 		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
 		
-		select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
+		select rnum, bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
 		from (
-			select rownum as rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
+			select rownum as rnum, bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
 			from(
-				select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as commentnum
+				select b.bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as commentnum
 					from board b, member m, category c, (
 														select count(r.bno) as commentnum , b.bno  
 														from board b, reply r
