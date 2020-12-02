@@ -117,7 +117,6 @@ public class ManagerController {
 			searchvalue="category";
 		}
 		
-		
 		PagerDto pager = new PagerDto(value, search, 5, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getUserBoardList(pager);
 		model.addAttribute("totalRows", totalRows);
