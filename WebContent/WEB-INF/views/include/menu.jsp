@@ -13,7 +13,7 @@
 		<ul id="navigation">
 			<li><a href="<%=application.getContextPath()%>/">HOME</a></li>
 			<li><a href="<%=application.getContextPath()%>/aboutus/about">ABOUT</a></li>
-			<li><a href="#">PROJECT</a>
+			<li><a href="#">STORY</a>
 	            <ul class="submenu">
 					<li><a href="<%=application.getContextPath()%>/ranking/ranking">RANKING</a></li>
 					<li><a href="<%=application.getContextPath()%>/contents/contents">CONTENTS</a></li>
