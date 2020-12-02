@@ -137,11 +137,10 @@
       <!-- Hero End -->
       <!--? Blog Area Start -->
       <section class="blog_area single-post-area section-padding">
-<<<<<<< HEAD
-         <div class="container">
-=======
+
+
          <div class="container" >
->>>>>>> branch 'master' of https://github.com/kimjinmi/TeamProject
+
             <div class="row">
                <div class="col-lg-4">
                   <div class="blog_right_sidebar">
