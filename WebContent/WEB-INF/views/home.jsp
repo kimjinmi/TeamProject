@@ -44,6 +44,8 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+
+
 </head>
 
 <body>
@@ -90,26 +92,52 @@
 		<!--? slider Area Start-->
 		<section class="slider-area ">
 			<div class="slider-active">
-				<!-- Single Slider -->
-				
-
-				<!-- Single Slider -->
-				<div
-					class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-xl-8 col-lg-9 col-md-12">
-								<div class="hero__caption text-center">
-									<h1 data-animation="bounceIn" data-delay="0.2s">HOBBYS</h1>
-									<p data-animation="fadeInUp" data-delay="0.4s">취미 생활 공유 플랫폼
-									</p>
-									<a href="<%=application.getContextPath()%>/blog/blog_write"
-										class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
-
-								</div>
-							</div>
-						</div>
-					</div>
+				<div id="slide">
+					<input type="radio" name="pos" id="pos1" checked> 
+					<input type="radio" name="pos" id="pos2"> 
+					<input type="radio" name="pos" id="pos3"> 
+					<input type="radio" name="pos" id="pos4">
+					<ul>
+						<li>
+							<div class="col-xl-8 col-lg-9 col-md-12" style="margin-top: 200px;">
+                                <div class="hero__caption text-center">
+                                    <h1 data-animation="bounceIn" data-delay="0.2s">HOBBYS</h1>
+                                    <sec:authorize access="isAuthenticated()">
+                                    	<p data-animation="fadeInUp" data-delay="0.4s"><strong>${member.mnickname}</strong>님이 로그인하셨습니다</p>
+                                    </sec:authorize>
+                					<sec:authorize access="isAuthenticated()">
+                                   		 <a href="#" class="main-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
+                                    </sec:authorize>
+                                    <%-- <sec:authorize access="isAnonymous()">
+                                    	<p data-animation="fadeInUp" data-delay="0.4s"><strong>더 알아보기</strong> </p>
+                                    </sec:authorize> --%>
+                                    <sec:authorize access="isAnonymous()">
+                                   		 <a href="#" class="main-btn" data-animation="fadeInUp" data-delay="0.7s">더 알아보기</a>
+                                    </sec:authorize>
+									<!-- <a href="javascript:sessionconnect()" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">세션연결</a> -->
+									<script type="text/javascript">
+									function sessionconnect(){
+										$.ajax({
+											url:"sessionconnect",
+											success:function(data) {
+												$("#session_result").html(data);
+											}
+										});
+									}
+									</script>
+									<div id="session_result">
+									</div>
+                                </div>
+                            </div>
+						</li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+					<p class="pos">
+						<label for="pos1"></label> <label for="pos2"></label> <label
+							for="pos3"></label> <label for="pos4"></label>
+					</p>
 				</div>
 			</div>
 		</section>

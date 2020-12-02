@@ -2,6 +2,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <div class="col-xl-2 col-lg-2">
 	<div class="logo">
 		<br/>
@@ -42,13 +43,12 @@
 			<li>
 				<div class="header-right-btn ml-40">
 					<sec:authorize access="isAnonymous()">
-						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn btn-sm">SIGN UP</a> 
-						<a href="<%=application.getContextPath()%>/signin/content" class="btn btn-sm">SIGN IN</a>
+						<a href="<%=application.getContextPath()%>/signup/signupcheck" class="btn">SIGN UP</a> 
+						<a href="<%=application.getContextPath()%>/signin/content" style="margin-left: 3px;" class="btn">SIGN IN</a>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<form method="post" action="<%=application.getContextPath()%>/SIGNOUT">
-							
-							<input class="btn btn-info" type="submit" value='SIGNOUT'/>
+							<input style="background-color: #000000;" class="btn" type="submit" value='SIGNOUT'/>
 						</form>
 					</sec:authorize>
 				
