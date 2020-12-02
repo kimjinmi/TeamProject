@@ -63,6 +63,7 @@
 	<script type="text/javascript">
 	var heart__status = false;
 	function onload(){
+		
 		var bno = ${board.bno};
 		
 		$.ajax({
@@ -83,8 +84,7 @@
 			method : "get",
 			data : {bno:bno},
 			success : function(data){
-				$("#heartbox_p").html(data);
-				
+				$("#heartbox_p").html(data);	
 			}
 		});
 	}
@@ -276,8 +276,8 @@
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
 								<ul class="blog-info-link mt-3 mb	-4">
-									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
-									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
+									<li><a href="#"><i class="fa fa-user"></i>${board.mnickname }</a></li>
+								<!-- 	<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li> -->
 									<li><i class="fa fa-calendar" style="color: #999999"></i>
 										<fmt:formatDate value="${board.bdate}"
 											pattern="yyyy-MM-dd HH:mm:ss" /></li>
@@ -495,7 +495,7 @@
 								</c:if>
 								<script type="text/javascript">
 									function needLogin(){
-										alert("로그인이 필요 합니다.");
+										
 										location.href="<%=application.getContextPath()%>/signin/content";
 									}
 								</script>
