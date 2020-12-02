@@ -507,4 +507,11 @@ public class BlogController {
 		return "blog/neighborlist";
 	}
 	
+	@PostMapping("/commentModify")
+	public String commentModify(int rno, String rcontent) {
+		service.commentModify(rno, rcontent);
+		
+		return "blog/blogcommentList";
+	}
+	
 }

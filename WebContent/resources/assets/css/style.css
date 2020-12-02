@@ -39,11 +39,11 @@ ul, li {
 }
 
 #slide li:nth-child(1) {
-	background-image: url(../img/hero/image2.jpg);
+	background-image: url(../img/hero/image_6.png);
 }
 
 #slide li:nth-child(2) {
-	background-image: url(../img/hero/h1_hero1.png);
+	background-image: url(../img/hero/image_4.png);
 }
 
 #slide li:nth-child(3) {
@@ -63,7 +63,7 @@ ul, li {
 	vertical-align: middle;
 	width: 10px;
 	height: 10px;
-	border: 2px solid #D1B2FF;
+	border: 2px solid #fff;
 	background: #fff;
 	transition: 0.3s;
 	border-radius: 50%;

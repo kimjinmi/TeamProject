@@ -6,14 +6,14 @@ var replyinreply = false;
 var togglehide;
 </script>
 <h4>댓글</h4>
-<c:forEach var="comment" items="${commentlist}">
+<c:forEach var="comment" items="${commentlist}" varStatus = "status">
 	<div class="comment-list">
 		<div class="single-comment justify-content-between d-flex">
 
 			<div class="user justify-content-between d-flex">
-				<div class="thumb">
+				<!-- <div class="thumb">
 					<img src="assetsx/img/blog/comment_1.png" alt="">
-				</div>
+				</div> -->
 
 				<div class="media align-items-center">
 					<div style="margin-right: 23px">
@@ -22,6 +22,7 @@ var togglehide;
 					</div>
 					<div class="desc" id="desc">
 						<p class="comment">${comment.rcontent}</p>
+						
 						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center">
 								<h5>
@@ -44,31 +45,41 @@ var togglehide;
 										  method:"get",
 										  success:function(data){
 											  alert("addComment success 실행");
-										  }
-										  
+										  }			  
 									  });
 								  }
 								</script>
-								
-					
 							</div>
-							
 						</div>
 						<c:if test="${comment.murl == SessionMurl}">
 									<a href="javascript:commentDelete(${comment.rno})" class="genric-btn danger small">삭제</a>
-									<a href="javascript:commentModify(${comment.rno })" class="genric-btn primary small">수정(미완성)</a>
+									<a href="javascript:commentModify(${status.index})" class="genric-btn primary small">수정</a>
+									
+									<hr/>
+									<p class="comment" id="comment${status.index}" style="display:none; text-align: right;">
+										<textarea class="form-control w-100" name="comment" id="modify_content" cols="100" rows="2" placeholder="수정할 댓글을 입력하세요"></textarea>
+										<a href="javascript:modify(${comment.rno })" class="genric-btn success medium small">작성하기</a>		
+											
+									</p>
 									
 						<script type="text/javascript">
-							function commentModify(rno){
-								alert("commentModify");
-								 var tags = '<textarea name="test" id="test" cols="30" rows="30"></textarea>';	 
+						 	function commentModify(number){
+						 	
+						 		$("#comment"+number).toggle();
+						 		
+								/* alert("commentModify 실행");
+						 		 */
+								
+								
+								
+								/*  var tags = '<textarea name="test" id="test" cols="30" rows="30"></textarea>';	 
 								 alert(tags);
-								${"#desc"}.html(tags);
+									${"#desc"}.html(tags); */
 								
 							}
-						
+						 
 							function commentDelete(rno){	
-									
+								alert(${comment.rno});
 								 if(confirm("정말로 삭제 하시겠습니까?")){
 								 	$.ajax({
 										url: "commentDelete",
@@ -76,19 +87,30 @@ var togglehide;
 										success: function(data){
 										// 삭제는 됬고  댓글 리스트를  새로고침 해야함	
 										onload();
-										
 										//location.href="blog_details?bno=${comment.bno}";		
 										}
 									}); 
 							 	}  
 							}
-						</script>	
-						</c:if>
-						
-						
-						
-									
+							
+							function modify(rno){
 								
+								 var rcontent1 = $("#modify_content").val().trim();
+								 
+								
+								
+								$.ajax({
+						 			url : "commentModify",
+						 			data : {rno:rno, rcontent:rcontent1},
+						 			method : "post",
+						 			success: function(data){
+						 				onload();
+						 			}
+						 		});
+							}
+						</script>
+										
+						</c:if>	
 					</div>
 				</div>
 			
