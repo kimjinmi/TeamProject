@@ -1,7 +1,6 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,7 +76,7 @@ public class BlogController {
 		 * 
 		 * UserUrl += session.getAttribute("murl"); }
 		 */
-		 
+		
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
@@ -138,7 +137,7 @@ public class BlogController {
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
 		/* model.addAttribute("list", list); */
 		model.addAttribute("catelist", catelist);													 // 영아
-		model.addAttribute("member", member);	
+		model.addAttribute("member", member);													// 영아
 		model.addAttribute("likelist", likelist);													// 영아
 		return "blog/blog";
 	}
@@ -160,6 +159,7 @@ public class BlogController {
 		logger.info("실행");
 		return "blog/blog_write";
 	}*/
+	
 	
 	
 	/*
@@ -386,7 +386,7 @@ public class BlogController {
 	public void boardphotodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
-		String saveFilePath = "C:/temp/projectimage/boardContent/" + fileName;
+		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 		
 		//응답 HTTP 헤더 구성
@@ -418,7 +418,7 @@ public class BlogController {
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
-	
+
 	@GetMapping("/heartStatus")
 	public String heartStatus(int bno, Model model, HttpSession session) {
 		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 model.addAttribute("likecount", likecount);

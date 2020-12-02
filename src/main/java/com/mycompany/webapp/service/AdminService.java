@@ -14,6 +14,7 @@ import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
@@ -64,6 +65,18 @@ public class AdminService {
 	
 	public List<MemberDto> pickedAbledPerson(PagerDto pager) {
 		List<MemberDto> list = memberdao.selectenabled(pager);
+		return list;
+	}
+
+			//비활성화 된 회원들의 행 구하기
+	public int mdisabledRows() {
+		int totalMRows = memberdao.mdisabledThing();
+		return totalMRows;
+	}
+
+			//비활성화 된 사람들 목록 페이저 만들기
+	public List<DisabledDto> pickedDisabledPerson(PagerDto pager) {
+		List<DisabledDto> list = memberdao.selectdisabled(pager);
 		return list;
 	}
 	

@@ -377,14 +377,11 @@
                                             <i class="ti-angle-right"></i>
                                         </a>
                                     </li>
-                                </ul>
-                                
-                                
+                                </ul>         
                             </nav>  
                             <!-- page 네비게이션 끝 -->
                         </div>
-                          <!--  블로그 리스트 div 끝 -->  
-                            
+                          <!--  블로그 리스트 div 끝 -->       
                         </div>
                     </div>
       </section>

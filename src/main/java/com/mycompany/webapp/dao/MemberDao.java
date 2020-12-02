@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
 
@@ -70,17 +71,30 @@ public class MemberDao {
 		return rows;
 	}
 
+	//------------------------------------------영아 - 시작----------------------------------------------
 	
-	
+			//페이저 행의 수(활성화 회원들)
 	public int menabledThing() {
 		int totalRows = sst.selectOne("mybatis.mapper.member.menabledThing");
 		return totalRows;
 	}
-	
+			
+			//활성화 회원들 페이지 만들기
 	public List<MemberDto> selectenabled(PagerDto pager) {
 		List<MemberDto> list = sst.selectList("mybatis.mapper.member.selectPageList",pager);
 		return list;
 	}
+			//페이저 행의 수(비활성화 회원들)
+	public int mdisabledThing() {
+		int totalRows = sst.selectOne("mybatis.mapper.disabled.mdisabledThing");
+		return totalRows;
+	}
 
+			//활성화 회원들 페이지 만들기
+	public List<DisabledDto> selectdisabled(PagerDto pager) {
+		List<DisabledDto> list = sst.selectList("mybatis.mapper.disabled.DisabledPageList", pager);
+		return list;
+	}
 
+	//------------------------------------------영아 - 끝----------------------------------------------
 }

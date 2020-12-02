@@ -12,8 +12,14 @@ public class ReplyDto {
 	private String mnickname;
 	private String murl;
 	private String btitle;
+	private String mmyimage;
 	
-	
+	public String getMmyimage() {
+		return mmyimage;
+	}
+	public void setMmyimage(String mmyimage) {
+		this.mmyimage = mmyimage;
+	}
 	public String getBtitle() {
 		return btitle;
 	}
