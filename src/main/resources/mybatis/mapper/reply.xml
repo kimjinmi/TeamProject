@@ -14,6 +14,12 @@
 		        )
 		where rnum &gt;=#{startRowNo}
             
+	</select>
+	
+	<select id="myReplyCount" parameterType="String" resultType="int">
+		select count(*)
+		from reply r, board b
+		 where r.bno = b.bno and b.murl = #{murl}
 	</select>  
 	
 	<select id="countAll" resultType="int">

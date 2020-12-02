@@ -53,22 +53,29 @@
 		WHERE memail=#{memail}
 	</update>
 
-	<!-- 영아 : enabled 1인 사람 중 이메일 지정해서 불러오기 -->
-	
+
+	<!-- 영아 : enabled 1인 사람 중 이메일 지정해서 불러와서 count 해주기 -->
 	<select id="menabledThing" parameterType="int" resultType="int"> 
-	select count(*)
-	from member
-	where menabled=1
+		SELECT count(*)
+		FROM member
+		WHERE menabled=1
 	</select>
 	
+	<!-- 영아 : enabled 1인 사람 중 이메일 지정해서 정보 pager로 불러오기 -->
 	<select id="selectPageList" resultType="member"> 
-	select memail, menabled, mnickname, mphonenum, mintro, mmyimage
-	from (
-		select rownum as rnum, memail, menabled, mnickname, mphonenum, mintro, mmyimage
-		from member
-		where menabled=1 and rownum &lt;=#{endRowNo}
-	)
-	where rnum &gt;=#{startRowNo}
+		SELECT memail, menabled, mnickname, mphonenum, mintro, mmyimage
+		FROM (
+			SELECT rownum as rnum, memail, menabled, mnickname, mphonenum, mintro, mmyimage
+			FROM member
+			WHERE menabled=1 and rownum &lt;=#{endRowNo}
+		)
+		WHERE rnum &gt;=#{startRowNo}
 	</select>
 	
+	<!-- 영아 : 활성화인 회원을 비활성화(0)으로 변경하기 -->
+	<select id="changeToEnabled" parameterType="String" resultType="member">
+		UPDATE member
+	    SET menabled=0
+	    WHERE memail=#{memail}
+	</select>
 </mapper>

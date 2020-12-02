@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.disabled">
+
+	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
+	
+	<insert id="selectDisabled" parameterType="disabled">
+	insert into disabled( dno, memail, dreason, ddate)
+	values (SEQ_DISABLED_DNO.nextval, #{memail}, #{dreason}, sysdate)
+	</insert>
+
+	<select id="mdisabledThing" parameterType="int" resultType="int"> 
+		SELECT count(*)
+		FROM member
+		WHERE menabled=0
+	</select>
+
+	<select id="DisabledPageList" resultType="disabled">
+	     
+        	SELECT dno, memail, dreason, ddate
+		FROM (
+			SELECT rownum as rnum, dno, memail, dreason, ddate
+			FROM disabled
+			WHERE rownum &lt;=#{endRowNo}
+		)
+		WHERE rnum &gt;=#{startRowNo}
+	</select>	
+
+<!-- 		 diasbled 된 해당 memail의 정보(이미지 포함 - 조인)
+	<select id="disInformation" parameterType="String" resultType="disabled">
+	 select dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
+     from disabled d, member m
+     where d.memail = m.memail and d.memail=#{memail}
+	</select> -->
+	
+	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
+</mapper>

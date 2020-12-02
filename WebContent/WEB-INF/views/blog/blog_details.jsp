@@ -63,6 +63,7 @@
 	<script type="text/javascript">
 	var heart__status = false;
 	function onload(){
+		
 		var bno = ${board.bno};
 		
 		$.ajax({
@@ -83,10 +84,17 @@
 			method : "get",
 			data : {bno:bno},
 			success : function(data){
-				$("#heartbox_p").html(data);
-				
+				$("#heartbox_p").html(data);	
 			}
 		});
+		
+		$.ajax({
+			url : "neighborlist",
+			success : function(data){
+				$("#neighborlist").html(data);	
+			}
+		});
+		
 	}
 	
 	
@@ -150,7 +158,7 @@
 		<!-- Hero End -->
 		<!--? Blog Area Start -->
 		<section class="blog_area single-post-area section-padding">
-			<div class="container" style="margin: 0px 55px;">
+			<div class="container">
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
@@ -167,22 +175,43 @@
 									<p>${member.mintro}</p>
 									<hr />
 									<!-- 게시글 작성 버튼 -->
-			                        <c:if test="${member.murl==SessionMurl}">		<!-- member가 가지고 있는 murl과 session에 저장된 murl이 같을 때 (내 블로그일 때) -->
-										<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
-							 				 <script type="text/javascript">
-			                          			 function boardWrite() {
-			                            			$.ajax({
-			                                 			url: "boardWrite",
-			                               				success:function(data){
-			                                    			$("#categoryListLinkBoard").html(data);
-			                                 			}
-			                              			});
-			                           			}
-			                       			 </script>
+									<c:if test="${SessionMurl != null}">
+				                        <c:if test="${member.murl==SessionMurl}">		<!-- member가 가지고 있는 murl과 session에 저장된 murl이 같을 때 (내 블로그일 때) -->
+											<a class="genric-btn primary e-large" href="javascript:boardWrite()">POSTING</a>
+								 				 <script type="text/javascript">
+				                          			 function boardWrite() {
+				                            			$.ajax({
+				                                 			url: "boardWrite",
+				                               				success:function(data){
+				                                    			$("#categoryListLinkBoard").html(data);
+				                                 			}
+				                              			});
+				                           			}
+				                       			 </script>
+										</c:if>
+													 <!-- 친구 추가 버튼 -->
+				                        <c:if test="${existRows==0}">
+				                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
+				                        		<script type="text/javascript">
+				                        			function neighborAdd(memail, murl){
+				                        				$.ajax({
+				                        					url:"neighborAdd",
+				                        					data:{nememail:memail, nemurl:murl},
+				                        					success:function(data){
+				                        						if(data.result == "success"){
+				                        							location.href = "blog?UserUrl="+murl;
+				                        						}
+				                        					}
+				                        					
+				                        				});
+				                        			}
+				                        		</script>
+				                        	
+				                        </c:if>
 									</c:if>
 								<!-- 친구 추가 버튼 -->
 			                        <c:if test="${existRows==0}">
-			                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
+			                        	<a class="genric-btn info e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
 			                        		<script type="text/javascript">
 			                        			function neighborAdd(memail, murl){
 			                        				$.ajax({
@@ -263,6 +292,30 @@
 									</div>
 								</c:forEach>
 							</aside>
+							<c:if test="${SessionMurl != null}">
+		                    	<c:if test="${member.murl==SessionMurl}">
+				                     <aside class="single_sidebar_widget popular_post_widget">
+				                           <h3 class="widget_title" style="color: #2d2d2d;">Neighbor List</h3>
+				                           <div id="neighborlist"></div>
+				                           
+				                           <script type="text/javascript">
+					                           function neighborlist(pageNo){
+					                        		if(!pageNo){
+					                        			pageNo = 1;
+					                        		}
+					                        		$.ajax({
+					                        			url:"neighborlist",
+					                        			data:{pageNo:pageNo},
+					                        			success:function(data) {
+					                        				$("#neighborlist").html(data);
+					                        			}
+					                        		});
+					                        		
+					                        	}
+				                           </script>
+				                     </aside>
+			                     </c:if>
+			                 </c:if>
 						</div>
 					</div>
 
@@ -276,8 +329,8 @@
 							<div class="blog_details" id="board__title">
 								<h2 style="color: #2d2d2d;">${board.btitle}</h2>
 								<ul class="blog-info-link mt-3 mb	-4">
-									<li><a href="#"><i class="fa fa-user"></i>${board.memail }</a></li>
-									<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li>
+									<li><a href="#"><i class="fa fa-user"></i>${board.mnickname }</a></li>
+								<!-- 	<li><a href="#"><i class="fa fa-comments"></i> 댓글 3개 </a></li> -->
 									<li><i class="fa fa-calendar" style="color: #999999"></i>
 										<fmt:formatDate value="${board.bdate}"
 											pattern="yyyy-MM-dd HH:mm:ss" /></li>
@@ -416,21 +469,27 @@
 								</div>
 							</div> -->
 						</div>
-						<div class="blog-author" style="margin-top:10px">
-							<div class="media align-items-center">
-								<img
-									src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
-									alt="">
-								<div class="media-body">
-									<p>돼지고기 마늘 상추 양파 된장 쌈장 고추장 와사비</p>
-									<a
-										href="https://www.coupang.com/vp/products/306264774?itemId=965657775&vendorItemId=5265041997&sourceType=srp_product_ads&isAddedCart="
-										target="_blank">
-										<h4>지금 바로 구매하기</h4>
-									</a>
-								</div>
+						
+						<c:if test="${board.blinkcontent != null }">
+							<hr/ style="margin:12px; width:100%;">
+							<div class="blog-author" style="margin:0px; padding:12px;">
+								<div class="media align-items-center">
+								<%-- 	<img
+										src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
+										alt=""> --%>
+									<div class="media-body">
+									<a class="fa fa-external-link" style="color:black; font-size:20px;"></a>
+										<a
+											href="https://www.coupang.com/vp/products/306264774?itemId=965657775&vendorItemId=5265041997&sourceType=srp_product_ads&isAddedCart="
+											target="_blank">
+											<h5> 구매하기 </h5>
+										</a>
+									</div>
 							</div>
 						</div>
+						
+						</c:if>
+			
 						<div class="comments-area" id="comments-area" style="margin-top:20px">
 							<%-- <h4>댓글</h4>
 
@@ -495,7 +554,7 @@
 								</c:if>
 								<script type="text/javascript">
 									function needLogin(){
-										alert("로그인이 필요 합니다.");
+										
 										location.href="<%=application.getContextPath()%>/signin/content";
 									}
 								</script>

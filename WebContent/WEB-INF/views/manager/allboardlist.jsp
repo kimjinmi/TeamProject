@@ -23,7 +23,7 @@ function searchboardfirst(pageNo){
 		url:"searchboard",
 		data:{value:value,search:search,pageNo:pageNo},
 		success:function(data){
-			$("#setting_result").html(data);
+			$("#tableresult").html(data);
 		}
 	});
 	
@@ -36,7 +36,7 @@ function searchboard(pageNo,value,search){
 		url:"searchboard",
 		data:{value:value,search:search,pageNo:pageNo},
 		success:function(data){
-			$("#setting_result").html(data);
+			$("#tableresult").html(data);
 		}
 	});
 	
@@ -72,7 +72,7 @@ function allreplylist(pageNo){
 				<tr style="background-color:#FBF9FF;">
 					<th scope="col">category</th>
 					<th scope="col">title</th>
-					<th scope="col">writer</th>
+					<th scope="col">blogwriter</th>
 					<th scope="col">date</th>
 					<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
 				</tr>
@@ -119,9 +119,10 @@ function allreplylist(pageNo){
 				<div class="col-md-2" style="padding: 10px;">
 					<div class="form-select">
 						<select name="value" id="value" style="padding: 8px;">
-							<option value="btitle" selected>title</option>
+							<option value="ccontent">category</option>
+							<option value="btitle">title</option>
 							<option value="bcontent">content</option>
-							<option value="memail">writer</option>
+							<option value="b.memail">blogwriter</option>
 						</select>
 					</div>
 					

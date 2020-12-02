@@ -87,13 +87,12 @@
 		order by bdate desc -->
 	
 		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
-
 		
-		select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
+		select rnum, bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
 		from (
-			select rownum as rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
+			select rownum as rnum, bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
 			from(
-				select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as commentnum
+				select b.bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as commentnum
 					from board b, member m, category c, (
 														select count(r.bno) as commentnum , b.bno  
 														from board b, reply r
@@ -141,6 +140,7 @@
 						order by bdate desc
 		
 	 -->
+
 		
 		
 		
@@ -163,7 +163,7 @@
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail -->
       
-        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl, board.bno
+        select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl, board.bno, member.mmyimage
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
 	</select>
@@ -309,9 +309,9 @@
 	
 	<!-- search 이용 -->
 	<select id="userBoardSearchCount" parameterType="search" resultType="int">
-		select count(*)
-		from board
-		where ${value} like '%'|| #{search}||'%'
+		SELECT count(*)
+		FROM board b, category c
+		WHERE b.cno = c.cno and ${value} like '%'|| #{search}||'%'
 	</select>
 	
 	<select id="searchList" parameterType="map" resultType="board">

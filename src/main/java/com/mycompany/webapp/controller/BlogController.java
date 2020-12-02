@@ -1,7 +1,6 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,7 +76,7 @@ public class BlogController {
 		 * 
 		 * UserUrl += session.getAttribute("murl"); }
 		 */
-		 
+		
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
@@ -91,6 +90,14 @@ public class BlogController {
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
 		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
+		 //친구추가버튼
+		 String memail = (String) session.getAttribute("sessionMemail");
+		 String SessionMurl = (String) session.getAttribute("SessionMurl");
+		 int existRows = -1;
+		 if(!SessionMurl.equals(UserUrl)){
+		 	existRows = service.neighorexist(UserUrl, memail);
+	 	 }
+		 model.addAttribute("existRows", existRows);
 
 		return "blog/blog_details";
 	}
@@ -130,7 +137,7 @@ public class BlogController {
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
 		/* model.addAttribute("list", list); */
 		model.addAttribute("catelist", catelist);													 // 영아
-		model.addAttribute("member", member);	
+		model.addAttribute("member", member);													// 영아
 		model.addAttribute("likelist", likelist);													// 영아
 		return "blog/blog";
 	}
@@ -152,6 +159,7 @@ public class BlogController {
 		logger.info("실행");
 		return "blog/blog_write";
 	}*/
+	
 	
 	
 	/*
@@ -373,18 +381,54 @@ public class BlogController {
 		os.close();
 		is.close();
 	}
+	
+	@GetMapping("/boardphotodownload")
+	public void boardphotodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//파일의 데이터를 읽기 위한 입력 스트림 얻기
+		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+		
+		//응답 HTTP 헤더 구성
+		//1) Content-Type 헤더 구성(파일 종류)
+		ServletContext application = request.getServletContext();
+		String fileType = application.getMimeType(fileName);
+		response.setContentType(fileType);
+		
+		//다운로드할 실제 파일 이름 구성
+		//split메소드는 배열로 리턴됨
+
+		//attachment; : 브라우저가 해당 파일을 다운로드(없으면 보여줄 수 있으면 브라우저에서 보여줌, 보여줄 수 없으면 다운로드
+		response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\"");
+		
+		//3)Content-Length 헤더 구성(다운로드할 파일의 크기를 지정)
+		int fileSize = (int) new File(saveFilePath).length();
+		response.setContentLength(fileSize);
+		
+		//응답 HTTP의 바디(본문) 구성
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os); //스프링에서 제공
+		os.flush();
+		os.close();
+		is.close();
+	}
 
 	@GetMapping("/commentDelete")
 	public String commentDelete(int rno) {
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
-	
+
 	@GetMapping("/heartStatus")
-	public String heartStatus(int bno, Model model) {
-		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 가져온다.
-		model.addAttribute("likecount", "likecount");
-		return "blog/heartStatus";
+	public String heartStatus(int bno, Model model, HttpSession session) {
+		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 model.addAttribute("likecount", likecount);
+		 String SessionMemail = (String) session.getAttribute("SessionMemail");
+		 int heartCheck = service.heartCheck(SessionMemail, bno); 
+		
+		 logger.info("하트체크 : " + heartCheck);
+		 model.addAttribute("heartCheck", heartCheck);
+		 model.addAttribute("likecount", likecount);
+		return "blog/heartSatatus";
 	}
 
 	
@@ -452,6 +496,17 @@ public class BlogController {
 		List<BoardDto> list = service.searchList(searchContent, murl);
 		model.addAttribute("list", list);
 		return "blog/blogList";
+	}
+	
+	@RequestMapping("/neighborlist")
+	public String neighborlist(@RequestParam(defaultValue="1")int pageNo, HttpSession session, Model model) {
+		String memail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.neighborlistRows(memail);
+		PagerDto pager = new PagerDto(memail, 4, 4, totalRows, pageNo);
+		List<NeighborDto> list = service.getNeighborList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "blog/neighborlist";
 	}
 	
 }
