@@ -485,7 +485,7 @@ hr {
 }
 
 .btn {
-	border: 2px solid #fff;
+/* 	border: 2px solid #000000; */
 	padding: 7px 21px !important;
 	text-transform: uppercase !important;
 	border-radius: 20px;
@@ -493,12 +493,12 @@ hr {
 	font-weight: 500 !important;
 	display: inline-block !important;
 	cursor: pointer;
-	color: #fff !important;
+	color: #000000 !important;
 	display: inline-block;
 	transition: 0.6s;
 	box-shadow: 0px 7px 21px 0px rgba(0, 0, 0, 0.12); 
 	/* background-image: linear-gradient(to left, none, #e6571e, #FF5F21); */
-	background-color: none;
+	background-color: #fff;
 	background-position: right;
 	background-size: 200% 
 /* 	border: none;
@@ -540,9 +540,8 @@ hr {
 
 .btn:hover {
 	background-position: left;
-	background-image: linear-gradient(to left, #fff, #e6571e, #FF5F21)
-		!important;
-	color: #000000;
+	background-color: #FF5F21;
+	color: #fff;
 	/* background-position: left;
 	background-image: linear-gradient(to left, #FF5F21, #e6571e, #FF5F21)
 		!important;
@@ -3008,7 +3007,7 @@ transition
 	position: absolute;
 	right: 0px;
 	width: 100%;
-	z-index: 99
+	z-index: 99;
 }
 
 .mobile_menu .slicknav_menu {
