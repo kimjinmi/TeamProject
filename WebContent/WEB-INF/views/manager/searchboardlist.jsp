@@ -12,7 +12,17 @@ text-overflow:ellipsis;
 
 </style>
 <script type="text/javascript">
-
+function searchboarddelete(bno,value,search){
+	$.ajax({
+		url:"boarddelete",
+		data:{bno:bno,value:value,search:search},
+		success:function(data){
+			if(data.result == "success"){
+				searchboard(1,value,search);
+			}
+		}
+	});
+}
 
 
 </script>
@@ -20,20 +30,23 @@ text-overflow:ellipsis;
 
 <hr style="margin-top:12px;">
 	<div class="container">
-		<form method="post" id="searchboard" action="javascript:searchboard()">
-			<div class="form-group row">
-				<div class="form-select col-2">
-					<select name="value" id="value">
-						<option value="btitle" selected>title</option>
-						<option value="bcontent">content</option>
-						<option value="memail">writer</option>
-					</select><br>
+		<form method="post" id="searchboard">
+			<div class="row">
+				<div class="col-md-2" style="padding: 10px;">
+					<div class="form-select">
+						<select name="value" id="value" style="padding: 8px;">
+							<option value="btitle" selected>title</option>
+							<option value="bcontent">content</option>
+							<option value="memail">writer</option>
+						</select>
+					</div>
+					
 				</div>
-				<div class="col-8">
-					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" value="${search}">
+				<div class="col-md-8" style="padding: 10px;">
+					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
 				</div>
-				<div class="col-2">
-					<a href="javascript:searchboard()"><i class="fa fa-search" aria-hidden="true"></i></a>
+				<div class="col-md-2" style="padding: 10px;">
+					<a href="javascript:searchboardfirst()"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>
 			</div>
 		</form>
@@ -64,7 +77,9 @@ text-overflow:ellipsis;
 		</thead>
 			<tr>
 				<td colspan="5" style="text-align:center;">
-					<b>총 ${totalRows}개의 게시물이 존재합니다.</b>
+					<b>"${searchvalue}"에서 "${searchdto.search}"검색 결과 :<br></b>
+					<b>총 <u>${totalRows}</u>개의 게시물이 존재합니다.</b><br>
+					<a href="javascript:allboardlist()">전체보기<i class="fa fa-search" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			<c:forEach var="board" items="${list}">
@@ -74,32 +89,33 @@ text-overflow:ellipsis;
 					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}">${board.btitle}</a></td>
 					<td>${board.memail}</td>
 					<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" /></td>
-					<td><a href="javascript:boarddelete(${board.bno})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+					<td><a href="javascript:searchboarddelete(${board.bno},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 				</tr>	
 			</c:forEach>
 			
 		
 			<tr>
 				<td colspan="5" style="text-align:center;">
-					<a class="genric-btn primary-border small" href="javascript:searchboard(1)">처음</a>
-					
-					<c:if test="${pager.groupNo >1}">
-						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.startPageNo-1})">이전</a>
-					</c:if>
-					
-					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-						<c:if test="${pager.pageNo == i}">
-							<a class="genric-btn primary small" href="javascript:searchboard(${i})">${i}</a>
+					<c:if test="${totalRows != 0}">
+						<a class="genric-btn primary-border small" href="javascript:searchboard(1,'${searchdto.value}','${searchdto.search}')">처음</a>
+						
+						<c:if test="${pager.groupNo >1}">
+							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.startPageNo-1},'${searchdto.value}','${searchdto.search}')">이전</a>
 						</c:if>
-						<c:if test="${pager.pageNo != i}">
-							<a class="genric-btn primary-border small" href="javascript:searchboard(${i})">${i}</a>
+						
+						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+							<c:if test="${pager.pageNo == i}">
+								<a class="genric-btn primary small" href="javascript:searchboard(${i},'${searchdto.value}','${searchdto.search}')">${i}</a>
+							</c:if>
+							<c:if test="${pager.pageNo != i}">
+								<a class="genric-btn primary-border small" href="javascript:searchboard(${i},'${searchdto.value}','${searchdto.search}')">${i}</a>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pager.groupNo <pager.totalGroupNo}">
+							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.endPageNo+1},'${searchdto.value}','${searchdto.search}')">다음</a>
 						</c:if>
-					</c:forEach>
-					<c:if test="${pager.groupNo <pager.totalGroupNo}">
-						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.endPageNo+1})">다음</a>
-					</c:if>
-					<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo})">맨끝</a>
-					
+						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo},'${searchdto.value}','${searchdto.search}')">맨끝</a>
+					</c:if>	
 				</td>
 			</tr>
 			<tr>

@@ -88,15 +88,9 @@ public class BlogController {
 		 model.addAttribute("likelist", likelist);
 		 MemberDto member = service.getMimage(UserUrl); 	
 		 model.addAttribute("member", member);	
-		 
-		//진미(친구추가버튼)
-		String memail = (String) session.getAttribute("sessionMemail");
-		String SessionMurl = (String) session.getAttribute("SessionMurl");
-		int existRows = -1;
-		if(!SessionMurl.equals(UserUrl)){
-			existRows = service.neighorexist(UserUrl, memail);
-		}
-		model.addAttribute("existRows", existRows);
+		 logger.info("날짜형식 테스트 : " + board.getBdate());
+		 logger.info("bno 값 출력 1 : " + bno);
+		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
 
 		return "blog/blog_details";
 	}
@@ -422,6 +416,42 @@ public class BlogController {
 		out.flush();
 		out.close();
 
+	}
+	
+	@PostMapping("/heartClick")
+	public String heartClick(int bno, HttpSession session, int heartCheck) {
+		
+		// 검정 하트일때만 실행
+		if(heartCheck  == 0) {
+		logger.info("좋아요 더하기");
+		service.likeadd(bno);
+		service.likeinfo(bno, (String) session.getAttribute("sessionMemail"));
+		}else if(heartCheck > 0) {
+		// 빨간 하트일때만 실행
+			logger.info("좋아요 빼기");
+		service.likedsub(bno);
+		service.likeinfoDelete(bno, (String) session.getAttribute("sessionMemail"));
+		}
+		
+		return "blog/heartSatatus";
+	}
+	
+	@GetMapping("/addComment") // 대댓글 구현중 - 지훈
+	public String addComment(int rno, Model model) {
+		//service.addComment(rno); // 받은 rno를 가져가서 rno를 first로 하는 댓글을 추가한다. insert문
+		
+		
+		
+		return "blog/blogcommentList";
+	}
+	
+	@GetMapping("/boardSearch") //  검색기능 구현중 - 지훈 
+	public String boardSearch(String searchContent, String murl, Model model, @RequestParam(defaultValue="1")int pageNo) {
+		logger.info("boardSearch 실행");
+		
+		List<BoardDto> list = service.searchList(searchContent, murl);
+		model.addAttribute("list", list);
+		return "blog/blogList";
 	}
 	
 }

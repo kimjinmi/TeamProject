@@ -105,6 +105,14 @@ public class ManagerController {
 	public String searchboard(Model model, SearchDto searchdto, @RequestParam(defaultValue = "1")int pageNo) {
 		String value = searchdto.getValue();
 		String search = searchdto.getSearch();
+		String searchvalue = null;
+		if(value.equals("btitle")) {
+			searchvalue="title";
+		}else if(value.equals("bcontent")) {
+			searchvalue="content";
+		}else if(value.equals("memail")) {
+			searchvalue="writer";
+		}
 		int totalRows = service.getSearchTotalBoardRows(searchdto);
 		
 		PagerDto pager = new PagerDto(value, search, 5, 5, totalRows, pageNo);
@@ -112,7 +120,8 @@ public class ManagerController {
 		model.addAttribute("totalRows", totalRows);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
-		model.addAttribute("search", search);
+		model.addAttribute("searchdto", searchdto);
+		model.addAttribute("searchvalue", searchvalue);
 		return "manager/searchboardlist";
 	}
 	
