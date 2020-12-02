@@ -6,7 +6,7 @@
     <article class="blog_item">   
     
        <div class="blog_item_img">
-            <img class="card-img rounded-0" height="350px" src="<%=application.getContextPath() %>/resources/assets/img/blog/dinner.png" alt="">
+            <img class="card-img rounded-0" height="350px" src="boardphotodownload?fileName=${board.bimage }" alt="">
             <a href="javascript:boardDetails(${board.bno})" class="blog_item_date">
                 <h3 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="MM월 dd일" /></h3>
                 <%-- <h2 style="text-align: center"><fmt:formatDate value="${board.bdate}" pattern="HH시 mm뿐" /></h2> --%>
