@@ -105,15 +105,17 @@ public class ManagerController {
 	public String searchboard(Model model, SearchDto searchdto, @RequestParam(defaultValue = "1")int pageNo) {
 		String value = searchdto.getValue();
 		String search = searchdto.getSearch();
+		int totalRows = service.getSearchTotalBoardRows(searchdto);
 		String searchvalue = null;
 		if(value.equals("btitle")) {
 			searchvalue="title";
 		}else if(value.equals("bcontent")) {
 			searchvalue="content";
-		}else if(value.equals("memail")) {
-			searchvalue="writer";
+		}else if(value.equals("b.memail")) {
+			searchvalue="blogwriter";
+		}else if(value.equals("ccontent")) {
+			searchvalue="category";
 		}
-		int totalRows = service.getSearchTotalBoardRows(searchdto);
 		
 		PagerDto pager = new PagerDto(value, search, 5, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getUserBoardList(pager);

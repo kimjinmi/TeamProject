@@ -87,6 +87,14 @@
 				$("#heartbox_p").html(data);	
 			}
 		});
+		
+		$.ajax({
+			url : "neighborlist",
+			success : function(data){
+				$("#neighborlist").html(data);	
+			}
+		});
+		
 	}
 	
 	
@@ -150,7 +158,7 @@
 		<!-- Hero End -->
 		<!--? Blog Area Start -->
 		<section class="blog_area single-post-area section-padding">
-			<div class="container" style="margin: 0px 55px;">
+			<div class="container">
 				<div class="row">
 					<div class="col-lg-4">
 						<div class="blog_right_sidebar">
@@ -263,6 +271,30 @@
 									</div>
 								</c:forEach>
 							</aside>
+							<c:if test="${SessionMurl != null}">
+		                    	<c:if test="${member.murl==SessionMurl}">
+				                     <aside class="single_sidebar_widget popular_post_widget">
+				                           <h3 class="widget_title" style="color: #2d2d2d;">Neighbor List</h3>
+				                           <div id="neighborlist"></div>
+				                           
+				                           <script type="text/javascript">
+					                           function neighborlist(pageNo){
+					                        		if(!pageNo){
+					                        			pageNo = 1;
+					                        		}
+					                        		$.ajax({
+					                        			url:"neighborlist",
+					                        			data:{pageNo:pageNo},
+					                        			success:function(data) {
+					                        				$("#neighborlist").html(data);
+					                        			}
+					                        		});
+					                        		
+					                        	}
+				                           </script>
+				                     </aside>
+			                     </c:if>
+			                 </c:if>
 						</div>
 					</div>
 

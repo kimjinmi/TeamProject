@@ -63,5 +63,7 @@ public class NeighborDao {
 		int rows = sst.insert("mybatis.mapper.neighbor.insert", neighbor);
 		return rows;
 	}
+
+
 	
 }
