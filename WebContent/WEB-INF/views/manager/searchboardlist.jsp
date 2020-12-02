@@ -1,16 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<style>
-tr, th, td{
-padding: 10px;
-overflow:hidden;
-text-overflow:ellipsis;
 
-
-}
-
-</style>
 <script type="text/javascript">
 function searchboarddelete(bno,value,search){
 	$.ajax({

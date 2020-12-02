@@ -56,7 +56,7 @@ function allreplylist(pageNo){
 }
 </script>
 <div id="tableresult">
-	<h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allboardlist()">게시글 관리</a></h2>/
+	<u><h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allboardlist()">게시글 관리</a></h2></u>/
 	<h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allreplylist()">댓글 관리</a></h2>
 	
 	<hr style="margin-top:12px;">
