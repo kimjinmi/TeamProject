@@ -18,9 +18,9 @@ var togglehide;
 				<div class="media align-items-center">
 					<div style="margin-right: 23px">
 						<img class="rounded-circle" width="70px" height="70px"
-							src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
+							src="photodownload?fileName=${comment.mmyimage}" />
 					</div>
-					<div class="desc">
+					<div class="desc" id="desc">
 						<p class="comment">${comment.rcontent}</p>
 						<div class="d-flex justify-content-between">
 							<div class="d-flex align-items-center">
@@ -50,15 +50,22 @@ var togglehide;
 								  }
 								</script>
 								
-				
+					
 							</div>
 							
 						</div>
 						<c:if test="${comment.murl == SessionMurl}">
 									<a href="javascript:commentDelete(${comment.rno})" class="genric-btn danger small">삭제</a>
-									<a href="blog" class="genric-btn primary small">수정(미완성)</a>
+									<a href="javascript:commentModify(${comment.rno })" class="genric-btn primary small">수정(미완성)</a>
 									
 						<script type="text/javascript">
+							function commentModify(rno){
+								var tags = '<textarea name="test" id="test" cols="30" rows="4"></textarea>';
+								alert("테스트");
+								${"#desc"}.html(tags);
+								
+							}
+						
 							function commentDelete(rno){	
 									
 								 if(confirm("정말로 삭제 하시겠습니까?")){
@@ -74,9 +81,7 @@ var togglehide;
 									}); 
 							 	}  
 							}
-						</script>
-						
-							
+						</script>	
 						</c:if>
 						
 						
