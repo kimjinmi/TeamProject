@@ -489,8 +489,22 @@
 									</div>
 								</div>
 								<div class="form-group">
+								<c:if test="${SessionMemail == null }">
+									<a href="javascript:needLogin()"
+										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
+								</c:if>
+								<script type="text/javascript">
+									function needLogin(){
+										alert("로그인이 필요 합니다.");
+										location.href="<%=application.getContextPath()%>/signin/content";
+									}
+								</script>
+								
+								<c:if test="${SessionMemail != null }">
 									<a href="javascript:commentWrite(${board.bno })"
 										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
+								</c:if>
+									
 									<script type="text/javascript">
 										function commentWrite(bno) {	
 											
