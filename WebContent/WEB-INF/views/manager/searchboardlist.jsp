@@ -45,7 +45,7 @@ function searchboarddelete(bno,value,search){
 				<td colspan="5" style="text-align:center;">
 					<b>"${searchvalue}"에서 "${searchdto.search}"검색 결과 :<br></b>
 					<b>총 <u>${totalRows}</u>개의 게시물이 존재합니다.</b><br>
-					<a href="javascript:allboardlist()">전체보기<i class="fa fa-search" aria-hidden="true"></i></a>
+					<a href="javascript:allboardlist()">전체게시글보기<i class="fa fa-search" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			<c:forEach var="board" items="${list}">
@@ -63,10 +63,10 @@ function searchboarddelete(bno,value,search){
 			<tr>
 				<td colspan="5" style="text-align:center;">
 					<c:if test="${totalRows != 0}">
-						<a class="genric-btn primary-border small" href="javascript:searchboard(1,'${searchdto.value}','${searchdto.search}')">처음</a>
+						<a class="genric-btn primary-border small" href="javascript:searchboard(1,'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
 						
 						<c:if test="${pager.groupNo >1}">
-							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.startPageNo-1},'${searchdto.value}','${searchdto.search}')">이전</a>
+							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.startPageNo-1},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
 						</c:if>
 						
 						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
@@ -78,9 +78,9 @@ function searchboarddelete(bno,value,search){
 							</c:if>
 						</c:forEach>
 						<c:if test="${pager.groupNo <pager.totalGroupNo}">
-							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.endPageNo+1},'${searchdto.value}','${searchdto.search}')">다음</a>
+							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.endPageNo+1},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 						</c:if>
-						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo},'${searchdto.value}','${searchdto.search}')">맨끝</a>
+						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 					</c:if>	
 				</td>
 			</tr>
