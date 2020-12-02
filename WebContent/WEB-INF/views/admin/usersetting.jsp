@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	<p></p> -->
-	<p style="font-size: 20px; font-weight: bold; color: orange;"><i class="fas fa-info" style="padding-right: 2%; font-size: 20px;"></i>User Information</p>
+	<p style="font-size: 20px; font-weight: bold; color: orange;"><i class="fas fa-info" style="padding-right: 2%; font-size: 20px;"></i>Abled User Information</p>
 	<div class="row">
 		<c:forEach var="mabled" items="${mabled}">
 			<div class="col-3" style="padding-top: 5%;">
@@ -90,12 +90,12 @@
 		<tr>
 			<td colspan="4" style="text-align: center;"><a
 				class="genric-btn primary radius btn-md"
-				href="javascript:usersetting(1)">처음</a> <c:if
-					test="${pager.groupNo>1}">
+				href="javascript:usersetting(1)">처음</a> 
+				<c:if test="${pager.groupNo>1}">
 					<a class="genric-btn primary radius btn-md"
 						href="javascript:usersetting(${pager.startPageNo-1})">이전</a>
-				</c:if> <c:forEach var="i" begin="${pager.startPageNo}"
-					end="${pager.endPageNo}">
+				</c:if> 
+				<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 					<c:if test="${pager.pageNo==i}">
 						<a class="genric-btn primary radius btn-md"
 							href="javascript:usersetting(${i})">${i}</a>
@@ -105,11 +105,13 @@
 						<a class="genric-btn primary radius btn-md"
 							href="javascript:usersetting(${i})">${i}</a>
 					</c:if>
-				</c:forEach> <c:if test="${pager.groupNo<pager.totalGroupNo}">
+				</c:forEach>
+				 <c:if test="${pager.groupNo<pager.totalGroupNo}">
 					<a class="genric-btn primary radius btn-md"
 						href="javascript:usersetting(${pager.endPageNo+1})">다음</a>
-				</c:if> <a class="genric-btn primary radius btn-md"
-				href="javascript:usersetting(${pager.totalPageNo})">맨끝</a>
+				</c:if> 
+				<a class="genric-btn primary radius btn-md"
+								href="javascript:usersetting(${pager.totalPageNo})">맨끝</a>
 	</div>
 	<p></p>
 
