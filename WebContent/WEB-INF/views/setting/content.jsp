@@ -176,6 +176,25 @@
 											}
 											</script>
 									</li>
+									<li><a href="javascript:mylikelist()" class="d-flex">
+										<p>좋아요 게시글 보기</p></a>
+										<script type="text/javascript">
+										function mylikelist(pageNo){
+											if(!pageNo) {
+												pageNo = 1;
+											}
+											$.ajax({
+												url:"mylikelist",
+												data:{pageNo:pageNo},
+												success:function(data) {
+													$("#setting_result").html(data);
+												}
+											});
+											
+										}
+										
+										</script>
+									</li>
 									<li><a href="javascript:mybloglist()" class="d-flex">
 										<p>게시글 관리</p></a>
 										<script type="text/javascript">
@@ -194,14 +213,7 @@
 										}
 										
 										</script>
-									</li>	
-
-
-
-
-	
-
-
+									</li>
 									 <!-- <script type="text/javascript">
 
 =======
@@ -250,7 +262,7 @@
 											
 									
 									<li><a href="javascript:mycommentlist()" class="d-flex">
-											<p style="padding-top: 18px;">댓글 관리</p></a>
+											<p>댓글 관리</p></a>
 										<script type="text/javascript">
 										function mycommentlist(pageNo){
 											if(!pageNo) {
