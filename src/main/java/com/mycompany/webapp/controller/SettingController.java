@@ -201,24 +201,6 @@ public class SettingController {
 		out.close();
 	}
 
-	/*선명 - 댓글 관리*/
-	@RequestMapping("/mycommentlist")
-	public String mycommentlist(@RequestParam(defaultValue="1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
-		
-		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		String SessionMurl = (String) session.getAttribute("SessionMurl");
-		
-		//페이징
-		int totalRows = service.getTotalMyRow(SessionMurl); //
-		PagerDto pager = new PagerDto(SessionMurl, 5, 5, totalRows, pageNo);
-		List<ReplyDto> replyList = service.getReplyListPage(pager);
-		
-		model.addAttribute("pager", pager);
-		model.addAttribute("replyList", replyList);
-		
-	
-		return "setting/mycommentlist";
-	}
 	
 	@RequestMapping("/delete")
 	public String delete(HttpSession session, Model model) { //http://localhost:8080/teamproject
