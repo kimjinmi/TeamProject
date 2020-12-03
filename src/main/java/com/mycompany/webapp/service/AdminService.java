@@ -81,9 +81,10 @@ public class AdminService {
 	}
 
 
-	public int disabled(DisabledDto disabled) {
-		int rows = disableddao.disabledMember(disabled);
-		return rows;
+	public void disabled(DisabledDto disabled) {
+		disableddao.disabledMember(disabled);
+		logger.info("success!!!!!!!!!!!!!!!!!!!!!!");
+		
 	}
 	
 	//-------------------------------------영아- 끝 -------------------------------------

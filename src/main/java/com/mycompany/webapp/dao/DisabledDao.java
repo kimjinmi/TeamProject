@@ -34,9 +34,8 @@ public class DisabledDao {
 		return list;
 	}
 
-	public int disabledMember(DisabledDto disabled) {
-		int rows = sst.selectOne("mybatis.mapper.disabled.selectDisabled", disabled);
-		return rows;
+	public void disabledMember(DisabledDto disabled) {
+		sst.selectOne("mybatis.mapper.disabled.selectDisabled", disabled);		
 	}
 
 	//------------------------------------------영아 - 끝----------------------------------------------

@@ -8,109 +8,18 @@
 	background-size: 200%
 }
 
-/*---------------- 선 추가----------------   */
-ul, li {
-	list-style: none;
+.str {
+ 	display: block;
+    font-weight: 600;
+    font-size: 30rem;
+    font-family: Noto Sans Light,AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+    color: #000;
+    letter-spacing: -1.8px;
+	
 }
 
-#slide {
-	height: 700px;
-	width: 100%;
-	position: relative;
-	overflow: hidden;
-}
 
-#slide ul {
-	width: 400%;
-	height: 100%;
-	transition: 1s;
-}
 
-#slide ul:after {
-	content: "";
-	display: block;
-	clear: both;
-}
-
-#slide li {
-	float: left;
-	width: 25%;
-	height: 100%;
-}
-
-#slide li:nth-child(1) {
-	background-image: url(../img/hero/image_6.png);
-}
-
-#slide li:nth-child(2) {
-	background-image: url(../img/hero/image_4.png);
-}
-
-#slide li:nth-child(3) {
-	background: #faF;
-}
-
-#slide li:nth-child(4) {
-	background: #aaf;
-}
-
-#slide input {
-	display: none;
-}
-
-#slide label {
-	display: inline-block;
-	vertical-align: middle;
-	width: 10px;
-	height: 10px;
-	border: 2px solid #fff;
-	background: #fff;
-	transition: 0.3s;
-	border-radius: 50%;
-	cursor: pointer;
-}
-
-#slide .pos {
-	text-align: center;
-	position: absolute;
-	bottom: 10px;
-	left: 0;
-	width: 100%;
-	text-align: center;
-}
-
-#pos1:checked ~ul {
-	margin-left: 0%;
-}
-
-#pos2:checked ~ul {
-	margin-left: -100%;
-}
-
-#pos3:checked ~ul {
-	margin-left: -200%;
-}
-
-#pos4:checked ~ul {
-	margin-left: -300%;
-}
-
-#pos1:checked ~.pos>label:nth-child(1) {
-	background: #A091B7;
-}
-
-#pos2:checked ~.pos>label:nth-child(2) {
-	background: #A091B7;
-}
-
-#pos3:checked ~.pos>label:nth-child(3) {
-	background: #A091B7;
-}
-
-#pos4:checked ~.pos>label:nth-child(4) {
-	background: #A091B7;
-}
-/*---------------- 선 추가 ----------------*/
 
 .white-bg {
 	background: #ffffff
@@ -493,7 +402,7 @@ hr {
 	font-weight: 500 !important;
 	display: inline-block !important;
 	cursor: pointer;
-	color: #000000 !important;
+	color: #fff !important;
 	display: inline-block;
 	transition: 0.6s;
 	box-shadow: 0px 7px 21px 0px rgba(0, 0, 0, 0.12); 
@@ -543,8 +452,8 @@ hr {
 	background-color: #FF5F21;
 	color: #ffffff !important; */
 	background-position: left;
-	background-color: #A091B7 !important;
-	color: #ffffff !important; 
+	background-color: #fff !important;
+	color: #A091B7 !important; 
 }
 
 .btn.focus, .btn:focus {
