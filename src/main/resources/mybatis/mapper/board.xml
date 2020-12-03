@@ -4,9 +4,9 @@
 	
 	
 	<select id="selectByBno" parameterType="int" resultType="board">
-		select bno, btitle, bcontent, bdate, memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate, murl, blike
-		from board
-		where bno = #{bno}
+		select board.bno, btitle, bcontent, bdate, board.memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate, board.murl, blike, member.mnickname
+		from board, member
+		where bno = #{bno} AND board.memail = member.memail
 	</select>
 	
 	<!-- ////////////////////////////////////영아////////////////////////////// -->
