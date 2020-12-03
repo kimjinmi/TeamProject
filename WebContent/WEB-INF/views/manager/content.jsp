@@ -191,6 +191,22 @@
 										</script>
 											
 									</li>
+									<li><a href="javascript:announcewrite()" class="d-flex">
+										<p>공지사항 작성</p></a>
+										<script type="text/javascript">
+											function announcewrite(){
+												$.ajax({
+													url:"announcewrite",
+													success:function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+												
+											}
+										
+										</script>
+											
+									</li>
 									
 								</ul>
 							</aside>
