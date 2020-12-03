@@ -154,35 +154,31 @@
 														}
 													});
 												}
-											</script>
-												
+											</script>	
 										</li>
 										<li><a href="javascript:disabledmember()" class="d-flex">
 											<p>차단 회원 관리</p></a>
 											<script type="text/javascript">
-												function disabledmember(){
+												function disabledmember(pageNo){
+													if(!pageNo) {
+															pageNo=1;
+													}
 													$.ajax({
 														url:"disabledmember",
+														data: {pageNo:pageNo},
 														success:function(data) {
 															$("#setting_result").html(data);
 														}
-													});
-													
+													});	
 												}
-											
-											</script>
-												
+											</script>	
 										</li>
-									
-								</ul>
+									</ul>
 							</aside>
-							
-							
 						</div>
-					</div>
-				
+				</div>
 				<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list">
+					<div id="setting_result" class="col-lg-8 posts-list">
 						<div class="single-post">
 							<div class="feature-img">
 								<img class="img-fluid" src="#"

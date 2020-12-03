@@ -217,5 +217,14 @@ public class BoardDao {
 	public List<BoardDto> selectByAllPageUser(PagerDto pager) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.searchListUser", pager);
 		return list;
+	}
+
+
+	public void commentModify(int rno, String rcontent) {
+		Map map = new HashMap();
+		map.put("rno", rno);
+		map.put("rcontent", rcontent);
+		sst.update("mybatis.mapper.board.commentModify", map);
+		
 	} 
 }

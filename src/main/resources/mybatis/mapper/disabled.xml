@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.disabled">
+
+	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
+	
+	<insert id="selectDisabled" parameterType="disabled" >
+	insert into disabled(dno, memail, dreason, ddate)
+	values (SEQ_DISABLED_DNO.nextval, #{memail}, #{dreason}, sysdate)
+	</insert>
+
+	<select id="mdisabledThing" resultType="int"> 
+		SELECT count(*)
+		FROM disabled
+	</select>
+
+	<select id="DisabledPageList" resultType="disabled">
+        	SELECT dno, memail, dreason, ddate, mmyimage, mnickname
+		FROM (
+			SELECT rownum as rnum, dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
+			FROM disabled d, member m
+			WHERE d.memail = m.memail and rownum &lt;=#{endRowNo}
+		)
+		WHERE rnum &gt;=#{startRowNo}
+	</select>	
+
+<!-- 		 diasbled 된 해당 memail의 정보(이미지 포함 - 조인)
+	<select id="disInformation" parameterType="String" resultType="disabled">
+	 select dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
+     from disabled d, member m
+     where d.memail = m.memail and d.memail=#{memail}
+	</select> -->
+	
+		<!-- 영아 : 활성화인 회원을 비활성화(0)으로 변경하기 -->
+	<select id="changeToEnabled" parameterType="String" resultType="member">
+		UPDATE member
+	    SET menabled=1
+	    WHERE memail=#{memail}
+	</select>
+	
+	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
+</mapper>

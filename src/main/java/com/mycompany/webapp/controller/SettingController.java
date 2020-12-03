@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.LikedDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
@@ -323,5 +324,21 @@ public class SettingController {
 		
 		return "setting/setting";
 	}*/
+	
+	@RequestMapping("/mylikelist")
+	public String mylikelist(@RequestParam(defaultValue = "1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
+		//logger.info("실행");
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.getTotalMyLikeRow(sessionMemail); //
+		PagerDto pager = new PagerDto(sessionMemail, 5, 5, totalRows, pageNo);
+		Date time = new Date();
+		
+		List<LikedDto> list = service.getLikedListPage(pager);
+		
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", list);
+		
+		return "setting/mylikelist";
+	}
 
 }

@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
+import com.mycompany.webapp.dao.LikedDao;
 import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.NeighborDao;
 //import com.mycompany.webapp.dao.NeighborDao;
 import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.LikedDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.NeighborDto;
 import com.mycompany.webapp.dto.PagerDto;
@@ -39,6 +41,9 @@ public class SettingService {
 	
 	@Resource
 	private NeighborDao neighbordao;
+	
+	@Resource
+	private LikedDao likeddao;
 
 
 	public MemberDto sessionconnect(MemberDto member) {
@@ -133,6 +138,18 @@ public class SettingService {
 		int rows = replydao.myReplyCount(murl);
 		return rows;
 	}
+
+	public int getTotalMyLikeRow(String sessionMemail) {
+		int rows = likeddao.myLikedCount(sessionMemail);
+		return rows;
+	}
+
+	public List<LikedDto> getLikedListPage(PagerDto pager) {
+		List<LikedDto> list = likeddao.mylikelist(pager);
+		return list;
+	}
+
+
 
 
 	

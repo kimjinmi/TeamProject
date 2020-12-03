@@ -32,9 +32,9 @@ public class SigninController {
 	 }
 	 */
 	
-	@RequestMapping("/resetpassword")
-	public String resetpassword() {
+	@RequestMapping("/passwordreset")
+	public String passwordreset() {
 		logger.info("실행");
-		return "signin/resetpassword";
+		return "signin/passwordreset";
 	}
 }

@@ -8,6 +8,19 @@
 	background-size: 200%
 }
 
+.str {
+ 	display: block;
+    font-weight: 600;
+    font-size: 30rem;
+    font-family: Noto Sans Light,AppleSDGothicNeo-Regular,'Malgun Gothic','맑은 고딕',dotum,'돋움',sans-serif;
+    color: #000;
+    letter-spacing: -1.8px;
+	
+}
+
+
+
+
 .white-bg {
 	background: #ffffff
 }
@@ -381,7 +394,23 @@ hr {
 }
 
 .btn {
-	border: none;
+/* 	border: 2px solid #000000; */
+	padding: 7px 21px !important;
+	text-transform: uppercase !important;
+	border-radius: 20px;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	display: inline-block !important;
+	cursor: pointer;
+	color: #fff !important;
+	display: inline-block;
+	transition: 0.6s;
+	box-shadow: 0px 7px 21px 0px rgba(0, 0, 0, 0.12); 
+	/* background-image: linear-gradient(to left, none, #e6571e, #FF5F21); */
+	background-color: #fff;
+	background-position: right;
+	background-size: 200% 
+/* 	border: none;
 	padding: 18px 31px !important;
 	text-transform: uppercase !important;
 	border-radius: 0px;
@@ -395,7 +424,7 @@ hr {
 	box-shadow: 0px 7px 21px 0px rgba(0, 0, 0, 0.12);
 	background-image: linear-gradient(to left, #FF5F21, #e6571e, #FF5F21);
 	background-position: right;
-	background-size: 200%
+	background-size: 200% */
 }
 
 .btn i {
@@ -419,10 +448,12 @@ hr {
 }
 
 .btn:hover {
+	/* background-position: left;
+	background-color: #FF5F21;
+	color: #ffffff !important; */
 	background-position: left;
-	background-image: linear-gradient(to left, #FF5F21, #e6571e, #FF5F21)
-		!important;
-	color: #fff
+	background-color: #fff !important;
+	color: #A091B7 !important; 
 }
 
 .btn.focus, .btn:focus {
@@ -517,8 +548,64 @@ hr {
 	z-index: 1
 }
 
+/*-------- 메인 버튼 수정 [선 추가] --------*/
+.main-btn {
+	border: 2px solid #fff; 
+	color: #fff; /* 커서 올리기전 글씨 색깔 */
+	background: none; 
+	border-radius: 20px;
+	text-transform: uppercase;
+	font-family: "Oswald", sans-serif;
+	padding: 7px 30px;
+	-moz-user-select: none;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	margin-bottom: 0;
+	position: relative;
+	transition: color 0.4s linear;
+	position: relative;
+	overflow: hidden;
+	margin: 0;
+	z-index: 1
+}
+
+.main-btn::before {
+	border: 2px solid transparent;
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 101%;
+	height: 101%;
+	background: #fff;
+	z-index: -1;
+	transition: transform 0.5s;
+	transition-timing-function: ease;
+	transform-origin: 0 0;
+	transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+	transform: scaleY(0);
+	border-radius: 0
+}
+
+.main-btn:hover {
+	color: #A091B7 !important
+}
+
+.main-btn:hover::before {
+	transform: scaleY(1);
+	border: 2px solid transparent
+}
+/*-------- 메인 버튼 수정 [선 추가] --------*/
+
 @media ( max-width : 575px) {
 	.hero-btn {
+		padding: 13px 17px
+	}
+	
+	.main-btn {
 		padding: 13px 17px
 	}
 }
@@ -2799,7 +2886,8 @@ transition
 }
 
 .header-sticky.sticky-bar {
-	background: #FF7B47
+	/* background: #FF7B47 */
+	background: #A091B7;
 }
 
 .header-sticky.sticky-bar.sticky .main-menu ul li a {
@@ -2828,7 +2916,7 @@ transition
 	position: absolute;
 	right: 0px;
 	width: 100%;
-	z-index: 99
+	z-index: 99;
 }
 
 .mobile_menu .slicknav_menu {
@@ -2917,7 +3005,7 @@ transition
 }
 
 .slider-bg1 {
-	background-image: url(../img/hero/h1_hero1.png)
+	background-image: url(../img/hero/image2.jpg)
 }
 
 .slider-bg2 {

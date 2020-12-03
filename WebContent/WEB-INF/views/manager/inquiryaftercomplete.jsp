@@ -11,26 +11,22 @@ text-overflow:ellipsis;
 }
 </style>
 <script>
+
 function inquiryaftercomplete(pageNo) {
 	if(!pageNo) {
 		pageNO = 1;
 	}
+	
 	$.ajax({
-		url : "inquiryaftercomplete",
-		data : {pageNo:pageNo},
-		success : function(data) {
-			$("#afterresult").html(data);
+		url:"inquiryaftercomplete",
+		data:{pageNo:pageNo},
+		success:function(data) {
+			$("#afterview").html(data);
 		}
-	});
+	});	
 }
 </script> 
 
-
-
-
-	<li class="list-group-item list-group-item-light"><!-- ajax사용해서 listresult에 결과값 받기 -->
-	<a href="javascript:inquiryaftercomplete()"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;처리완료</a>
-		 <hr style="margin-top:12px;">
 		<table style="text-align:center; width: 90%">
 			<colgroup>
 				<col width="10%">
@@ -52,14 +48,17 @@ function inquiryaftercomplete(pageNo) {
 			</thead>
 			<%-- <td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${inquiryList.ititle}">${inquiryList.ititle}</a></td> --%>
 			<c:forEach var="inquiryList" items="${inquiryList}">
-				<tr style="border-spacing: 5px;">
-					<td>${inquiryList.ino}</td>
-					<td>${inquiryList.isubject}</td>
-					<td>${inquiryList.iemail}</td>
-					<td><fmt:formatDate value="${inquiryList.idate}" pattern="yyyy-MM-dd" /></td>
-					<td><a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
-					<td><a href="javascript:inquirydelete(${inquiryList.ino})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-				</tr>	
+				<c:if test="${inquiryList.iresult == true}">
+					<tr style="border-spacing: 5px;">
+						<td>${inquiryList.ino}</td>
+						<td>${inquiryList.isubject}</td>
+						<td>${inquiryList.iemail}</td>
+					
+						<td><fmt:formatDate value="${inquiryList.idate}" pattern="yyyy-MM-dd" /></td>
+						<td><a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
+						<td><a href="javascript:inquirydelete(${inquiryList.ino})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+					</tr>
+				</c:if>	
 			</c:forEach>
 			
 		
@@ -87,5 +86,5 @@ function inquiryaftercomplete(pageNo) {
 				</td>
 			</tr>
 		</table> 
-	</li>
+	
 

@@ -2,9 +2,11 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,9 +22,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mycompany.webapp.dto.AnnounceDto;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.InquiryDto;
@@ -103,15 +107,17 @@ public class ManagerController {
 	public String searchboard(Model model, SearchDto searchdto, @RequestParam(defaultValue = "1")int pageNo) {
 		String value = searchdto.getValue();
 		String search = searchdto.getSearch();
+		int totalRows = service.getSearchTotalBoardRows(searchdto);
 		String searchvalue = null;
 		if(value.equals("btitle")) {
 			searchvalue="title";
 		}else if(value.equals("bcontent")) {
 			searchvalue="content";
-		}else if(value.equals("memail")) {
-			searchvalue="writer";
+		}else if(value.equals("b.memail")) {
+			searchvalue="blogwriter";
+		}else if(value.equals("ccontent")) {
+			searchvalue="category";
 		}
-		int totalRows = service.getSearchTotalBoardRows(searchdto);
 		
 		PagerDto pager = new PagerDto(value, search, 5, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getUserBoardList(pager);
@@ -189,7 +195,7 @@ public class ManagerController {
 		InquiryDto inquiryList = service.getInquiry(ino);
 		model.addAttribute("inquiryList", inquiryList);
 		
-		return "manager/inquirylist";
+		return "manager/inquirydetail";
 	}
 	
 /*	@RequestMapping("/inquirycomplete")
@@ -236,7 +242,28 @@ public class ManagerController {
 		out.close();
 	}
 	
-
+	@GetMapping("/announcewrite")
+	public String announcewrite(Model model, HttpSession session) {
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		return "manager/announcewrite";
+	}
+	
+	@RequestMapping("/announcewriteform")
+	public void announcewriteform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws IOException {
+		logger.info("announcedto.isAifmain(): "+announcedto.isAifmain());
+		service.announceadd(announcedto);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
 	
 	
 	@GetMapping("/photodownload")

@@ -143,7 +143,7 @@
 									</li>
 									
 									<li><a href="javascript:allboardlist()" class="d-flex">
-										<p>전체 게시글 관리</p></a>
+										<p>전체 데이터 관리</p></a>
 										<script type="text/javascript">
 											function allboardlist(pageNo){
 												if(!pageNo){
@@ -174,14 +174,7 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:allreplylist()" class="d-flex">
-										<p>전체 댓글 관리</p></a>
-										<script type="text/javascript">
-											
-										
-										</script>
-											
-									</li>
+									
 									<li><a href="javascript:inquirylist()" class="d-flex">
 										<p>문의사항 관리</p></a>
 										<script type="text/javascript">
@@ -192,8 +185,20 @@
 														$("#setting_result").html(data);
 													}
 												});	
+												$.ajax({
+													url:"inquirybeforecomplete",
+													success:function(data) {
+														$("#beforeview").html(data);
+													}
+												});	
+												$.ajax({
+													url:"inquiryaftercomplete",
+													success:function(data) {
+														$("#afterview").html(data);
+													}
+												});	
 											}
-
+											
 											function inquirydelete(ino) {
 												$.ajax({
 													url : "inquirydelete",
@@ -211,11 +216,27 @@
 													url : "inquirydetail",
 													data : {ino:ino},
 													success : function(data) {
-														$("#setting_result").html(data);
+														$("#detailview").html(data);
 													}
 												});
 											}
 											
+										</script>
+											
+									</li>
+									<li><a href="javascript:announcewrite()" class="d-flex">
+										<p>공지사항 작성</p></a>
+										<script type="text/javascript">
+											function announcewrite(){
+												$.ajax({
+													url:"announcewrite",
+													success:function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+												
+											}
+										
 										</script>
 											
 									</li>

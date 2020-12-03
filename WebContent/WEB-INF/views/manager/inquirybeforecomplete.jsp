@@ -10,18 +10,21 @@ text-overflow:ellipsis;
 
 }
 </style>
-<script>
-function inquirybeforecompleteno(pageNo) {
+
+<script type="text/javascript">
+
+function inquirybeforecomplete(pageNo) {
 	if(!pageNo) {
 		pageNO = 1;
 	}
+	
 	$.ajax({
-		url : "inquirybeforecomplete",
-		data : {pageNo:pageNo},
-		success : function(data) {
+		url:"inquirybeforecomplete",
+		data:{pageNo:pageNo},
+		success:function(data) {
 			$("#beforeview").html(data);
 		}
-	});
+	});	
 }
 </script>
 
@@ -47,37 +50,39 @@ function inquirybeforecompleteno(pageNo) {
 	<%-- <td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${inquiryList.ititle}">${inquiryList.ititle}</a></td> --%>
 	
 	<c:forEach var="inquiryList" items="${inquiryList}">
-		<tr style="border-spacing: 5px;">
-			<td>${inquiryList.ino}</td>
-			<td>${inquiryList.isubject}</td>
-			<td>${inquiryList.iemail}</td>
-			<td><fmt:formatDate value="${inquiryList.idate}" pattern="yyyy-MM-dd" /></td>
-			<td><a href="javascripy:inquirydetail(${inquiryList.ino})"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
-			<td><a href="javascript:inquirydelete(${inquiryList.ino})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-		</tr>	
+		<c:if test="${inquiryList.iresult == false}">
+			<tr style="border-spacing: 5px;">
+				<td>${inquiryList.ino}</td>
+				<td>${inquiryList.isubject}</td>
+				<td>${inquiryList.iemail}</td>
+				<td><fmt:formatDate value="${inquiryList.idate}" pattern="yyyy-MM-dd" /></td>
+				<td><a href="javascripy:inquirydetail(${inquiryList.ino})"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
+				<td><a href="javascript:inquirydelete(${inquiryList.ino})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+			</tr>
+		</c:if>	
 	</c:forEach>
 	
 
 	<tr>
 		<td colspan="4" style="text-align:center;">
-			<a class="genric-btn primary-border small" href="javascript:inquirybeforecompleteno(1)">처음</a>
+			<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete(1)">처음</a>
 			
 			<c:if test="${pager.groupNo >1}">
-				<a class="genric-btn primary-border small" href="javascript:inquirybeforecompleteno()(${pager.startPageNo-1})">이전</a>
+				<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete()(${pager.startPageNo-1})">이전</a>
 			</c:if>
 			
 			<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 				<c:if test="${pager.pageNo == i}">
-					<a class="genric-btn primary small" href="javascript:inquirybeforecompleteno()">${i}</a>
+					<a class="genric-btn primary small" href="javascript:inquirybeforecomplete()">${i}</a>
 				</c:if>
 				<c:if test="${pager.pageNo != i}">
-					<a class="genric-btn primary-border small" href="javascript:inquirybeforecompleteno()">${i}</a>
+					<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete()">${i}</a>
 				</c:if>
 			</c:forEach>
 			<c:if test="${pager.groupNo <pager.totalGroupNo}">
-				<a class="genric-btn primary-border small" href="javascript:inquirybeforecompletneno(${pager.endPageNo+1})">다음</a>
+				<a class="genric-btn primary-border small" href="javascript:inquirybeforecompletne(${pager.endPageNo+1})">다음</a>
 			</c:if>
-			<a class="genric-btn primary-border small" href="javascript:inquirybeforecompleteno(${pager.totalPageNo})">맨끝</a>
+			<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete(${pager.totalPageNo})">맨끝</a>
 			
 		</td>
 	</tr>

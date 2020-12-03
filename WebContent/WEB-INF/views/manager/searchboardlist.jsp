@@ -17,7 +17,8 @@ function searchboarddelete(bno,value,search){
 
 
 </script>
-<h2 style="color: #2d2d2d; display:inline;">게시글 관리</h2>
+	<u><h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allboardlist()">게시글 관리</a></h2></u>/
+	<h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allreplylist()">댓글 관리</a></h2>
 
 <hr style="margin-top:12px;">
 	<p></p>
@@ -35,7 +36,7 @@ function searchboarddelete(bno,value,search){
 				<th scope="col">no</th>
 				<th scope="col">category</th>
 				<th scope="col">title</th>
-				<th scope="col">writer</th>
+				<th scope="col">blogwriter</th>
 				<th scope="col">date</th>
 				<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
 			</tr>
@@ -44,7 +45,7 @@ function searchboarddelete(bno,value,search){
 				<td colspan="5" style="text-align:center;">
 					<b>"${searchvalue}"에서 "${searchdto.search}"검색 결과 :<br></b>
 					<b>총 <u>${totalRows}</u>개의 게시물이 존재합니다.</b><br>
-					<a href="javascript:allboardlist()">전체보기<i class="fa fa-search" aria-hidden="true"></i></a>
+					<a href="javascript:allboardlist()">전체게시글보기<i class="fa fa-search" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			<c:forEach var="board" items="${list}">
@@ -62,10 +63,10 @@ function searchboarddelete(bno,value,search){
 			<tr>
 				<td colspan="5" style="text-align:center;">
 					<c:if test="${totalRows != 0}">
-						<a class="genric-btn primary-border small" href="javascript:searchboard(1,'${searchdto.value}','${searchdto.search}')">처음</a>
+						<a class="genric-btn primary-border small" href="javascript:searchboard(1,'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
 						
 						<c:if test="${pager.groupNo >1}">
-							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.startPageNo-1},'${searchdto.value}','${searchdto.search}')">이전</a>
+							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.startPageNo-1},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
 						</c:if>
 						
 						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
@@ -77,9 +78,9 @@ function searchboarddelete(bno,value,search){
 							</c:if>
 						</c:forEach>
 						<c:if test="${pager.groupNo <pager.totalGroupNo}">
-							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.endPageNo+1},'${searchdto.value}','${searchdto.search}')">다음</a>
+							<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.endPageNo+1},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 						</c:if>
-						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo},'${searchdto.value}','${searchdto.search}')">맨끝</a>
+						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 					</c:if>	
 				</td>
 			</tr>
@@ -87,29 +88,7 @@ function searchboarddelete(bno,value,search){
 			</tr>
 		
 	</table>
-	<p></p>
-	<div class="container">
-		<form method="post" id="searchboard">
-			<div class="row">
-				<div class="col-md-2" style="padding: 10px;">
-					<div class="form-select">
-						<select name="value" id="value" style="padding: 8px;">
-							<option value="btitle" selected>title</option>
-							<option value="bcontent">content</option>
-							<option value="memail">writer</option>
-						</select>
-					</div>
-					
-				</div>
-				<div class="col-md-8" style="padding: 10px;">
-					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
-				</div>
-				<div class="col-md-2" style="padding: 10px;">
-					<a href="javascript:searchboardfirst()"><i class="fa fa-search" aria-hidden="true"></i></a>
-				</div>
-			</div>
-		</form>
-	</div>
+	
 		
 
 	

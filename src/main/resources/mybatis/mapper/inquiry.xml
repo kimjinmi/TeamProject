@@ -22,7 +22,7 @@
 	<select id="selectByIno" parameterType="int" resultType="inquiry">
 		select ino, isubject, imessage, iemail, iresult, idate
 		from inquiry
-		where ino=#{ino} and iresult=#{iresult}
+		where ino=#{ino}
 	</select>
 	
 	<delete id="deleteByIno" parameterType="int">

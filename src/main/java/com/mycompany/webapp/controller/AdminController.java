@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,13 +25,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.MemberDto;
-import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.PagerDto;
-import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.service.AdminService;
-import com.mycompany.webapp.service.ManagerService;
 
 
 @Controller
@@ -59,7 +57,7 @@ public class AdminController {
 		return "admin/managersetting";
 	}
 	
-	//----------------------------------------------------------------영아--------------------------------------------------------------------//
+	//-------------------------------------------------------------영아 --- 시작 -----------------------------------------------------------------//
 	
 			//admin - 회원 관리 - abled된 사람들(1)을 찾아서 enabled(0)으로 바꾸기
 			
@@ -83,14 +81,39 @@ public class AdminController {
 		return "admin/usersetting";
 	}
 	
-					//admin - 차단 회원 관리
+				//admin - 차단 회원 관리
 	@RequestMapping("/disabledmember")
-	public String disabledmember(Model model) {
+	public String disabledmember(@RequestParam(defaultValue="1")int pageNo, Model model, HttpSession session) {
+		
+		int totalRows = service.mdisabledRows();
+		logger.info("totalRows" + totalRows);
+		PagerDto pager = new PagerDto(3, 5, totalRows, pageNo);
+		List<DisabledDto> mdisabled = service.pickedDisabledPerson(pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("mdisabled", mdisabled);
 
 	return "admin/disabledmember";
 	}
 	
-	//----------------------------------------------------------------영아--------------------------------------------------------------------//
+	@RequestMapping("/adddisabledmember")
+	public void adddisabledmember(DisabledDto disabled, HttpServletResponse response, Model model) throws Exception {
+		logger.info(disabled.getMemail());	
+		service.disabled(disabled);
+		logger.info(disabled.getMemail());	
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	//-------------------------------------------------------------영아 - 끝 ---------------------------------------------------------------//
 	
 	@GetMapping("/managerDelete")
 	public void managerDelete(String memail, HttpServletResponse response, MemberDto member) throws Exception {

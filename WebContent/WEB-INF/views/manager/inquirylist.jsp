@@ -13,14 +13,14 @@ text-overflow:ellipsis;
 <script>
 function buttonbefore() {
 	$("#beforeview").toggle();
-
-	
 }
 
-function inquiryaftercomplete() {
-	$("#afterresult").toggle();
-	
-	
+function buttonafter() {
+	$("#afterview").toggle();	
+}
+
+function buttondetail() {
+	$("#detailview").toggle();
 }
 
 /* function inquirybeforecomplete(pageNo) {
@@ -48,14 +48,17 @@ function inquiryaftercomplete() {
 		<div class="col">
 			<ul class="list-group">
 				<li class="list-group-item list-group-item-light">
-					<a href="#" onclick="buttonbefore()"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;처리대기중</a>
-				</li>	
+					<a href="javascript:buttonbefore()"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;처리대기중</a>
+				</li>
+				<span id="beforeview" style="display: none;"></span>	
 				<li class="list-group-item list-group-item-light"><!-- ajax사용해서 listresult에 결과값 받기 -->
-					<a href="javascript:inquiryaftercomplete()"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;처리완료</a></li>
-					<div id="afterview"></div>	
+					<a href="javascript:buttonafter()"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;처리완료</a>
+				</li>
+				<span id="afterview" style="display:none;"></span>
+					
 
 			</ul>
-			<div id="beforeview" style="display: none;"><jsp:include page="<%=application.getContextPath()%>/views/manager/inquirybeforecomplete.jsp"/></div>
+			
 		</div>
 	</div>
 	

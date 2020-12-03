@@ -250,7 +250,14 @@ public class BlogController {
 		os.close();
 		is.close();
 	}	
-	
+
+/*	    PrintWriter printWriter = response.getWriter();
+	    String fileUrl = request.getContextPath() + "/images/" + fileName;
+	    printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
+	            + "','이미지가 업로드되었습니다.')" + "</script>");
+	    printWriter.flush();
+	}*/
+
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		// 게시물 삭제
@@ -373,13 +380,44 @@ public class BlogController {
 		os.close();
 		is.close();
 	}
+	
+	@GetMapping("/boardphotodownload")
+	public void boardphotodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		//파일의 데이터를 읽기 위한 입력 스트림 얻기
+		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
+		InputStream is = new FileInputStream(saveFilePath);
+		
+		//응답 HTTP 헤더 구성
+		//1) Content-Type 헤더 구성(파일 종류)
+		ServletContext application = request.getServletContext();
+		String fileType = application.getMimeType(fileName);
+		response.setContentType(fileType);
+		
+		//다운로드할 실제 파일 이름 구성
+		//split메소드는 배열로 리턴됨
+
+		//attachment; : 브라우저가 해당 파일을 다운로드(없으면 보여줄 수 있으면 브라우저에서 보여줌, 보여줄 수 없으면 다운로드
+		response.setHeader("Content-Disposition", "attachment; filename=\""+fileName+"\"");
+		
+		//3)Content-Length 헤더 구성(다운로드할 파일의 크기를 지정)
+		int fileSize = (int) new File(saveFilePath).length();
+		response.setContentLength(fileSize);
+		
+		//응답 HTTP의 바디(본문) 구성
+		OutputStream os = response.getOutputStream();
+		FileCopyUtils.copy(is, os); //스프링에서 제공
+		os.flush();
+		os.close();
+		is.close();
+	}
 
 	@GetMapping("/commentDelete")
 	public String commentDelete(int rno) {
 		service.commentDelete(rno);	 // 해당 rno 삭제완료
 		return "blog/blogcommentList";
 	}
-	
+
 	@GetMapping("/heartStatus")
 	public String heartStatus(int bno, Model model, HttpSession session) {
 		BoardDto likecount = service.boardLikeCount(bno); // 해당 bno 게시물의 blike 갯수를 model.addAttribute("likecount", likecount);
@@ -392,7 +430,6 @@ public class BlogController {
 		return "blog/heartSatatus";
 	}
 
-	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
 		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
@@ -457,6 +494,26 @@ public class BlogController {
 		List<BoardDto> list = service.searchList(searchContent, murl);
 		model.addAttribute("list", list);
 		return "blog/blogList";
+	}
+	
+	@RequestMapping("/neighborlist")
+	public String neighborlist(@RequestParam(defaultValue="1")int pageNo, HttpSession session, Model model) {
+		String memail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.neighborlistRows(memail);
+		PagerDto pager = new PagerDto(memail, 4, 4, totalRows, pageNo);
+		List<NeighborDto> list = service.getNeighborList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
+		return "blog/neighborlist";
+	}
+	
+	@PostMapping("/commentModify")
+	public String commentModify(int rno, String rcontent) {
+		logger.info("rno = " + rno);
+		logger.info("rcontent : " + rcontent);
+		service.commentModify(rno, rcontent);
+		
+		return "blog/blogcommentList";
 	}
 	
 }
