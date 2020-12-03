@@ -26,10 +26,11 @@
        </c:forEach>
      
      <c:if test="${totalRows > 0 }">
-       <div class= "blogListPager" style="text-align:center;">
+     <center>
+       <!-- <div class= "blogListPager" style="text-align:center;"> -->
        
        <table>
-       <center>
+       
        <tr>
        
          <td colspan="4" style="text-align: center; align-items:center;">
@@ -57,10 +58,11 @@
                </td>
         
         </tr>
-         </center>     
+            
         </table>
         
-        </div>
+       <!--  </div> -->
+        </center>  
         </c:if>
         <c:if test="${totalRows == 0 }">
         <center>
