@@ -511,6 +511,8 @@ public class BlogController {
 	
 	@PostMapping("/commentModify")
 	public String commentModify(int rno, String rcontent) {
+		logger.info("rno = " + rno);
+		logger.info("rcontent : " + rcontent);
 		service.commentModify(rno, rcontent);
 		
 		return "blog/blogcommentList";
