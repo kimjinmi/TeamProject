@@ -65,7 +65,7 @@
 	margin: 30px auto;
 	border-radius: 30px;
 	background-color: #f0f0f0;
-	padding: 40px;
+	padding: 20px;
 	box-sizing: border-box;
 	box-shadow: 0px 8px 33px #999;
 }
