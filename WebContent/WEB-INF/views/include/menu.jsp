@@ -38,7 +38,7 @@
 					</ul>
 				</li>
 			</sec:authorize>
-			<li><a href="<%=application.getContextPath()%>/contact/contact">CONTANCT</a></li>
+			<li><a href="<%=application.getContextPath()%>/contact/contact">CONTACT</a></li>
 			<!-- Header btn -->
 			<li>
 				<div class="header-right-btn ml-40">

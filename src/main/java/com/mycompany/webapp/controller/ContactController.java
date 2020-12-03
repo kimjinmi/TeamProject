@@ -1,5 +1,7 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,8 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.InquiryDto;
+import com.mycompany.webapp.dto.PagerDto;
+import com.mycompany.webapp.dto.AnnounceDto;
 import com.mycompany.webapp.service.ContactService;
 
 @Controller
@@ -28,6 +33,14 @@ public class ContactController {
 			model.addAttribute("sessionMemail", sessionMemail);
 		}
 		return "contact/contact";
+	}
+	
+	@RequestMapping("/announcelist")
+	public String announcelist(@RequestParam(defaultValue = "1")int pageNo) {
+		int totalRows = service.getTotalAnnounceRows();
+		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
+		List<AnnounceDto> list = service.getannouncelist();
+		return "contact/announcelist";
 	}
 	
 	@RequestMapping("/contactform")
