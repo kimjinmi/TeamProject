@@ -117,16 +117,22 @@
 						<div class="carousel-item active">
 							<!--  출처: [화분] <Pinterest> '땡스아트' 
 								   출처: [앉은 사람] <크라우드픽> '@woocat'  -->
-							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_2.png" width="100%">
-						</div>
-						
-						<div class="carousel-item">
-							<!-- 출처: [아이패드] PNGEGG -->
-							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png" width="100%">
+							<img
+								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_2.png"
+								width="100%">
 						</div>
 
 						<div class="carousel-item">
-							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png" width="100%">
+							<!-- 출처: [아이패드] PNGEGG -->
+							<img
+								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png"
+								width="100%">
+						</div>
+
+						<div class="carousel-item">
+							<img
+								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png"
+								width="100%">
 						</div>
 					</div>
 					<a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -139,57 +145,49 @@
 			</div>
 		</section>
 		<!-- slider Area End-->
-		
-		<!--? video_start -->
-		<div class="video-area section-bg2 d-flex align-items-end fix" data-background="<%= application.getContextPath() %>/resources/assets/img/gallery/video-bg.png">
-			<!-- Video icon -->
-			<div class="video-icon">
-				<a class="popup-video btn-icon"
-					href="https://www.youtube.com/watch?v=up68UAfH0d0"><i
-					class="fas fa-play"></i></a>
-			</div>
-			<div class="container">
-				<div class="video-contents">
-					<div class="row justify-content-between">
-						<div class="col-xl-5 col-lg-5 col-md-10">
-							<div class="section-tittle  mb-90">
-								<h2>How we work?</h2>
-								<p class="tittle-pera1">Inasfa reprehenderit in voluptate
-									velit esse cillum reeut cupidatatfug nulla pariatur.</p>
-								<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-									esse cillum reeut cupidatatfug nulla pariatur. Excepteur
-									sintxsdfas occaecat.</p>
-								<a href="#" class="btn black-btn">Start a Project</a>
-							</div>
-						</div>
-						<div class="col-xl-5 col-lg-6 col-md-8">
-							<div class="edu-details">
-								<!-- single-item -->
-								<div class="single-items mb-50">
-									<span>Tell Us About Your Project</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-								<!-- single-item -->
-								<div class="single-items single-items2 mb-50">
-									<span>We'll Schedule a Flight</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-								<!-- single-item -->
-								<div class="single-items single-items3 mb-50">
-									<span>We'll Schedule a Flight</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- video_end -->
-	
+
+		 <!--? video_start -->
+    <div class="video-area section-bg2 d-flex align-items-end fix"  data-background="assets/img/gallery/video-bg.png">
+        <!-- Video icon -->
+        <div class="video-icon" >
+            <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=up68UAfH0d0"><i class="fas fa-play"></i></a>
+        </div>
+        <div class="container">
+            <div class="video-contents">
+                <div class="row justify-content-between">
+                    <div class="col-xl-5 col-lg-5 col-md-10">
+                        <div class="section-tittle  mb-90">
+                            <h2>How we work?</h2>
+                            <p class="tittle-pera1">Inasfa reprehenderit in voluptate velit esse  cillum reeut cupidatatfug nulla pariatur.</p>
+                            <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur. Excepteur sintxsdfas occaecat.</p>
+                            <a href="#" class="btn black-btn">Start a Project</a>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-6 col-md-8">
+                        <div class="edu-details">
+                            <!-- single-item -->
+                            <div class="single-items mb-50">
+                                <span>Tell Us About Your Project</span>
+                                <p>Aute irure dolor inasfa prehenderit  in voluptate velit esse cillum.</p>
+                            </div>
+                            <!-- single-item -->
+                            <div class="single-items single-items2 mb-50">
+                                <span>We'll Schedule a Flight</span>
+                                <p>Aute irure dolor inasfa prehenderit in voluptate velit esse cillum.</p>
+                            </div>
+                            <!-- single-item -->
+                            <div class="single-items single-items3 mb-50">
+                                <span>We'll Schedule a Flight</span>
+                                <p>Aute irure dolor inasfa prehenderit in voluptate velit esse cillum.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- video_end -->
+
 		<!--? services area start -->
 		<section class="services-section pb-padding fix">
 			<div class="container" style="margin-top: 5%;">
@@ -271,7 +269,7 @@
 			</div>
 		</section>
 		<!-- Services End -->
-		
+
 		<!--? Visit Our Tailor Start -->
 		<div class="visit-tailor-area fix">
 			<!--Right Contents  -->

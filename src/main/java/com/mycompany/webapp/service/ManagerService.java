@@ -8,10 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.mycompany.webapp.dao.AnnounceDao;
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
 import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.ReplyDao;
+import com.mycompany.webapp.dto.AnnounceDto;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
@@ -31,11 +33,13 @@ public class ManagerService {
 
 	@Resource
 	private ReplyDao replydao;
-	
-	
+
 	@Resource
 	private CategoryDao categorydao;
-	
+
+	@Resource
+	private AnnounceDao announcedao;
+
 	public MemberDto sessionconnect(MemberDto member) {
 		//logger.info("service: "+member.getMemail());
 		MemberDto dbmember = memberdao.selectbyMemail(member.getMemail());
@@ -114,6 +118,12 @@ public class ManagerService {
 	public List<BoardDto> getUserBoardList(PagerDto pager) {
 		List<BoardDto> list = boarddao.selectByAllPageUser(pager);
 		return list;
+	}
+
+	public int announceadd(AnnounceDto announcedto) {
+		int row = announcedao.insertannounce(announcedto);
+		return row;
+		
 	}
 
 	

@@ -71,11 +71,12 @@
 		)
 		WHERE rnum &gt;=#{startRowNo}
 	</select>
-	
-	<!-- 영아 : 활성화인 회원을 비활성화(0)으로 변경하기 -->
+<!-- 	
+	영아 : 활성화인 회원을 비활성화(0)으로 변경하기
 	<select id="changeToEnabled" parameterType="String" resultType="member">
 		UPDATE member
 	    SET menabled=0
 	    WHERE memail=#{memail}
-	</select>
+	</select> -->
+	
 </mapper>

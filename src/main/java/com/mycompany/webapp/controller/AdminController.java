@@ -2,9 +2,11 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -91,6 +93,24 @@ public class AdminController {
 		model.addAttribute("mdisabled", mdisabled);
 
 	return "admin/disabledmember";
+	}
+	
+	@RequestMapping("/adddisabledmember")
+	public void adddisabledmember(DisabledDto disabled, HttpServletResponse response, Model model) throws Exception {
+		logger.info(disabled.getMemail());	
+		service.disabled(disabled);
+		logger.info(disabled.getMemail());	
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 	
 	//-------------------------------------------------------------영아 - 끝 ---------------------------------------------------------------//

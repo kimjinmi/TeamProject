@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
 var replyinreply = false; 
 var togglehide;
@@ -52,13 +53,14 @@ var togglehide;
 							</div>
 						</div>
 						<c:if test="${comment.murl == SessionMurl}">
-									<a href="javascript:commentDelete(${comment.rno})" class="genric-btn danger small">삭제</a>
-									<a href="javascript:commentModify(${status.index})" class="genric-btn primary small">수정</a>
-									
+								<div style="text-align:left	;">
+									<a href="javascript:commentModify(${status.index})" style="color:black"><i class="fa fa-pencil-square-o" style="font-size:18px; margin-right:6px;"></i>  </a>
+									<a href="javascript:commentDelete(${comment.rno})" style="color:black"><i class="fa fa-trash" aria-hidden="true" style="font-size:18px"></i></a>
+								</div>	
 									<hr/>
 									<p class="comment" id="comment${status.index}" style="display:none; text-align: right;">
-										<textarea class="form-control w-100" name="comment" id="modify_content" cols="100" rows="2" placeholder="수정할 댓글을 입력하세요"></textarea>
-										<a href="javascript:modify(${comment.rno })" class="genric-btn success medium small">작성하기</a>		
+										<textarea class="form-control w-100" name="comment" id="modify_content${status.index}" cols="100" rows="2" placeholder="수정할 댓글을 입력하세요"></textarea>
+										<a href="javascript:modify(${comment.rno }, ${status.index})" class="genric-btn success medium small">작성하기</a>		
 											
 									</p>
 									
@@ -79,7 +81,6 @@ var togglehide;
 							}
 						 
 							function commentDelete(rno){	
-								alert(${comment.rno});
 								 if(confirm("정말로 삭제 하시겠습니까?")){
 								 	$.ajax({
 										url: "commentDelete",
@@ -93,9 +94,9 @@ var togglehide;
 							 	}  
 							}
 							
-							function modify(rno){
+							function modify(rno, number){
 								
-								 var rcontent1 = $("#modify_content").val().trim();
+								 var rcontent1 = $("#modify_content"+number).val().trim();
 								 
 								
 								

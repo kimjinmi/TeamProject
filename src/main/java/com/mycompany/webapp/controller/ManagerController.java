@@ -23,11 +23,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.CategoryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.AnnounceDto;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
@@ -182,7 +184,28 @@ public class ManagerController {
 		out.close();
 	}
 	
-
+	@GetMapping("/announcewrite")
+	public String announcewrite(Model model, HttpSession session) {
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		return "manager/announcewrite";
+	}
+	
+	@RequestMapping("/announcewriteform")
+	public void announcewriteform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws IOException {
+		logger.info("announcedto.isAifmain(): "+announcedto.isAifmain());
+		service.announceadd(announcedto);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
 	
 	
 	@GetMapping("/photodownload")

@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,7 +77,7 @@ public class BlogController {
 		 * 
 		 * UserUrl += session.getAttribute("murl"); }
 		 */
-		
+		 
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
@@ -90,14 +91,6 @@ public class BlogController {
 		 logger.info("날짜형식 테스트 : " + board.getBdate());
 		 logger.info("bno 값 출력 1 : " + bno);
 		 logger.info("해당 게시글의 좋아요는 : " + board.getBlike());
-		 //친구추가버튼
-		 String memail = (String) session.getAttribute("sessionMemail");
-		 String SessionMurl = (String) session.getAttribute("SessionMurl");
-		 int existRows = -1;
-		 if(!SessionMurl.equals(UserUrl)){
-		 	existRows = service.neighorexist(UserUrl, memail);
-	 	 }
-		 model.addAttribute("existRows", existRows);
 
 		return "blog/blog_details";
 	}
@@ -137,7 +130,7 @@ public class BlogController {
 		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
 		/* model.addAttribute("list", list); */
 		model.addAttribute("catelist", catelist);													 // 영아
-		model.addAttribute("member", member);													// 영아
+		model.addAttribute("member", member);	
 		model.addAttribute("likelist", likelist);													// 영아
 		return "blog/blog";
 	}
@@ -159,7 +152,6 @@ public class BlogController {
 		logger.info("실행");
 		return "blog/blog_write";
 	}*/
-	
 	
 	
 	/*
@@ -258,7 +250,14 @@ public class BlogController {
 		os.close();
 		is.close();
 	}	
-	
+
+/*	    PrintWriter printWriter = response.getWriter();
+	    String fileUrl = request.getContextPath() + "/images/" + fileName;
+	    printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
+	            + "','이미지가 업로드되었습니다.')" + "</script>");
+	    printWriter.flush();
+	}*/
+
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		// 게시물 삭제
@@ -386,7 +385,7 @@ public class BlogController {
 	public void boardphotodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//파일의 데이터를 읽기 위한 입력 스트림 얻기
-		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
+		String saveFilePath = "C:/temp/projectimage/boardContent/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 		
 		//응답 HTTP 헤더 구성
@@ -431,7 +430,6 @@ public class BlogController {
 		return "blog/heartSatatus";
 	}
 
-	
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
 		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
@@ -511,6 +509,8 @@ public class BlogController {
 	
 	@PostMapping("/commentModify")
 	public String commentModify(int rno, String rcontent) {
+		logger.info("rno = " + rno);
+		logger.info("rcontent : " + rcontent);
 		service.commentModify(rno, rcontent);
 		
 		return "blog/blogcommentList";
