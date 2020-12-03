@@ -42,7 +42,7 @@
 	<p></p> -->
 	<p style="font-size: 20px; font-weight: bold; color: orange;"><i class="fas fa-info" style="padding-right: 2%; font-size: 20px;"></i>Abled User Information</p>
 	<div class="row">
-		<c:forEach var="mabled" items="${mabled}">
+		<c:forEach var="mabled" items="${mabled}" varStatus="status">
 			<div class="col-3" style="padding-top: 10%;">
 				<img src="photodownload?fileName=${mabled.mmyimage}" alt=""
 					width="100" height="100" class="rounded-circle">
@@ -59,35 +59,42 @@
 						aria-hidden="true"></i> Phone Number : ${mabled.mphonenum}</li>
 				</ul>
 				<div>
-					<input type="hidden" id="memail" value="${mabled.memail}">
-					<input type="text" id="dreason" placeholder="해당 회원을 비활성화 하려는 이유를 작성하세요."
+					<input type="hidden" id="memail${status.index}"  name="memail" value="${mabled.memail}">
+					<input type="text" id="dreason${status.index}" name="dreason" placeholder="해당 회원을 비활성화 하려는 이유를 작성하세요."
 								onblur="this.placeholder = 'Please write down the reason.'"
-								class="single-input" style="font-weight: bold;"><span id="dreasonError"></span>
+								class="single-input" style="font-weight: bold;"><span id="dreasonError${status.index}"></span>
 				</div>
-				<li style="padding-left: 10%;"><a href="javascript:disabledclick()" class="list-group-item"
+				<li style="padding-left: 10%;"><a href="javascript:disabledclick(${status.index})" class="list-group-item"
 					style="color: red; display: inline-block; padding-left: 10%; padding-right: 10%;"><i
 					class="fa fa-minus" aria-hidden="true"> &nbsp;&nbsp;선택 회원 차단하기</i></a></li>
 			</div>
-
+	</c:forEach>
 			 <%-- <div class="col-3" style="padding-top: 30px;">
 				<a style="width: 90%; height: 65%; font-size: large; font-weight: bold; padding-top: 5%;"
 					class="genric-btn danger" href="javascript:adddisabledmember(${mabled.memail})">선택 회원 차단하기</a> --%>
 					
 					<script type="text/javascript">
-						function disabledclick() {
-							var memail = $("#memail").val().trim();
-							var dreason = $("#dreason").val().trim();
-                        	if(dreason == "") { 
-                        		$("#dreasonError").text("필수");
-                        		return;
-                        		}	else {
-                        		$("#dreasonError").text(""); }
+						function disabledclick(index) {
 							
+							var memail = $("#memail"+index).val().trim();
+							var dreason = $("#dreason"+index).val().trim();
+							alert(memail+","+ dreason);
+                        	if(dreason == "") { 
+                        		$("#dreasonError"+index).text("필수");
+                        	}else {
+                        		$("#dreasonError"+index).text(""); 
+                        	}
+                        	
+                        	if(memail == "" || dreason==""){
+                        		return;
+                        	}
+                        	
 							$.ajax({
 								url:"adddisabledmember",
 								data:{memail:memail, dreason:dreason},
 								success: function(data) {
 									if(data.result == "success") {
+										$("#dreasonError"+index).text("완료"); 
 										usersetting();
 									}
 								}							
@@ -97,7 +104,7 @@
 					</script>
 			</div>
 
-		</c:forEach>
+	
 		<div class="row">
 			<div class="col-12">
 				<tr>

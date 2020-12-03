@@ -4,8 +4,8 @@
 
 	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
 	
-	<insert id="selectDisabled" parameterType="disabled">
-	insert into disabled( dno, memail, dreason, ddate)
+	<insert id="selectDisabled" parameterType="disabled" >
+	insert into disabled(dno, memail, dreason, ddate)
 	values (SEQ_DISABLED_DNO.nextval, #{memail}, #{dreason}, sysdate)
 	</insert>
 
