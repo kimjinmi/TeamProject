@@ -2,6 +2,11 @@
 	url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;600;700&display=swap")
 	;
 
+/* [선] - home.jsp css */
+
+
+/* [선] - home.jsp css */
+
 .gradient-background {
 	background-image: linear-gradient(to left, #0BC6FF, #0d80f3, #0BC6FF);
 	background-position: right;
@@ -17,9 +22,6 @@
     letter-spacing: -1.8px;
 	
 }
-
-
-
 
 .white-bg {
 	background: #ffffff
@@ -402,7 +404,7 @@ hr {
 	font-weight: 500 !important;
 	display: inline-block !important;
 	cursor: pointer;
-	color: #fff !important;
+	color: #EAEAEA !important;
 	display: inline-block;
 	transition: 0.6s;
 	box-shadow: 0px 7px 21px 0px rgba(0, 0, 0, 0.12); 

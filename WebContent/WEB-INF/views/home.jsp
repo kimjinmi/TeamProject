@@ -45,14 +45,43 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 .carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+
+.video {
+	width: 100%;
+	max-width: 900px;
+	margin: 30px auto;
+	border-radius: 30px;
+	background-color: #f0f0f0;
+	padding: 20px;
+	box-sizing: border-box;
+	box-shadow: 0px 8px 33px #999;
+}
+
+.video-container {
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding-top: 50%;
+}
+
+iframe {
+	z-index: 1;
+	top: 0;
+	left: 0;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 }
@@ -68,7 +97,9 @@
 			<div class="preloader-inner position-relative">
 				<div class="preloader-circle"></div>
 				<div class="preloader-img pere-text">
-					<img src="<%= application.getContextPath() %>/resources/assets/img/logo/loder.png" alt="">
+					<img
+						src="<%=application.getContextPath()%>/resources/assets/img/logo/loder.png"
+						alt="">
 				</div>
 			</div>
 		</div>
@@ -93,6 +124,7 @@
 							<div class="col-12">
 								<div class="mobile_menu d-block d-lg-none"></div>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -144,56 +176,44 @@
 		</section>
 		<!-- slider Area End-->
 
-		<!--? video_start -->
-		<div class="video-area section-bg2 d-flex align-items-end fix"
-			data-background="<%= application.getContextPath() %>/resources/assets/img/gallery/video-bg.png">
-			<!-- Video icon -->
-			<div class="video-icon">
-				<a class="popup-video btn-icon"
-					href="https://www.youtube.com/watch?v=up68UAfH0d0"><i
-					class="fas fa-play"></i></a>
-			</div>
-			<div class="container">
-				<div class="video-contents">
-					<div class="row justify-content-between">
-						<div class="col-xl-5 col-lg-5 col-md-10">
-							<div class="section-tittle  mb-90">
-								<h2>How we work?</h2>
-								<p class="tittle-pera1">Inasfa reprehenderit in voluptate
-									velit esse cillum reeut cupidatatfug nulla pariatur.</p>
-								<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-									esse cillum reeut cupidatatfug nulla pariatur. Excepteur
-									sintxsdfas occaecat.</p>
-								<a href="#" class="btn black-btn">Start a Project</a>
-							</div>
-						</div>
-						<div class="col-xl-5 col-lg-6 col-md-8">
-							<div class="edu-details">
-								<!-- single-item -->
-								<div class="single-items mb-50">
-									<span>Tell Us About Your Project</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-								<!-- single-item -->
-								<div class="single-items single-items2 mb-50">
-									<span>We'll Schedule a Flight</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-								<!-- single-item -->
-								<div class="single-items single-items3 mb-50">
-									<span>We'll Schedule a Flight</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-							</div>
+		<!-- <div class="section_content section_skin">
+				<div class="wrap_tit wrap_tit_type1">
+					<strong class="tit_section">마음에 드는<em><span class="img_square">카테고리</span>부터</em>시작해보세요</strong>
+				</div>
+				<div class="icon_tistory icon_expression"></div>
+				<div class="wrap_tit">
+					<strong class="tit_section tit_section_type2">마음대로<br><em>조립하는</em><br>내 콘텐츠</strong>
+					<p class="desc_section">내 마음대로 위치를 바꿔<br>하나의 커버로도 전혀 다른 스킨을<br> 만들 수 있어요.</p>
+				</div>
+				<div class="box_skin">
+					<div class="wrap_thumb_skin_01">
+						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_1.jpg&quot;); transform: translateX(0px); visibility: visible;"></span>
+						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_2.jpg&quot;); transform: translateX(504px); visibility: visible;"></span>
+						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_3.jpg&quot;); transform: translateX(1008px); visibility: visible;"></span>
+						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_1.jpg&quot;); transform: translateX(1512px); visibility: visible;"></span>
+						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_2.jpg&quot;); transform: translateX(2016px); visibility: hidden;"></span>
+						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_3.jpg&quot;); transform: translateX(-504px); visibility: visible;"></span>
+					</div>
+					<div class="wrap_thumb_skin_02">
+						<div class="inner_thumb">
+							<span class="thumb_skin02 _left" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_1.jpg&quot;); height: 140px; transform: translate(0px, 0px); visibility: visible;" data-index="1"></span>
+							<span class="thumb_skin02 _left" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_2.jpg&quot;); height: 150px; transform: translate(0px, 140px); visibility: visible;" data-index="2"></span>
+							<span class="thumb_skin02 _left" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_3.jpg&quot;); height: 432px; transform: translate(0px, 290px); visibility: visible;" data-index="3"></span>
+							<span class="thumb_skin02 _right" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_3.jpg&quot;); height: 432px; transform: translate(480px, 0px); visibility: hidden;" data-index="1"></span>
+							<span class="thumb_skin02 _right" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_2.jpg&quot;); height: 150px; transform: translate(480px, 0px); visibility: hidden;" data-index="2"></span>
+							<span class="thumb_skin02 _right" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_1.jpg&quot;); height: 140px; transform: translate(0px, 722px); visibility: hidden;" data-index="3"></span>
 						</div>
 					</div>
 				</div>
+				<a href="/skin/pg_Poster" class="link_section">
+					<strong class="tit_link">Poster</strong>
+					<span class="desc_link">스킨 보기</span>
+					<span class="img_top ico_link_arrow"></span>
+				</a>
 			</div>
-		</div>
-		<!-- video_end -->
+ -->
+
+
 
 		<!--? services area start -->
 		<section class="services-section pb-padding fix">
@@ -287,211 +307,18 @@
 		</section>
 		<!-- Services End -->
 
-		<!--? Visit Our Tailor Start -->
-		<div class="visit-tailor-area fix">
-			<!--Right Contents  -->
-			<div class="tailor-offers"></div>
-			<!-- left Contents -->
-			<div class="tailor-details">
-				<h2>Recent projects</h2>
-				<p>Inasfa reprehenderit in voluptate velit esse cillum reeut
-					cupidatatfug nulla pariatur.</p>
-				<p class="pera-bottom">Aute irure dolor inasfa reprehenderit in
-					voluptate velit esse cillum reeut cupidatatfug nulla pariatur.
-					Excepteur sintxsdfas occaecat.</p>
+		<!--? video_start -->
+		<div class="video">
+			<div class="video-container">
+				<iframe width="100%" height="100%"
+					src="https://www.youtube.com/embed/eitDnP0_83k?controls=0"
+					frameborder="0"
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen></iframe>
 			</div>
 		</div>
-		<!-- Visit Our Tailor End -->
-		<!--? services area start -->
-		<section class="services-section services-section2 pb-padding  fix">
-			<div class="container">
-				<div class="custom-row">
-					<div class="services-active">
-						<div class="col-lg-4">
-							<div class="single-cat">
-								<div class="cat-icon">
-									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services4.png"
-										alt="">
-								</div>
-								<div class="cat-cap">
-									<h5>
-										<a href="services.html">Drone Inspection team from Terra
-											Drone</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-cat">
-								<div class="cat-icon">
-									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services5.png"
-										alt="">
-								</div>
-								<div class="cat-cap">
-									<h5>
-										<a href="services.html">Commercial Real Estate Photography</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-cat">
-								<div class="cat-icon">
-									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services6.png"
-										alt="">
-								</div>
-								<div class="cat-cap">
-									<h5>
-										<a href="services.html">Construction Site Monitoring</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="single-cat">
-								<div class="cat-icon">
-									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services5.png"
-										alt="">
-								</div>
-								<div class="cat-cap">
-									<h5>
-										<a href="services.html">Commercial Real Estate Photography</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Services End -->
-		<!--? Testimonial Area Start -->
-		<section class="testimonial-area testimonial-padding fix section-bg"
-			data-background="<%= application.getContextPath() %>/resources/assets/img/gallery/section_bg03.png">
-			<div class="container">
-				<div class="row align-items-center justify-content-center">
-					<div class=" col-lg-9">
-						<div class="about-caption">
-							<!-- Testimonial Start -->
-							<div class="h1-testimonial-active dot-style">
-								<!-- Single Testimonial -->
-								<div class="single-testimonial position-relative">
-									<div class="testimonial-caption">
-										<img
-											src="<%=application.getContextPath()%>/resources/assets/img/icon/quotes-sign.png"
-											alt="" class="quotes-sign">
-										<p>"The automated process starts as soon as your clothe go
-											into the machine. This site outcome is gleaming clothe.
-											Placeholder text commonly used. In publishing and graphic.</p>
-									</div>
-									<!-- founder -->
-									<div class="testimonial-founder d-flex align-items-center">
-										<div class="founder-img">
-											<img src="<%= application.getContextPath() %>/resources/assets/img/icon/testimonial.png" alt="">
-										</div>
-										<div class="founder-text">
-											<span>Robart Brown</span>
-											<p>Creative designer at Colorlib</p>
-										</div>
-									</div>
-								</div>
-								<!-- Single Testimonial -->
-								<div class="single-testimonial position-relative">
-									<div class="testimonial-caption">
-										<img
-											src="<%=application.getContextPath()%>/resources/assets/img/icon/quotes-sign.png"
-											alt="" class="quotes-sign">
-										<p>"The automated process starts as soon as your clothe go
-											into the machine. This site outcome is gleaming clothe.
-											Placeholder text commonly used. In publishing and graphic.</p>
-									</div>
-									<!-- founder -->
-									<div class="testimonial-founder d-flex align-items-center">
-										<div class="founder-img">
-											<img
-												src="<%=application.getContextPath()%>/resources/assets/img/icon/testimonial.png"
-												alt="">
-										</div>
-										<div class="founder-text">
-											<span>Robart Brown</span>
-											<p>Creative designer at Colorlib</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Testimonial End -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--? Testimonial Area End -->
-		<div class="contact-form">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5">
-						<div class="form-wrapper">
-							<div class="row ">
-								<div class="col-xl-12 col-lg-11 col-md-8 col-lg-7 col-sm-9">
-									<div class="section-tittle mb-30">
-										<h2>Get a Quote</h2>
-										<p>Inasfa reprehenderit in voluptate velit esse cillum
-											reeut cupidatatfug nulla pariatur.</p>
-									</div>
-								</div>
-							</div>
-							<form id="contact-form" action="#" method="POST">
-								<div class="row">
-									<div class="col-lg-12 col-md-6">
-										<div class="form-box user-icon mb-15">
-											<input type="text" name="name" placeholder="Your Name">
-										</div>
-									</div>
-									<div class="col-lg-12 col-md-6">
-										<div class="form-box email-icon mb-15">
-											<input type="text" name="email" placeholder="Email">
-										</div>
-									</div>
-									<div class="col-lg-12 col-md-6">
-										<div class="form-box email-icon mb-15">
-											<input type="text" name="email" placeholder="Phone no.">
-										</div>
-									</div>
-									<div class="col-lg-12 col-md-6 mb-15">
-										<div class="select-itms">
-											<select name="select" id="select2">
-												<option value="">Topic</option>
-												<option value="">Topic one</option>
-												<option value="">Topic Two</option>
-												<option value="">Topic Three</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-lg-12">
-										<div class="form-box message-icon mb-15">
-											<textarea name="message" id="message" placeholder="Message"></textarea>
-										</div>
-										<div class="submit-info">
-											<button class="submit-btn2" type="submit">Send
-												Message</button>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="contact-img">
-				<img
-					src="<%=application.getContextPath()%>/resources/assets/img/gallery/contact-img.png"
-					alt="">
-			</div>
-		</div>
+		<!-- video_end -->
+
 	</main>
 	<footer>
 

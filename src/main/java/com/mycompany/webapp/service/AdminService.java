@@ -82,9 +82,14 @@ public class AdminService {
 
 
 	public void disabled(DisabledDto disabled) {
+		memberdao.fromOneToZero(disabled.getMemail());
 		disableddao.disabledMember(disabled);
-		logger.info("success!!!!!!!!!!!!!!!!!!!!!!");
-		
+	}
+
+
+	public void abled(DisabledDto abled) {
+		memberdao.fromZeroToOne(abled.getMemail());
+		disableddao.abledMember(abled);
 	}
 	
 	//-------------------------------------영아- 끝 -------------------------------------

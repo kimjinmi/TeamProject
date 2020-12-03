@@ -52,13 +52,6 @@
  
 </head>
 
-<script type="text/javascript">
-
-
-
-</script>
-
-
 <body onload="javascript:onload()">
 	<script type="text/javascript">
 	var heart__status = false;
@@ -148,7 +141,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>Blog Details</h2>
+								<h2>${member.mnickname}'s Blog</h2>
 							</div>
 						</div>
 					</div>
@@ -411,6 +404,7 @@
 											}
 										</script>		
 										<li style="margin-right: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
+										<li style="margin-right: 20px;"><a href="blog?UserUrl=${board.murl }" style="color: #999999; font-size: 14px;">목록</a></li>
 										<script type="text/javascript">
 											function boardDelete(bno) {
 												$.ajax({
