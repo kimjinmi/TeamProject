@@ -437,6 +437,7 @@ public class BlogController {
 		List<BoardDto> list = service.getBoardList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
+		model.addAttribute("totalRows", totalRows);
 		return "blog/blogList";
 	}
 	
