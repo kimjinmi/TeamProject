@@ -165,10 +165,10 @@
 							<div class="about-right-img">
 								<img src="assets/img/gallery/about1.png" alt="">
 							</div>
-							<div class="img-cap">
+							<!-- <div class="img-cap">
 								<span>No. 1</span>
 								<p>Project Team</p>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>

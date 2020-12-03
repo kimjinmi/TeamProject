@@ -22,29 +22,29 @@
 
   	
 <div class="blog_details">
-<div class="container" style="background-color: #fbf9ff; padding:30px;">
-<c:forEach var="list" items="${list}">  	
-<div class="row">
-    <div class="col-sm-1">
-    <i class="fa fa-heart" aria-hidden="true"></i>	
-    </div>
-<div class="col-sm-11">
-     <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${list.bno}"><!-- 여기다가 글 클릭시 연결되는 링크 작성하기 -->
-  <h3>${list.btitle}</h3>  
-</a>
-<ul class="blog-info-link">
-	 <li><a href="#"><i class="fa fa-file"></i> ${list.ccontent}</a></li>
-	 <li><a href="#"><i class="fa fa-user"></i> ${list.memail}</a></li>
-   <li><a href="#"><i class="fa fa-calendar"></i>작성시간 : 
-   <fmt:formatDate value="${list.ldate}" pattern="yyyy-MM-dd" /></a>
-     </li>  
-  </ul>
-</div>
-</div>
-<p></p>
-<hr>
-</c:forEach>  
-</div>
+	<div class="container" style="background-color: #fbf9ff; padding:30px;">
+		<c:forEach var="list" items="${list}">  	
+			<div class="row">
+			    <div class="col-sm-1">
+			    <i class="fa fa-heart" aria-hidden="true"></i>	
+			    </div>
+				<div class="col-sm-11">
+				     <a class="d-inline-block" href="<%=application.getContextPath()%>/blog/blog_details?bno=${list.bno}">
+				  <h3>${list.btitle}</h3>  
+				</a>
+				<ul class="blog-info-link">
+					 <li><a href="#"><i class="fa fa-file"></i> ${list.ccontent}</a></li>
+					 <li><a href="#"><i class="fa fa-user"></i> ${list.memail}</a></li>
+				   <li><a href="#"><i class="fa fa-calendar"></i>작성시간 : 
+				   <fmt:formatDate value="${list.ldate}" pattern="yyyy-MM-dd" /></a>
+				     </li>  
+				</ul>
+				</div>
+			</div>
+			<p></p>
+			<hr>
+		</c:forEach>  
+	</div>
 </div>
 <div style="text-align: center;">
 	<a class="genric-btn default" href="javascript:mylikelist(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a> 
