@@ -29,14 +29,15 @@ var togglehide;
 								<h5>
 									<a href="blog?UserUrl=${comment.murl}">${comment.mnickname }</a>
 								</h5>
-								<p class="date">
+								<p class="date" style="margin-right:20px;">
 									<fmt:formatDate value="${comment.rdate}"
 										pattern="yyyy-MM-dd HH:mm:ss" />
 								</p>
 							</div>
 							<div class="reply-btn">
-								<a href="javascript:addComment(${comment.rno })" class="btn-reply text-uppercase">답글</a> <!-- 답글 -->
-								
+								<%-- <a href="javascript:addComment(${comment.rno })" class="btn-reply text-uppercase">답글</a> <!-- 답글 --> --%>
+									<a href="javascript:commentModify(${status.index})" style="color:black"><i class="fa fa-pencil-square-o" style="font-size:18px; margin-right:0px 6px;"></i>  </a>
+									<a href="javascript:commentDelete(${comment.rno})" style="color:black"><i class="fa fa-trash" aria-hidden="true" style="font-size:18px"></i></a>
 								<script type="text/javascript">
 								  function addComment(rno){
 									  
@@ -54,8 +55,7 @@ var togglehide;
 						</div>
 						<c:if test="${comment.murl == SessionMurl}">
 								<div style="text-align:left	;">
-									<a href="javascript:commentModify(${status.index})" style="color:black"><i class="fa fa-pencil-square-o" style="font-size:18px; margin-right:6px;"></i>  </a>
-									<a href="javascript:commentDelete(${comment.rno})" style="color:black"><i class="fa fa-trash" aria-hidden="true" style="font-size:18px"></i></a>
+									
 								</div>	
 									<hr/>
 									<p class="comment" id="comment${status.index}" style="display:none; text-align: right;">
@@ -92,7 +92,7 @@ var togglehide;
 									}); 
 							 	}  
 							}
-							
+						
 							function modify(rno, number){
 								 var rcontent1 = $("#modify_content"+number).val().trim();
 								
@@ -106,7 +106,7 @@ var togglehide;
 						 		});
 							}
 							
-							function 
+							 
 						</script>
 										
 						</c:if>	
