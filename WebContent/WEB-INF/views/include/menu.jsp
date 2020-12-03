@@ -48,7 +48,7 @@
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<form method="post" action="<%=application.getContextPath()%>/SIGNOUT">
-							<input style="color: #fff" class="btn" type="submit" value='SIGNOUT'/>
+							<input style="color: #fff; border-radius: 20px;" class="btn" type="submit" value='SIGNOUT'/>
 						</form>
 					</sec:authorize>
 				</div>
