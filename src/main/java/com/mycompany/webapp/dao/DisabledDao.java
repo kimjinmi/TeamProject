@@ -38,6 +38,11 @@ public class DisabledDao {
 		sst.selectOne("mybatis.mapper.disabled.selectDisabled", disabled);		
 	}
 
+	public void abledMember(DisabledDto abled) {
+		sst.selectOne("mybatis.mapper.disabled.selectAbled", abled);
+		
+	}
+
 	//------------------------------------------영아 - 끝----------------------------------------------
 
 }

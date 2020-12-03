@@ -95,11 +95,11 @@ public class AdminController {
 	return "admin/disabledmember";
 	}
 	
+		//활성화 멤버를 비활성화로 만들기("1"에서 "0"으로 & disabled에 정보 추가)
 	@RequestMapping("/adddisabledmember")
 	public void adddisabledmember(DisabledDto disabled, HttpServletResponse response, Model model) throws Exception {
-		logger.info(disabled.getMemail());	
-		service.disabled(disabled);
-		logger.info(disabled.getMemail());	
+		service.disabled(disabled);		//위에서 DisabledDto 를 disabled로 불러줌 
+		
 		//JSON 생성
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
@@ -112,6 +112,25 @@ public class AdminController {
 		out.flush();
 		out.close();
 	}
+	
+			//비활성화 멤버를 활성화로 만들기("0"에서 "1"으로 & disabled에 정보 추가)
+	@RequestMapping("/addabledmember")
+	public void addabledmember (DisabledDto abled, HttpServletResponse response, Model model) throws Exception {
+		service.abled(abled);
+		
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+
 	
 	//-------------------------------------------------------------영아 - 끝 ---------------------------------------------------------------//
 	
