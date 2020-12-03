@@ -34,7 +34,7 @@
        <tr>
        
          <td colspan="4" style="text-align: center; align-items:center;">
-        <a class="genric-btn primary-border small" href="javascript:boardList('${pager.murl }',1)">처음11</a>
+        <a class="genric-btn primary-border small" href="javascript:boardList('${pager.murl }',1)">처음</a>
                
                <c:if test="${pager.groupNo > 1}">
                <a class="genric-btn primary-border small" href="javascript:boardList('${pager.murl }',${pager.startPageNo-1})">이전</a>
