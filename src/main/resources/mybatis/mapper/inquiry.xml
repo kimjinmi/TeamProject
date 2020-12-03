@@ -2,8 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.inquiry">
 
-	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
 
+	<select id="countAll" resultType="int">
+		select count(*) 
+		from inquiry
+	</select>
+	
+	<select id="selectByPageInquiry" parameterType="pager" resultType="inquiry">
+		
+		select rnum, ino, isubject, imessage, iemail, iresult, idate 
+        from (select rownum as rnum ,ino, isubject, imessage, iemail, iresult, idate 
+              from inquiry
+              where rownum &lt; = #{endRowNo}
+              order by idate asc)
+        
+        where rnum &gt; = #{startRowNo}
+	</select>
+	
+	<select id="selectByIno" parameterType="int" resultType="inquiry">
+		select ino, isubject, imessage, iemail, iresult, idate
+		from inquiry
+		where ino=#{ino} and iresult=#{iresult}
+	</select>
+	
+	<delete id="deleteByIno" parameterType="int">
+		delete from inquiry where ino=#{ino}
+	</delete>
+	
+	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
 
 	<insert id="inquiryinsert" parameterType="inquiry">
 		insert into inquiry(ino, isubject, imessage, iemail, iresult, idate)

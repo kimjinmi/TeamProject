@@ -191,10 +191,31 @@
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
-												});
-												
+												});	
 											}
-										
+
+											function inquirydelete(ino) {
+												$.ajax({
+													url : "inquirydelete",
+													data: {ino:ino},
+													success : function(data) {
+														if(data.result == "success") {
+																inquirylist();
+														}
+													}
+												});
+											}
+											
+											function inquirydetail(ino) {
+												$.ajax({
+													url : "inquirydetail",
+													data : {ino:ino},
+													success : function(data) {
+														$("#setting_result").html(data);
+													}
+												});
+											}
+											
 										</script>
 											
 									</li>

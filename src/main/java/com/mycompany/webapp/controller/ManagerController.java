@@ -2,11 +2,9 @@ package com.mycompany.webapp.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -26,9 +23,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mycompany.webapp.dto.CategoryDto;
-import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.InquiryDto;
+import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.dto.SearchDto;
@@ -136,14 +134,72 @@ public class ManagerController {
 	}
 	
 
-	 	
-	
 	@RequestMapping("/inquirylist")
-	public String inquirylist(Model model) {
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+	public String inquirylist() {
+		
 		return "manager/inquirylist";
 	}
+	
+	@RequestMapping("/inquirybeforecomplete")
+	public String inquirybeforecomplete(Model model, @RequestParam(defaultValue = "1")int pageNo) {
+		int totalRows = service.getTotalInquiryRows();
+
+		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
+		List<InquiryDto> inquiryList = service.getInquiryList(pager);
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		model.addAttribute("inquiryList", inquiryList);
+		model.addAttribute("pager", pager);
+		return "manager/inquirybeforecomplete";
+	}
+	
+	@RequestMapping("/inquiryaftercomplete")
+	public String inquiryaftercomplete(Model model, @RequestParam(defaultValue = "1")int pageNo) {
+		int totalRows = service.getTotalInquiryRows();
+
+		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
+		List<InquiryDto> inquiryList = service.getInquiryList(pager);
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		model.addAttribute("inquiryList", inquiryList);
+		model.addAttribute("pager", pager);
+		return "manager/inquiryaftercomplete";
+	}
+	
+	@RequestMapping("/inquirydelete")
+	public void inquirydelete(int ino, HttpServletResponse response) throws Exception {
+		service.inquirydelete(ino);
+		logger.info("######## "+ ino);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("/inquirydetail")
+	public String inquirydetail(int ino, Model model) {
+		
+		InquiryDto inquiryList = service.getInquiry(ino);
+		model.addAttribute("inquiryList", inquiryList);
+		
+		return "manager/inquirylist";
+	}
+	
+/*	@RequestMapping("/inquirycomplete")
+	public String inquirycomplete(Model model) {
+		
+		InquiryDto inquirycomplete = service.getCompleteInquiry();
+		model.addAttribute("inquirycomplete", inquirycomplete);
+		
+		return "manager/inquirylist";
+	} */
 
 	
 	@RequestMapping("/boarddelete")

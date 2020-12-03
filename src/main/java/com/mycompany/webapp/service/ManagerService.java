@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.BoardDao;
 import com.mycompany.webapp.dao.CategoryDao;
+import com.mycompany.webapp.dao.InquiryDao;
 import com.mycompany.webapp.dao.MemberDao;
 import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.BoardDto;
 import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.InquiryDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
@@ -32,9 +34,11 @@ public class ManagerService {
 	@Resource
 	private ReplyDao replydao;
 	
-	
 	@Resource
 	private CategoryDao categorydao;
+	
+	@Resource
+	private InquiryDao inquirydao;
 	
 	public MemberDto sessionconnect(MemberDto member) {
 		//logger.info("service: "+member.getMemail());
@@ -115,6 +119,28 @@ public class ManagerService {
 		List<BoardDto> list = boarddao.selectByAllPageUser(pager);
 		return list;
 	}
+
+	public int getTotalInquiryRows() {
+		int totalRows = inquirydao.countAll();
+		return totalRows;
+	}
+
+	public List<InquiryDto> getInquiryList(PagerDto pager) {
+		List<InquiryDto> list = inquirydao.selectByPageInquiry(pager);
+		return list;
+	}
+
+	public void inquirydelete(int ino) {
+		inquirydao.deleteByIno(ino);
+	}
+
+	public InquiryDto getInquiry(int ino) {
+			InquiryDto inquiry = inquirydao.selectByIno(ino);
+		return inquiry;
+	}
+
+	
+
 
 	
 
