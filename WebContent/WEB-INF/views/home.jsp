@@ -45,10 +45,8 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
@@ -70,7 +68,7 @@
 			<div class="preloader-inner position-relative">
 				<div class="preloader-circle"></div>
 				<div class="preloader-img pere-text">
-					<img src="assets/img/logo/loder.png" alt="">
+					<img src="<%= application.getContextPath() %>/resources/assets/img/logo/loder.png" alt="">
 				</div>
 			</div>
 		</div>
@@ -146,47 +144,56 @@
 		</section>
 		<!-- slider Area End-->
 
-		 <!--? video_start -->
-    <div class="video-area section-bg2 d-flex align-items-end fix"  data-background="assets/img/gallery/video-bg.png">
-        <!-- Video icon -->
-        <div class="video-icon" >
-            <a class="popup-video btn-icon" href="https://www.youtube.com/watch?v=up68UAfH0d0"><i class="fas fa-play"></i></a>
-        </div>
-        <div class="container">
-            <div class="video-contents">
-                <div class="row justify-content-between">
-                    <div class="col-xl-5 col-lg-5 col-md-10">
-                        <div class="section-tittle  mb-90">
-                            <h2>How we work?</h2>
-                            <p class="tittle-pera1">Inasfa reprehenderit in voluptate velit esse  cillum reeut cupidatatfug nulla pariatur.</p>
-                            <p>Aute irure dolor inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur. Excepteur sintxsdfas occaecat.</p>
-                            <a href="#" class="btn black-btn">Start a Project</a>
-                        </div>
-                    </div>
-                    <div class="col-xl-5 col-lg-6 col-md-8">
-                        <div class="edu-details">
-                            <!-- single-item -->
-                            <div class="single-items mb-50">
-                                <span>Tell Us About Your Project</span>
-                                <p>Aute irure dolor inasfa prehenderit  in voluptate velit esse cillum.</p>
-                            </div>
-                            <!-- single-item -->
-                            <div class="single-items single-items2 mb-50">
-                                <span>We'll Schedule a Flight</span>
-                                <p>Aute irure dolor inasfa prehenderit in voluptate velit esse cillum.</p>
-                            </div>
-                            <!-- single-item -->
-                            <div class="single-items single-items3 mb-50">
-                                <span>We'll Schedule a Flight</span>
-                                <p>Aute irure dolor inasfa prehenderit in voluptate velit esse cillum.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- video_end -->
+		<!--? video_start -->
+		<div class="video-area section-bg2 d-flex align-items-end fix"
+			data-background="<%= application.getContextPath() %>/resources/assets/img/gallery/video-bg.png">
+			<!-- Video icon -->
+			<div class="video-icon">
+				<a class="popup-video btn-icon"
+					href="https://www.youtube.com/watch?v=up68UAfH0d0"><i
+					class="fas fa-play"></i></a>
+			</div>
+			<div class="container">
+				<div class="video-contents">
+					<div class="row justify-content-between">
+						<div class="col-xl-5 col-lg-5 col-md-10">
+							<div class="section-tittle  mb-90">
+								<h2>How we work?</h2>
+								<p class="tittle-pera1">Inasfa reprehenderit in voluptate
+									velit esse cillum reeut cupidatatfug nulla pariatur.</p>
+								<p>Aute irure dolor inasfa reprehenderit in voluptate velit
+									esse cillum reeut cupidatatfug nulla pariatur. Excepteur
+									sintxsdfas occaecat.</p>
+								<a href="#" class="btn black-btn">Start a Project</a>
+							</div>
+						</div>
+						<div class="col-xl-5 col-lg-6 col-md-8">
+							<div class="edu-details">
+								<!-- single-item -->
+								<div class="single-items mb-50">
+									<span>Tell Us About Your Project</span>
+									<p>Aute irure dolor inasfa prehenderit in voluptate velit
+										esse cillum.</p>
+								</div>
+								<!-- single-item -->
+								<div class="single-items single-items2 mb-50">
+									<span>We'll Schedule a Flight</span>
+									<p>Aute irure dolor inasfa prehenderit in voluptate velit
+										esse cillum.</p>
+								</div>
+								<!-- single-item -->
+								<div class="single-items single-items3 mb-50">
+									<span>We'll Schedule a Flight</span>
+									<p>Aute irure dolor inasfa prehenderit in voluptate velit
+										esse cillum.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- video_end -->
 
 		<!--? services area start -->
 		<section class="services-section pb-padding fix">
@@ -196,7 +203,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services1.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -210,7 +219,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services2.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -224,7 +235,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services3.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services3.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -239,7 +252,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services3.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services3.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -253,7 +268,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services2.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -293,7 +310,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services4.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services4.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -306,7 +325,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services5.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services5.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -318,7 +339,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services6.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services6.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -330,7 +353,9 @@
 						<div class="col-lg-4">
 							<div class="single-cat">
 								<div class="cat-icon">
-									<img src="assets/img/gallery/services5.png" alt="">
+									<img
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services5.png"
+										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
@@ -346,7 +371,7 @@
 		<!-- Services End -->
 		<!--? Testimonial Area Start -->
 		<section class="testimonial-area testimonial-padding fix section-bg"
-			data-background="assets/img/gallery/section_bg03.png">
+			data-background="<%= application.getContextPath() %>/resources/assets/img/gallery/section_bg03.png">
 			<div class="container">
 				<div class="row align-items-center justify-content-center">
 					<div class=" col-lg-9">
@@ -356,8 +381,9 @@
 								<!-- Single Testimonial -->
 								<div class="single-testimonial position-relative">
 									<div class="testimonial-caption">
-										<img src="assets/img/icon/quotes-sign.png" alt=""
-											class="quotes-sign">
+										<img
+											src="<%=application.getContextPath()%>/resources/assets/img/icon/quotes-sign.png"
+											alt="" class="quotes-sign">
 										<p>"The automated process starts as soon as your clothe go
 											into the machine. This site outcome is gleaming clothe.
 											Placeholder text commonly used. In publishing and graphic.</p>
@@ -365,7 +391,7 @@
 									<!-- founder -->
 									<div class="testimonial-founder d-flex align-items-center">
 										<div class="founder-img">
-											<img src="assets/img/icon/testimonial.png" alt="">
+											<img src="<%= application.getContextPath() %>/resources/assets/img/icon/testimonial.png" alt="">
 										</div>
 										<div class="founder-text">
 											<span>Robart Brown</span>
@@ -376,8 +402,9 @@
 								<!-- Single Testimonial -->
 								<div class="single-testimonial position-relative">
 									<div class="testimonial-caption">
-										<img src="assets/img/icon/quotes-sign.png" alt=""
-											class="quotes-sign">
+										<img
+											src="<%=application.getContextPath()%>/resources/assets/img/icon/quotes-sign.png"
+											alt="" class="quotes-sign">
 										<p>"The automated process starts as soon as your clothe go
 											into the machine. This site outcome is gleaming clothe.
 											Placeholder text commonly used. In publishing and graphic.</p>
@@ -385,7 +412,9 @@
 									<!-- founder -->
 									<div class="testimonial-founder d-flex align-items-center">
 										<div class="founder-img">
-											<img src="assets/img/icon/testimonial.png" alt="">
+											<img
+												src="<%=application.getContextPath()%>/resources/assets/img/icon/testimonial.png"
+												alt="">
 										</div>
 										<div class="founder-text">
 											<span>Robart Brown</span>
@@ -458,7 +487,9 @@
 				</div>
 			</div>
 			<div class="contact-img">
-				<img src="resources/assets/img/gallery/contact-img.png" alt="">
+				<img
+					src="<%=application.getContextPath()%>/resources/assets/img/gallery/contact-img.png"
+					alt="">
 			</div>
 		</div>
 	</main>
