@@ -24,11 +24,16 @@
          </div>
        </article>  
        </c:forEach>
+     
+     <c:if test="${totalRows > 0 }">
        <div class= "blogListPager" style="text-align:center;">
+       
        <table>
+       <center>
        <tr>
+       
          <td colspan="4" style="text-align: center; align-items:center;">
-        <a class="genric-btn primary-border small" href="javascript:boardList('${pager.murl }',1)">처음</a>
+        <a class="genric-btn primary-border small" href="javascript:boardList('${pager.murl }',1)">처음11</a>
                
                <c:if test="${pager.groupNo > 1}">
                <a class="genric-btn primary-border small" href="javascript:boardList('${pager.murl }',${pager.startPageNo-1})">이전</a>
@@ -50,9 +55,18 @@
                </c:if>
                <a class="genric-btn primary-border small" href="javascript:boardList('${pager.murl }',${pager.totalPageNo})">맨끝</a>
                </td>
-        </tr>       
+        
+        </tr>
+         </center>     
         </table>
+        
         </div>
+        </c:if>
+        <c:if test="${totalRows == 0 }">
+        <center>
+        <H3>게시물이 존재하지 않습니다.</H3>
+        </center>
+        </c:if>
        <script type="text/javascript">
           function boardDetails(bno){    
              location.href="blog_details?bno="+bno;   
