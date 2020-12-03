@@ -26,7 +26,6 @@ public class ContactController {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		if(sessionMemail != null) {
 			model.addAttribute("sessionMemail", sessionMemail);
-			logger.info("실행");
 		}
 		return "contact/contact";
 	}
@@ -35,9 +34,6 @@ public class ContactController {
 	public void contactform(InquiryDto inquiry, HttpServletResponse response){
 		inquiry.setIresult(false);
 		service.inquirywrite(inquiry);
-		logger.info(inquiry.getIsubject());
-		logger.info(inquiry.getImessage());
-		logger.info(inquiry.getIemail());
 		//service.inquirywrite(inquiry);
 	}
 	

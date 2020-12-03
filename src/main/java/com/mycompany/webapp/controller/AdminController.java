@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.Member;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -91,6 +92,12 @@ public class AdminController {
 		model.addAttribute("mdisabled", mdisabled);
 
 	return "admin/disabledmember";
+	}
+	
+	@RequestMapping("/adddisabledmember")
+	public void adddisabledmember(DisabledDto disabled, HttpServletResponse response, Model model) {
+			service.disabled(disabled);
+
 	}
 	
 	//-------------------------------------------------------------영아 - 끝 ---------------------------------------------------------------//

@@ -79,6 +79,12 @@ public class AdminService {
 		List<DisabledDto> disPageList = disableddao.DisabledPageList(pager);
 		return disPageList;
 	}
+
+
+	public int disabled(DisabledDto disabled) {
+		int rows = disableddao.disabledMember(disabled);
+		return rows;
+	}
 	
 	//-------------------------------------영아- 끝 -------------------------------------
 }

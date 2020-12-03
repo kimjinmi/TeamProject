@@ -1,6 +1,8 @@
 package com.mycompany.webapp.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.mycompany.webapp.controller.AdminController;
 import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.PagerDto;
 
@@ -31,6 +32,11 @@ public class DisabledDao {
 	public List<DisabledDto> DisabledPageList(PagerDto pager) {
 		List<DisabledDto> list = sst.selectList("mybatis.mapper.disabled.DisabledPageList", pager);
 		return list;
+	}
+
+	public int disabledMember(DisabledDto disabled) {
+		int rows = sst.selectOne("mybatis.mapper.disabled.selectDisabled", disabled);
+		return rows;
 	}
 
 	//------------------------------------------영아 - 끝----------------------------------------------
