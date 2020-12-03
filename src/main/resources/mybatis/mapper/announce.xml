@@ -7,11 +7,12 @@
 	FROM announce
 	</select>
 	
-	<select id="selectmylikelist" parameterType="pager" resultType="liked"> 
-	select rnum, ccontent, bno, btitle, memail, ldate
-		from (select rownum as rnum, ccontent, bno, btitle, memail, ldate
-		      from (
-		                )
+	<select id="selectlist" parameterType="pager" resultType="announce"> 
+	select rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
+		from (select rownum as rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
+		      from (select ano, memail, atitle, acontent, adate, aifmain, ahitnum
+					from announce
+					order by adate desc)
 		      where rownum &lt;=#{endRowNo}
 		        )
 		where rnum &gt;=#{startRowNo}

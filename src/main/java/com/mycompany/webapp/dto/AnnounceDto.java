@@ -10,6 +10,7 @@ public class AnnounceDto {
 	private String acontent;
 	private Date adate;
 	private boolean aifmain;
+	private int ahitnum;
 
 	public int getAno() {
 		return ano;
@@ -58,6 +59,15 @@ public class AnnounceDto {
 	public void setAifmain(boolean aifmain) {
 		this.aifmain = aifmain;
 	}
+
+	public int getAhitnum() {
+		return ahitnum;
+	}
+
+	public void setAhitnum(int ahitnum) {
+		this.ahitnum = ahitnum;
+	}
+	
 
 	
 }

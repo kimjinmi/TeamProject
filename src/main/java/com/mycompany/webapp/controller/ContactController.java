@@ -36,10 +36,12 @@ public class ContactController {
 	}
 	
 	@RequestMapping("/announcelist")
-	public String announcelist(@RequestParam(defaultValue = "1")int pageNo) {
+	public String announcelist(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		int totalRows = service.getTotalAnnounceRows();
-		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
-		List<AnnounceDto> list = service.getannouncelist();
+		PagerDto pager = new PagerDto(10, 5, totalRows, pageNo);
+		List<AnnounceDto> list = service.getannouncelist(pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", list);
 		return "contact/announcelist";
 	}
 	

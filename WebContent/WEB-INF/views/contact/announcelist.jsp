@@ -11,136 +11,65 @@ text-overflow:ellipsis;
 }
 
 </style>
-<script type="text/javascript">
-
-function searchboardfirst(pageNo){
-	if(!pageNo){
-		pageNo = 1;
-	}
-	var value = $("#value").val();
-	var search = $("#search").val();
-	$.ajax({
-		url:"searchboard",
-		data:{value:value,search:search,pageNo:pageNo},
-		success:function(data){
-			$("#tableresult").html(data);
-		}
-	});
-	
-}
-function searchboard(pageNo,value,search){
-	if(!pageNo){
-		pageNo = 1;
-	}
-	$.ajax({
-		url:"searchboard",
-		data:{value:value,search:search,pageNo:pageNo},
-		success:function(data){
-			$("#tableresult").html(data);
-		}
-	});
-	
-}
-function allreplylist(pageNo){
-	if(!pageNo){
-		pageNo = 1;
-	}
-	$.ajax({
-		url:"allreplylist",
-		data:{pageNo:pageNo},
-		success:function(data) {
-			$("#tableresult").html(data);
-		}
-	});
-	
-}
-</script>
-<div id="tableresult">
-	<u><h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allboardlist()">게시글 관리</a></h2></u>/
-	<h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allreplylist()">댓글 관리</a></h2>
-	
-	<hr style="margin-top:12px;">
-		<table style="text-align:center; width: 90%">
-			<colgroup>
-				<col width="20%">
-				<col width="35%">
-				<col width="20%">
-				<col width="20%">
-				<col width="5%">
-			</colgroup>
-			<thead>
-				<tr style="background-color:#FBF9FF;">
-					<th scope="col">category</th>
-					<th scope="col">title</th>
-					<th scope="col">blogwriter</th>
-					<th scope="col">date</th>
-					<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
-				</tr>
-			</thead>
-			<c:forEach var="board" items="${list}">
-				<tr style="border-spacing: 5px;">
-					<td>${board.ccontent}</td>
-					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}">${board.btitle}</a></td>
-					<td>${board.memail}</td>
-					<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" /></td>
-					<td><a href="javascript:boarddelete(${board.bno})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-				</tr>	
-			</c:forEach>
-			
-		
-			<tr>
-				<td colspan="4" style="text-align:center;">
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-					
-					<c:if test="${pager.groupNo >1}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.startPageNo-1})"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-					</c:if>
-					
-					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-						<c:if test="${pager.pageNo == i}">
-							<a class="genric-btn primary small" href="javascript:allboardlist(${i})">${i}</a>
-						</c:if>
-						<c:if test="${pager.pageNo != i}">
-							<a class="genric-btn primary-border small" href="javascript:allboardlist(${i})">${i}</a>
-						</c:if>
-					</c:forEach>
-					<c:if test="${pager.groupNo <pager.totalGroupNo}">
-						<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.endPageNo+1})"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-					</c:if>
-					<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-					
-				</td>
+<table style="text-align:center; width: 100%">
+	<colgroup>
+		<col width="10%">
+		<col width="60%">
+		<col width="20%">
+		<col width="10%">
+	</colgroup>
+	<thead>
+		<tr style="background-color:#FBF9FF;">
+			<th scope="col">No</th>
+			<th scope="col">title</th>
+			<th scope="col">date</th>
+			<th scope="col">views</th>
+		</tr>
+	</thead>
+	<c:forEach var="list" items="${list}">
+		<c:if test="${list.aifmain == 'true'}">
+			<tr style="border-spacing: 5px;">
+				<td><b>${list.ano}</b></td>
+				<td><b>${list.atitle}</b></td>
+				<td><b><fmt:formatDate value="${list.adate}" pattern="yyyy-MM-dd" /></b></td>
+				<td><b>${list.ahitnum}</b></td>
 			</tr>
-		</table>
-</div>
-	<div class="container">
-		<form method="post" id="searchboard" >
-			<div class="row">
-				<div class="col-md-2" style="padding: 10px;">
-					<div class="form-select">
-						<select name="value" id="value" style="padding: 8px;">
-							<option value="ccontent">category</option>
-							<option value="btitle">title</option>
-							<option value="bcontent">content</option>
-							<option value="b.memail">blogwriter</option>
-						</select>
-					</div>
-					
-				</div>
-				<div class="col-md-8" style="padding: 10px;">
-					<input type="text" id="search" name="search" placeholder="Search" onblur="this.placeholder = 'Search'"class="single-input" >
-				</div>
-				<div class="col-md-2" style="padding: 10px;">
-					<a href="javascript:searchboardfirst()"><i class="fa fa-search" aria-hidden="true"></i></a>
-				</div>
-			</div>
-		</form>
-	</div>
-		<script type="text/javascript">
-		
-		</script>
-	
-	<p></p>
+		</c:if>	
+	</c:forEach>
+	<c:forEach var="list" items="${list}">
+		<c:if test="${list.aifmain == 'false'}">
+			<tr style="border-spacing: 5px;">
+				<td>${list.ano}</td>
+				<td>${list.atitle}</td>
+				<td><fmt:formatDate value="${list.adate}" pattern="yyyy-MM-dd" /></td>
+				<td>${list.ahitnum}</td>
+			</tr>
+		</c:if>	
+	</c:forEach>
+	<tr>
+		<td colspan="3" style="text-align:center;">
+			<a class="genric-btn primary-border small" href="javascript:allboardlist(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+			
+			<c:if test="${pager.groupNo >1}">
+				<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.startPageNo-1})"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+				<c:if test="${pager.pageNo == i}">
+					<a class="genric-btn primary small" href="javascript:allboardlist(${i})">${i}</a>
+				</c:if>
+				<c:if test="${pager.pageNo != i}">
+					<a class="genric-btn primary-border small" href="javascript:allboardlist(${i})">${i}</a>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pager.groupNo <pager.totalGroupNo}">
+				<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.endPageNo+1})"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+			</c:if>
+			<a class="genric-btn primary-border small" href="javascript:allboardlist(${pager.totalPageNo})"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+			
+		</td>
+	</tr>
+</table>
 		
 
 	

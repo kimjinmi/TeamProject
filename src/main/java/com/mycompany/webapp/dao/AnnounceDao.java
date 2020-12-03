@@ -22,9 +22,9 @@ public class AnnounceDao {
 		return row;
 	}
 
-	public List<AnnounceDto> selectlist() {
-		List<AnnounceDto> list = sst.selectList("mybatis.mapper.announce.selectlist");
-		return null;
+	public List<AnnounceDto> selectlist(PagerDto pager) {
+		List<AnnounceDto> list = sst.selectList("mybatis.mapper.announce.selectlist", pager);
+		return list;
 	}
 
 	public int countannounceall() {

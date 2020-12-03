@@ -154,9 +154,12 @@ public class ManagerController {
 	public void boarddelete(int bno, HttpServletResponse response) throws Exception { 
 		logger.info("##bno:"+bno);
 		service.boarddelete(bno);
-		//JSON 생성
-		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		//JSON 생성 
+		JSONObject jsonObject = new JSONObject();
+		//배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
+		
+		jsonObject.put("result", "change");
 		String json = jsonObject.toString(); // {"result" : "success"}
 		
 		//응답보내기
@@ -192,7 +195,7 @@ public class ManagerController {
 	
 	@RequestMapping("/announcewriteform")
 	public void announcewriteform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws IOException {
-		logger.info("announcedto.isAifmain(): "+announcedto.isAifmain());
+		announcedto.setAhitnum(0);
 		service.announceadd(announcedto);
 		//JSON 생성
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray

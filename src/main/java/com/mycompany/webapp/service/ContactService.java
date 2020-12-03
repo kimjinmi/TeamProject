@@ -14,6 +14,7 @@ import com.mycompany.webapp.dao.ReplyDao;
 import com.mycompany.webapp.dto.AnnounceDto;
 import com.mycompany.webapp.dto.InquiryDto;
 import com.mycompany.webapp.dto.MemberDto;
+import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
@@ -31,8 +32,8 @@ public class ContactService {
 		inquirydao.inquiryinsert(inquiry);
 	}
 
-	public List<AnnounceDto> getannouncelist() {
-		List<AnnounceDto> list = announcedao.selectlist(); 
+	public List<AnnounceDto> getannouncelist(PagerDto pager) {
+		List<AnnounceDto> list = announcedao.selectlist(pager); 
 		return list;
 	}
 
