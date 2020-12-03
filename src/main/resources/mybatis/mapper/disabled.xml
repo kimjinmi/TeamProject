@@ -3,7 +3,8 @@
 <mapper namespace="mybatis.mapper.disabled">
 
 	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
-	
+			
+				<!-- disabled에 데이터 추가해주기 -->
 	<insert id="selectDisabled" parameterType="disabled" >
 	insert into disabled(dno, memail, dreason, ddate)
 	values (SEQ_DISABLED_DNO.nextval, #{memail}, #{dreason}, sysdate)
@@ -23,20 +24,19 @@
 		)
 		WHERE rnum &gt;=#{startRowNo}
 	</select>	
-
-<!-- 		 diasbled 된 해당 memail의 정보(이미지 포함 - 조인)
+	
+		<!-- disabled 에서 데이터 삭제해주기 -->
+		<delete id="selectAbled" parameterType="disabled">
+		 DELETE from disabled
+         WHERE memail=#{memail}
+		</delete>
+		
+		<!-- 		 diasbled 된 해당 memail의 정보(이미지 포함 - 조인)
 	<select id="disInformation" parameterType="String" resultType="disabled">
 	 select dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
      from disabled d, member m
      where d.memail = m.memail and d.memail=#{memail}
 	</select> -->
-	
-		<!-- 영아 : 활성화인 회원을 비활성화(0)으로 변경하기 -->
-	<select id="changeToEnabled" parameterType="String" resultType="member">
-		UPDATE member
-	    SET menabled=1
-	    WHERE memail=#{memail}
-	</select>
 	
 	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
 </mapper>
