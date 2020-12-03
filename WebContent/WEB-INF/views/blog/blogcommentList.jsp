@@ -61,7 +61,6 @@ var togglehide;
 									<p class="comment" id="comment${status.index}" style="display:none; text-align: right;">
 										<textarea class="form-control w-100" name="comment" id="modify_content${status.index}" cols="100" rows="2" placeholder="수정할 댓글을 입력하세요"></textarea>
 										<a href="javascript:modify(${comment.rno }, ${status.index})" class="genric-btn success medium small">작성하기</a>		
-											
 									</p>
 									
 						<script type="text/javascript">
@@ -95,10 +94,7 @@ var togglehide;
 							}
 							
 							function modify(rno, number){
-								
 								 var rcontent1 = $("#modify_content"+number).val().trim();
-								 
-								
 								
 								$.ajax({
 						 			url : "commentModify",
@@ -109,12 +105,13 @@ var togglehide;
 						 			}
 						 		});
 							}
+							
+							function 
 						</script>
 										
 						</c:if>	
 					</div>
 				</div>
-			
 			</div>
 		</div>
 	</div>
