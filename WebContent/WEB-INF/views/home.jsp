@@ -45,6 +45,20 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+</style>
 
 </head>
 
@@ -92,92 +106,93 @@
 		<!--? slider Area Start-->
 		<section class="slider-area ">
 			<div class="slider-active">
-				<div id="slide">
-					<input type="radio" name="pos" id="pos1" checked> 
-					<input type="radio" name="pos" id="pos2"> 
-					<input type="radio" name="pos" id="pos3"> 
-					<input type="radio" name="pos" id="pos4">
-					<ul>
-						<li>
-							<div class="col-xl-8 col-lg-9 col-md-12" style="margin-top: 200px;">
-                                <div class="hero__caption text-center">
-                                    <h1 data-animation="bounceIn" data-delay="0.2s">HOBBYS</h1>
-                                    <sec:authorize access="isAuthenticated()">
-                                    	<p data-animation="fadeInUp" data-delay="0.4s"><strong>${member.mnickname}</strong>님이 로그인하셨습니다</p>
-                                    </sec:authorize>
-                					<sec:authorize access="isAuthenticated()">
-                                   		 <a href="#" class="main-btn" data-animation="fadeInUp" data-delay="0.7s">POSTING</a>
-                                    </sec:authorize>
-                                    <%-- <sec:authorize access="isAnonymous()">
-                                    	<p data-animation="fadeInUp" data-delay="0.4s"><strong>더 알아보기</strong> </p>
-                                    </sec:authorize> --%>
-                                    <sec:authorize access="isAnonymous()">
-                                   		 <a href="#" class="main-btn" data-animation="fadeInUp" data-delay="0.7s">더 알아보기</a>
-                                    </sec:authorize>
-									<!-- <a href="javascript:sessionconnect()" class="hero-btn" data-animation="fadeInUp" data-delay="0.7s">세션연결</a> -->
-									<script type="text/javascript">
-									function sessionconnect(){
-										$.ajax({
-											url:"sessionconnect",
-											success:function(data) {
-												$("#session_result").html(data);
-											}
-										});
-									}
-									</script>
-									<div id="session_result">
-									</div>
-                                </div>
-                            </div>
-						</li>
-						<li></li>
-						<li></li>
-						<li></li>
+
+				<div id="demo" class="carousel slide" data-ride="carousel">
+					<ul class="carousel-indicators">
+						<li data-target="#demo" data-slide-to="0" class="active"></li>
+						<li data-target="#demo" data-slide-to="1"></li>
+						<li data-target="#demo" data-slide-to="2"></li>
 					</ul>
-					<p class="pos">
-						<label for="pos1"></label> <label for="pos2"></label> <label
-							for="pos3"></label> <label for="pos4"></label>
-					</p>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<!--  출처: [화분] <Pinterest> '땡스아트' 
+								   출처: [앉은 사람] <크라우드픽> '@woocat'  -->
+							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_2.png" width="100%">
+						</div>
+						
+						<div class="carousel-item">
+							<!-- 출처: [아이패드] PNGEGG -->
+							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png" width="100%">
+						</div>
+
+						<div class="carousel-item">
+							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png" width="100%">
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#demo" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
 				</div>
+
 			</div>
 		</section>
 		<!-- slider Area End-->
-		<!--? About 1 Start-->
-		<section class="about-low-area section-padding30">
+		
+		<!--? video_start -->
+		<div class="video-area section-bg2 d-flex align-items-end fix" data-background="<%= application.getContextPath() %>/resources/assets/img/gallery/video-bg.png">
+			<!-- Video icon -->
+			<div class="video-icon">
+				<a class="popup-video btn-icon"
+					href="https://www.youtube.com/watch?v=up68UAfH0d0"><i
+					class="fas fa-play"></i></a>
+			</div>
 			<div class="container">
-				<div class="row justify-content-between">
-					<div class="col-xl-6 col-lg-6 col-md-10">
-						<div class="about-caption mb-50">
-							<!-- Section Tittle -->
-							<div class="section-tittle mb-35">
-								<h2>
-									Show me the<br> Hobbys
-								</h2>
+				<div class="video-contents">
+					<div class="row justify-content-between">
+						<div class="col-xl-5 col-lg-5 col-md-10">
+							<div class="section-tittle  mb-90">
+								<h2>How we work?</h2>
+								<p class="tittle-pera1">Inasfa reprehenderit in voluptate
+									velit esse cillum reeut cupidatatfug nulla pariatur.</p>
+								<p>Aute irure dolor inasfa reprehenderit in voluptate velit
+									esse cillum reeut cupidatatfug nulla pariatur. Excepteur
+									sintxsdfas occaecat.</p>
+								<a href="#" class="btn black-btn">Start a Project</a>
 							</div>
-							<p class="about-cap-top">당신의 취미를 공유하세요</p>
-							<p>자바 공부를 해요</p>
-							<a href="#" class="btn black-btn">지금 가입하기</a>
 						</div>
-					</div>
-					<div
-						class="offset-xl-0 col-xl-6 offset-lg-0 col-lg-6 col-md-9 offset-md-1 offset-sm-1">
-						<div class="about-right-cap">
-							<div class="about-right-img">
-								<img src="assets/img/gallery/about1.png" alt="">
-							</div>
-							<div class="img-cap">
-								<span>No. 1</span>
-								<p>Project Team</p>
+						<div class="col-xl-5 col-lg-6 col-md-8">
+							<div class="edu-details">
+								<!-- single-item -->
+								<div class="single-items mb-50">
+									<span>Tell Us About Your Project</span>
+									<p>Aute irure dolor inasfa prehenderit in voluptate velit
+										esse cillum.</p>
+								</div>
+								<!-- single-item -->
+								<div class="single-items single-items2 mb-50">
+									<span>We'll Schedule a Flight</span>
+									<p>Aute irure dolor inasfa prehenderit in voluptate velit
+										esse cillum.</p>
+								</div>
+								<!-- single-item -->
+								<div class="single-items single-items3 mb-50">
+									<span>We'll Schedule a Flight</span>
+									<p>Aute irure dolor inasfa prehenderit in voluptate velit
+										esse cillum.</p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- About  End-->
+		</div>
+		<!-- video_end -->
+	
 		<!--? services area start -->
 		<section class="services-section pb-padding fix">
-			<div class="container">
+			<div class="container" style="margin-top: 5%;">
 				<div class="custom-row">
 					<div class="services-active">
 						<div class="col-lg-4">
@@ -256,56 +271,7 @@
 			</div>
 		</section>
 		<!-- Services End -->
-		<!--? video_start -->
-		<div class="video-area section-bg2 d-flex align-items-end fix"
-			data-background="assets/img/gallery/video-bg.png">
-			<!-- Video icon -->
-			<div class="video-icon">
-				<a class="popup-video btn-icon"
-					href="https://www.youtube.com/watch?v=up68UAfH0d0"><i
-					class="fas fa-play"></i></a>
-			</div>
-			<div class="container">
-				<div class="video-contents">
-					<div class="row justify-content-between">
-						<div class="col-xl-5 col-lg-5 col-md-10">
-							<div class="section-tittle  mb-90">
-								<h2>How we work?</h2>
-								<p class="tittle-pera1">Inasfa reprehenderit in voluptate
-									velit esse cillum reeut cupidatatfug nulla pariatur.</p>
-								<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-									esse cillum reeut cupidatatfug nulla pariatur. Excepteur
-									sintxsdfas occaecat.</p>
-								<a href="#" class="btn black-btn">Start a Project</a>
-							</div>
-						</div>
-						<div class="col-xl-5 col-lg-6 col-md-8">
-							<div class="edu-details">
-								<!-- single-item -->
-								<div class="single-items mb-50">
-									<span>Tell Us About Your Project</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-								<!-- single-item -->
-								<div class="single-items single-items2 mb-50">
-									<span>We'll Schedule a Flight</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-								<!-- single-item -->
-								<div class="single-items single-items3 mb-50">
-									<span>We'll Schedule a Flight</span>
-									<p>Aute irure dolor inasfa prehenderit in voluptate velit
-										esse cillum.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- video_end -->
+		
 		<!--? Visit Our Tailor Start -->
 		<div class="visit-tailor-area fix">
 			<!--Right Contents  -->
