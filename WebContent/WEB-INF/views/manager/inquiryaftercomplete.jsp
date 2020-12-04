@@ -55,7 +55,7 @@ function inquiryaftercomplete(pageNo) {
 						<td>${inquiryList.iemail}</td>
 					
 						<td><fmt:formatDate value="${inquiryList.idate}" pattern="yyyy-MM-dd" /></td>
-						<td><a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
+						<td><a href="javascript:inquirydetail(${inquiryList.ino})"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td>
 						<td><a href="javascript:inquirydelete(${inquiryList.ino})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
 					</tr>
 				</c:if>	
@@ -86,5 +86,5 @@ function inquiryaftercomplete(pageNo) {
 				</td>
 			</tr>
 		</table> 
-	
+
 

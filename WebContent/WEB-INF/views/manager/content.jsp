@@ -216,11 +216,10 @@
 													url : "inquirydetail",
 													data : {ino:ino},
 													success : function(data) {
-														$("#detailview").html(data);
+														$("#setting_result").html(data);
 													}
 												});
 											}
-											
 										</script>
 											
 									</li>
