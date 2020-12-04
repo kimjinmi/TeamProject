@@ -59,7 +59,12 @@ function announcedelete(ano){
 	</tr>
 	<tr>
 		<td colspan="4" style="text-align:left;">
-			
+			<b>writer : </b>
+			${announce.memail}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="text-align:left;">
 			${announce.acontent}
 		</td>
 	</tr>

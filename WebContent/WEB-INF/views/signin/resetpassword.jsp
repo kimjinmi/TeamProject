@@ -42,7 +42,14 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+<style type="text/css">
+.container img {
+	  max-width: 100%;
+	  height: auto;
+	  display: block;
+	}
 
+</style>
 
 
 </head>
@@ -104,76 +111,79 @@
 		</div>
 		<!-- Hero End -->
 		<!--? Start Sample Area -->
-	
-		 <div class="container-fluid">
+	<p></p>
+		 <div class="container">
+		 	
 		 	<div class="row">
-		 		<div class="col-md-2">
-		 		</div>
-					<div class="col-md-5">
-						<section class="sample-text-area" style="padding-bottom: 0; padding-top: 70px;">
-							<div class="container box_1170">
-								<hr align="left" style="border: solid 1px black; width: 100%;">
-									<h3 class="text-heading" style="font-size: 30px;">비밀번호 찾기</h3>
-							</div>
-						</section>
-			<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
-			<div class="whole-wrap">
-				<div class="container box_1170">
-					<div class="section-top-border" style="padding-top: 30px;">
-						<ul>
-							<li style="padding-bottom:10px">
-								비밀번호를 찾기 위해서 가입시 입력한 이메일과 전화번호를 입력해 주세요
-							</li>
-								</ul>
-									<form method="post" action="findpasswordform">								
-										<!-- 이메일 입력 & 비밀번호 입력 시작 -->
-										<div class="input-group mb-3">
-                   							<input type="password" class="form-control" id="mpassword1" name="mpassword1" 
-                   							placeholder='  이메일을 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  새로운 비밀번호를 입력하세요'" 
-                   								style="height:45px; font-size:16px;">
-										</div>
-										<div class="input-group mb-3">
-                   							<input type="password" class="form-control" id="mpassword2" name="mpassword2" 
-                   							placeholder='  전화번호를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 다시 입력하세요'" 
-                   								style="height:45px; font-size:16px;">
-										</div>			
-										<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
-											<a class="genric-btn info circle" href="javascript:passwordcheck()" name="submit" style="width: 100%;">비밀번호 변경</a>
-										</div>
-										<span id="passwordresult"></span>
-										<a class="ex" href="findemail" style="color:black; font-size:7px;">이메일 찾기></a> 
-										<script type="text/javascript">
-											var mpassword1 = $("#mpassword1").val().trim();
-											var mpassword2 = $("#mpassword2").val().trim();
-											if(mpassword1 != mpassword2){
-												$("#passwordresult").text("에러");
-												return;
-												}else{
-													var mpassword = mpassword1;
-												$("#passwordresult").text("");
-												$.ajax({
-													url:"passwordresult",
-													data:{mpassword:mpassword},
-													success:function(data){
-														if(data.result == 'success'){
-															location.href="<%=application.getContextPath()%>/"
-															}}
-													});
-	
-													}
-											
-										</script>
-									
-									</form>
-								</div>
-							</div>
+		 		<div class="col-md-6">
+		 		<hr align="left" style="border: solid 1px black; width: 100%;">
+					<h3 class="text-heading" style="font-size: 30px;">비밀번호 찾기</h3>
+					<p></p>
+					<p>새로운 비밀번호를 입력해주세요</p>
+						
+					<form method="post" action="findpasswordform">									
+					<!-- 이메일 입력 & 비밀번호 입력 시작 -->
+						<div class="input-group mb-3">
+             				<input type="text" class="form-control"  id="mpassword1" name="mpassword1"  
+             						placeholder='  이메일을 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  새로운 비밀번호를 입력하세요'" 
+             						style="height:45px; font-size:16px;">
 						</div>
-					</div>
-					<div class="col-md-5">
-						<img src="<%=application.getContextPath()%>/resources/images/ponyo1.png" style="padding-top: 110px; width:90%; height:80%">
-					</div>
+						<input type="text" class="form-control"   id="mpassword2" name="mpassword2"  
+                 				placeholder='  전화번호를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 다시 입력하세요'" 
+                 				style="height:45px; font-size:16px;">
+						
+						<div class="button-group-area mt-40" style="font-size: 20px;">
+							<a class="genric-btn primary circle" href="javascript:passwordcheck()" name="submit" style="width: 100%;">비밀번호 변경</a>
+							<span id="passwordresult"></span>
+								<a class="ex" href="findemail" style="color:black; font-size:7px;">이메일 찾기></a> 
+								<script type="text/javascript">
+									var mpassword1 = $("#mpassword1").val().trim();
+									var mpassword2 = $("#mpassword2").val().trim();
+									if(mpassword1 != mpassword2){
+										$("#passwordresult").text("에러");
+										return;
+										}else{
+											var mpassword = mpassword1;
+										$("#passwordresult").text("");
+										$.ajax({
+											url:"passwordresult",
+											data:{mpassword:mpassword},
+											success:function(data){
+												if(data.result == 'success'){
+													location.href="<%=application.getContextPath()%>/"
+													}}
+											});
+	
+											}
+									
+								</script>
+							
+						</div>
+						
+						<div style="height: 10px;"></div>
+						<span style="text-align: center; color: black;">
+							<ul class="blog-info-link">
+				                 <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findemail">이메일 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a> </li>
+				                 <%-- <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findpassword">비밀번호 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+				             	 <li><a style="color: black;" href="<%=application.getContextPath()%>/signup/signupcheck">회원가입<i class="fa fa-angle-right" aria-hidden="true"></i></a></li> --%>
+				             </ul>
+						</span>
+						
+					</form>
+				</div>
+				
+				<div class="col-md-6">
+					<div style="height: 50px;"></div>
+					<img src="<%=application.getContextPath()%>/resources/images/tma5.PNG">
 				</div>
 			</div>
+			<div style="height: 50px;"></div>
+		</div>
+		
+		<p></p>
+
+			<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
+	<p></p>		
 
 
 		<!-- End Align Area -->
