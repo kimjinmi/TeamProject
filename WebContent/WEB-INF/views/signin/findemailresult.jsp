@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -103,62 +104,46 @@
 		</div>
 		<!-- Hero End -->
 		<!--? Start Sample Area -->
-		<section class="sample-text-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<h3 class="text-heading">비밀번호 재생성</h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-7 col-md-8">
-						<h3 class="mb-30">계정에 새롭게 저장할 비밀번호를 설정하세요</h3>
-
-						<div class="container">
-							<form action="#">
-								<div class="row">
-									<!-- 이메일 입력 & 비밀번호 입력 시작 -->
-									<div class="col-lg-8">
-									<h6>&nbsp;새 비밀번호</h6>
-										<div class="mt-6">
-											<input type="text" name="Password" placeholder="Password"
-												onfocus="this.placeholder = ''"
-												onblur="this.placeholder = 'Password'" required
-												class="single-input">
-										</div>
-										<h6>&nbsp;비밀번호 확인</h6>
-										
-										<div class="mt-6">
-											<input type="text" name="Password" placeholder="Password"
-												onfocus="this.placeholder = ''"
-												onblur="this.placeholder = 'Password'" required
-												class="single-input">
+	
+		 <div class="container-fluid">
+		 	<div class="row">
+		 		<div class="col-md-2">
+		 		</div>
+					<div class="col-md-5">
+						<section class="sample-text-area" style="padding-bottom: 0; padding-top: 70px;">
+							<div class="container box_1170">
+								<hr align="left" style="border: solid 1px black; width: 100%;">
+									<h3 class="text-heading" style="font-size: 30px;">이메일 찾기</h3>
+							</div>
+						</section>
+			<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
+			<div class="whole-wrap">
+				<div class="container box_1170">
+					<div class="section-top-border" style="padding-top: 30px;">
+						<ul>
+							<li style="padding-bottom:10px">
+								저장된 전화번호로 가입된 이메일 입니다
+							</li>
+								</ul>
+										<!-- 전화번호 입력 시작 -->
+										<div class="input-group mb-3">
+                   							<h2>${member.memail}</h2>
+										</div>			
+										<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
+											<a class="genric-btn info circle" href="<%=application.getContextPath()%>/" style="width: 100%;">HOME</a>
 										</div>
 										
-										<p></p>
- 
-									</div>
-									<div class="col-lg-8">
-										<a class="btn" href="<%=application.getContextPath()%>/signin/content" style="width:100%; line-height:0;">Submit</a>
-									</div>
+									
+									</form>
 								</div>
-							</form>
-
-
+							</div>
 						</div>
-
 					</div>
-
-
-
-					<div class="col-lg-5 col-md-4">
-						<img style="width: 100%; height: 100%;"
-							src=<%=application.getContextPath()%>/resources/images/bono01.jpg>
+					<div class="col-md-5">
+						<img src="<%=application.getContextPath()%>/resources/images/ponyo1.png" style="padding-top: 110px; width:90%; height:80%">
 					</div>
 				</div>
 			</div>
-
-		</section>
 
 
 		<!-- End Align Area -->

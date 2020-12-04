@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
+import com.sun.media.jfxmedia.logging.Logger;
 
 @Repository
 public class MemberDao {
@@ -92,6 +93,16 @@ public class MemberDao {
 
 	public void fromZeroToOne(String memail) {
 		int rows = sst.update("mybatis.mapper.member.changeToDisabled", memail);		
+	}
+
+	public MemberDto selectByMphonenum(String mphonenum) {
+		MemberDto member = sst.selectOne("mybatis.mapper.member.selectByMphonenum", mphonenum);
+		return member;
+	}
+
+	public int findmpassword(MemberDto member) {
+		int row = sst.selectOne("mybatis.mapper.member.findmpassword", member);
+		return row;
 	}
 
 

@@ -113,7 +113,7 @@
 						<section class="sample-text-area" style="padding-bottom: 0; padding-top: 70px;">
 							<div class="container box_1170">
 								<hr align="left" style="border: solid 1px black; width: 100%;">
-									<h3 class="text-heading" style="font-size: 30px;">로그인</h3>
+									<h3 class="text-heading" style="font-size: 30px;">이메일 찾기</h3>
 							</div>
 						</section>
 			<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
@@ -122,27 +122,22 @@
 					<div class="section-top-border" style="padding-top: 30px;">
 						<ul>
 							<li style="padding-bottom:10px">
-								이메일와 비밀번호를 입력해 주세요
+								이메일을 찾기 위해서 가입시 입력한 전화번호를 입력해 주세요
 							</li>
 								</ul>
-									<form method="post" action="<%=application.getContextPath()%>/SIGNIN">								
-										<!-- 이메일 입력 & 비밀번호 입력 시작 -->
+									<form method="post" action="findemailresult">								
+										<!-- 전화번호 입력 시작 -->
+										
 										<div class="input-group mb-3">
-                   							<input type="text" class="form-control" name="memail" value="${memail}"
-                   							placeholder='  이메일을 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  이메일을 입력하세요'" 
-                   								style="height:45px; font-size:16px;">
-										</div>
-										<div class="input-group mb-3">
-                   							<input type="password" class="form-control" name="mpassword"
-                   							placeholder='  비밀번호를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 입력하세요'" 
+                   							<input type="text" class="form-control" id="mphonenum" name="mphonenum" 
+                   							placeholder='  전화번호를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  전화번호를 입력하세요'" 
                    								style="height:45px; font-size:16px;">
 										</div>			
 										<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
-											<input class="genric-btn info circle" type="submit" name="submit" value="SIGN IN" style="width: 100%;"></a>
+											<input class="genric-btn info circle" type="submit" value="NEXT" style="width: 100%;"></a>
 										</div>
-										<a class="ex" href="<%=application.getContextPath()%>/signin/findemail" style="color:black; font-size:7px;">이메일 찾기></a> 
-									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signin/findpassword" style="color: black; font-size:7px;">비밀번호 찾기></a> 
-									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signup/signupcheck"	style="color:black; font-size:7px;">회원가입</a>
+										<input type="submit" class="ex"  style="color:black; font-size:7px;">비밀번호 찾기></a> 
+									
 									</form>
 								</div>
 							</div>
