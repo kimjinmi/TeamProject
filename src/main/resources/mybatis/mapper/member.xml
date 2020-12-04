@@ -71,12 +71,19 @@
 		)
 		WHERE rnum &gt;=#{startRowNo}
 	</select>
-<!-- 	
-	영아 : 활성화인 회원을 비활성화(0)으로 변경하기
-	<select id="changeToEnabled" parameterType="String" resultType="member">
+	
+	<!-- 영아 : 활성화인 회원(1)을 비활성화(0)으로 변경하기 -->
+	<select id="changeToAbled" parameterType="String" resultType="member">
 		UPDATE member
 	    SET menabled=0
 	    WHERE memail=#{memail}
-	</select> -->
+	</select> 
+	
+		<!-- 영아 : 비활성화인 회원(0)을 활성화(1)으로 변경하기 -->
+	<select id="changeToDisabled" parameterType="String" resultType="member">
+		UPDATE member
+	    SET menabled=1
+	    WHERE memail=#{memail}
+	</select> 
 	
 </mapper>

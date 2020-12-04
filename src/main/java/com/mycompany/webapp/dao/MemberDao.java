@@ -85,5 +85,15 @@ public class MemberDao {
 		return list;
 	}
 
+	public void fromOneToZero(String memail) {
+		int rows = sst.update("mybatis.mapper.member.changeToAbled", memail);
+		
+	}
+
+	public void fromZeroToOne(String memail) {
+		int rows = sst.update("mybatis.mapper.member.changeToDisabled", memail);		
+	}
+
+
 	//------------------------------------------영아 - 끝----------------------------------------------
 }
