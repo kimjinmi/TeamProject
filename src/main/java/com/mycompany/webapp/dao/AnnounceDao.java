@@ -22,6 +22,24 @@ public class AnnounceDao {
 		return row;
 	}
 
+	public List<AnnounceDto> selectlist(PagerDto pager) {
+		List<AnnounceDto> list = sst.selectList("mybatis.mapper.announce.selectlist", pager);
+		return list;
+	}
+
+	public int countannounceall() {
+		int count = sst.selectOne("mybatis.mapper.announce.countalllist");
+		return count;
+	}
+
+	public AnnounceDto selectannounce(int ano) {
+		int row = sst.update("mybatis.mapper.announce.updateahitnum", ano);
+		AnnounceDto announce = sst.selectOne("mybatis.mapper.announce.selectannounce", ano);
+		return announce;
+	}
+
+
+
 	
 	
 	

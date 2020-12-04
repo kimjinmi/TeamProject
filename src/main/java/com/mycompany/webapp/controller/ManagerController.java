@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -26,11 +26,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.mycompany.webapp.dto.CategoryDto;
-import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.AnnounceDto;
 import com.mycompany.webapp.dto.BoardDto;
+import com.mycompany.webapp.dto.CategoryDto;
+import com.mycompany.webapp.dto.InquiryDto;
+import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
 import com.mycompany.webapp.dto.ReplyDto;
 import com.mycompany.webapp.dto.SearchDto;
@@ -140,23 +142,84 @@ public class ManagerController {
 	}
 	
 
-	 	
-	
 	@RequestMapping("/inquirylist")
-	public String inquirylist(Model model) {
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+	public String inquirylist() {
+		
 		return "manager/inquirylist";
 	}
+	
+	@RequestMapping("/inquirybeforecomplete")
+	public String inquirybeforecomplete(Model model, @RequestParam(defaultValue = "1")int pageNo) {
+		int totalRows = service.getTotalInquiryRows();
+
+		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
+		List<InquiryDto> inquiryList = service.getInquiryList(pager);
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		model.addAttribute("inquiryList", inquiryList);
+		model.addAttribute("pager", pager);
+		return "manager/inquirybeforecomplete";
+	}
+	
+	@RequestMapping("/inquiryaftercomplete")
+	public String inquiryaftercomplete(Model model, @RequestParam(defaultValue = "1")int pageNo) {
+		int totalRows = service.getTotalInquiryRows();
+
+		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
+		List<InquiryDto> inquiryList = service.getInquiryList(pager);
+		List<CategoryDto> category = service.getcategorylist(); 
+		model.addAttribute("category", category);
+		model.addAttribute("inquiryList", inquiryList);
+		model.addAttribute("pager", pager);
+		return "manager/inquiryaftercomplete";
+	}
+	
+	@RequestMapping("/inquirydelete")
+	public void inquirydelete(int ino, HttpServletResponse response) throws Exception {
+		service.inquirydelete(ino);
+		logger.info("######## "+ ino);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	@RequestMapping("/inquirydetail")
+	public String inquirydetail(int ino, Model model) {
+		
+		InquiryDto inquiryList = service.getInquiry(ino);
+		model.addAttribute("inquiryList", inquiryList);
+		
+		return "manager/inquirydetail";
+	}
+	
+/*	@RequestMapping("/inquirycomplete")
+	public String inquirycomplete(Model model) {
+		
+		InquiryDto inquirycomplete = service.getCompleteInquiry();
+		model.addAttribute("inquirycomplete", inquirycomplete);
+		
+		return "manager/inquirylist";
+	} */
 
 	
 	@RequestMapping("/boarddelete")
 	public void boarddelete(int bno, HttpServletResponse response) throws Exception { 
 		logger.info("##bno:"+bno);
 		service.boarddelete(bno);
-		//JSON 생성
-		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		//JSON 생성 
+		JSONObject jsonObject = new JSONObject();
+		//배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
+		
+		jsonObject.put("result", "change");
 		String json = jsonObject.toString(); // {"result" : "success"}
 		
 		//응답보내기
@@ -192,7 +255,7 @@ public class ManagerController {
 	
 	@RequestMapping("/announcewriteform")
 	public void announcewriteform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws IOException {
-		logger.info("announcedto.isAifmain(): "+announcedto.isAifmain());
+		announcedto.setAhitnum(0);
 		service.announceadd(announcedto);
 		//JSON 생성
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
@@ -206,6 +269,27 @@ public class ManagerController {
 		out.flush();
 		out.close();
 	}
+	
+	/*@RequestMapping("/upload")
+	public void upload(MultipartFile upload, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		JSONObject jsonObject = new JSONObject();
+		if(!upload.isEmpty()) {
+			String originalFileName = upload.getOriginalFilename();
+			originalFileName += new Date().getTime() + "-" + originalFileName;
+			//File saveFile = new File("D:/MyWorkspace/photo/board/" + originalFileName);
+			File saveFile = new File("C:/temp/projectimage/announceContent/" + originalFileName);
+			upload.transferTo(saveFile);
+			jsonObject.put("uploaded", 1);
+			jsonObject.put("fileName", originalFileName);
+			jsonObject.put("url", "http://localhost:8080/teamproject/blog/boardImageDownload?fileName=" + originalFileName);
+		} 
+		String json = jsonObject.toString();
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
+	}*/
 	
 	
 	@GetMapping("/photodownload")

@@ -140,10 +140,9 @@
 										<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
 											<input class="genric-btn info circle" type="submit" name="submit" value="SIGN IN" style="width: 100%;"></a>
 										</div>
-										<a class="ex" href="#" style="color:black; font-size:7px;">이메일 찾기></a> 
+										<a class="ex" href="<%=application.getContextPath()%>/signin/findemail" style="color:black; font-size:7px;">이메일 찾기></a> 
 									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signin/findpassword" style="color: black; font-size:7px;">비밀번호 찾기></a> 
-									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signup/content"
-														style="color:black; font-size:7px;">회원가입</a>
+									&nbsp;<a class="ex" href="<%=application.getContextPath()%>/signup/signupcheck"	style="color:black; font-size:7px;">회원가입</a>
 									</form>
 								</div>
 							</div>

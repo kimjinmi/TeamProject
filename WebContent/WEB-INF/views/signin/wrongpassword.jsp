@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
@@ -12,7 +12,7 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="shortcut icon" type="image/x-icon"
 	href="resources/assets/img/favicon.ico">
- 
+
 <!-- CSS here -->
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/bootstrap.min.css">
@@ -42,19 +42,9 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
-	<style type="text/css">
-   .blog_list_content{  	
-   			overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; 
-            -webkit-box-orient: vertical;
-   }
-	.ck-editor__editable {
-	       min-height: 800px;
-	}
-</style>
-<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+
+
+
 </head>
 
 <body>
@@ -105,7 +95,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="hero__caption hero__caption2">
-								<h2>MANAGER</h2>
+								<h2>Sign in</h2>
 							</div>
 						</div>
 					</div>
@@ -113,172 +103,51 @@
 			</div>
 		</div>
 		<!-- Hero End -->
-		<!--? Blog Area Start -->
-		<section class="blog_area single-post-area section-padding">
-			<div class="container" >
-				<div class="row">
-				<div class="col-lg-4">
-						<div class="blog_right_sidebar">
-						
-							<aside class="single_sidebar_widget search_widget" style="padding:40px 30px">
-							<div class="align-items-center" style="width:100%; height:100%; text-align:center;">
-								<img src="photodownload?fileName=${member.mmyimage}" alt="" width="100" height="100" class="rounded-circle"><br>
-								<hr/>
-								<h2 class="contact-title">${member.mnickname}</h2>
-								<p>${member.mintro}</p>
-								<hr/>
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-														                    	
-		                       	 	<!-- 게시글 작성 버튼 -->
-		                        	<a class="genric-btn primary e-large" href="admin">ADMIN</a>
-		                        </sec:authorize>
-		                        </div>
-							</aside>
-							
-							<aside class="single_sidebar_widget post_category_widget">
-								<h4 class="widget_title" style="color: #2d2d2d;">홈페이지 관리</h4>
-								<ul class="list cat-list">
-									
-									<li><a href="javascript:editcategory()" class="d-flex">
-										<p>카테고리 편집</p></a>
-										<script type="text/javascript">
-											function editcategory(){
-												$.ajax({
-													url:"editcategory",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-										
-										</script>	
-									</li>
-									
-									<li><a href="javascript:allboardlist()" class="d-flex">
-										<p>전체 데이터 관리</p></a>
-										<script type="text/javascript">
-											function allboardlist(pageNo){
-												if(!pageNo){
-													pageNo = 1;
-												}
-												$.ajax({
-													url:"allboardlist",
-													data : {pageNo:pageNo},
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-											
-											function boarddelete(bno){
-												$.ajax({
-													url:"boarddelete",
-													data:{bno:bno},
-													success:function(data){
-														if(data.result == "success"){
-															allboardlist();
-														}
-													}
-												});
-											}
-										
-										</script>
-											
-									</li>
-									
-									<li><a href="javascript:inquirylist()" class="d-flex">
-										<p>문의사항 관리</p></a>
-										<script type="text/javascript">
-											function inquirylist(){
-												$.ajax({
-													url:"inquirylist",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});	
-												$.ajax({
-													url:"inquirybeforecomplete",
-													success:function(data) {
-														$("#beforeview").html(data);
-													}
-												});	
-												$.ajax({
-													url:"inquiryaftercomplete",
-													success:function(data) {
-														$("#afterview").html(data);
-													}
-												});	
-											}
-											
-											function inquirydelete(ino) {
-												$.ajax({
-													url : "inquirydelete",
-													data: {ino:ino},
-													success : function(data) {
-														if(data.result == "success") {
-																inquirylist();
-														}
-													}
-												});
-											}
-											
-											function inquirydetail(ino) {
-												$.ajax({
-													url : "inquirydetail",
-													data : {ino:ino},
-													success : function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-											}
-										</script>
-											
-									</li>
-									<li><a href="javascript:announcewrite()" class="d-flex">
-										<p>공지사항 작성</p></a>
-										<script type="text/javascript">
-											function announcewrite(){
-												$.ajax({
-													url:"announcewrite",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-										
-										</script>
-											
-									</li>
-									
-								</ul>
-							</aside>
-							
-							
-						</div>
-					</div>
-				
-				<!-- ////////////////////////////////// -->
-					<div class="col-lg-8 posts-list">
-						<div class="single-post">
-							<div class="feature-img">
-								<img class="img-fluid" src="#"
-									alt="">
+		<!--? Start Sample Area -->
+	
+		 <div class="container-fluid">
+		 	<div class="row">
+		 		<div class="col-md-2">
+		 		</div>
+					<div class="col-md-5">
+						<section class="sample-text-area" style="padding-bottom: 0; padding-top: 70px;">
+							<div class="container box_1170">
+								<hr align="left" style="border: solid 1px black; width: 100%;">
+									<h3 class="text-heading" style="font-size: 30px;">이메일 찾기</h3>
 							</div>
-						<div id="setting_result" class="blog_details">
-							<jsp:include page="/WEB-INF/views/manager/editcategory.jsp"/>
+						</section>
+			<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
+			<div class="whole-wrap">
+				<div class="container box_1170">
+					<div class="section-top-border" style="padding-top: 30px;">
+						<ul>
+							<li style="padding-bottom:10px">
+								저장된 전화번호로 가입된 이메일 입니다
+							</li>
+								</ul>
+										<!-- 전화번호 입력 시작 -->
+										<div class="input-group mb-3">
+                   							<h2>${member.memail}</h2>
+										</div>			
+										<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
+											<a class="genric-btn info circle" href="<%=application.getContextPath()%>/" style="width: 100%;">HOME</a>
+										</div>
+										
+									
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
+					<div class="col-md-5">
+						<img src="<%=application.getContextPath()%>/resources/images/ponyo1.png" style="padding-top: 110px; width:90%; height:80%">
+					</div>
 				</div>
-				</div>
-				</div>
-		</section>
-		<!-- Blog Area End -->
+			</div>
+
+
+		<!-- End Align Area -->
 	</main>
-
-
 	<footer>
 		<div class="footer-wrapper section-bg2"
 			data-background="assets/img/gallery/footer-bg.png">
@@ -360,4 +229,7 @@
 		src="<%=application.getContextPath()%>/resources/assets/js/plugins.js"></script>
 	<script
 		src="<%=application.getContextPath()%>/resources/assets/js/main.js"></script>
+
+
+</body>
 </html>

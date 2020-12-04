@@ -90,7 +90,7 @@
 				              	 <li><a href="#"><i class="fa fa-file"></i> 좋아요 ${blogList.blike}</a></li> 
 				              	 <li><a href="#"><i class="fa fa-file"></i> ${blogList.ccontent}</a></li> 
 				                 <li><a href="#"><i class="fa fa-calendar"></i>
-				                 <fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd HH:mm:ss" /></a>
+				                 <fmt:formatDate value="${blogList.bdate}" pattern="yyyy-MM-dd HH:mm:ss" /></a>
 				                 </li>  
 				              </ul>
 				              

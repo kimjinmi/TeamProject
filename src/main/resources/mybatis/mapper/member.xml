@@ -85,5 +85,25 @@
 	    SET menabled=1
 	    WHERE memail=#{memail}
 	</select> 
+		
+	<select id="getMemberInfo" parameterType="String" resultType="member">
+		select * from member where memail = #{sessionMemail}
+	</select>
 	
+	<delete id="userDelete">
+		delete from member where memail = #{sessionMemail}
+	</delete>
+	
+	<select id="selectByMphonenum" parameterType="String" resultType="member">
+		select memail, mphonenum, mnickname
+		from member
+		where mphonenum = #{mphonenum}
+	</select>
+
+	<select id="findmpassword" parameterType="member" resultType="int">
+		select count(*)
+		from member
+		where mphonenum = #{mphonenum} and memail = #{memail}
+	</select>
+
 </mapper>

@@ -2,29 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.announce">
 
-	<!-- <select id="countmyliked" parameterType="String" resultType="int">
+	<select id="countalllist" resultType="int">
 	SELECT count(*)
-	FROM liked
-	WHERE memail= #{memail}
+	FROM announce
 	</select>
 	
-	<select id="selectmylikelist" parameterType="pager" resultType="liked"> 
-	select rnum, ccontent, bno, btitle, memail, ldate
-		from (select rownum as rnum, ccontent, bno, btitle, memail, ldate
-		      from (select ccontent, l.bno, btitle, b.memail, ldate
-					from category c, board b, liked l
-					where c.cno = b.cno and b.bno = l.bno and l.memail = #{murl}
-					order by ldate desc
-		                )
+	<select id="selectlist" parameterType="pager" resultType="announce"> 
+	select rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
+		from (select rownum as rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
+		      from (select ano, memail, atitle, acontent, adate, aifmain, ahitnum
+					from announce
+					order by aifmain desc, adate desc)
 		      where rownum &lt;=#{endRowNo}
 		        )
 		where rnum &gt;=#{startRowNo}
-	</select> -->
+	</select> 
 	
 	<insert id="insertannounce" parameterType="announce">
-		INSERT INTO announce(ano, memail, atitle, acontent, adate, aifmain)
-		VALUES (SEQ_ANNOUNCE_ANO.NEXTVAL, #{memail}, #{atitle}, #{acontent}, sysdate, #{aifmain})
+		INSERT INTO announce(ano, memail, atitle, acontent, adate, aifmain, ahitnum)
+		VALUES (SEQ_ANNOUNCE_ANO.NEXTVAL, #{memail}, #{atitle}, #{acontent}, sysdate, #{aifmain}, #{ahitnum})
 	</insert>
+	
+	<select id="selectannounce" parameterType="int" resultType="announce">
+		SELECT ano, memail, atitle, acontent, adate, aifmain, ahitnum
+		FROM announce
+		WHERE ano=#{ano}
+	</select>
+	
+	<update id="updateahitnum" parameterType="int">
+	UPDATE announce 
+	SET ahitnum =(SELECT ahitnum FROM announce WHERE ano=#{ano})+1 
+	WHERE ano=#{ano}
+	</update>
 
 </mapper>
 

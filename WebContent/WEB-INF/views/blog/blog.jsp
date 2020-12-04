@@ -134,7 +134,7 @@
                <div class="row">
                   <div class="col-xl-12">
                      <div class="hero__caption hero__caption2">
-                        <h2>BLOG</h2>
+                        <h2>${member.mnickname}'s Blog</h2>
                      </div>
                   </div>
                </div>

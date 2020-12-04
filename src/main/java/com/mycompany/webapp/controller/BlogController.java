@@ -54,19 +54,6 @@ public class BlogController {
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
 
-	@GetMapping("/dbConnect")
-	public String dbConnect() {
-
-		Connection connect;
-		try {
-			connect = dataSource.getConnection();
-			connect.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return "blog/blog_details";
-	}
-
 
 	@GetMapping("/blog_details")
 	public String board_details(HttpSession session, int bno, Model model, HttpServletRequest request) {
@@ -143,25 +130,6 @@ public class BlogController {
 			return "blog/categoryListLinkBoard";
 		}
 
-	
-	/*@RequestMapping("/blog_write")
-	public String blog_write(HttpSession session, Model model) { //http://localhost:8080/teamproject
-		String memail = (String) session.getAttribute("sessionMemail");
-		MemberDto member = service.getMimage(memail);
-		
-		logger.info("실행");
-		return "blog/blog_write";
-	}*/
-	
-	
-	/*
-	 * @RequestMapping("/blog_write") public String blog_write(HttpSession session,
-	 * Model model) { //http://localhost:8080/teamproject String memail = (String)
-	 * session.getAttribute("sessionMemail"); MemberDto member =
-	 * service.getMimage(memail);
-	 * 
-	 * logger.info("실행"); return "blog/blog_write"; }
-	 */
 
 	
 	//--------------------------- (선) 게시물 쓰기 시작 -------------------------
@@ -195,20 +163,7 @@ public class BlogController {
 		out.flush();
 		out.close();
 		
-		/*String SessionMurl =(String) session.getAttribute("SessionMurl");
-		board.setMurl(SessionMurl);
-		board.setBlike(0);
-		service.boardWrite(board);
-		
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", "success");
-		String json = jsonObject.toString();
-		
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json; charset=utf-8");
-		out.println(json);
-		out.flush();
-		out.close();*/
+
 	}
 	
 	@RequestMapping("/upload")

@@ -36,8 +36,8 @@ var togglehide;
 							</div>
 							<div class="reply-btn">
 								<%-- <a href="javascript:addComment(${comment.rno })" class="btn-reply text-uppercase">답글</a> <!-- 답글 --> --%>
-									<a href="javascript:commentModify(${status.index})" style="color:black"><i class="fa fa-pencil-square-o" style="font-size:18px; margin-right:0px 6px;"></i>  </a>
-									<a href="javascript:commentDelete(${comment.rno})" style="color:black"><i class="fa fa-trash" aria-hidden="true" style="font-size:18px"></i></a>
+									<a href="javascript:commentModify(${status.index})" style="color:gray"><i class="fa fa-pencil-square-o" style="font-size:18px; margin-right:0px 6px;"></i>  </a>
+									<a href="javascript:commentDelete(${comment.rno})" style="color:gray"><i class="fa fa-trash" aria-hidden="true" style="font-size:18px"></i></a>
 								<script type="text/javascript">
 								  function addComment(rno){
 									  

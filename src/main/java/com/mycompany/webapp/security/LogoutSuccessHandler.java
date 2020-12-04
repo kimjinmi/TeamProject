@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 		logger.info("실행");
 		super.onLogoutSuccess(request, response, authentication);
-	
+		
 	}
 }
 

@@ -40,7 +40,6 @@
 		<script type="text/javascript">
 			function disabledclick(index) {
 				var memail = $("#memail"+index).val().trim();
-				alert("memail : " + memail);
 				$.ajax({
 					url:"addabledmember",
 					data:{memail:memail},
