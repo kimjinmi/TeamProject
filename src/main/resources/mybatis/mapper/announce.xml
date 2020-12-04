@@ -30,10 +30,21 @@
 	</select>
 	
 	<update id="updateahitnum" parameterType="int">
-	UPDATE announce 
-	SET ahitnum =(SELECT ahitnum FROM announce WHERE ano=#{ano})+1 
-	WHERE ano=#{ano}
+		UPDATE announce 
+		SET ahitnum =(SELECT ahitnum FROM announce WHERE ano=#{ano})+1 
+		WHERE ano=#{ano}
 	</update>
+	
+	<update id="updateannounce" parameterType="announce">
+		UPDATE announce SET 
+		atitle=#{atitle}, acontent=#{acontent}  
+		WHERE ano=#{ano}
+	</update>
+	
+	<delete id="deleteannounce" parameterType="int">
+		DELETE FROM announce
+		WHERE ano=#{ano}
+	</delete>
 
 </mapper>
 

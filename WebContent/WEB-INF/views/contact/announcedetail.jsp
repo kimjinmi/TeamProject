@@ -7,6 +7,34 @@ padding: 10px;
 
 }
 </style>
+<script type="text/javascript">
+function announceedit(ano){
+	$("#inquiry").hide();
+	$("#write").hide();
+	
+	$.ajax({
+		url : "announceedit",
+		data:{ano:ano},
+		success : function(data){
+			$("#table_result").html(data);
+			
+		}
+	});
+
+}
+function announcedelete(ano){
+	$.ajax({
+		url : "announcedelete",
+		data:{ano:ano},
+		success : function(data){
+			if(data.result == "success") {
+			allannouncelist();
+			}
+		}
+	});
+}
+
+</script>
 
 <table style="text-align:center; width: 100%">
 	<colgroup>
@@ -30,17 +58,16 @@ padding: 10px;
 		<td><b>${announce.ahitnum}</b></td>
 	</tr>
 	<tr>
-		<td colspan="4">
-			<------텍스트에디터로 변경예정임------><br>
+		<td colspan="4" style="text-align:left;">
+			
 			${announce.acontent}
 		</td>
 	</tr>
 	<tr>
-		<td colspan="4" style="text-align:center;">
-			<a class="genric-btn primary-border small" href="javascript:allannouncelist(${pageNo})">목록</a>
-			
+		<td colspan="4" >
+			<a class="genric-btn primary-border small" href="javascript:allannouncelist()">목록</a>
+			<a class="genric-btn primary small" href="javascript:announceedit(${announce.ano})">수정</a>
+			<a class="genric-btn primary small" href="javascript:announcedelete(${announce.ano})">삭제</a>
 		</td>
 	</tr>
-</table>
-		
-				
+</table>		

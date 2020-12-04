@@ -26,6 +26,19 @@
     <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/assets/css/slick.css">
     <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
     <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+<style type="text/css">
+   .blog_list_content{  	
+   			overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical;
+   }
+	.ck-editor__editable {
+	       min-height: 500px;
+	}
+</style>
+<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>    
 </head>
 
 <body onload="onload();">
@@ -45,6 +58,16 @@ function allannouncelist(pageNo){
 	$.ajax({
 		url : "announcelist",
 		data:{pageNo:pageNo},
+		success : function(data){
+			$("#table_result").html(data);	
+		}
+	});
+
+}
+function announcewrte(){
+	$("#inquiry").hide();
+	$.ajax({
+		url : "announcewrite",
 		success : function(data){
 			$("#table_result").html(data);	
 		}
@@ -110,7 +133,9 @@ function allannouncelist(pageNo){
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                    	<h2 class="contact-title">공지사항</h2>
+                    	<h2 class="contact-title" style="display: inline;">공지사항</h2>
+                    	<span id="write"><a class="genric-btn primary small" href="javascript:announcewrte()"><i class="fa fa-pencil" aria-hidden="true"></i>NEW</a></span>
+                    	
                     	<div id="table_result">
                     		
 								
@@ -156,7 +181,7 @@ function allannouncelist(pageNo){
                     
                 </div>
                 <p></p>
-                <div class="row">
+                <div class="row" id="inquiry">
                     <div class="col-12">
                         <h2 class="contact-title">문의사항</h2>
                          

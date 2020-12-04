@@ -42,22 +42,11 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
-	<style type="text/css">
-   .blog_list_content{  	
-   			overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; 
-            -webkit-box-orient: vertical;
-   }
-	.ck-editor__editable {
-	       min-height: 800px;
-	}
-</style>
-<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+
 </head>
 
-<body>
+<body onload="allboardlist()">
+
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
 		<div
@@ -139,21 +128,7 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">홈페이지 관리</h4>
 								<ul class="list cat-list">
 									
-									<li><a href="javascript:editcategory()" class="d-flex">
-										<p>카테고리 편집</p></a>
-										<script type="text/javascript">
-											function editcategory(){
-												$.ajax({
-													url:"editcategory",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-												
-											}
-										
-										</script>	
-									</li>
+									
 									
 									<li><a href="javascript:allboardlist()" class="d-flex">
 										<p>전체 데이터 관리</p></a>
@@ -236,12 +211,13 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:announcewrite()" class="d-flex">
-										<p>공지사항 작성</p></a>
+									
+									<li><a href="javascript:editcategory()" class="d-flex">
+										<p>카테고리 편집</p></a>
 										<script type="text/javascript">
-											function announcewrite(){
+											function editcategory(){
 												$.ajax({
-													url:"announcewrite",
+													url:"editcategory",
 													success:function(data) {
 														$("#setting_result").html(data);
 													}
@@ -249,8 +225,7 @@
 												
 											}
 										
-										</script>
-											
+										</script>	
 									</li>
 									
 								</ul>
@@ -268,7 +243,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-							<jsp:include page="/WEB-INF/views/manager/editcategory.jsp"/>
+							
 						</div>
 					</div>
 				</div>

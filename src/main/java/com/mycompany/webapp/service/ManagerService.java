@@ -144,17 +144,6 @@ public class ManagerService {
 		return inquiry;
 	}
 
-	
-
-
-	public int announceadd(AnnounceDto announcedto) {
-		int row = announcedao.insertannounce(announcedto);
-		return row;
-		
-	}
-
-	
-
 
 
 }
