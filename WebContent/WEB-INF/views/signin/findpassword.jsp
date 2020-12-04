@@ -46,7 +46,6 @@
 
 
 </head>
-
 <body>
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
@@ -125,7 +124,7 @@
 								비밀번호를 찾기 위해서 가입시 입력한 이메일과 전화번호를 입력해 주세요
 							</li>
 								</ul>
-									<form method="post" action="findpasswordform">								
+									<form method="post" action="findpasswordform" >								
 										<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 										<div class="input-group mb-3">
                    							<input type="text" class="form-control" id="memail" name="memail" 

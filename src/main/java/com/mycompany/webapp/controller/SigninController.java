@@ -61,23 +61,32 @@ public class SigninController {
 	 }
 	
 	@RequestMapping("/findpasswordform") 
-	  public String findpasswordform(MemberDto member) { 
+	  public String findpasswordform(MemberDto member, Model model) { 
+		
 		int result = service.findMpassword(member);
+		
+		model.addAttribute("member", member);
+		
 		if(result==1) {
 			return "signin/resetpassword";
 		}else {
 			return "signin/wrongpassword";
 		}
 		
-	   
 	 }
 	 
 	@RequestMapping("/passwordresult")
-	public void passwordresult(String mpassword, HttpServletResponse response) throws Exception {
+	public void passwordresult(String memail, String mpassword, HttpServletResponse response) throws Exception {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();	//비밀번호 암호화에 필요한 객체
 		String encodedPassword = passwordEncoder.encode(mpassword);	
-		//service
 		
+		MemberDto member = new MemberDto();
+		
+		member.setMpassword(encodedPassword);
+		member.setMemail(memail);
+
+		service.passwordResult(member);
+
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();

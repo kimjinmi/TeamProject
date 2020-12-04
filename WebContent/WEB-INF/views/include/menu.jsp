@@ -6,7 +6,7 @@
 <div class="col-xl-2 col-lg-2">
 	<div class="logo">
 		<br/>
-		<img src="#" alt="">
+		<img alt="">
 	</div>
 </div>
 <div class="main-menu d-none d-lg-block">

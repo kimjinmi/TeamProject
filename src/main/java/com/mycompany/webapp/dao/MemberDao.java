@@ -104,7 +104,10 @@ public class MemberDao {
 		int row = sst.selectOne("mybatis.mapper.member.findmpassword", member);
 		return row;
 	}
-
+	public int updatePassword(MemberDto member) {
+		int row = sst.update("mybatis.mapper.member.updatePassword", member);
+		return row;
+	}
 
 	//------------------------------------------영아 - 끝----------------------------------------------
 }

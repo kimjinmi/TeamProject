@@ -28,6 +28,11 @@ public class SigninService {
 		int row = memberdao.findmpassword(member);
 		return row;
 	}
+	
+	public int passwordResult(MemberDto member) {
+		int row = memberdao.updatePassword(member);
+		return row;
+	}
 
 
 }
