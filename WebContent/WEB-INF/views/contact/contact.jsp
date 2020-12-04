@@ -38,6 +38,19 @@ function onload(){
 		}
 	});
 }
+function allannouncelist(pageNo){
+	if(!pageNo){
+		pageNo=1;
+	}
+	$.ajax({
+		url : "announcelist",
+		data:{pageNo:pageNo},
+		success : function(data){
+			$("#table_result").html(data);	
+		}
+	});
+
+}
 </script>
     <!-- ? Preloader Start -->
     <div id="preloader-active">

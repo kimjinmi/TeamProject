@@ -42,4 +42,9 @@ public class ContactService {
 		return count;
 	}
 
+	public AnnounceDto getannounce(int ano) {
+		AnnounceDto announce = announcedao.selectannounce(ano);
+		return announce;
+	}
+
 }

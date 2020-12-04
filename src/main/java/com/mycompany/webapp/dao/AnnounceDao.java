@@ -32,6 +32,14 @@ public class AnnounceDao {
 		return count;
 	}
 
+	public AnnounceDto selectannounce(int ano) {
+		int row = sst.update("mybatis.mapper.announce.updateahitnum", ano);
+		AnnounceDto announce = sst.selectOne("mybatis.mapper.announce.selectannounce", ano);
+		return announce;
+	}
+
+
+
 	
 	
 	

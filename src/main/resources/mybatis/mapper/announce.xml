@@ -12,7 +12,7 @@
 		from (select rownum as rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
 		      from (select ano, memail, atitle, acontent, adate, aifmain, ahitnum
 					from announce
-					order by adate desc)
+					order by aifmain desc, adate desc)
 		      where rownum &lt;=#{endRowNo}
 		        )
 		where rnum &gt;=#{startRowNo}
@@ -22,6 +22,18 @@
 		INSERT INTO announce(ano, memail, atitle, acontent, adate, aifmain, ahitnum)
 		VALUES (SEQ_ANNOUNCE_ANO.NEXTVAL, #{memail}, #{atitle}, #{acontent}, sysdate, #{aifmain}, #{ahitnum})
 	</insert>
+	
+	<select id="selectannounce" parameterType="int" resultType="announce">
+		SELECT ano, memail, atitle, acontent, adate, aifmain, ahitnum
+		FROM announce
+		WHERE ano=#{ano}
+	</select>
+	
+	<update id="updateahitnum" parameterType="int">
+	UPDATE announce 
+	SET ahitnum =(SELECT ahitnum FROM announce WHERE ano=#{ano})+1 
+	WHERE ano=#{ano}
+	</update>
 
 </mapper>
 

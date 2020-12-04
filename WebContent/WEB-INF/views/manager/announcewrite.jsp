@@ -15,12 +15,12 @@
 					<input type="checkbox" id="default-checkbox"  style="display: inline;">
 					<label for="default-checkbox"></label>
 				</div> -->
-				<div class="form-select" id="default-select">
-					<select id="value" style="padding: 8px;">
-						<option value="N">-------</option>
-						<option value="Y">메인지정하기</option>
-					</select>
-				</div>
+
+				<p>
+					<input type="checkbox" id="confirm-checkbox">
+					<label for="confirm-checkbox"></label>
+					메인 공지 지정<br/>	
+				</p>
 	         </div>
 	         <div class="col"></div>
 	         
@@ -56,7 +56,7 @@
     </form>
     <script type="text/javascript">
         function contactform(){
-        if($("#value").val() == 'Y'){
+        if($("#confirm-checkbox").prop("checked")){
         	var aifmain = 'true';
         }else{
         	var aifmain = 'false';
