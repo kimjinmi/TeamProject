@@ -94,6 +94,16 @@ public class MemberDao {
 		int rows = sst.update("mybatis.mapper.member.changeToDisabled", memail);		
 	}
 
+	public MemberDto getMemberInfo(String sessionMemail) {
+		MemberDto info = sst.selectOne("mybatis.mapper.member.getMemberInfo", sessionMemail);
+		return info;
+	}
+
+	public void userDelete(String sessionMemail) {
+		sst.delete("mybatis.mapper.member.userDelete", sessionMemail);
+		
+	}
+
 
 	//------------------------------------------영아 - 끝----------------------------------------------
 }

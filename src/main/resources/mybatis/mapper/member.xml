@@ -86,4 +86,12 @@
 	    WHERE memail=#{memail}
 	</select> 
 	
+	
+	<select id="getMemberInfo" parameterType="String" resultType="member">
+		select * from member where memail = #{sessionMemail}
+	</select>
+	
+	<delete id="userDelete">
+		delete from member where memail = #{sessionMemail}
+	</delete>
 </mapper>
