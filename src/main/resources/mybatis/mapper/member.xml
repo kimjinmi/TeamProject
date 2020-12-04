@@ -85,6 +85,14 @@
 	    SET menabled=1
 	    WHERE memail=#{memail}
 	</select> 
+		
+	<select id="getMemberInfo" parameterType="String" resultType="member">
+		select * from member where memail = #{sessionMemail}
+	</select>
+	
+	<delete id="userDelete">
+		delete from member where memail = #{sessionMemail}
+	</delete>
 	
 	<select id="selectByMphonenum" parameterType="String" resultType="member">
 		select memail, mphonenum, mnickname
@@ -97,10 +105,13 @@
 		from member
 		where mphonenum = #{mphonenum} and memail = #{memail}
 	</select>
+
 	
 	<update id="updatePassword" parameterType="member">
 		update member
 		set mpassword = #{mpassword}
 		where memail = #{memail}
 	</update>
+
+
 </mapper>

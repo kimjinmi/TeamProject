@@ -19,6 +19,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpRequest;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -340,5 +342,63 @@ public class SettingController {
 		
 		return "setting/mylikelist";
 	}
+	
+	// 회원 탈퇴창에서 확인한 ID, PW가 로그인한 유저 ID, PW가 일치한지 확인 // 지훈
+	@PostMapping("/deleteform")
+	public void deleteform(String inputId, String inputPw, HttpSession session, HttpServletResponse response) throws IOException {
+		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		MemberDto memberInfo = service.getMemberInfo(sessionMemail);
+		JSONObject jsonObject = new JSONObject();
+		
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(inputPw); // 비밀번호 암호화
+		logger.info("암호화된 비밀빈호: " + encodedPassword);
+		logger.info("DB에서 불러온 아이디 " + memberInfo.getMemail());
+		logger.info("DB에서 불러온 비밀번호 " + memberInfo.getMpassword());
+		logger.info("암호화한 비밀번호 " + encodedPassword);
+		logger.info("입력한 이메일 " + inputId);
+		
+		String dbEmail = memberInfo.getMemail();
+		if(inputId.equals(memberInfo.getMemail())) {
+				logger.info("아이디 일치");
+			
+			if(passwordEncoder.matches(inputPw, memberInfo.getMpassword())) {
+				logger.info("비밀번호 일치");
+				
+				jsonObject.put("result", "success");
+			}else {
+				logger.info("비밀번호 불일치");
+				jsonObject.put("result", "fail");
+			}	
+		}else {
+			logger.info("아이디가 불일치.");
+			jsonObject.put("result", "fail");
+		}	
+		String json = jsonObject.toString();
+		PrintWriter out = response.getWriter();
+		response.setContentType("applecation/json; charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
+	
+	@PostMapping("/userDeleteAction")
+	public void userDelete(String SessionMemail,HttpSession session, HttpServletResponse response) throws IOException {
+		  logger.info("실행");
+		  service.userDelete(SessionMemail);
+		  
+		  JSONObject jsonObject = new JSONObject(); jsonObject.put("result",
+		  "success");
+		  
+		  String json = jsonObject.toString(); PrintWriter out = response.getWriter();
+		  response.setContentType("applecation/json; charset=utf-8");
+		  out.println(json); out.flush(); out.close(); session.invalidate();
+		 
+	}
+	
 
+	
+	
+	
+	
 }

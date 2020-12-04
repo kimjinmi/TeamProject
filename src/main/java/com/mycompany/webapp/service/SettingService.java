@@ -149,6 +149,16 @@ public class SettingService {
 		return list;
 	}
 
+	public MemberDto getMemberInfo(String sessionMemail) {
+		MemberDto info = memberdao.getMemberInfo(sessionMemail);
+		return info;
+	}
+
+	public void userDelete(String sessionMemail) {
+		memberdao.userDelete(sessionMemail);
+		
+	}
+
 
 
 

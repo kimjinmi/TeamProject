@@ -42,7 +42,14 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
+<style type="text/css">
+.container img {
+	  max-width: 100%;
+	  height: auto;
+	  display: block;
+	}
 
+</style>
 
 
 </head>
@@ -104,9 +111,11 @@
 		</div>
 		<!-- Hero End -->
 		<!--? Start Sample Area -->
-	
-		 <div class="container-fluid">
+	<p></p>
+		 <div class="container">
+		 	
 		 	<div class="row">
+
 		 		<div class="col-md-2">
 		 		</div>
 					<div class="col-md-5">
@@ -136,8 +145,44 @@
 					<div class="col-md-5">
 						<img src="<%=application.getContextPath()%>/resources/images/ponyo1.png" style="padding-top: 110px; width:90%; height:80%">
 					</div>
+
+		 		<div class="col-md-6">
+		 		<hr align="left" style="border: solid 1px black; width: 100%;">
+					<h3 class="text-heading" style="font-size: 30px;">이메일 찾기</h3>
+					<p></p>
+					<p>저장된 전화번호로 가입된 이메일 입니다</p>
+						<div style="height: 30px;"></div>
+														
+					<!-- 이메일 입력 & 비밀번호 입력 시작 -->
+						<b>${member.memail}</b>
+						
+						<div style="height: 80px;"></div>	
+						
+							<a class="genric-btn primary" href="<%=application.getContextPath()%>/" style="width: 100%;">HOME</a>
+								<div style="height: 10px;"></div>
+						<span style="text-align: center; color: black;">
+							<ul class="blog-info-link">
+				                 <%-- <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findemail">이메일 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a> </li> --%>
+				                 <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findpassword">비밀번호 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+				             </ul>
+						</span>
+						
+					
+				</div>
+				
+				<div class="col-md-6">
+					<div style="height: 50px;"></div>
+					<img src="<%=application.getContextPath()%>/resources/images/tma5.PNG">
+
 				</div>
 			</div>
+			<div style="height: 50px;"></div>
+		</div>
+		
+		<p></p>
+
+			<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
+	<p></p>		
 
 
 		<!-- End Align Area -->
