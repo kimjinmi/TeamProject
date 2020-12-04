@@ -1,18 +1,15 @@
 package com.mycompany.webapp.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.mycompany.webapp.dto.DisabledDto;
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.dto.PagerDto;
-import com.sun.media.jfxmedia.logging.Logger;
+
 
 @Repository
 public class MemberDao {
