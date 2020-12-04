@@ -106,4 +106,12 @@
 		where mphonenum = #{mphonenum} and memail = #{memail}
 	</select>
 
+	
+	<update id="updatePassword" parameterType="member">
+		update member
+		set mpassword = #{mpassword}
+		where memail = #{memail}
+	</update>
+
+
 </mapper>
