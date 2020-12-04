@@ -44,7 +44,7 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
 </head>
 
-<body>
+<body onload="managersetting()">
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
 		<div
@@ -121,8 +121,6 @@
 								<h4 class="widget_title" style="color: #2d2d2d;">홈페이지 관리</h4>
 								<ul class="list cat-list">
 									
-									
-									
 										<li><a href="javascript:managersetting()" class="d-flex">
 											<p>매니저 관리</p></a>
 											<script type="text/javascript">
@@ -185,7 +183,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-							<jsp:include page="/WEB-INF/views/admin/managersetting.jsp"/>
+							
 						</div>
 					</div>
 				</div>

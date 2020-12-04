@@ -116,7 +116,7 @@
 								<hr/>
 								<h2 class="contact-title">${member.mnickname}</h2>
 								<p>${member.mintro}</p>
-								<hr/>
+								
 								
 								<sec:authorize access="hasRole('ROLE_MANAGER')">
 									<hr/>						                    	

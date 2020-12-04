@@ -99,13 +99,15 @@ public class BlogController {
 		
 		//진미(친구추가버튼)
 		String memail = (String) session.getAttribute("sessionMemail");
+		
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
 		int existRows = -1;
-		if(!SessionMurl.equals(UserUrl)){
-			existRows = service.neighorexist(UserUrl, memail);
+		if(SessionMurl != null) {
+			if(!SessionMurl.equals(UserUrl)){
+				existRows = service.neighorexist(UserUrl, memail);
+			}
+			model.addAttribute("existRows", existRows);
 		}
-		model.addAttribute("existRows", existRows);
-		
 		int totalRows = service.getTotalRows(UserUrl); // 개인당 블로그 게시물 수 
 		PagerDto pager = new PagerDto(UserUrl, 3, 5, totalRows, pageNo); // 페이저로 게시물 가져오기
 		List<BoardDto> list = service.getBoardList(pager); 
@@ -459,6 +461,7 @@ public class BlogController {
 		PagerDto pager = new PagerDto(memail, 4, 4, totalRows, pageNo);
 		List<NeighborDto> list = service.getNeighborList(pager);
 		model.addAttribute("list", list);
+		model.addAttribute("totalRows", totalRows);
 		model.addAttribute("pager", pager);
 		return "blog/neighborlist";
 	}

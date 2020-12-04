@@ -26,7 +26,7 @@
 			<span id="match" style="color:red; display:none;">아이디 또는 비밀번호가 일치하지 않습니다.</span>
 	</div>
 	<p><p>
-	<a class="genric-btn info-border radius" href="javascript:deleter()">계정 확인</a>
+	<a class="genric-btn primary-border radius" href="javascript:deleter()">계정 확인</a>
 	
 	<div id="deleteform" style="display:none;">
 	<p>

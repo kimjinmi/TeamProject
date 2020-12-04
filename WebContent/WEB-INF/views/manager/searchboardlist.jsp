@@ -21,47 +21,37 @@ function searchboarddelete(bno,value,search){
 	<h2 style="color: #2d2d2d; display:inline;"><a href="javascript:allreplylist()">댓글 관리</a></h2>
 
 <hr style="margin-top:12px;">
-	<p></p>
-	<table style="text-align:center; width: 90%">
-		<colgroup>
-			<col width="5%">
-			<col width="15%">
-			<col width="35%">
-			<col width="20%">
-			<col width="20%">
-			<col width="5%">
-		</colgroup>
-		<thead>
-			<tr style="background-color:#FBF9FF;">
-				<th scope="col">no</th>
-				<th scope="col">category</th>
-				<th scope="col">title</th>
-				<th scope="col">blogwriter</th>
-				<th scope="col">date</th>
-				<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
-			</tr>
-		</thead>
-			<tr>
-				<td colspan="5" style="text-align:center;">
+	<div class="container">
+			<div style="background-color:#FBF9FF; height: 30px; text-align: center;"  class="row">
+					<div class="col col-md-2"><b>category</b></div>
+					<div class="col col-md-4"><b>title</b></div>
+					<div class="col col-md-3"><b>blogwriter</b></div>
+					<div class="col col-md-2"><b>date</b></div>
+					<div class="col col-md-1"><i class="fa fa-trash" aria-hidden="true"></i></div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col" style="text-align: center;">
 					<b>"${searchvalue}"에서 "${searchdto.search}"검색 결과 :<br></b>
 					<b>총 <u>${totalRows}</u>개의 게시물이 존재합니다.</b><br>
 					<a href="javascript:allboardlist()">전체게시글보기<i class="fa fa-search" aria-hidden="true"></i></a>
-				</td>
-			</tr>
+				</div>
+			</div>
+			<hr>
 			<c:forEach var="board" items="${list}">
-				<tr style="border-spacing: 5px;">
-					<td>${board.bno}</td>
-					<td>${board.ccontent}</td>
-					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}">${board.btitle}</a></td>
-					<td>${board.memail}</td>
-					<td><fmt:formatDate value="${board.bdate}" pattern="yyyy-MM-dd" /></td>
-					<td><a href="javascript:searchboarddelete(${board.bno},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-				</tr>	
+				<div class="row">
+					<div class="col-md-2">${board.ccontent}</div>
+					<div class="col-md-4"><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${board.bno}">${board.btitle}</a></div>
+					<div class="col-md-3">${board.memail}</div>
+					<div class="col-md-2"><fmt:formatDate value="${board.bdate}" pattern="yy.MM.dd" /></div>
+					<div class="col-md-1"><a href="javascript:boarddelete(${board.bno})"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+				</div>
+				<hr>
 			</c:forEach>
 			
 		
-			<tr>
-				<td colspan="5" style="text-align:center;">
+			<div style="text-align:center;" class="row">
+				<div class="col">
 					<c:if test="${totalRows != 0}">
 						<a class="genric-btn primary-border small" href="javascript:searchboard(1,'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
 						
@@ -82,13 +72,9 @@ function searchboarddelete(bno,value,search){
 						</c:if>
 						<a class="genric-btn primary-border small" href="javascript:searchboard(${pager.totalPageNo},'${searchdto.value}','${searchdto.search}')"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 					</c:if>	
-				</td>
-			</tr>
-			<tr>
-			</tr>
-		
-	</table>
-	
+				</div>
+			</div>
+	</div>
 		
 
 	

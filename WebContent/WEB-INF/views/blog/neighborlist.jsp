@@ -15,22 +15,23 @@
 	</div>
 </c:forEach>
 <p></p> 
-<center>
-	<c:if test="${pager.groupNo >1}">
-			<a class="genric-btn primary-border small" href="javascript:neighborlist(${pager.startPageNo-1})"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-	</c:if>
-	
-	<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-		<c:if test="${pager.pageNo == i}">
-			<a class="genric-btn primary small" href="javascript:neighborlist(${i})">${i}</a>
+<c:if test="${totalRows != 0}">
+	<center>
+		<c:if test="${pager.groupNo >1}">
+				<a class="genric-btn primary-border small" href="javascript:neighborlist(${pager.startPageNo-1})"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
 		</c:if>
-		<c:if test="${pager.pageNo != i}">
-			<a class="genric-btn primary-border small" href="javascript:neighborlist(${i})">${i}</a>
+		
+		<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+			<c:if test="${pager.pageNo == i}">
+				<a class="genric-btn primary small" href="javascript:neighborlist(${i})">${i}</a>
+			</c:if>
+			<c:if test="${pager.pageNo != i}">
+				<a class="genric-btn primary-border small" href="javascript:neighborlist(${i})">${i}</a>
+			</c:if>
+		</c:forEach>
+		
+		<c:if test="${pager.groupNo <pager.totalGroupNo}">
+			<a class="genric-btn primary-border small" href="javascript:neighborlist(${pager.endPageNo+1})"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
 		</c:if>
-	</c:forEach>
-	
-	<c:if test="${pager.groupNo <pager.totalGroupNo}">
-		<a class="genric-btn primary-border small" href="javascript:neighborlist(${pager.endPageNo+1})"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-	</c:if>
-</center>
-			
+	</center>
+</c:if>			

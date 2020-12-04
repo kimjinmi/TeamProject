@@ -67,13 +67,12 @@
 			</script>
 	</div>
 	<div class="row">
-		<div class="col-12">
-			<tr>
-				<td colspan="4" style="text-align: center;"><a
-					class="genric-btn primary radius btn-md"
+		<div style="text-align: center;" class="col-12">
+			
+			<a class="genric-btn primary-border radius btn-md"
 					href="javascript:usersetting(1)">처음</a> <c:if
 						test="${pager.groupNo>1}">
-						<a class="genric-btn primary radius btn-md"
+						<a class="genric-btn primary-border radius btn-md"
 							href="javascript:usersetting(${pager.startPageNo-1})">이전</a>
 					</c:if> <c:forEach var="i" begin="${pager.startPageNo}"
 						end="${pager.endPageNo}">
@@ -83,14 +82,15 @@
 						</c:if>
 
 						<c:if test="${pager.pageNo != i}">
-							<a class="genric-btn primary radius btn-md"
+							<a class="genric-btn primary-border radius btn-md"
 								href="javascript:usersetting(${i})">${i}</a>
 						</c:if>
 					</c:forEach> <c:if test="${pager.groupNo<pager.totalGroupNo}">
-						<a class="genric-btn primary radius btn-md"
+						<a class="genric-btn primary-border radius btn-md"
 							href="javascript:usersetting(${pager.endPageNo+1})">다음</a>
-					</c:if> <a class="genric-btn primary radius btn-md"
+					</c:if> <a class="genric-btn primary-border radius btn-md"
 					href="javascript:usersetting(${pager.totalPageNo})">맨끝</a>
+				
 			</div>
 		</div>
 	</div>

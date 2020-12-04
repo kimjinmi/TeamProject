@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<style>
+a, button {
+    color: black;
+}
+</style>
 
 <h2 style="color: #2d2d2d; display:inline;">매니저관리</h2>
 

@@ -137,9 +137,9 @@
 						<div style="height: 10px;"></div>
 						<span style="text-align: center; color: black;">
 							<ul class="blog-info-link">
-				                 <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findemail">이메일 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a> </li>
-				                 <%-- <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findpassword">비밀번호 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-				             	 <li><a style="color: black;" href="<%=application.getContextPath()%>/signup/signupcheck">회원가입<i class="fa fa-angle-right" aria-hidden="true"></i></a></li> --%>
+				                <%--  <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findemail">이메일 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a> </li> --%>
+				                  <li><a style="color: black;" href="<%=application.getContextPath()%>/signin/findpassword">비밀번호 찾기<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+				             	<%-- <li><a style="color: black;" href="<%=application.getContextPath()=%>/signup/signupcheck">회원가입<i class="fa fa-angle-right" aria-hidden="true"></i></a></li> --%>
 				             </ul>
 						</span>
 						
