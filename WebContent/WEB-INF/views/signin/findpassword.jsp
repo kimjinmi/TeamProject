@@ -125,22 +125,22 @@
 								비밀번호를 찾기 위해서 가입시 입력한 이메일과 전화번호를 입력해 주세요
 							</li>
 								</ul>
-									<form method="post" action="<%=application.getContextPath()%>/SIGNIN">								
+									<form method="post" action="findpasswordform">								
 										<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 										<div class="input-group mb-3">
-                   							<input type="text" class="form-control" name="memail" value="${memail}"
+                   							<input type="text" class="form-control" id="memail" name="memail" 
                    							placeholder='  이메일을 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  이메일을 입력하세요'" 
                    								style="height:45px; font-size:16px;">
 										</div>
 										<div class="input-group mb-3">
-                   							<input type="text" class="form-control" name="mtel" value="${mphonenum}"
+                   							<input type="text" class="form-control" id="mphonenum" name="mphonenum" 
                    							placeholder='  전화번호를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  전화번호를 입력하세요'" 
                    								style="height:45px; font-size:16px;">
 										</div>			
 										<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
 											<input class="genric-btn info circle" type="submit" name="submit" value="NEXT" style="width: 100%;"></a>
 										</div>
-										<a class="ex" href="#" style="color:black; font-size:7px;">이메일 찾기></a> 
+										<a class="ex" href="findemail" style="color:black; font-size:7px;">이메일 찾기></a> 
 									
 									</form>
 								</div>
