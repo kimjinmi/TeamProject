@@ -159,11 +159,11 @@ iframe {
 								width="100%">
 						</div>
 
-						<div class="carousel-item">
+						<%-- <div class="carousel-item">
 							<img
-								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png"
+								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_3.png"
 								width="100%">
-						</div>
+						</div> --%>
 					</div>
 					<a class="carousel-control-prev" href="#demo" data-slide="prev">
 						<span class="carousel-control-prev-icon"></span>
