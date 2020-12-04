@@ -1,9 +1,9 @@
 var myEditor;
 
 ClassicEditor 
-    .create( document.querySelector('#bcontent'), {
+    .create( document.querySelector('#acontent'), {
 		ckfinder: {
-	        uploadUrl: "/teamproject/blog/upload"
+	        uploadUrl: "/teamproject/announce/upload"
 	    }
 	}) 
     .then( editor => { 

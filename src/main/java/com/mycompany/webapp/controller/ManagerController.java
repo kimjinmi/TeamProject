@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mycompany.webapp.dto.AnnounceDto;
 import com.mycompany.webapp.dto.BoardDto;
@@ -267,6 +269,27 @@ public class ManagerController {
 		out.flush();
 		out.close();
 	}
+	
+	/*@RequestMapping("/upload")
+	public void upload(MultipartFile upload, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		JSONObject jsonObject = new JSONObject();
+		if(!upload.isEmpty()) {
+			String originalFileName = upload.getOriginalFilename();
+			originalFileName += new Date().getTime() + "-" + originalFileName;
+			//File saveFile = new File("D:/MyWorkspace/photo/board/" + originalFileName);
+			File saveFile = new File("C:/temp/projectimage/announceContent/" + originalFileName);
+			upload.transferTo(saveFile);
+			jsonObject.put("uploaded", 1);
+			jsonObject.put("fileName", originalFileName);
+			jsonObject.put("url", "http://localhost:8080/teamproject/blog/boardImageDownload?fileName=" + originalFileName);
+		} 
+		String json = jsonObject.toString();
+		response.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
+	}*/
 	
 	
 	@GetMapping("/photodownload")

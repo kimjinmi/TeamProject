@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-
 <h2 style="color: #2d2d2d; display:inline;">공지사항 작성</h2>
 
 <hr style="margin-top:12px;">
@@ -35,7 +34,7 @@
 	         </div>
 	         <div class="col-12">
 	             <div class="form-group">
-	                 <textarea class="form-control w-100" name="acontent" id="acontent" cols="30" rows="12" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Content'" placeholder=" Enter Content"></textarea>
+	                 <textarea name="acontent" id="acontent" style="width: 100%; height: 1000px;" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Content'" placeholder=" Enter Content"></textarea>
 	             </div>
 	             <span id="acontentError" style="color:#CC3300;"></span>
 	         </div>
@@ -65,7 +64,8 @@
        	if(atitle == "") { $("#atitleError").text("제목필수"); }
 		else { $("#atitleError").text(""); }
 		        	
-       	var acontent = $("#acontent").val().trim();
+       /* 	var acontent = $("#acontent").val().trim(); */
+       	var acontent = myEditor.getData();
        	if(acontent == "") { $("#acontentError").text("내용필수"); }
 		else { $("#acontentError").text(""); }
 		        	
@@ -89,7 +89,8 @@
 	  	}
 	</script>
 
-
+<script
+	src="${pageContext.request.contextPath}/resources/js/ckeditorAn.js"></script>
 	
 
 
