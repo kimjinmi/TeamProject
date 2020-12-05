@@ -476,11 +476,11 @@
 										src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
 										alt=""> --%>
 									<div class="media-body">
-									<a class="fa fa-external-link" style="color:black; font-size:20px;"></a>
+									<a class="fa fa-external-link" style="color:black; font-size:20px; margin-right:12px;	"></a>
 										<a
-											href="https://www.coupang.com/vp/products/306264774?itemId=965657775&vendorItemId=5265041997&sourceType=srp_product_ads&isAddedCart="
+											href="https://${board.blinkcontent }"
 											target="_blank">
-											<h5> 구매하기 </h5>
+											<h5> 추천 링크 :: 바로가기</h5>
 										</a>
 									</div>
 							</div>
