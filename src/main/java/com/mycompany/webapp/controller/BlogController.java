@@ -70,6 +70,7 @@ public class BlogController {
 		 String UserUrl = board.getMurl(); 
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
 		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
+		 logger.info("링크 : " + board.getBlinkcontent());
 		 model.addAttribute("board", board);
 		 model.addAttribute("catelist", catelist);								//영아
 		 model.addAttribute("likelist", likelist);
@@ -390,7 +391,7 @@ public class BlogController {
 	@GetMapping("/blogList")
 	public String blogList(@RequestParam(defaultValue="1")int pageNo, String murl, Model model) {
 		int totalRows = service.getTotalRows(murl); // 개인당 블로그 게시물 수 
-		PagerDto pager = new PagerDto(murl, 2, 5, totalRows, pageNo);
+		PagerDto pager = new PagerDto(murl, 3, 5, totalRows, pageNo);
 		List<BoardDto> list = service.getBoardList(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
