@@ -196,7 +196,7 @@ iframe {
 							<div class="single-cat">
 								<div class="cat-icon">
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services1.png"
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/진미.jpg"
 										alt="">
 								</div>
 								<div class="cat-cap">
@@ -212,15 +212,14 @@ iframe {
 							<div class="single-cat">
 								<div class="cat-icon">
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/영아.jpg"
 										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
 										<a href="services.html">피영아</a>
 									</h5>
-									<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-										esse cillum reeut cupidatatfug nulla pariatur.</p>
+									<p>문제가 해결이 되지 않을 때에도 포기보다는 끈기있게 문제를 해결하려는 태도를 기를 수 있습니다. 또한, 팀원들과 서로의 의견을 존중해주며 팀 프로젝트를 해서 성공적으로 프로젝트를 마칠 수 있었고, 협동심을 기를 수 있었습니다.<p>
 								</div>
 							</div>
 						</div>
@@ -228,7 +227,7 @@ iframe {
 							<div class="single-cat">
 								<div class="cat-icon">
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services3.png"
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/선명.jpg"
 										alt="">
 								</div>
 								<div class="cat-cap">
@@ -245,15 +244,14 @@ iframe {
 							<div class="single-cat">
 								<div class="cat-icon">
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services3.png"
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/선.jpg"
 										alt="">
 								</div>
 								<div class="cat-cap">
 									<h5>
 										<a href="services.html">이선</a>
 									</h5>
-									<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-										esse cillum reeut cupidatatfug nulla pariatur.</p>
+									<p>과거에는 "이렇게 하면 될까?" 하는 생각이 들어도 직접 코딩을 할 수 없었지만 지금은 고민이 담긴 코드를 작성할 수 있게 됐습니다. 지난 3개월동안 정말 많은 성장을 이뤘다고 자신할 수 있습니다. (난 정말 멋찐사람..) 주니어 개발자지만 앞으로도 배워야할 것들이 많아서 너무 좋고 기대 됩니다!</p>
 								</div>
 							</div>
 						</div>
@@ -261,7 +259,7 @@ iframe {
 							<div class="single-cat">
 								<div class="cat-icon">
 									<img
-										src="<%=application.getContextPath()%>/resources/assets/img/gallery/services2.png"
+										src="<%=application.getContextPath()%>/resources/assets/img/gallery/지훈.jpg"
 										alt="">
 								</div>
 								<div class="cat-cap">
