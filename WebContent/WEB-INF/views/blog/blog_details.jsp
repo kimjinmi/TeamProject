@@ -225,7 +225,7 @@
 							</aside>
 
 							<aside class="single_sidebar_widget search_widget">
-								<form action="#">
+								<!-- <form action="#">
 									<div class="form-group">
 										<div class="input-group mb-3">
 											<input type="text" class="form-control"
@@ -241,7 +241,7 @@
 									<button
 										class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
 										type="submit">검색하기</button>
-								</form>
+								</form> -->
 							</aside>
 							<aside class="single_sidebar_widget post_category_widget">
 								<h4 class="widget_title" style="color: #2d2d2d;">Category</h4>

@@ -142,7 +142,7 @@
          </div>
       </div>
       <!-- Hero End -->
-      <!--? Blog Area Start -->
+      <!--? Blog Arㅠea Start -->
       <section class="blog_area single-post-area section-padding">
 
 
@@ -202,7 +202,7 @@
                      </aside>
                      
                      <aside class="single_sidebar_widget search_widget">
-                        <form action="#">
+                       <!--  <form action="#">
                            <div class="form-group">
                               <div class="input-group mb-3">
                                  <input id="searchbox" type="text" class="form-control"
@@ -231,7 +231,7 @@
                            			
                            		}
                            </script>
-                        </form>
+                        </form> -->
                      </aside>
                      
                      <aside class="single_sidebar_widget post_category_widget">

@@ -66,7 +66,7 @@
 			data:{SessionMemail:SessionMemail},
 			success : function(data){
 				 if(data.result == "success"){
-					location.href="signin/content";
+					location.href="<%=application.getContextPath()%>/signin/content";
 				}	 
 			}
 		});
