@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <form id="boardWriteForm" action="boardUpload" enctype="multipart/form-data">
@@ -31,8 +32,8 @@
 				<input id="btitle" type="text" name="btitle" class="form-control"
 					placeholder='  제목' onfocus="this.placeholder = ''"
 					onblur="this.placeholder = '  제목'"
-					style="height: 45px; font-size: 16px;"> <span
-					id="btitleError" class="error"></span>
+					style="height: 45px; font-size: 16px;"> 
+					<span id="btitleError" class="error"></span>
 			</div>
 			<!-- 제목 입력 끝 (board.btitle) -->
 
@@ -81,15 +82,18 @@
 
 					var btitle = $("#btitle").val().trim();
 					if (btitle == "") {
-						$("#btitleError").text("필수");
+						$("#btitleError").text("제목은 필수로 입력해주세요");
+					} else if(btitle.length >= 40){
+						$("#btitleError").text("제목은 40자 이하로 작성해주세요");
 					} else {
 						$("#btitleError").text("");
 					}
+				
 
 					var bcontent = myEditor.getData();
 					/* var bcontent = $("#bcontent").val(data).trim();  */
 					if (bcontent == "") {
-						$("#bcontentError").text("필수");
+						$("#bcontentError").text("내용은 필수로 입력해주세요");
 					} else {
 						$("#bcontentError").text("");
 					}
@@ -114,19 +118,14 @@
 					if(file.files.length != 0) {
 						// 사용자가 파일을 선택했을 경우
 						multipart.append("attach", file.files[0]);
+					}else {
+						alert('메인 사진은 필수로 등록해주세요.');
 					}
 
 					$.ajax({
 						url : "boardWrite",
 						method : "post",
 						data : multipart,
-							/*  {
-							btitle : btitle,
-							bcontent : bcontent,
-							memail : memail,
-							blinkcontent : blinkcontent,
-							cno : cno
-						} */
 						cache: false, // 파일을 메모리에 저장하지 않도록 설정
 						processData: false, // 파일을 가공하지 않도록 설정
 						contentType: false, 
