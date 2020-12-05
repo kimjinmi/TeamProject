@@ -35,6 +35,7 @@ import com.mycompany.webapp.service.AdminService;
 @RequestMapping("/admin")
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+	
 	@Resource
 	private AdminService service; 
 
