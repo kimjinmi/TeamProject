@@ -13,7 +13,7 @@
 	
 	<!-- 영아 - 보드 게시물 / url & cno 가 맞을 때 -->
 	<select id="categoryListLink"  parameterType="map"  resultType="board">
-			select bno, btitle, bcontent, bdate, bimage, c.cno, c.ccontent, b.murl
+			select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, bimage, c.cno, c.ccontent, b.murl
 			from board b, category c
 			where c.cno=b.cno and b.murl=#{murl} and c.cno=#{cno}
 			order by bdate desc
