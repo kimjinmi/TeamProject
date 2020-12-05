@@ -22,10 +22,14 @@ public class BoardDao {
 	
 	public BoardDto selectByBno(int bno) {
 		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno",bno);
+		if(board.getBlinkcontent() != null) {
 		String str = board.getBlinkcontent();
+		
 		if(str.contains("http")) {
 			String[] cut = str.split("//");
 			board.setBlinkcontent(cut[1]);
+		}
+		
 		}
 		return board;
 	}
