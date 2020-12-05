@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
@@ -134,52 +135,69 @@
 					<p><i class="fas fa-exclamation-triangle"></i><span>비밀번호는 최소 8 자, 하나 이상의 문자와 숫자로 구성되어야 합니다.</span></p>	
 					<div style="height: 50px;"></div>
 					
-					<form onsubmit="return validateForm()" method="post" action="signupform">								
+					<form method="post" action="signupform">								
 					<!-- 이메일 입력 & 비밀번호 입력 시작 -->
-						<div class="input-group mb-3" id="nickname">
-       						<i class="fas fa-check" style="color: #940128;"></i><input type="text" id="mnickname" name="mnickname" class="form-control" placeholder='  닉네임' 
-    				    	   onfocus="this.placeholder = ''" onblur="this.placeholder = '  닉네임을 입력하세요'"  style="height:45px; font-size:16px;">
-                		<a type="button" class="genric-btn primary-border radius" href="javascript:idcnk();" >중복확인</a>
-                		<span id="mnicknameerror"></span>
-						</div>
 						<div class="input-group mb-3">
- 							<i class="fas fa-check"  style="color: #940128;"></i><input type="text" id="memail" name="memail" class="form-control" 
- 							style="height:45px; font-size:16px;" value="${Memail}" readonly>
+       						<i class="fas fa-check" style="color: #940128;"></i>
+       						<input type="text" id="mnicknamecheck" name="mnicknamecheck" class="form-control" placeholder='  닉네임' 
+    				    	   onblur="this.placeholder = '  닉네임을 입력하세요'"  style="height:45px; font-size:16px;">
+    				    	<a href="javascript:nicknamecheck()"  class="genric-btn primary-border">CHECK</a>
+    				    	<input type="hidden" id="mnickname" name="mnickname" value="${member.mnickname}"/>
+                		<span id="checkresult" style="color: red;"></span>
+						</div>
+						<form:errors cssClass="error" path="membervalidation.mnickname"/>
+						
+						<div class="input-group mb-3">
+ 							<i class="fas fa-check"  style="color: #940128;"></i>
+ 							<input type="text" id="memail" name="memail" class="form-control" 
+ 							style="height:45px; font-size:16px;" value="${member.memail}">
 						</div>
          				<div class="input-group mb-3">
-							<i class="fas fa-check"  style="color: #940128;"></i><input type="text" id="mphonenum" name="mphonenum" class="form-control" placeholder='  전화번호' 
+							<i class="fas fa-check"  style="color: #940128;"></i>
+							<input type="text" id="mphonenum" name="mphonenum" class="form-control" placeholder='  전화번호' 
 							onfocus="this.placeholder = ''" onblur="this.placeholder = '  전화번호를 입력하세요'" 
-							style="height:45px; font-size:16px;">
+							style="height:45px; font-size:16px;" value="${member.mphonenum}">
 						</div>
-						<div class="input-group mb-3" id="phonenumerror" style="display: none;">
-							<i class="fas fa-exclamation-triangle"></i><span>전화번호 오류</span>	
-						</div>	
+						<form:errors cssClass="error" path="membervalidation.mphonenum"/>	
 
 						<div class="input-group mb-3">
-							<i class="fas fa-check"  style="color: #940128;"></i><input type="password" id="mpassword" name="mpassword" class="form-control" placeholder='  비밀번호' 
+							<i class="fas fa-check"  style="color: #940128;"></i>
+							<input type="password" id="mpassword" name="mpassword" class="form-control" placeholder='  비밀번호' 
 							onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 입력하세요'" 
 							style="height:45px; font-size:16px;">
 						</div>
-						<div class="input-group mb-3" id="passworderror" style="display: none;">
-							<i class="fas fa-exclamation-triangle"></i><span>비밀번호는 최소 8 자, 하나 이상의 문자와 하나의 숫자로 구성</span>	
-						</div>
-						
-		
-						<div class="input-group mb-3">
-   							<i class="fas fa-check"  style="color: #940128;"></i><input type="password" id="mpasswordcheck" class="form-control" placeholder='  비밀번호 확인' 
-   							onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 확인하세요'" 
-   							style="height:45px; font-size:16px;">
-						</div>
-						<div class="input-group mb-3" id="passwordcheckerror" style="display: none;">
-							<i class="fas fa-exclamation-triangle"></i><span>비밀번호 불일치</span>	
-						</div>	
+						<form:errors cssClass="error" path="membervalidation.mpassword"/>	
 										
 						<div class="button-group-area mt-40" style="font-size: 20px;">
-							<input class="genric-btn primary circle" type="submit" name="submit" value="SIGN UP" style="width: 100%;">
+							<input class="genric-btn primary circle" type="submit"  value="SIGN UP" style="width: 100%;">
 						</div>
 						
 						
 					</form>
+					<script type="text/javascript">
+					function nicknamecheck(){
+						var mnickname = $("#mnicknamecheck").val().trim();
+						var memail = $("#memail").val().trim();
+						if(mnickname == ""){
+							$("#checkresult").text("작성필수");
+							return;
+						}
+						$.ajax({
+							url:"nicknamecheck",
+							data:{mnickname:mnickname, memail:memail},
+							success : function(data){
+									if(data.result == "fail"){
+										$("#checkresult").text("닉네임중복");
+									}
+									if(data.result == "success"){
+										$("#checkresult").text("닉네임사용가능");
+										$("#mnicknamecheck").attr("readonly", true);
+									}
+								}
+						});
+					}
+					</script>
+					
 				</div>
 				
 				
