@@ -20,7 +20,7 @@ function announcedetail(ano){
 	var pageNo = $("#pageNo").val();
 	$.ajax({
 		url:"announcedetail",
-		data:{ano:ano, pageNo:pageNo},
+		data:{ano:ano},
 		success : function(data){
 			$("#table_result").html(data);	
 		}

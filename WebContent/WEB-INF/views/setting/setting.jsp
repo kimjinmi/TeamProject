@@ -29,9 +29,10 @@
     </div>
       
     <div class="row">
-	    <div class="col-3"></div>
+	    <div class="col-6"></div>
     	<div class="col-6">
-    		<input class="genric-btn success radius" type="submit" value="수정 완료"/>
+    		<div style="height: 10px;"></div>
+    		<input class="genric-btn primary-border radius" type="submit" value="수정 완료"/>
 		</div>
 		
 	</div>

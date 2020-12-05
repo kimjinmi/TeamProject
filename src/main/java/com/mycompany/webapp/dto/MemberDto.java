@@ -14,6 +14,12 @@ public class MemberDto {
 	private MultipartFile mphotoAttach;
 	private String murl; //주소
 	
+	@Override
+	public String toString() {
+		return "MemberDto [memail=" + memail + ", mpassword=" + mpassword + ", mnickname=" + mnickname + ", mphonenum="
+				+ mphonenum + ", mintro=" + mintro + ", mmyimage=" + mmyimage + ", mrole=" + mrole + ", menabled="
+				+ menabled + ", mphotoAttach=" + mphotoAttach + ", murl=" + murl + "]";
+	}
 	public String getMurl() {
 		return murl;
 	}

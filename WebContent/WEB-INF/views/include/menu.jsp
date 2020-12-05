@@ -6,14 +6,14 @@
 <div class="col-xl-2 col-lg-2">
 	<div class="logo">
 		<br/>
-		<img src="#" alt="">
+		<img alt="">
 	</div>
 </div>
 <div class="main-menu d-none d-lg-block">
 	<nav>
 		<ul id="navigation">
 			<li><a href="<%=application.getContextPath()%>/">HOME</a></li>
-			<li><a href="<%=application.getContextPath()%>/aboutus/about">ABOUT</a></li>
+			<li><a href="<%=application.getContextPath()%>/blog/blog?UserUrl=adminadmincom">ABOUT</a></li>
 			<li><a href="#">STORY</a>
 	            <ul class="submenu">
 					<li><a href="<%=application.getContextPath()%>/ranking/ranking">RANKING</a></li>

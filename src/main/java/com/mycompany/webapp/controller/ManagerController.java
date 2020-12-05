@@ -61,8 +61,7 @@ public class ManagerController {
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+		
 		return "manager/content";
 	}
 	
@@ -247,28 +246,13 @@ public class ManagerController {
 		out.close();
 	}
 	
-	@GetMapping("/announcewrite")
+	/*@GetMapping("/announcewrite")
 	public String announcewrite(Model model, HttpSession session) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "manager/announcewrite";
-	}
+	}*/
 	
-	@RequestMapping("/announcewriteform")
-	public void announcewriteform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws IOException {
-		announcedto.setAhitnum(0);
-		service.announceadd(announcedto);
-		//JSON 생성
-		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
-		jsonObject.put("result", "success");
-		String json = jsonObject.toString(); // {"result" : "success"}
-		
-		//응답보내기
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json;charset=utf-8");
-		out.println(json);
-		out.flush();
-		out.close();
-	}
+	
 	
 	/*@RequestMapping("/upload")
 	public void upload(MultipartFile upload, HttpServletRequest request, HttpServletResponse response) throws Exception {

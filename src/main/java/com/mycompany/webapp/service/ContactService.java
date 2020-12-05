@@ -46,5 +46,29 @@ public class ContactService {
 		AnnounceDto announce = announcedao.selectannounce(ano);
 		return announce;
 	}
+	
+	public int updatehitnum(int ano) {
+		int row = announcedao.updatehitnum(ano);
+		return row;
+		
+	}
+
+	public int announceadd(AnnounceDto announcedto) {
+		int row = announcedao.insertannounce(announcedto);
+		return row;
+		
+	}
+
+
+
+	public void announceedit(AnnounceDto announcedto) {
+		int row = announcedao.updateannounce(announcedto);
+		
+	}
+
+	public void announcedelete(int ano) {
+		int row = announcedao.deleteannounce(ano);
+		
+	}
 
 }

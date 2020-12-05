@@ -9,7 +9,7 @@
 		<div class="container">
 			
 		      <div class="row">
-		      	<div class="col-md-9"></div>
+		      	<div class="col-md-6"></div>
 		            <div class="col-md-3">
 		            	<div class="allCheck">
 		            		<label for="allCheck">댓글 전체 선택 <input type="checkbox" name="allCheck" id="allCheck" ></label>
@@ -29,7 +29,7 @@
 		            </div>	          
 		      	     <div class="col-md-3">
 		            	<div class="delBtn">
-		           			<button type="button" class="selectDelete_btn">선택 삭제</button>
+		           			<button type="button" class="genric-btn primary radius selectDelete_btn">선택 삭제</button>
 		           			
 		           			<script>
 							$(".selectDelete_btn").click(function() {
@@ -89,7 +89,7 @@
 			             </div>
 			             <p></p>
 		             </c:forEach>  
-		             <div class="row">
+		             <div class="row" style="text-align: center;">
 			             <div class="col"><a class="genric-btn default" href="javascript:mycommentlist(1)">처음</a> </div>
 			             <c:if test="${pager.groupNo > 1}">
 			             	<div class="col">
