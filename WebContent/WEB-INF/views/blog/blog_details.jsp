@@ -48,6 +48,10 @@
 	.ck-editor__editable {
 	       min-height: 800px;
 	}
+	
+	.image img {
+		width: 100%;
+	}
 </style>
  
 </head>

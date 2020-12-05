@@ -228,12 +228,12 @@ a {
 }
 
 a:hover {
-	color: #fff
+	color: #fff;
 }
 
-a:focus, a:hover, .portfolio-cat a:hover, .footer -menu li a:hover {
+ a:focus, a:hover, .portfolio-cat a:hover, .footer -menu li a:hover {
 	text-decoration: none
-}
+} 
 
 a, button {
 	color: #fff;
@@ -713,7 +713,7 @@ hr {
 }
 
 #scrollUp, #back-top {
-	background: #FF5F21;
+	background: #a091b7;
 	height: 50px;
 	width: 50px;
 	right: 31px;
@@ -5404,8 +5404,8 @@ opacity
 	left: 10px;
 	display: block;
 	color: #fff;
-	background-color: #FF5F21;
-	padding: 8px 15px;
+	background-color: #1f2b7b;
+	padding: 5px 13px;
 	border-radius: 5px
 }
 
@@ -5418,7 +5418,7 @@ opacity
 }
 
 .blog_item_img .blog_item_date h3 {
-	font-size: 22px;
+	font-size: 19px;
 	font-weight: 600;
 	color: #fff;
 	margin-bottom: 0;

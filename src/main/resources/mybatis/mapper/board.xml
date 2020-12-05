@@ -33,8 +33,8 @@
 	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
 	<!-- 좋아요순은 데이터 12개 -->
 	<select id="selectLikeAll" resultType="board">	
-		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
-		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
+		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, murl
+		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, b.murl
        			 from board b, member m
        			 where b.memail = m.memail
        			 order by blike desc)
@@ -44,8 +44,8 @@
 	<!-- 선: 좋아요 순으로 불러오기 ranking 카테고리별 데이터 -->
 	<!-- 좋아요순은 데이터 12개 -->
 	<select id="selectLikeCategory" parameterType="int" resultType="board">
-		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
-		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro
+		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, murl
+		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, b.murl
        			 from board b, member m
        			 where b.memail = m.memail and cno = #{cno} 
        			 order by blike desc)
@@ -55,7 +55,7 @@
 	<!-- 선: 최신순으로 불러오기 contents 총 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewAll" resultType="board">	
-	  	 select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
+	  	 select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro, b.murl
          from board b, member m, category c
        	 where b.memail = m.memail and b.cno = c.cno
        	 order by bdate desc
@@ -64,7 +64,7 @@
 	<!-- 선: 최신순으로 불러오기 contents 카테고리별 데이터 -->
 	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
 	<select id="selectNewCategory" parameterType="int" resultType="board">
-		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro
+		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro, b.murl
        	from board b, member m, category c
        	where b.memail = m.memail and b.cno = #{cno} and b.cno = c.cno 
        	order by bdate desc

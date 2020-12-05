@@ -49,7 +49,7 @@
 			<!-- 내용 입력 시작 (board.bcontent) -->
 			<h2 style="color: #2d2d2d;">내용</h2>
 			<textarea id="bcontent" name="bcontent"
-				style="width: 100%; height: 1000px;"></textarea>
+				style="width: 100%; height: 800px;"></textarea>
 			<span id="bcontentError" class="error"></span>
 			<!-- 내용 입력 끝 (board.bcontent) -->
 		</div>
@@ -58,7 +58,7 @@
 	<div class="navigation-top">
 
 		<div class="d-sm-flex justify-content-between text-center">
-			<span class="align-middle"> <i class="fa fa-link"
+			<span class="align-middle"> <i class="fa fa-link  d-none d-sm-block"
 				aria-hidden="true"></i>
 			</span>
 			<!-- 홍보링크 입력 시작 -->
@@ -69,18 +69,12 @@
 					onblur="this.placeholder = '홍보할 링크를 입력하세요'">
 			</div>
 			<!-- 홍보링크 입력 끝 -->
-
-			<!-- 홍보링크 블록 추가 -->
-			<span class="align-middle"> <a class="fa fa-plus"
-				aria-hidden="true" href="https://www.naver.com" style="color: black">
-			</a>
-			</span>
 		</div>
 
 		<!-- 글쓰기 버튼 시작 (확인) -->
-		<div style="margin-top: 12px; padding-left: 35%; margin: 20px 0px;">
+		<div style="margin: 3% 0px; width: 80%; margin-left: 10%; margin-right: 10%; ">
 			<a href="javascript:boardWrite()"
-				class="genric-btn info-border radius" style="margin-right: 20px;">확인</a>
+				class="genric-btn primary small" style="margin-right: 5%;">확인</a>
 			<script type="text/javascript">
 				function boardWrite() {
 					var cno = $("#cno").val();
@@ -144,7 +138,7 @@
 					});
 				}
 			</script>
-			<a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}" class="genric-btn danger-border radius">취소</a>
+			<a href="<%=application.getContextPath()%>/blog/blog?UserUrl=${SessionMurl}" class="genric-btn primary small">취소</a>
 		</div>
 		<!-- 글쓰기 버튼 끝 (확인) -->
 	</div>

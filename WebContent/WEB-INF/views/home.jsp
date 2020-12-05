@@ -145,75 +145,47 @@ iframe {
 					</ul>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<!--  출처: [화분] <Pinterest> '땡스아트' 
-								   출처: [앉은 사람] <크라우드픽> '@woocat'  -->
+							<!--  출처: <Pinterest> '땡스아트' 
+								   출처: <크라우드픽> '@woocat'  -->
 							<img
-								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_2.png"
+								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_5.png"
 								width="100%">
 						</div>
-
 						<div class="carousel-item">
 							<!-- 출처: [아이패드] PNGEGG -->
 							<img
-								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_4.png"
+								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_11.png"
 								width="100%">
 						</div>
-
-						<%-- <div class="carousel-item">
+						 <div class="carousel-item">
 							<img
-								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_3.png"
-								width="100%">
-						</div> --%>
+								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_6.png"
+								width="100%"/>
+						</div> 
 					</div>
-					<a class="carousel-control-prev" href="#demo" data-slide="prev">
-						<span class="carousel-control-prev-icon"></span>
-					</a> <a class="carousel-control-next" href="#demo" data-slide="next">
-						<span class="carousel-control-next-icon"></span>
-					</a>
+					 <a class="carousel-control-prev" href="#demo" data-slide="prev">
+					    <span class="carousel-control-prev-icon"></span>
+					  </a>
+					  <a class="carousel-control-next" href="#demo" data-slide="next">
+					    <span class="carousel-control-next-icon"></span>
+					  </a>
 				</div>
 
 			</div>
 		</section>
 		<!-- slider Area End-->
 
-		<!-- <div class="section_content section_skin">
-				<div class="wrap_tit wrap_tit_type1">
-					<strong class="tit_section">마음에 드는<em><span class="img_square">카테고리</span>부터</em>시작해보세요</strong>
-				</div>
-				<div class="icon_tistory icon_expression"></div>
-				<div class="wrap_tit">
-					<strong class="tit_section tit_section_type2">마음대로<br><em>조립하는</em><br>내 콘텐츠</strong>
-					<p class="desc_section">내 마음대로 위치를 바꿔<br>하나의 커버로도 전혀 다른 스킨을<br> 만들 수 있어요.</p>
-				</div>
-				<div class="box_skin">
-					<div class="wrap_thumb_skin_01">
-						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_1.jpg&quot;); transform: translateX(0px); visibility: visible;"></span>
-						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_2.jpg&quot;); transform: translateX(504px); visibility: visible;"></span>
-						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_3.jpg&quot;); transform: translateX(1008px); visibility: visible;"></span>
-						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_1.jpg&quot;); transform: translateX(1512px); visibility: visible;"></span>
-						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_2.jpg&quot;); transform: translateX(2016px); visibility: hidden;"></span>
-						<span class="wrap_thumb" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin1_3.jpg&quot;); transform: translateX(-504px); visibility: visible;"></span>
-					</div>
-					<div class="wrap_thumb_skin_02">
-						<div class="inner_thumb">
-							<span class="thumb_skin02 _left" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_1.jpg&quot;); height: 140px; transform: translate(0px, 0px); visibility: visible;" data-index="1"></span>
-							<span class="thumb_skin02 _left" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_2.jpg&quot;); height: 150px; transform: translate(0px, 140px); visibility: visible;" data-index="2"></span>
-							<span class="thumb_skin02 _left" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_3.jpg&quot;); height: 432px; transform: translate(0px, 290px); visibility: visible;" data-index="3"></span>
-							<span class="thumb_skin02 _right" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_3.jpg&quot;); height: 432px; transform: translate(480px, 0px); visibility: hidden;" data-index="1"></span>
-							<span class="thumb_skin02 _right" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_2.jpg&quot;); height: 150px; transform: translate(480px, 0px); visibility: hidden;" data-index="2"></span>
-							<span class="thumb_skin02 _right" style="background-image: url(&quot;//t1.daumcdn.net/tistory_admin/static/top/pc/thumb_skin2_1.jpg&quot;); height: 140px; transform: translate(0px, 722px); visibility: hidden;" data-index="3"></span>
-						</div>
-					</div>
-				</div>
-				<a href="/skin/pg_Poster" class="link_section">
-					<strong class="tit_link">Poster</strong>
-					<span class="desc_link">스킨 보기</span>
-					<span class="img_top ico_link_arrow"></span>
-				</a>
+			<!--? video_start -->
+		<div class="video" style="margin-top: 5%;">
+			<div class="video-container">
+				<iframe width="100%" height="100%"
+					src="https://www.youtube.com/embed/eeiqjyYgPew"
+					frameborder="0"
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen></iframe>
 			</div>
- -->
-
-
+		</div>
+		<!-- video_end -->
 
 		<!--? services area start -->
 		<section class="services-section pb-padding fix">
@@ -306,18 +278,6 @@ iframe {
 			</div>
 		</section>
 		<!-- Services End -->
-
-		<!--? video_start -->
-		<div class="video">
-			<div class="video-container">
-				<iframe width="100%" height="100%"
-					src="https://www.youtube.com/embed/eitDnP0_83k?controls=0"
-					frameborder="0"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen></iframe>
-			</div>
-		</div>
-		<!-- video_end -->
 
 	</main>
 	<footer>
