@@ -7,7 +7,7 @@
 
 		<div class="blog_item_img">
 			<img class="card-img rounded-0" height="350px"
-				src="<%=application.getContextPath() %>/resources/assets/img/blog/dinner.png"
+				src="boardphotodownload?fileName=${board.bimage}"
 				alt=""> <a href="javascript:boardDetails(${board.bno})"
 				class="blog_item_date">
 				<h3 style="text-align: center">
