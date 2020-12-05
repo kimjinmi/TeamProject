@@ -194,46 +194,10 @@
 	                        				});
 	                        			}
 	                        		</script>
-	                        	
 	                        </c:if>
                         </c:if>
                      </div>
-                        
                      </aside>
-                     
-                     <aside class="single_sidebar_widget search_widget">
-                       <!--  <form action="#">
-                           <div class="form-group">
-                              <div class="input-group mb-3">
-                                 <input id="searchbox" type="text" class="form-control"
-                                    placeholder='검색어를 입력하세요' onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = '검색어를 입력하세요'">
-                                 <div class="input-group-append">
-                                    <button class="btns" type="button">
-                                       <i class="ti-search"></i>
-                                    </button>   
-                                 </div>
-                              </div>
-                           </div>
-                           <a href="javascript:search()" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">검색하기</a>
-                           <script type="text/javascript">
-                           		function search(){
-                           			var searchContent = $("#searchbox").val().trim();
-                           			alert("search 메소드 실행");
-                           			$.ajax({
-                           				url:"boardSearch",
-                           				method:"get",
-                           				data:{searchContent:searchContent, murl:${member.murl}},
-                           				success:function(data){
-                           					alert("boardSearch ajax 실행");
-                           				}
-                           			});
-                           			
-                           		}
-                           </script>
-                        </form> -->
-                     </aside>
-                     
                      <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
                         <ul class="list cat-list">
