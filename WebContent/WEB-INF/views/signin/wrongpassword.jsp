@@ -112,49 +112,18 @@
 		<!-- Hero End -->
 		<!--? Start Sample Area -->
 	<p></p>
-		 <div class="container">
+		  <div class="container">
 		 	
 		 	<div class="row">
-
-		 		<div class="col-md-2">
-		 		</div>
-					<div class="col-md-5">
-						<section class="sample-text-area" style="padding-bottom: 0; padding-top: 70px;">
-							<div class="container box_1170">
-								<hr align="left" style="border: solid 1px black; width: 100%;">
-									<h3 class="text-heading" style="font-size: 30px;">비밀번호 찾기</h3>
-							</div>
-						</section>
-			<!-- End Sample Area 여기까지 회원가입 제목 사용-->  
-			<div class="whole-wrap">
-				<div class="container box_1170">
-					<div class="section-top-border" style="padding-top: 30px;">
-						<ul>
-							<li style="padding-bottom:10px">
-								저장된 전화번호로 가입된 이메일이 없습니다
-							</li>
-								</ul>
-		
-										<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 40px;">
-											<a class="genric-btn info circle" href="content" style="width: 100%;">SIGN INS</a>
-										</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-5">
-						<img src="<%=application.getContextPath()%>/resources/images/ponyo1.png" style="padding-top: 110px; width:90%; height:80%">
-					</div>
-
 		 		<div class="col-md-6">
 		 		<hr align="left" style="border: solid 1px black; width: 100%;">
-					<h3 class="text-heading" style="font-size: 30px;">이메일 찾기</h3>
+					<h3 class="text-heading" style="font-size: 30px;">비밀번호 찾기</h3>
 					<p></p>
-					<p>저장된 전화번호로 가입된 이메일 입니다</p>
+					<p>입력한 정보로 저장되어있는 회원님의 정보가 없습니다</p>
 						<div style="height: 30px;"></div>
 														
 					<!-- 이메일 입력 & 비밀번호 입력 시작 -->
-						<b>${member.memail}</b>
+						
 						
 						<div style="height: 80px;"></div>	
 						
@@ -173,7 +142,6 @@
 				<div class="col-md-6">
 					<div style="height: 50px;"></div>
 					<img src="<%=application.getContextPath()%>/resources/images/tma5.PNG">
-
 				</div>
 			</div>
 			<div style="height: 50px;"></div>

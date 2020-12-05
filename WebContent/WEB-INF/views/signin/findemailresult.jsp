@@ -127,7 +127,7 @@
 						
 						<div style="height: 80px;"></div>	
 						
-							<a class="genric-btn primary" href="<%=application.getContextPath()%>/" style="width: 100%;">HOME</a>
+							<a class="genric-btn primary" href="<%=application.getContextPath()%>/signin/content" style="width: 100%;">SIGN IN</a>
 								<div style="height: 10px;"></div>
 						<span style="text-align: center; color: black;">
 							<ul class="blog-info-link">
