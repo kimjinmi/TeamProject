@@ -145,7 +145,7 @@
 								</div> -->
 								<div class="col-md-6">
 									<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 70px;">
-										<a href="<%=application.getContextPath()%>/signin/login" class="genric-btn info radius" style="width: 100%; padding-left: 30px;">로그인</a>
+										<a href="<%=application.getContextPath()%>/signin/login" class="genric-btn primary radius" style="width: 100%; padding-left: 30px;">로그인</a>
 									</div>
 								</div>
 								<div class="col-md-3">

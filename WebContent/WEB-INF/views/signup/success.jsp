@@ -132,13 +132,13 @@
 					<div class="whole-wrap">
 						<div class="container box_1170">
 							<div class="section-top-border" style="padding-top: 0; padding-bottom: 20px; text-align: center;">
-								<div>로그인을 해주세용용용
+								<div><b>${member.mnickname}</b>님 로그인을 해주세용용용
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="button-group-area mt-40" style="font-size: 20px; padding-bottom: 50px; text-align: center;">
-						<a href="<%=application.getContextPath()%>/signin/login" class="genric-btn info radius" style="width: 40%; padding-left: 30px;">로그인</a>
+						<a href="<%=application.getContextPath()%>/signin/login" class="genric-btn primary radius" style="width: 40%; padding-left: 30px;">로그인</a>
 					</div>
 				</div>
 				<div class="col-md-3">

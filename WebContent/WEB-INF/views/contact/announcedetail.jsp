@@ -61,6 +61,7 @@ function announcedelete(ano){
 		<td colspan="4" style="text-align:left;">
 			<b>writer : </b>
 			${announce.memail}
+			<hr>
 		</td>
 	</tr>
 	<tr>
@@ -76,3 +77,4 @@ function announcedelete(ano){
 		</td>
 	</tr>
 </table>		
+<hr>
