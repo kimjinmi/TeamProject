@@ -195,6 +195,20 @@ ul li.nev {
 	white-space: nowrap;
 }
 
+/* sm 사이즈 <strong> 태그 css */
+.desc_tit_sm {
+	display: block;
+		overflow: hidden;
+	 text-overflow: ellipsis;
+	white-space: nowrap;
+	 width: 80%;
+	padding: 0.4167vw 0 0.3472vw;
+	font-size: 1.3889vw;
+	color: #000000;
+
+}
+
+
 /* <p> 태그 css */
 .desc_g {
 	position: absolute;
