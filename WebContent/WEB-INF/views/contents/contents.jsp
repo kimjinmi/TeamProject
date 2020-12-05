@@ -106,7 +106,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 rt">
-					<h2>Contents</h2>
+					<p class="h">Contents</p>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 rc">블로그 세상 속 다양한
 					이야기들을 만나보세요</div>
@@ -141,11 +141,10 @@
 						});
 					}
 				</script>
-				<div id="board_result" class="row"
-					style="width: 80%; margin-left: 10%; margin-right: 10%;">
+				<div id="board_result" class="row">
 					<!-- 포스팅 view 시작 -->
 					<c:forEach var="board" items="${list}">
-						<div class="col-lg-12 col-md-12 col-sm-12"
+						<div class="col-lg-12 col-md-12 d-none d-sm-block"
 							style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
 							<a href="javascript:boardDetails(${board.bno})"
 								class="box_desc box_desc_type"> <!-- 게시물 이미지 --> 
@@ -169,7 +168,7 @@
 											<dd class="ddcss">2시간전</dd>
 										</dl>
 										<dl class="list_data">
-											<dt style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
+											<dt style="color: #909090;  font-size: 0.9028vw; display: inline;">좋아요</dt>
 											<dd class="ddcss" style="display: inline;">${board.blike}</dd>
 										</dl>
 									</div>
@@ -187,9 +186,37 @@
 								</div>
 							</a>
 						</div>
+						<!-- ---------------------------------------------------------------- -->
+							<div class="col-sm-12 d-block d-sm-none"
+							style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
+							<a href="javascript:boardDetails(${board.bno})"
+								class="box_desc box_desc_type"> <!-- 게시물 이미지 --> 
+								<script type="text/javascript">
+										function boardDetails(bno) {
+											location.href = "<%=application.getContextPath()%>/blog/blog_details?bno="+ bno;
+										}
+									</script>
+								<div class="img_thumb">
+									<img class="thumb_g"
+										src="photodownload_board?fileName=${board.bimage}" />
+								</div> <!-- 게시물 타이틀, 내용 -->
+								<div>
+									<strong class="desc_tit_sm"> ${board.btitle } </strong>
+									<p class="desc_sm">${board.bcontent}</p>
+								</div>
+								<div class="info_g">
+									<!-- 사용자 이미지 -->
+									<span class="wrap_thumb"> <img class="thumb_profile"
+										src="photodownload_member?fileName=${board.mmyimage}">
+									</span> <span class="txt_id">${board.mintro}</span> <span class="txt_date">by
+										${board.mnickname}</span>
+								</div>
+							</a>
+						</div>
 					</c:forEach>
 					<!-- 포스팅 view 끝 -->
 				</div>
+				
 			</div>
 		</section>
 

@@ -6,31 +6,31 @@
 	float: left;
 	display: inline;
 	/* 프로필 사진 크기 */
-	width: 70px;
-	height: 70px;
+	width: 4.8611vw;
+	height: 4.8611vw;
 	margin-right: 3%;
 	border-radius: 50%;
 }
 
 /* 사용자 닉네임 §공주님§ */
 .nick-name {
-	font-size: 15px;
+	font-size: 1.0417vw;
 	color: #6F6F6F;
 }
 
 #home-title {
-	font-size: 15px;
+	font-size: 1.0417vw;
 	color: #5D5D5D;
 }
 
 .section-padding {
-	padding-top: 80px;
-	padding-bottom: 120px
+	padding-top: 5.5556vw;
+	padding-bottom: 8.3333vw
 }
 
 .section-padding-contents {
-	padding-top: 10px;
-	padding-bottom: 120px
+	padding-top: 0.6944vw;
+	padding-bottom: 8.3333vw
 }
 
 /* 게시물 제목 css */
@@ -57,7 +57,7 @@ ul.nev {
 ul li.nev {
 	display: inline;
 	padding: 1.3%;
-	font-size: 30px;
+	font-size: 2.0833vw;
 }
 
 .rank {
@@ -67,31 +67,32 @@ ul li.nev {
 
 .link_tab {
 	color: #484848;
-	font-size: 36px;
+	font-size: 2.5000vw;;
 	font-family: "Noto Sans DemiLight", AppleSDGothicNeo-Regular,
 		"Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
 	line-height: 1;
-	height: 40px;
-	letter-spacing: -1.2px;
+	height: 2.7778vw;
+	letter-spacing: -0.0833vw;
 }
 
-.rt h2 {
+.h {
 	margin-top: 5%;
 	margin-left: 16%;
 	color: #000000;
 	font-family: AppleSDGothicNeo-Regular;
 	font-weight: bold;
-	letter-spacing: -1.2px;
+	letter-spacing: -0.0833vw;
+	font-size: 1.7361vw;
 }
 
 .rc {
-	letter-spacing: -2px;
+	letter-spacing: -0.1389vw;
 	margin-left: 16%;
 	color: #3D3D3D;
-	font-size: 22px;
+	font-size: 1.5278vw;
 	font-family: "Noto Sans DemiLight", AppleSDGothicNeo-Regular,
 		"Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
-	letter-spacing: -1.2px;
+	/* letter-spacing: -0.0833vw; */
 }
 /*----- 카테고리 끝 -----*/
 @font-face {
@@ -111,8 +112,8 @@ ul li.nev {
 .ddcss {
 	/* display: block; */
     /* float: left; */
-    font-size: 13px;
-    line-height: 13px;
+    font-size: 0.9028vw;
+    line-height: 0.9028vw;
     font-family: fontARD;
     color: #909090;
     padding-left: 0;
@@ -124,32 +125,32 @@ ul li.nev {
 .box_desc {
 	display: block;
 	position: relative;
-	padding: 32px 114px 28xp 0;
+	padding: 2.2222vw 7.9167vw 1.9444vw 0; /*1.9444vw*/
 	text-decoration: none;
 }
 
 .box_desc_type {
-	width: 896px;
-	height: 142px;
-	padding: 32px 0 18px;
+	/* width: 62.2222vw;
+	height: 9.8611vw; */
+	padding: 2.2222vw 0 1.2500vw;
 }
 
 /* 게시물 사진 <img> css */
 .img_thumb {
 	overflow: hidden;
-	padding: 28px 0 1px 92px;
+	padding: 1.9444vw 0 0.0694vw 6.3889vw;
 	display: block;
 	float: right;
 	position: relative;
-	width: 128px;
-	height: 128px;
+	width: 8.8889vw;
+	height: 8.8889vw;
 	padding: 0;
-	margin: 0 0 0 46px;
+	margin: 0 0 0 3.1944vw;
 }
 
 .thumb_g {
-	width: 128px; 
-	height: 128px;
+	width: 8.8889vw; 
+	height: 8.8889vw;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -164,19 +165,19 @@ ul li.nev {
 
 .wrap_data {
 	float: left;
-	width: 159px;
-	padding: 5px 0 0;
+	width: 11.0417vw;
+	padding: 0.3472vw 0 0;
 }
 
 /* <dl> 태그 css */
 .list_data {
 	position: static;
 	/* overflow: hidden; */
-	padding: 4px 0 0;
-	top: 31px;
-	right: 19px;
-	line-height: 22px;
-	font-size: 13px;
+	padding: 0.2778vw 0 0;
+	top: 2.1528vw;
+	right: 1.3194vw;
+	line-height: 1.5278vw;
+	font-size: 0.9028vw;
 }
 
 /* <strong> 태그 css */
@@ -184,9 +185,9 @@ ul li.nev {
 	display: block;
 	/* overflow: hidden; */
 	position: relative;
-	max-width: 671px;
-	padding: 6px 0 5px;
-	font-size: 20px;
+	max-width: 46.5972vw;
+	padding: 0.4167vw 0 0.3472vw;
+	font-size: 1.3889vw;
 	line-height: 1;
 	color: #000000;
 	font-weight: normal;
@@ -197,14 +198,14 @@ ul li.nev {
 /* <p> 태그 css */
 .desc_g {
 	position: absolute;
-	top: 72px;
-	left: 158px;
-	width: 564px;
-	max-height: 44px;
-	font-size: 14px;
+	top: 5.0000vw;
+	left: 10.9722vw;
+	width: 39.1667vw;
+	max-height: 3.0556vw;
+	font-size: 0.9722vw;
 	color: #777;
-	line-height: 22px;
-	padding: 0 0 0 1px;
+	line-height: 1.5278vw;
+	padding: 0 0 0 0.0694vw;
 	text-overflow: ellipsis;
 	overflow : hidden;
 	display: -webkit-box;
@@ -212,14 +213,25 @@ ul li.nev {
     -webkit-line-clamp: 2;
 }
 
+/* 모바일 <p> 태그 css */
+.desc_sm {
+	overflow: hidden;
+	 text-overflow: ellipsis;
+	white-space: nowrap;
+	 width: 80%;
+	font-size: 0.9722vw;
+	color: #777;
+}
+
+
 /* <div> 태그 css */
 .info_g {
 	display: block;
-	bottom: 32px;
+	bottom: 2.2222vw;
 	margin-left: 18%;
-	padding: 3px 0 0 0;
-	font-size: 13px;
-	line-height: 14px;
+	padding: 0.2083vw 0 0 0;
+	font-size: 0.9028vw;
+	line-height: 0.9722vw;
 	margin-top: 10%;
 }
 
@@ -231,32 +243,32 @@ wrap_thumb {
 
 /* <img> 사용자 이미지 css */
 .thumb_profile {
-	width: 30px;
-	height: 30px;
+	width: 2.0833vw;
+	height: 2.0833vw;
 	margin: 0;
 	float: left;
-	border-radius: 50px; 
+	border-radius: 3.4722vw; 
 }
 
 /* <span> 사용자 닉네임 css */
 .txt_id {
 	display: inline-block;
-	max-width: 250px;
-	padding: 5px 0 0 12px;
+	max-width: 17.3611vw;
+	padding: 0.3472vw 0 0 0.8333vw;
 	vertical-align: top;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	margin: 0 0 0 -1px;
+	margin: 0 0 0 -0.0694vw;
 	color: #333;
 	text-decoration: none;
 }
 
 .txt_date {
 	display: inline-block;
-    max-width: 138px;
+	max-width: 9.5833vw;
     color: #333;
-    padding: 2.5px 0 0 5px;
-    line-height: 18px;
+    padding: 0.1736vw 0 0 0.3472vw;
+    line-height: 1.2500vw;
     vertical-align: top;
     white-space: nowrap;
     text-overflow: ellipsis;
