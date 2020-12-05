@@ -22,6 +22,15 @@ public class BoardDao {
 	
 	public BoardDto selectByBno(int bno) {
 		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno",bno);
+		if(board.getBlinkcontent() != null) {
+		String str = board.getBlinkcontent();
+		
+		if(str.contains("http")) {
+			String[] cut = str.split("//");
+			board.setBlinkcontent(cut[1]);
+		}
+		
+		}
 		return board;
 	}
 	
@@ -33,7 +42,7 @@ public class BoardDao {
 		Map map = new HashMap();
 		map.put("cno", cno);
 		map.put("murl", murl);
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);	
 			return list;
 	}
 	
