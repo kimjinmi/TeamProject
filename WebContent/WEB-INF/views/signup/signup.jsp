@@ -132,17 +132,16 @@
 		 		<h3 class="text-heading">회원가입</h3>
 		 			<p></p>
 					<i class="fas fa-check" style="color: #940128; margin: 0 5px 0 0 ;"></i><p style="display: inline; color: 940128; margin: 0 5px 0 0 ;  	font-weight: 250px;">표시는 필수사항입니다.</p>
-					<p><i class="fas fa-exclamation-triangle"></i><span>비밀번호는 최소 8 자, 하나 이상의 문자와 숫자로 구성되어야 합니다.</span></p>	
 					<div style="height: 50px;"></div>
 					
-					<form method="post" action="signupform">								
+					<form onsubmit="return validateForm()" method="post" action="signupform">								
 					<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 						<div class="input-group mb-3">
        						<i class="fas fa-check" style="color: #940128;"></i>
        						<input type="text" id="mnicknamecheck" name="mnicknamecheck" class="form-control" placeholder='  닉네임' 
     				    	   onblur="this.placeholder = '  닉네임을 입력하세요'"  style="height:45px; font-size:16px;">
     				    	<a href="javascript:nicknamecheck()"  class="genric-btn primary-border">CHECK</a>
-    				    	<input type="hidden" id="mnickname" name="mnickname" value="${member.mnickname}"/>
+    				    	<input type="text" id="mnickname" name="mnickname" value="${member.mnickname}"/>
                 		<span id="checkresult" style="color: red;"></span>
 						</div>
 						<form:errors cssClass="error" path="membervalidation.mnickname"/>
@@ -150,14 +149,15 @@
 						<div class="input-group mb-3">
  							<i class="fas fa-check"  style="color: #940128;"></i>
  							<input type="text" id="memail" name="memail" class="form-control" 
- 							style="height:45px; font-size:16px;" value="${member.memail}">
+ 							style="height:45px; font-size:16px;" value="${member.memail}" readonly="readonly">
 						</div>
          				<div class="input-group mb-3">
 							<i class="fas fa-check"  style="color: #940128;"></i>
-							<input type="text" id="mphonenum" name="mphonenum" class="form-control" placeholder='  전화번호' 
+							<input type="text" id="mphonenum" name="mphonenum" class="form-control" placeholder='  전화번호(010-0000-0000)' 
 							onfocus="this.placeholder = ''" onblur="this.placeholder = '  전화번호를 입력하세요'" 
 							style="height:45px; font-size:16px;" value="${member.mphonenum}">
 						</div>
+						<span id="checkmphonenum" style="color: red;"></span>
 						<form:errors cssClass="error" path="membervalidation.mphonenum"/>	
 
 						<div class="input-group mb-3">
@@ -166,6 +166,13 @@
 							onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 입력하세요'" 
 							style="height:45px; font-size:16px;">
 						</div>
+						<div class="input-group mb-3">
+							<i class="fas fa-check"  style="color: #940128;"></i>
+							<input type="password" id="mpasswordcheck" name="mpasswordcheck" class="form-control" placeholder='  비밀번호체크' 
+							onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 확인하세요'" 
+							style="height:45px; font-size:16px;">
+						</div>
+						<span id="checkmpassword" style="color: red;"></span>
 						<form:errors cssClass="error" path="membervalidation.mpassword"/>	
 										
 						<div class="button-group-area mt-40" style="font-size: 20px;">
@@ -176,25 +183,46 @@
 					</form>
 					<script type="text/javascript">
 					function nicknamecheck(){
-						var mnickname = $("#mnicknamecheck").val().trim();
-						var memail = $("#memail").val().trim();
-						if(mnickname == ""){
+						var mnicknamecheck = $("#mnicknamecheck").val().trim();
+						
+						if(mnicknamecheck == ""){
 							$("#checkresult").text("작성필수");
 							return;
 						}
 						$.ajax({
 							url:"nicknamecheck",
-							data:{mnickname:mnickname, memail:memail},
+							method : "post",
+							data:{mnicknamecheck:mnicknamecheck},
 							success : function(data){
 									if(data.result == "fail"){
 										$("#checkresult").text("닉네임중복");
 									}
 									if(data.result == "success"){
 										$("#checkresult").text("닉네임사용가능");
+										$("#mnickname").val(mnicknamecheck);
 										$("#mnicknamecheck").attr("readonly", true);
 									}
 								}
 						});
+					}
+					
+					function validateForm(){
+						var mnickname = $("#mnickname").val().trim();
+						var mpassword = $("#mpassword").val().trim();
+						var mpasswordcheck = $("#mpasswordcheck").val().trim();
+						
+						if(mnickname == ""){
+							$("#checkresult").text("체크필수");
+							return false;
+						}else if(mpassword != mpasswordcheck){
+							$("#checkresult").text("");
+							$("#checkmpassword").text("비밀번호 불일치");
+							return false;
+						}else{
+							$("#checkresult").text("");
+							$("#checkmpassword").text("");
+							return true;
+						}
 					}
 					</script>
 					

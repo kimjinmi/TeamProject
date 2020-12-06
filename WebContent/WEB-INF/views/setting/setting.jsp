@@ -9,7 +9,7 @@
 
 	
 <form method="post" action="updatenickintro">
-	<div id="nicknamecheck" class="row">
+	<%-- <div id="nicknamecheck" class="row">
 		<div class="col-2">닉네임</div>
 		<div class="col-7">
 	 		<input type="text" id="mnickname" name="mnickname" 
@@ -17,25 +17,22 @@
 		</div>
 
 		<div class="col-3">
-			<a class="genric-btn primary radius small" href="#">중복확인</a>
+			<a class="genric-btn primary radius" href="nicknamecheck?mnickname=${member.mnickname}">변경하기</a>
+			<span>${result}</span>
 		</div>
-	</div>
+	</div> --%>
 	<p></p>
 	<div class="row">
        	<div class="col-2">소개글</div>
-       	<div class="col-10">
+       	<div class="col-7">
+       	<input type="hidden" id="mnickname" name="mnickname" 
+				class="single-input" value="${member.mnickname}">
        		<textarea id="mintro" name="mintro" class="single-textarea" >${member.mintro}</textarea>
 		</div>
+		<div class="col-3"><input class="genric-btn primary-border radius" type="submit" value="수정 완료"/></div>
     </div>
       
-    <div class="row">
-	    <div class="col-6"></div>
-    	<div class="col-6">
-    		<div style="height: 10px;"></div>
-    		<input class="genric-btn primary-border radius" type="submit" value="수정 완료"/>
-		</div>
-		
-	</div>
+   
 </form>
 
 

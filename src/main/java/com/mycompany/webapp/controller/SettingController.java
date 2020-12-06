@@ -212,11 +212,22 @@ public class SettingController {
 		return "setting/delete";
 	}
 	
-	@RequestMapping("/passwordchange")
-	public String imagechange(HttpSession session, Model model) { //http://localhost:8080/teamproject
+	@RequestMapping("/nicknamecheck")
+	public String nicknamecheck(MemberDto memberdto, String mnickname, HttpSession session, Model model) { //http://localhost:8080/teamproject
 		logger.info("실행");
+		int row = service.checknickname(mnickname);
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		return "setting/passwordchange";
+		MemberDto member = service.sessionconnect(memberdto);
+		if(row == 1) {
+			model.addAttribute("result", "fail");
+			model.addAttribute("member", member);
+			return "setting/setting";
+		}else {
+			member.setMnickname(mnickname);
+			model.addAttribute("member", member);
+			return "redirect:/manager/content";
+		}
+		
 	}
 	
 	@RequestMapping("/setting")
@@ -227,6 +238,7 @@ public class SettingController {
 		memberdto.setMemail(sessionMemail);
 		MemberDto member = service.sessionconnect(memberdto);
 		model.addAttribute("member", member);
+		
 		return "setting/setting";
 	}
 	

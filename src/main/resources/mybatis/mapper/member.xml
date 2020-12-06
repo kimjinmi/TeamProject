@@ -11,7 +11,7 @@
 	<select id="selectByMurl" parameterType="String" resultType="member">
 		SELECT memail, mpassword, mnickname, mphonenum, mintro, mmyimage, mrole, menabled, murl
 		FROM member
-		WHERE murl = #{memail} <!-- Murl을 얻을꺼 -->
+		WHERE murl = #{murl} <!-- Murl을 얻을꺼 -->
 	</select>
 	
 	<update id="updatenickintro" parameterType="member">

@@ -127,7 +127,7 @@
 										<div class="section-top-border" style="padding-top: 0; padding-bottom: 20px; text-align: center;">
 											<ul>
 												<li>
-												회원 아이디 ${Memail}로 로그인 해 주세요.
+												기존 아이디로 로그인 해 주세요.
 												</li>
 											</ul>
 										</div>

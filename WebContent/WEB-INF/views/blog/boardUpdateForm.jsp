@@ -97,14 +97,16 @@
 					
 					var btitle = $("#btitle").val().trim();
 					if (btitle == "") {
-						$("#btitleError").text("필수");
+						$("#btitleError").text("제목은 필수로 입력해주세요");
+					} else if(btitle.length >= 40){
+						$("#btitleError").text("제목은 40자 이하로 작성해주세요");
 					} else {
 						$("#btitleError").text("");
 					}
 
 					var bcontent = myEditor.getData();
 					if (bcontent == "") {
-						$("#bcontentError").text("필수");
+						$("#bcontentError").text("내용은 필수로 입력해주세요");
 					} else {
 						$("#bcontentError").text("");
 					}
@@ -129,8 +131,10 @@
 					if(file.files.length != 0) {
 						// 사용자가 파일을 선택했을 경우
 						multipart.append("attach", file.files[0]);
+					}else {
+						alert('메인 사진은 필수로 등록해주세요.');
 					}
-
+					
 					$.ajax({
 						url : "boardUpdate",
 						method : "post",

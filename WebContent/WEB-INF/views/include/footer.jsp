@@ -15,7 +15,7 @@
 								</div>
 								<div class="footer-tittle">
 									<div class="footer-pera">
-										<p>취미 생활 공유 플랫폼</p>
+										<p>취미 생활 기록 및 공유 플랫폼</p>
 									</div>
 									<ul class="mb-40">
 										<li class="number"><a href="#">HOBBYS</a></li>
@@ -44,10 +44,11 @@
 							<div class="footer-tittle">
 								<h4>Making</h4>
 								<ul>
-									<li><a href="#">Drone Mapping</a></li>
-									<li><a href="#"> Real State</a></li>
-									<li><a href="#">Commercial</a></li>
-									<li><a href="#">Construction</a></li>
+									<li><a href="https://github.com/kimjinmi">JINMI KIM</a></li>
+									<li><a href="https://github.com/yeonga">YEONGA PHI</a></li>
+									<li><a href="https://github.com/aodrhfk">SUNMYOUNG CHO</a></li>
+									<li><a href="https://github.com/2SunE">SEON LEE</a></li>
+									<li><a href="https://github.com/JIHOONKIM3949">JIHOON KIM</a></li>
 								</ul>
 							</div>
 						</div>
