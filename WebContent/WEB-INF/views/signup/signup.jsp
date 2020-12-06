@@ -141,7 +141,7 @@
        						<input type="text" id="mnicknamecheck" name="mnicknamecheck" class="form-control" placeholder='  닉네임' 
     				    	   onblur="this.placeholder = '  닉네임을 입력하세요'"  style="height:45px; font-size:16px;">
     				    	<a href="javascript:nicknamecheck()"  class="genric-btn primary-border">CHECK</a>
-    				    	<input type="text" id="mnickname" name="mnickname" value="${member.mnickname}"/>
+    				    	<input type="hidden" id="mnickname" name="mnickname" value="${member.mnickname}"/>
                 		<span id="checkresult" style="color: red;"></span>
 						</div>
 						<form:errors cssClass="error" path="membervalidation.mnickname"/>
