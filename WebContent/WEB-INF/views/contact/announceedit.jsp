@@ -30,7 +30,7 @@
 				</c:if> 
 	         </div>
 	         <div class="col"></div>
-	         
+	         <input class="form-control" name="ano" id="ano" type="hidden" value="${announcedto.ano}">
 	    </div>
 	    <p></p>
 	    <div class="row">
@@ -79,6 +79,7 @@
         }else{
         	var aifmain = 'false';
         }
+        var ano = $("#ano").val().trim();
        	var atitle = $("#atitle").val().trim();
        	if(atitle == "") { $("#atitleError").text("제목필수"); }
 		else { $("#atitleError").text(""); }
@@ -98,11 +99,11 @@
 	       	$.ajax({
 	       		url:"announceeditform",
 	       		method:"post",
-	       		data:{atitle:atitle, acontent:acontent, aifmain:aifmain, pageNo:pageNo},
+	       		data:{ano:ano, atitle:atitle, acontent:acontent, aifmain:aifmain},
 	       		success:function(data){
 	       			if(data.result == "success") {
 	       				location.href = "<%=application.getContextPath()%>/contact/contact";
-	       				$("#contact_result").text("추가가 완료되었습니다.");
+	       				
 					}
 	       		}
 	       	});

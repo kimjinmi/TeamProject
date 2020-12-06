@@ -18,7 +18,7 @@
 	            <ul class="submenu">
 					<li><a href="<%=application.getContextPath()%>/ranking/ranking">RANKING</a></li>
 					<li><a href="<%=application.getContextPath()%>/contents/contents">CONTENTS</a></li>
-					<li><a href="<%=application.getContextPath()%>/elements">참고 : ELEMENTS</a></li>
+					<%-- <li><a href="<%=application.getContextPath()%>/elements">참고 : ELEMENTS</a></li> --%>
 					
 	            </ul>
 	        </li>

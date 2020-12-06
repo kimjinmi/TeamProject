@@ -21,58 +21,52 @@ function replydelete(rno){
 <hr style="margin-top:12px;">
 
 
-	<table style="text-align:center; width: 90%">
-		<colgroup>
-			<col width="20%">
-			<col width="30%">
-			<col width="20%">
-			<col width="20%">
-			<col width="5%">
-		</colgroup>
-		<thead>
-			<tr style="background-color:#FBF9FF;">
-				<th scope="col">title</th>
-				<th scope="col">reply</th>
-				<th scope="col">replywriter</th>
-				<th scope="col">date</th>
-				<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
-			</tr>
-		</thead>
-			<c:forEach var="reply" items="${list}">
-				<tr style="border-spacing: 5px;">
-					<td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${reply.bno}">${reply.btitle}</a></td>
-					<td>${reply.rcontent}</td>
-					<td>${reply.memail}</td>
-					<td><fmt:formatDate value="${reply.rdate}" pattern="yyyy-MM-dd" /></td>
-					<td><a href="javascript:replydelete(${reply.rno})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-				</tr>	
+<div class="container">
+	<div style="background-color:#FBF9FF; height: 30px; text-align: center;" class="row">
+			<div class="col col-md-3"><b>title</b></div>
+			<div class="col col-md-3"><b>reply</b></div>
+			<div class="col col-md-3"><b>replywriter</b></div>
+			<div class="col col-md-2"><b>date</b></div>
+			<div class="col col-md-1"><i class="fa fa-trash" aria-hidden="true"></i></div>
+	</div>
+	<hr>
+	<c:forEach var="reply" items="${list}">
+		<div class="row">
+			<div class="col-md-2"><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${reply.bno}">${reply.btitle}</a></div>
+			<div class="col-md-4">${reply.rcontent}</div>
+			<div class="col-md-3">${reply.memail}</div>
+			<div class="col-md-2"><fmt:formatDate value="${reply.rdate}" pattern="yy.MM.dd" /></div>
+			<div class="col-md-1"><a href="javascript:replydelete(${reply.rno})"><i class="fa fa-trash" aria-hidden="true"></i></a></div>
+		</div>
+		<hr>
+	</c:forEach>
+	<div style="text-align:center;" class="row">
+		<div class="col">
+			<a class="genric-btn primary-border small" href="javascript:allreplylist(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+			
+			<c:if test="${pager.groupNo >1}">
+				<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.startPageNo-1})"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+			</c:if>
+		
+			<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+				<c:if test="${pager.pageNo == i}">
+					<a class="genric-btn primary small" href="javascript:allreplylist(${i})">${i}</a>
+				</c:if>
+				<c:if test="${pager.pageNo != i}">
+					<a class="genric-btn primary-border small" href="javascript:allreplylist(${i})">${i}</a>
+				</c:if>
 			</c:forEach>
+		
+			<c:if test="${pager.groupNo <pager.totalGroupNo}">
+				<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.endPageNo+1})"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+			</c:if>
+			<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.totalPageNo})"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+		</div>
+	</div>	
+</div>
+		
 			
 		
-			<tr>
-				<td colspan="4" style="text-align:center;">
-					<a class="genric-btn primary-border small" href="javascript:allreplylist(1)"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-					
-					<c:if test="${pager.groupNo >1}">
-						<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.startPageNo-1})"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-					</c:if>
-					
-					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-						<c:if test="${pager.pageNo == i}">
-							<a class="genric-btn primary small" href="javascript:allreplylist(${i})">${i}</a>
-						</c:if>
-						<c:if test="${pager.pageNo != i}">
-							<a class="genric-btn primary-border small" href="javascript:allreplylist(${i})">${i}</a>
-						</c:if>
-					</c:forEach>
-					<c:if test="${pager.groupNo <pager.totalGroupNo}">
-						<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.endPageNo+1})"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-					</c:if>
-					<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.totalPageNo})"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
-					
-				</td>
-			</tr>
-		
-	</table>
+			
 
 					

@@ -98,6 +98,8 @@ public class ContactController {
 	}
 	@RequestMapping("/announceeditform")	
 	public void announceeditform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws Exception {
+		
+		logger.info("------"+announcedto.isAifmain());
 		service.announceedit(announcedto);
 		//JSON 생성
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray

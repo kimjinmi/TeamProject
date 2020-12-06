@@ -37,7 +37,7 @@
 	
 	<update id="updateannounce" parameterType="announce">
 		UPDATE announce SET 
-		atitle=#{atitle}, acontent=#{acontent}  
+		atitle=#{atitle}, acontent=#{acontent}, aifmain=#{aifmain}  
 		WHERE ano=#{ano}
 	</update>
 	

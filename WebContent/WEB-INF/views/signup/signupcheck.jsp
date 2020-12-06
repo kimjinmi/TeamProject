@@ -136,7 +136,7 @@
 					<form onsubmit="return validateForm()" method="post" action="signupcheckform">								
 					<!-- 이메일 입력 & 비밀번호 입력 시작 -->
 						<div class="input-group mb-10" style="width: 100%;">
-         					<input type="text" id="paramemail" name="paramemail" class="form-control" placeholder='  이메일을 입력하세요' 
+         					<input type="text" id="memail" name="memail" class="form-control" placeholder='  이메일을 입력하세요' 
                 			onfocus="this.placeholder = ''" onblur="this.placeholder = '  이메일을 입력하세요'" 
                 			style="height:45px; font-size:16px;">
 						</div>
@@ -147,9 +147,9 @@
 						</div>
 						<script type="text/javascript">
 							function validateForm(){
-								var email = $("#paramemail").val().trim();
+								var memail = $("#memail").val().trim();
 								var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-								if (email.match(regExp) != null) {
+								if (memail.match(regExp) != null) {
 									return true;
 								}else{
 									$("#signuperror").text("올바른 이메일을 입력해주세요");

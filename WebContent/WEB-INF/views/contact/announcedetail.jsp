@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <style>
@@ -61,6 +62,7 @@ function announcedelete(ano){
 		<td colspan="4" style="text-align:left;">
 			<b>writer : </b>
 			${announce.memail}
+			<hr>
 		</td>
 	</tr>
 	<tr>
@@ -70,9 +72,19 @@ function announcedelete(ano){
 	</tr>
 	<tr>
 		<td colspan="4" >
+		
 			<a class="genric-btn primary-border small" href="javascript:allannouncelist()">목록</a>
+		<c:if test="${sessionMemail != null}">
+			<c:if test="${announce.memail==sessionMemail}">		
+				<a class="genric-btn primary small" href="javascript:announceedit(${announce.ano})">수정</a>
+				<a class="genric-btn primary small" href="javascript:announcedelete(${announce.ano})">삭제</a>
+			</c:if>
+		</c:if>	
+		<sec:authorize access="hasRole('ROLE_ADMIN')">
 			<a class="genric-btn primary small" href="javascript:announceedit(${announce.ano})">수정</a>
 			<a class="genric-btn primary small" href="javascript:announcedelete(${announce.ano})">삭제</a>
+		</sec:authorize>	
 		</td>
 	</tr>
 </table>		
+<hr>

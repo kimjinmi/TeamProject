@@ -411,6 +411,12 @@
 										<li style="margin-right: 20px;"><a href="blog?UserUrl=${board.murl }" style="color: #999999; font-size: 14px;">목록</a></li>
 										<script type="text/javascript">
 											function boardDelete(bno) {
+												if (confirm("정말 삭제하시겠습니까?") == true){  
+													
+												 }else{  
+													 return false;
+												 }
+												
 												$.ajax({
 													url:"boardDelete",
 													data:{bno:bno},

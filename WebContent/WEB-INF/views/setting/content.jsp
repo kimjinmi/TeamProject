@@ -47,7 +47,7 @@
 
 </head>
 
-<body>
+<body onload="setting()">
 	<!-- ? Preloader Start -->
 	<div id="preloader-active">
 		<div
@@ -163,18 +163,9 @@
 										</script>
 											
 									</li>
-									<li><a href="javascript:passwordchange()" class="d-flex">
+									<li><a href="<%=application.getContextPath()%>/signin/findpassword" class="d-flex">
 											<p>비밀번호 변경</p></a>
-											<script type="text/javascript">
-											function passwordchange(){
-												$.ajax({
-													url:"passwordchange",
-													success:function(data) {
-														$("#setting_result").html(data);
-													}
-												});
-											}
-											</script>
+											
 									</li>
 									<li><a href="javascript:mylikelist()" class="d-flex">
 										<p>좋아요 게시글 보기</p></a>
@@ -327,7 +318,7 @@
 									alt="">
 							</div>
 						<div id="setting_result" class="blog_details">
-							<jsp:include page="/WEB-INF/views/setting/setting.jsp"/>
+							
 						</div>
 					</div>
 				</div>
