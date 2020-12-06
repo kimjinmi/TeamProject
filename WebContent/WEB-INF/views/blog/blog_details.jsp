@@ -52,6 +52,15 @@
 	.image img {
 		width: 100%;
 	}
+	
+	   .blog_list_content{  	
+   			overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; 
+            -webkit-box-orient: vertical;
+   }
+	
 </style>
  
 </head>
