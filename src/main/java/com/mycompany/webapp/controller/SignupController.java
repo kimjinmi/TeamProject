@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.mycompany.webapp.dto.MemberDto;
 import com.mycompany.webapp.service.SignupService;
@@ -29,6 +31,7 @@ import com.mycompany.webapp.validator.MemberValidator;
 
 @Controller
 @RequestMapping("/signup")
+@SessionAttributes({"creatememberdto"})
 public class SignupController {
 
 	@Resource
@@ -36,44 +39,63 @@ public class SignupController {
 
 	private static final Logger logger = LoggerFactory.getLogger(SignupController.class);
 
-	/*@ModelAttribute("signup")
-	public*/
+	//sessionattributes 이용
+	@ModelAttribute("creatememberdto")
+	public MemberDto creatememberdto() {
+		return new MemberDto();
+	}
 	
 	@RequestMapping("/signupcheck")
-	public String signupcheck() { //http://localhost:8080/teamproject
+	public String signupcheck(@ModelAttribute("creatememberdto")MemberDto member) { //http://localhost:8080/teamproject
+		
 		return "signup/signupcheck";
 	}
+	
+	
 
 
 	@PostMapping("/signupcheckform")
-	public String signupcheckform(String paramemail,Model model, MemberDto member) {
+	public String signupcheckform(@ModelAttribute("creatememberdto") MemberDto member,Model model) {
 		logger.info("성공");
 		
-		int result = service.checkMemail(paramemail);
-		member.setMemail(paramemail);
+		int result = service.checkMemail(member.getMemail());
 		model.addAttribute("member", member);
 		if(result==0) {
-			return "redirect:/signup/signup?memail="+paramemail;
+			return "redirect:/signup/signup";
 		}else {
 			return "redirect:/signup/regist";
 		}
 	}
 	
-	@RequestMapping("/nicknamecheck")
-	public void nicknamecheck(String memail, String mnickname, MemberDto member, Model model, HttpServletResponse response) throws Exception {
-		int row = service.nicknamecheck(mnickname);
-		member.setMemail(memail);
-		member.setMnickname(mnickname);
+	@RequestMapping("/signup")
+	public String signup(@ModelAttribute("creatememberdto") MemberDto member, Model model) {
 		model.addAttribute("member", member);
+		
+		return "signup/signup";
+	}
+	
+	@RequestMapping("/regist")
+	public String regist(@ModelAttribute("creatememberdto") MemberDto member, Model model, SessionStatus sessionStatus) {
+		model.addAttribute("member", member);
+		sessionStatus.setComplete();
+		return "signup/regist";
+	}
+	
+	@RequestMapping("/nicknamecheck")
+	public void nicknamecheck(String mnicknamecheck, @ModelAttribute("creatememberdto") MemberDto member, Model model, HttpServletResponse response) throws Exception {
+		int row = service.nicknamecheck(mnicknamecheck);
 		
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
 		if(row == 1) {
 			jsonObject.put("result", "fail");
 		}else if(row != 1) {
+			member.setMnickname(mnicknamecheck);
 			jsonObject.put("result", "success");
 		}
+			
 			String json = jsonObject.toString(); // {"result" : "success"}
 			
+			model.addAttribute("member", member);	
 			//응답보내기
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json;charset=utf-8");
@@ -82,29 +104,10 @@ public class SignupController {
 			out.close();
 		
 	}
-	@RequestMapping("/signup")
-	public String signup(String memail, MemberDto member, Model model) {
-		member.setMemail(memail);
-		model.addAttribute("member", member);
-		return "signup/signup";
-	}
-			
-	
-	
-	@InitBinder("membervalidation")
-	public void membervalidation(WebDataBinder binder) {
-		binder.setValidator(new MemberValidator());
-	}
 	
 	
 	@PostMapping("/signupform")
-	public String signupform(@ModelAttribute("membervalidation") @Valid MemberDto member,
-		 BindingResult bindingResult, Model model) {
-		
-		if(bindingResult.hasErrors()) {
-			return "signup/signup";
-		}
-		
+	public String signupform(@ModelAttribute("creatememberdto")MemberDto member, Model model) {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String encodePassword = passwordEncoder.encode(member.getMpassword());
 		member.setMpassword(encodePassword);
@@ -122,6 +125,12 @@ public class SignupController {
 		model.addAttribute("member", member);
 		return "redirect:/signup/success";
 		
+	}
+	@RequestMapping("/success")
+	public String success(@ModelAttribute("creatememberdto") MemberDto member, Model model, SessionStatus sessionStatus) {
+		model.addAttribute("member", member);
+		sessionStatus.setComplete();
+		return "signup/success";
 	}
 
 }

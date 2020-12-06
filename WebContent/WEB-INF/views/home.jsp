@@ -203,8 +203,9 @@ iframe {
 									<h5>
 										<a href="services.html">김진미</a>
 									</h5>
-									<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-										esse cillum reeut cupidatatfug nulla pariatur.</p>
+									<p>프로젝트 팀장을 처음 맡게 되어서 잘 이끌어가질 못했던 것 같은데 모든 팀원들이 많이 도와줘서
+									좋은 결과물을 이끌어 낸 것 같습니다. 스프링 프로젝트는 처음이라 힘들었던 부분도 많았지만 재밌었던 부분이
+									더 큰 것 같고 앞으로도 새로운 기술을 익혀 프로젝트를 만들어 보는 경험을 가지도록 노력하겠습니다!</p>
 								</div>
 							</div>
 						</div>
