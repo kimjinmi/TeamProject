@@ -201,7 +201,7 @@ iframe {
 								</div>
 								<div class="cat-cap">
 									<h5>
-										<a href="services.html">김진미</a>
+										<a href="https://github.com/kimjinmi">김진미</a>
 									</h5>
 									<p>프로젝트 팀장을 처음 맡게 되어서 잘 이끌어가질 못했던 것 같은데 모든 팀원들이 많이 도와줘서
 									좋은 결과물을 이끌어 낸 것 같습니다. 스프링 프로젝트는 처음이라 힘들었던 부분도 많았지만 재밌었던 부분이
@@ -218,7 +218,7 @@ iframe {
 								</div>
 								<div class="cat-cap">
 									<h5>
-										<a href="services.html">피영아</a>
+										<a href="https://github.com/yeonga">피영아</a>
 									</h5>
 									<p>문제가 해결이 되지 않을 때에도 포기보다는 끈기있게 문제를 해결하려는 태도를 기를 수 있습니다. 또한, 팀원들과 서로의 의견을 존중해주며 팀 프로젝트를 해서 성공적으로 프로젝트를 마칠 수 있었고, 협동심을 기를 수 있었습니다.<p>
 								</div>
@@ -233,10 +233,9 @@ iframe {
 								</div>
 								<div class="cat-cap">
 									<h5>
-										<a href="services.html">조선명</a>
+										<a href="https://github.com/aodrhfk">조선명</a>
 									</h5>
-									<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-										esse cillum reeut cupidatatfug nulla pariatur.</p>
+									<p>많은 어려움을 겪었지만 좋은 팀원들과 함께 공부하고 의견을 나누며 문제를 해결해나가는 방법을 배웠고 그로 인해 좋은 경험이 되었습니다.</p>
 								</div>
 							</div>
 						</div>
@@ -250,7 +249,7 @@ iframe {
 								</div>
 								<div class="cat-cap">
 									<h5>
-										<a href="services.html">이선</a>
+										<a href="https://github.com/2SunE">이선</a>
 									</h5>
 									<p>과거에는 "이렇게 하면 될까?" 하는 생각이 들어도 직접 코딩을 할 수 없었지만 지금은 고민이 담긴 코드를 작성할 수 있게 됐습니다. 지난 3개월동안 정말 많은 성장을 이뤘다고 자신할 수 있습니다. (난 정말 멋찐사람..) 주니어 개발자지만 앞으로도 배워야할 것들이 많아서 너무 좋고 기대 됩니다!</p>
 								</div>
@@ -265,10 +264,9 @@ iframe {
 								</div>
 								<div class="cat-cap">
 									<h5>
-										<a href="services.html">김지훈</a>
+										<a href="https://github.com/JIHOONKIM3949">김지훈</a>
 									</h5>
-									<p>Aute irure dolor inasfa reprehenderit in voluptate velit
-										esse cillum reeut cupidatatfug nulla pariatur.</p>
+									<p>이론적으로 배운 Spring FrameWork 를 사용하여 직접 웹 애플리케이션을 개발하며 어려월던 Di, loc 등의 개념을  확실하게 이해 할 수 있었고 mybatis를 통해 쉽게  DB 데이터를 관리해보며 어렸울 것 같던 Spring 개발에 자신감을 더 가질 수 있는 계기가 되었습니다.</p>
 								</div>
 							</div>
 						</div>

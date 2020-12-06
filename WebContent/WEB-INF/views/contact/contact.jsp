@@ -152,10 +152,10 @@ function announcewrte(){
                  
                     
                 </div>
-                <p></p>
+                <div class="row" style="height: 50px;"></div>
                 <div class="row" id="inquiry">
                     <div class="col-12">
-                        
+                     <hr>   
                          
                     </div>
                     <div class="col-lg-4">
@@ -163,7 +163,7 @@ function announcewrte(){
                     </div>
                     
                     <div class="col-lg-8" id="contactform">
-                    <hr>
+                    
                     <h2 class="contact-title" >문의사항</h2>
                         <form class="form-contact contact_form">
                             <div class="row">
