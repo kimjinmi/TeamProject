@@ -446,11 +446,11 @@ public class BlogController {
 		return "blog/blogcommentList";
 	}
 	
-	@GetMapping("/boardSearch") //  검색기능 구현중 - 지훈 
-	public String boardSearch(String searchContent, String murl, Model model, @RequestParam(defaultValue="1")int pageNo) {
+	@PostMapping("/boardSearch") //  검색기능 구현중 - 지훈 
+	public String boardSearch(String searchContent, String memberUrl, Model model, @RequestParam(defaultValue="1")int pageNo) {
 		logger.info("boardSearch 실행");
 		
-		List<BoardDto> list = service.searchList(searchContent, murl);
+		List<BoardDto> list = service.searchList(searchContent, memberUrl);
 		model.addAttribute("list", list);
 		return "blog/blogList";
 	}

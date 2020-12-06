@@ -201,8 +201,8 @@
                         
                      </aside>
                      
-                     <aside class="single_sidebar_widget search_widget">
-                       <!--  <form action="#">
+             <!--         <aside class="single_sidebar_widget search_widget">
+                        <form action="#">
                            <div class="form-group">
                               <div class="input-group mb-3">
                                  <input id="searchbox" type="text" class="form-control"
@@ -218,21 +218,26 @@
                            <a href="javascript:search()" class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">검색하기</a>
                            <script type="text/javascript">
                            		function search(){
-                           			var searchContent = $("#searchbox").val().trim();
                            			alert("search 메소드 실행");
+                           			
+                           			var searchContent = $("#searchbox").val().trim();
+                           			 var memberUrl = '${member.murl}';
+                           			alert(searchContent);
+                           			alert(memberUrl);
+                           			 
                            			$.ajax({
                            				url:"boardSearch",
-                           				method:"get",
-                           				data:{searchContent:searchContent, murl:${member.murl}},
+                           				method:"post",
+                           				data:{searchContent:searchContent, memberUrl:memberUrl},
                            				success:function(data){
                            					alert("boardSearch ajax 실행");
                            				}
-                           			});
+                           			}); 
                            			
                            		}
                            </script>
-                        </form> -->
-                     </aside>
+                        </form>
+                     </aside> -->
                      
                      <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
