@@ -131,8 +131,6 @@
 					if(file.files.length != 0) {
 						// 사용자가 파일을 선택했을 경우
 						multipart.append("attach", file.files[0]);
-					}else {
-						alert('메인 사진은 필수로 등록해주세요.');
 					}
 					
 					$.ajax({
