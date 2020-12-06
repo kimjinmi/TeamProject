@@ -17,10 +17,10 @@
 	float: left;
 	display: inline;
 	/* 프로필 사진 크기 */
-	width: 15%;
-	height: 15%;
+	width: 60px;
+	height: 60px;
 	margin-right: 3%;
-	border-radius: 50%;
+	border-radius: 100%;
 }
 
 /* 사용자 닉네임 §공주님§ */
