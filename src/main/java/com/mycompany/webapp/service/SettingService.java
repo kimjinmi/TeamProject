@@ -159,6 +159,11 @@ public class SettingService {
 		
 	}
 
+	public int checknickname(String mnickname) {
+		int row = memberdao.countMnickname(mnickname);
+		return row;
+	}
+
 
 
 
