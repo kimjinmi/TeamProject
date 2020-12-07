@@ -118,7 +118,7 @@
 							</aside>
 							
 							<aside class="single_sidebar_widget post_category_widget">
-								<h4 class="widget_title" style="color: #2d2d2d;">홈페이지 관리</h4>
+								<h4 class="widget_title" style="color: #2d2d2d;">ADMIN</h4>
 								<ul class="list cat-list">
 									
 										<li><a href="javascript:managersetting()" class="d-flex">

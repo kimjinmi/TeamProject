@@ -32,7 +32,7 @@
 			FROM (SELECT rownum as rnum, rno, btitle, rcontent, memail, bno, rdate
 					FROM (SELECT rno, btitle, rcontent, r.memail, r.bno, rdate
 					        FROM board b, reply r
-					        WHERE r.bno = b.cno 
+					        WHERE r.bno = b.bno 
 					        ORDER BY rdate DESC)
 							WHERE rownum &lt;=#{endRowNo})
 			WHERE rnum &gt;= #{startRowNo}
