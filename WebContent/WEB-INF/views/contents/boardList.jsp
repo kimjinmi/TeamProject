@@ -37,7 +37,7 @@
 				<p class="desc_g">${board.bcontent}</p>
 			</div> 
 			<a style="margin: 0; padding: 0;" href="<%=application.getContextPath()%>/blog/blog?UserUrl=${board.murl}">
-				<div class="info_g" style="margin-left: 2%;">
+				<div class="info_g">
 					<!-- 사용자 이미지 -->
 					<span class="wrap_thumb"> <img class="thumb_profile"
 						src="photodownload_member?fileName=${board.mmyimage}">
