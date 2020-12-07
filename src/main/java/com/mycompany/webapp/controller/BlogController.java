@@ -1,14 +1,11 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -318,6 +315,8 @@ public class BlogController {
 			int bbno = reply.getBno();
 			List<ReplyDto> commentlist = service.commentList(bbno);
 			model.addAttribute("commentlist", commentlist);
+			String murl = (String) session.getAttribute("SessionMurl");
+			logger.info("왜 안나올까 : "+murl);
 			return "blog/blogcommentList";
 
 	}

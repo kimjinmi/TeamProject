@@ -176,9 +176,9 @@
       
         select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl, board.bno, member.mmyimage
 		from board, reply, member
-		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
-		order by asc
-	</select>
+		where board.bno = reply.bno AND board.bno = 797 AND member.memail = reply.memail
+		order by rdate asc
+	</select>	
 	
 <!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
 	
