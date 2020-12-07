@@ -80,6 +80,7 @@
 				bno:bno
 			},
 			success : function(data) {
+			
 				$("#comments-area").html(data);
 				
 			}

@@ -28,7 +28,10 @@
 	<delete id="deleteByIno" parameterType="int">
 		delete from inquiry where ino=#{ino}
 	</delete>
-	
+
+	<update id="sendByIno" parameterType="int">
+		update inquiry set iresult = 1 where ino=#{ino}
+	</update>	
 	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
 
 	<insert id="inquiryinsert" parameterType="inquiry">

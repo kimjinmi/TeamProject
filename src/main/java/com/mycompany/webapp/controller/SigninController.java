@@ -100,7 +100,13 @@ public class SigninController {
 		
 	}
 	
+	@RequestMapping("/findpasswordresult")
+	public String findpasswordresult() {
+		
 	
+		return "signin/findpasswordresult";
+	}
+		
 	@RequestMapping("/passwordreset")
 	public String passwordreset() {
 		logger.info("실행");

@@ -179,6 +179,7 @@
 														$("#beforeview").html(data);
 													}
 												});	
+												
 												$.ajax({
 													url:"inquiryaftercomplete",
 													success:function(data) {
@@ -205,6 +206,17 @@
 													data : {ino:ino},
 													success : function(data) {
 														$("#setting_result").html(data);
+													}
+												});
+											}
+											function inquirysend(ino) {
+												$.ajax({
+													url : "inquirysend",
+													data : {ino:ino},
+													success : function(data) {
+														if(data.result == "success") {
+															inquirylist();
+														}
 													}
 												});
 											}
