@@ -3,9 +3,15 @@
 <mapper namespace="mybatis.mapper.inquiry">
 
 
-	<select id="countAll" resultType="int">
+	<select id="countBeforeAll" resultType="int">
 		select count(*) 
-		from inquiry
+		from inquiry where iresult=0
+	</select>
+	
+	
+	<select id="countAfterAll" resultType="int">
+		select count(*) 
+		from inquiry where iresult=1
 	</select>
 	
 	<select id="selectByPageInquiry" parameterType="pager" resultType="inquiry">
@@ -14,7 +20,7 @@
         from (select rownum as rnum ,ino, isubject, imessage, iemail, iresult, idate 
               from inquiry
               where rownum &lt; = #{endRowNo}
-              order by idate asc)
+              order by ino desc)
         
         where rnum &gt; = #{startRowNo}
 	</select>

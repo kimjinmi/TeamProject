@@ -124,9 +124,15 @@ public class ManagerService {
 		List<BoardDto> list = boarddao.selectByAllPageUser(pager);
 		return list;
 	}
-
-	public int getTotalInquiryRows() {
-		int totalRows = inquirydao.countAll();
+	//처리 대기중
+	public int getBeforeInquiryRows() {
+		int totalRows = inquirydao.countBeforeAll();
+		return totalRows;
+	}
+	
+	//처리 완료
+	public int getAfterInquiryRows() {
+		int totalRows = inquirydao.countAfterAll();
 		return totalRows;
 	}
 

@@ -22,8 +22,13 @@ public class InquiryDao {
 		sst.insert("mybatis.mapper.inquiry.inquiryinsert", inquiry);
 	}
 
-	public int countAll() {
-		int rows = sst.selectOne("mybatis.mapper.inquiry.countAll");
+	public int countBeforeAll() {
+		int rows = sst.selectOne("mybatis.mapper.inquiry.countBeforeAll");
+		return rows;
+	}
+	
+	public int countAfterAll() {
+		int rows = sst.selectOne("mybatis.mapper.inquiry.countAfterAll");
 		return rows;
 	}
 

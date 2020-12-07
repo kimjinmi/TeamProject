@@ -15,7 +15,7 @@ text-overflow:ellipsis;
 
 function inquirybeforecomplete(pageNo) {
 	if(!pageNo) {
-		pageNO = 1;
+		pageNo = 1;
 	}
 	
 	$.ajax({
@@ -69,19 +69,19 @@ function inquirybeforecomplete(pageNo) {
 			<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete(1)">처음</a>
 			
 			<c:if test="${pager.groupNo >1}">
-				<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete()(${pager.startPageNo-1})">이전</a>
+				<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete()(${pager.startPageNo - 1})">이전</a>
 			</c:if>
 			
 			<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 				<c:if test="${pager.pageNo == i}">
-					<a class="genric-btn primary small" href="javascript:inquirybeforecomplete()">${i}</a>
+					<a class="genric-btn primary small" href="javascript:inquirybeforecomplete(${i})">${i}</a>
 				</c:if>
 				<c:if test="${pager.pageNo != i}">
-					<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete()">${i}</a>
+					<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete(${i})">${i}</a>
 				</c:if>
 			</c:forEach>
 			<c:if test="${pager.groupNo <pager.totalGroupNo}">
-				<a class="genric-btn primary-border small" href="javascript:inquirybeforecompletne(${pager.endPageNo+1})">다음</a>
+				<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete(${pager.endPageNo+1})">다음</a>
 			</c:if>
 			<a class="genric-btn primary-border small" href="javascript:inquirybeforecomplete(${pager.totalPageNo})">맨끝</a>
 			
