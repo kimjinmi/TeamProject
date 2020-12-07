@@ -276,7 +276,7 @@ ul li.nev_sm {
 	padding: 0.4167vw 0 0.3472vw;
 	font-size: 1.2889vw;
 	line-height: 1;
-	color: #000000;
+	color: #363636;
 	font-weight: normal;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -291,8 +291,7 @@ ul li.nev_sm {
 	 width: 80%;
 	padding: 0.4167vw 0 0.3472vw;
 	font-size: 14px;
-	color: #000000;
-
+	color: #565656;
 }
 
 
