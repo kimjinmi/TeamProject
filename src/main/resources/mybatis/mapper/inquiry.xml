@@ -20,7 +20,7 @@
         from (select rownum as rnum ,ino, isubject, imessage, iemail, iresult, idate 
               from inquiry
               where rownum &lt; = #{endRowNo}
-              order by idate asc)
+              order by ino desc)
         
         where rnum &gt; = #{startRowNo}
 	</select>
