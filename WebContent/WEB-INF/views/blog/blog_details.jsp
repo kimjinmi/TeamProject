@@ -198,6 +198,7 @@
 				                       			 </script>
 										</c:if>
 													 <!-- 친구 추가 버튼 -->
+												 
 				                        <c:if test="${existRows==0}">
 				                        	<a class="genric-btn primary e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
 				                        		<script type="text/javascript">
@@ -216,25 +217,26 @@
 				                        		</script>
 				                        	
 				                        </c:if>
-									</c:if>
+								
 								<!-- 친구 추가 버튼 -->
-			                        <c:if test="${existRows==0}">
-			                        	<a class="genric-btn info e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
-			                        		<script type="text/javascript">
-			                        			function neighborAdd(memail, murl){
-			                        				$.ajax({
-			                        					url:"neighborAdd",
-			                        					data:{nememail:memail, nemurl:murl},
-			                        					success:function(data){
-			                        						if(data.result == "success"){
-			                        							location.href = "blog?UserUrl="+murl;
-			                        						}
-			                        					}
-			                        					
-			                        				});
-			                        			}
-			                        		</script>
-			                        	
+				                        <c:if test="${existRows==0}">
+				                        	<a class="genric-btn info e-large" href="javascript:neighborAdd('${member.memail}','${member.murl}')">친구추가</a>
+				                        		<script type="text/javascript">
+				                        			function neighborAdd(memail, murl){
+				                        				$.ajax({
+				                        					url:"neighborAdd",
+				                        					data:{nememail:memail, nemurl:murl},
+				                        					success:function(data){
+				                        						if(data.result == "success"){
+				                        							location.href = "blog?UserUrl="+murl;
+				                        						}
+				                        					}
+				                        					
+				                        				});
+				                        			}
+				                        		</script>
+				                        	
+				                       	 </c:if>
 			                        </c:if>
 								</div>
 							</aside>
@@ -344,35 +346,7 @@
 											pattern="yyyy-MM-dd HH:mm:ss" /></li>
 								</ul>
 								<p class="excert">${board.bcontent}</p>
-								<!-- <p class="excert">학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
-								 맡고 승선근무(21개월)를 하면서 선박 내 보일러,냉동기,에어컨,조수기,소각기,엘레베이터 및 각종 보조기기 및 비상기기 등을 안전 점
-								 검 및 유지보수 하였으며, 주기관 냉각수 분석 및 진단 등을 통하여 선박의 안전운항을 할 수 있도록 안전점검하는 것이 제 업무였습니다. 기
-								 관부의 막내로서 늘 한 시간 일찍 출근하여 부족한 부분을 보완하고자 매뉴얼과 절차서를 숙지하고, 업무가 완전히 마무리될 때까지 책임감을 느끼고 업무
-								 를 수행했습니다. 덕분에 선박에 대해 각종 기기의 원리 및 시스템을 파악하고 선박의 안전을 위해서 법이나 회사 내 절차 등을 숙지하여 선장님과
-								  기관장님께 진급 추천서를 2차례 받아 2등 기관사로 진급하였습니다</p>
-								<p>학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
-								 맡고 승선근무(21개월)를 하면서 선박 내 보일러,냉동기,에어컨,조수기,소각기,엘레베이터 및 각종 보조기기 및 비상기기 등을 안전 점
-								 검 및 유지보수 하였으며, 주기관 냉각수 분석 및 진단 등을 통하여 선박의 안전운항을 할 수 있도록 안전점검하는 것이 제 업무였습니다. 기
-								 관부의 막내로서 늘 한 시간 일찍 출근하여 부족한 부분을 보완하고자 매뉴얼과 절차서를 숙지하고, 업무가 완전히 마무리될 때까지 책임감을 느끼고 업무
-								 를 수행했습니다. 덕분에 선박에 대해 각종 기기의 원리 및 시스템을 파악하고 선박의 안전을 위해서 법이나 회사 내 절차 등을 숙지하여 선장님과
-								  기관장님께 진급 추천서를 2차례 받아 2등 기관사로 진급하였습니다</p>
-								<div class="quote-wrapper">
-									<div class="quotes">학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
-								 맡고 승선근무(21개월)를 하면서 선박 내 보일러,냉동기,에어컨,조수기,소각기,엘레베이터 및 각종 보조기기 및 비상기기 등을 안전 점
-								 검 및 유지보수 하였으며, 주기관 냉각수 분석 및 진단 등을 통하여 선박의 안전운항을 할 수 있도록 안전점검하는 </div>
-								</div>
-								<p>학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
-								 맡고 승선근무(21개월)를 하면서 선박 내 보일러,냉동기,에어컨,조수기,소각기,엘레베이터 및 각종 보조기기 및 비상기기 등을 안전 점
-								 검 및 유지보수 하였으며, 주기관 냉각수 분석 및 진단 등을 통하여 선박의 안전운항을 할 수 있도록 안전점검하는 것이 제 업무였습니다. 기
-								 관부의 막내로서 늘 한 시간 일찍 출근하여 부족한 부분을 보완하고자 매뉴얼과 절차서를 숙지하고, 업무가 완전히 마무리될 때까지 책임감을 느끼고 업무
-								 를 수행했습니다. 덕분에 선박에 대해 각종 기기의 원리 및 시스템을 파악하고 선박의 안전을 위해서 법이나 회사 내 절차 등을 숙지하여 선장님과
-								  기관장님께 진급 추천서를 2차례 받아 2등 기관사로 진급하였습니다</p>
-								<p>학교를 졸업한 뒤, 부푼 꿈을 안고 16년도 해운회사 입사하여, 3등 기관사로서 직책을
-								 맡고 승선근무(21개월)를 하면서 선박 내 보일러,냉동기,에어컨,조수기,소각기,엘레베이터 및 각종 보조기기 및 비상기기 등을 안전 점
-								 검 및 유지보수 하였으며, 주기관 냉각수 분석 및 진단 등을 통하여 선박의 안전운항을 할 수 있도록 안전점검하는 것이 제 업무였습니다. 기
-								 관부의 막내로서 늘 한 시간 일찍 출근하여 부족한 부분을 보완하고자 매뉴얼과 절차서를 숙지하고, 업무가 완전히 마무리될 때까지 책임감을 느끼고 업무
-								 를 수행했습니다. 덕분에 선박에 대해 각종 기기의 원리 및 시스템을 파악하고 선박의 안전을 위해서 법이나 회사 내 절차 등을 숙지하여 선장님과
-								  기관장님께 진급 추천서를 2차례 받아 2등 기관사로 진급하였습니다</p> -->
+							
 							</div>
 						</div>
 
@@ -405,219 +379,48 @@
 									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 									<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
 									<li><a href="#"><i class="fab fa-behance"></i></a></li>
-									<c:if test="${sessionMemail == board.memail}">
-										<li><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
-										<script type="text/javascript">
-											function boardUpdate(bno) {
-												$.ajax({
-													url:"boardUpdate",
-													data:{bno:bno},
-													success:function(data) {
-														$("#categoryListLinkBoard").html(data);
-													}
-												});
-											}
-										</script>		
-										<li style="margin-right: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
-										<li style="margin-right: 20px;"><a href="blog?UserUrl=${board.murl }" style="color: #999999; font-size: 14px;">목록</a></li>
-										<script type="text/javascript">
-											function boardDelete(bno) {
-												if (confirm("정말 삭제하시겠습니까?") == true){  
-													
-												 }else{  
-													 return false;
-												 }
-												
-												$.ajax({
-													url:"boardDelete",
-													data:{bno:bno},
-													method:"post",
-													success:function(data) {
-														if(data.result == "success") {
-															location.href = "blog?UserUrl=${SessionMurl}";
+									<c:if test="${SessionMemail != null}">
+										<c:if test="${sessionMemail == board.memail}">
+											<li><a href="javascript:boardUpdate(${board.bno})" style="color: #999999; font-size: 14px;">수정</a></li>
+											<script type="text/javascript">
+												function boardUpdate(bno) {
+													$.ajax({
+														url:"boardUpdate",
+														data:{bno:bno},
+														success:function(data) {
+															$("#categoryListLinkBoard").html(data);
 														}
-													}
-												});
-											}
-										</script>			
+													});
+												}
+											</script>		
+											<li style="margin-right: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
+											<li style="margin-right: 20px;"><a href="blog?UserUrl=${board.murl}" style="color: #999999; font-size: 14px;">목록</a></li>
+											<script type="text/javascript">
+												function boardDelete(bno) {
+													if (confirm("정말 삭제하시겠습니까?") == true){  
+														
+													 }else{  
+														 return false;
+													 }
+													
+													$.ajax({
+														url:"boardDelete",
+														data:{bno:bno},
+														method:"post",
+														success:function(data) {
+															if(data.result == "success") {
+																location.href = "blog?UserUrl=${SessionMurl}";
+															}
+														}
+													});
+												}
+											</script>			
+										</c:if>
 									</c:if>
 								</ul>
 							</div>
-<!-- 							<div class="navigation-area">
-								<div class="row">
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/preview.png" alt="">
-											</a>
-										</div>
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-left"></span>
-											</a>
-										</div>
-										<div class="detials">
-											<p>이전 게시물</p>
-											<a href="#">
-												<h4 style="color: #2d2d2d;">Space The Final Frontier</h4>
-											</a>
-										</div>
-									</div>
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-										<div class="detials">
-											<p>다음 게시글</p>
-											<a href="#">
-												<h4 style="color: #2d2d2d;">Telescopes 101</h4>
-											</a>
-										</div>
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-right"></span>
-											</a>
-										</div>
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/next.png" alt="">
-											</a>
-										</div>
-									</div>
-								</div>
-							</div> -->
-						</div>
+<!-- 							
 						
-						<c:if test="${board.blinkcontent != null }">
-							<hr/ style="margin:12px; width:100%;">
-							<div class="blog-author" style="margin:0px; padding:12px;">
-								<div class="media align-items-center">
-								<%-- 	<img
-										src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
-										alt=""> --%>
-									<div class="media-body">
-									<a class="fa fa-external-link" style="color:black; font-size:20px; margin-right:12px;	"></a>
-										<a
-											href="https://${board.blinkcontent }"
-											target="_blank">
-											<h5> 추천 링크 :: 바로가기</h5>
-										</a>
-									</div>
-							</div>
-						</div>
-						
-						</c:if>
-			
-						<div class="comments-area" id="comments-area" style="margin-top:20px">
-							<%-- <h4>댓글</h4>
-
-							<!-- -----------------------------------댓글 폼1 시작----------------------------------------- -->
-							<c:forEach var="comment" items="${commentlist}">
-								<div class="comment-list">
-									<div class="single-comment justify-content-between d-flex">
-
-										<div class="user justify-content-between d-flex">
-											<div class="thumb">
-												<img src="assetsx/img/blog/comment_1.png" alt="">
-											</div>
-
-
-
-
-											<div class="media align-items-center">
-												<div style="margin-right: 23px">
-													<img class="rounded-circle" width="100px" height="100px"
-														src="<%=application.getContextPath()%>/resources/assets/img/elements/g3.jpg" />
-												</div>
-												<div class="desc">
-													<p class="comment">${comment.rcontent}</p>
-													<div class="d-flex justify-content-between">
-														<div class="d-flex align-items-center">
-															<h5>
-																<a href="#">${comment.mnickname }</a>
-															</h5>
-															<p class="date">
-																<fmt:formatDate value="${comment.rdate}"
-																	pattern="yyyy-MM-dd HH:mm:ss" />
-															</p>
-														</div>
-														<div class="reply-btn">
-															<a href="#" class="btn-reply text-uppercase">답글</a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</c:forEach> --%>
-						</div>
-
-						<div class="comment-form">
-							<h4>댓글 작성</h4>
-							<form class="form-contact comment_form" action="#"
-								id="commentForm">
-								<div class="row">
-									<div class="col-12">
-										<div class="form-group">
-											<textarea class="form-control w-100" name="comment"
-												id="comment" cols="30" rows="4" placeholder="댓글을 작성하세요"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-								<c:if test="${SessionMemail == null }">
-									<a href="javascript:needLogin()"
-										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
-								</c:if>
-								<script type="text/javascript">
-									function needLogin(){
-										
-										location.href="<%=application.getContextPath()%>/signin/content";
-									}
-								</script>
-								
-								<c:if test="${SessionMemail != null }">
-									<a href="javascript:commentWrite(${board.bno })"
-										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
-								</c:if>
-									
-									<script type="text/javascript">
-										function commentWrite(bno) {	
-											
-											var bno = ${board.bno};
-											// 데이터 검사	
-											var comment = $("#comment").val().trim();
-											if(comment == ""){
-												alert("2글자 이상 입력해야 합니다.");
-												return;
-											}	
-
-											// 댓글리스트 리로드
-											$.ajax({
-												url : "blogcommentlist",
-												method : "get",
-												data : {
-													bno:bno,
-													rcontent:comment
-												},
-												success : function(data) {
-													$("#comments-area").html(data);
-												}
-
-										/////댓글리스트 리로드///////////////////
-											});
-											$("#comment").val("");
-										}
-											
-											
-										
-									</script>
-								</div>
-							</form>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
 		</section>
 		<!-- Blog Area End -->
 	</main>

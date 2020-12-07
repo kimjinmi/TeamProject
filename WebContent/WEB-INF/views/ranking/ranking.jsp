@@ -110,11 +110,23 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 rc">이달의 랭킹을 카테고리별로
 					만나보세요</div>
-				<div class="col-md-12">
+				<div class="col-md-12 d-none d-sm-block">
 					<ul class="nev">
 						<c:forEach var="i" items="${category_list}">
 							<li class="nev">
 								<a class="link_tab" href="javascript:boardList(${i.cno})"> 
+									<span class="inner_link ">${i.ccontent}</span>
+								</a>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- ------------------------------------------------- -->
+				<div class="col-md-12 d-block d-sm-none">
+					<ul class="nev_sm">
+						<c:forEach var="i" items="${category_list}">
+							<li class="nev_sm">
+								<a class="link_tab_sm" href="javascript:boardList(${i.cno})"> 
 									<span class="inner_link ">${i.ccontent}</span>
 								</a>
 							</li>
@@ -149,21 +161,19 @@
 					<!-- 포스팅 view 시작 -->
 					<c:forEach var="board" items="${list}">
 						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="cat-icon" style="background-color: #F6F6F6; margin-bottom: 5%;">
+							<div class="cat-icon" style="background-color: #f6f6f6; margin-bottom: 5%;">
 								<div class="d-none d-sm-block" style="width: 100%;">
-									<img src="photodownload_board?fileName=${board.bimage}"
-										style="margin: 5% 5% 0% 5%; width: 90%; height: 350px;">
+									<img src="photodownload_board?fileName=${board.bimage}" style="margin: 5% 5% 0% 5%; width: 90%" height="275">
 								</div>
 								<div class="d-block d-sm-none" style="width: 100%;">
-									<img src="photodownload_board?fileName=${board.bimage}"
-										style="margin: 5% 5% 0% 5%; width: 90%; height: 200px;">
+									<img src="photodownload_board?fileName=${board.bimage}" style="margin: 5% 5% 0% 5%; width: 90%;" height="275">
 								</div>
 								<!-- [클릭] 게시글을 올린 회원 홈페이지로 이동 -->
 								<div class="cat-cap"
 									style="padding-top: 5%; padding-bottom: 7%; padding-left: 6%;">
 									<a
 										href="<%=application.getContextPath()%>/blog/blog?UserUrl=${board.murl}">
-										<img class="profile_rank" src="photodownload_member?fileName=${board.mmyimage}"/>
+										<img class="profile_rank rounded-circle" src="photodownload_member?fileName=${board.mmyimage}" width="60" height="60"/>
 									</a>
 									<!-- 이미지 -->
 									<div class="#">
@@ -172,6 +182,7 @@
 											<p id="home-title" style="margin-bottom: 0;">${board.btitle}</p>
 										</a>
 										<!-- 닉네임 -->
+										
 										<a
 											href="<%=application.getContextPath()%>/blog/blog?UserUrl=${board.murl}"
 											class="nick-name"> by <strong>

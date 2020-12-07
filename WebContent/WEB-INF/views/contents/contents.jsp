@@ -180,7 +180,7 @@
 										</dl> --%>
 										<dl class="list_data">
 											<dt
-												style="color: #909090; font-size: 0.9028vw; display: inline;">좋아요</dt>
+												style="color: #909090; font-size: 13px; display: inline;">좋아요</dt>
 											<dd class="ddcss" style="display: inline;">${board.blike}</dd>
 										</dl>
 									</div>

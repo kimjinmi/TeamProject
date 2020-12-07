@@ -17,22 +17,22 @@
 	float: left;
 	display: inline;
 	/* 프로필 사진 크기 */
-	width: 3.4722vw;
-	height: 3.4722vw;
 	margin-right: 3%;
-	border-radius: 50%;
+
 }
 
 /* 사용자 닉네임 §공주님§ */
 .nick-name {
-	font-size: 0.6944vw;
+	/* font-size: 0.6944vw; */
+	font-size: 10px;
 	color: #6F6F6F;
 }
 
 #home-title {
-	font-size: 0.9722vw;
+	/* font-size: 0.9722vw; */
+	font-size: 14px;
 	color: #5D5D5D;
-	width: 60%;
+	width: 70%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -72,7 +72,7 @@ ul.nev {
 ul li.nev {
 	display: inline;
 	padding: 1.3%;
-	font-size: 1.8750vw;
+	font-size: 27px;
 }
 
 ul.nev_sm {
@@ -96,7 +96,7 @@ ul li.nev_sm {
 
 .link_tab {
 	color: #484848;
-	font-size: 2.5000vw;
+	font-size: 36px;
 	font-family: "Noto Sans DemiLight", AppleSDGothicNeo-Regular,
 		"Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
 	line-height: 1;
@@ -151,7 +151,7 @@ ul li.nev_sm {
 .ddcss {
 	/* display: block; */
     /* float: left; */
-    font-size: 0.9028vw;
+    font-size: 13px;
     line-height: 0.9028vw;
     font-family: fontARD;
     color: #909090;
@@ -171,7 +171,7 @@ ul li.nev_sm {
 .box_desc_type {
 	/* width: 62.2222vw;
 	height: 9.8611vw; */
-	padding: 2.2222vw 0 1.2500vw;
+	padding: 1.7222vw 0 0.9500vw;
 }
 
 /* 게시물 사진 <img> css */
@@ -245,7 +245,7 @@ ul li.nev_sm {
 	position: relative;
 	max-width: 70%; 
 	padding: 0.4167vw 0 0.3472vw;
-	font-size: 1.3889vw;
+	font-size: 1.2889vw;
 	line-height: 1;
 	color: #000000;
 	font-weight: normal;
@@ -274,7 +274,7 @@ ul li.nev_sm {
 	left: 10.9722vw;
 	width: 39.1667vw;
 	max-height: 3.0556vw;
-	font-size: 0.9722vw;
+	font-size: 0.8722vw;
 	color: #777;
 	line-height: 1.5278vw;
 	padding: 0 0 0 0.0694vw;
@@ -299,12 +299,12 @@ ul li.nev_sm {
 /* <div> 태그 css */
 .info_g {
 	display: block;
-	bottom: 2.2222vw;
-	margin-left: 18%;
-	padding: 0.2083vw 0 0 0;
+	bottom: 2.0222vw;
+	margin-left: 17%;
+	padding: 0;
 	font-size: 0.9028vw;
 	line-height: 0.9722vw;
-	margin-top: 8%;
+	margin-top: 7%;
 }
 
 .info_g_sm {
@@ -322,11 +322,11 @@ wrap_thumb {
 
 /* <img> 사용자 이미지 css */
 .thumb_profile {
-	width: 2.0833vw;
-	height: 2.0833vw;
+	width: 30px;
+	height: 30px;
 	margin: 0;
 	float: left;
-	border-radius: 3.4722vw; 
+	border-radius: 50%; 
 }
 
 /* sm 사이즈 <img> 사용자 이미지 css */
@@ -349,6 +349,7 @@ wrap_thumb {
 	margin: 0 0 0 -0.0694vw;
 	color: #333;
 	text-decoration: none;
+	font-size: 0.6944vw;
 }
 
 /* sm 사이즈 <span> 사용자 닉네임 css */
@@ -365,6 +366,7 @@ wrap_thumb {
 }
 
 .txt_date {
+	font-size: 0.6944vw;
 	display: inline-block;
 	max-width: 9.5833vw;
     color: #333;
