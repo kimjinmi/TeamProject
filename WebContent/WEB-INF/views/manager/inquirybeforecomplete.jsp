@@ -15,7 +15,7 @@ text-overflow:ellipsis;
 
 function inquirybeforecomplete(pageNo) {
 	if(!pageNo) {
-		pageNO = 1;
+		pageNo = 1;
 	}
 	
 	$.ajax({
