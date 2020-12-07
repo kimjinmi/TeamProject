@@ -144,6 +144,11 @@ public class ManagerService {
 		return inquiry;
 	}
 
+	public int sendInquiry(int ino) {
+			int inquiry = inquirydao.sendByIno(ino);
+		return inquiry;
+	}
+
 
 
 }

@@ -28,9 +28,9 @@ function inquirybeforecomplete(pageNo) {
 }
 </script>
 
-<table style="text-align:center; width: 90%">
+<table style="text-align:center; width: 70%">
 	<colgroup>
-		<col width="10%">
+		
 		<col width="35%">
 		<col width="20%">
 		<col width="20%">
@@ -39,12 +39,12 @@ function inquirybeforecomplete(pageNo) {
 	</colgroup>
 	<thead>
 		<tr style="background-color:#FBF9FF;">
-			<th scope="col">No</th>
+			
 			<th scope="col">Title</th>
 			<th scope="col">Writer</th>
 			<th scope="col">Date</th>
 			<th scope="col"><i class="fa fa-plus-square" aria-hidden="true"></i></th>
-			<th scope="col"><i class="fa fa-trash" aria-hidden="true"></i></th>
+			
 		</tr>
 	</thead>
 	<%-- <td><a href="<%=application.getContextPath()%>/blog/blog_details?bno=${inquiryList.ititle}">${inquiryList.ititle}</a></td> --%>
@@ -52,12 +52,12 @@ function inquirybeforecomplete(pageNo) {
 	<c:forEach var="inquiryList" items="${inquiryList}">
 		<c:if test="${inquiryList.iresult == false}">
 			<tr style="border-spacing: 5px;">
-				<td>${inquiryList.ino}</td>
-				<td>${inquiryList.isubject}</td>
+				
+				<td><a href="javascript:inquirydetail(${inquiryList.ino})">${inquiryList.isubject}</a></td>
 				<td>${inquiryList.iemail}</td>
 				<td><fmt:formatDate value="${inquiryList.idate}" pattern="yyyy-MM-dd" /></td>
-				<td><a href="javascript:inquirydetail(${inquiryList.ino})"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td> 
-				<td><a href="javascript:inquirydelete(${inquiryList.ino})"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+				<td><a href="javascript:inquirysend(${inquiryList.ino})"><i class="fa fa-plus-square" aria-hidden="true"></i></a></td> 
+				
 			</tr>
 		</c:if>	
 	</c:forEach>

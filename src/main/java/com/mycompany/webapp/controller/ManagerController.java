@@ -199,6 +199,25 @@ public class ManagerController {
 		return "manager/inquirydetail";
 	}
 	
+	@RequestMapping("/inquirysend")
+	public void inquirysend(int ino, Model model, HttpServletResponse response) throws Exception {
+		
+		int inquiryList = service.sendInquiry(ino);
+		//model.addAttribute("inquiryList", inquiryList);
+		//JSON 생성 
+		JSONObject jsonObject = new JSONObject();
+		//배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
+	}
 /*	@RequestMapping("/inquirycomplete")
 	public String inquirycomplete(Model model) {
 		
