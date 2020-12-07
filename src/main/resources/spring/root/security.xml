@@ -62,7 +62,7 @@
 		WARN : org.springframework.beans.GenericTypeAwarePropertyDescriptor.
 		                          getWriteMethodForActualAccess() 발생하지만 무시
 		 -->
-		<security:session-management>
+		<!-- <security:session-management> -->
 			<!-- 
 			기존 브라우저는 강제 로그아웃, 다른 브라우저는 로그인
 			max-sessions: 최대 세션수
@@ -70,16 +70,16 @@
 			expired-url: 사용자의 액션이 있을 때 강제 로그아웃된 브라우저가 이동할 경로 
 			-->
 			
-			<security:concurrency-control max-sessions="1" 
+			<!-- <security:concurrency-control max-sessions="1" 
 										  error-if-maximum-exceeded="false" 
-										  expired-url="/signin/content"/>
+										  expired-url="/signin/content"/> -->
 			<!-- 
 			기존 브라우저는 로그인 유지, 다른 브라우저는 로그인되지 않고 에러 메시지 출력 
 				
 			<security:concurrency-control max-sessions="1" 
 										  error-if-maximum-exceeded="true"/> 
-			-->
-		</security:session-management>		
+	 
+		</security:session-management>	 -->	
 	</security:http>	
 	
 	<!-- #################### 인증 관리자 설정 #################### -->
