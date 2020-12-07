@@ -149,12 +149,12 @@ public class ManagerController {
 	
 	@RequestMapping("/inquirybeforecomplete")
 	public String inquirybeforecomplete(Model model, @RequestParam(defaultValue = "1")int pageNo) {
-		int totalRows = service.getTotalInquiryRows();
+		int totalRows = service.getBeforeInquiryRows();
 
 		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
 		List<InquiryDto> inquiryList = service.getInquiryList(pager);
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+		//List<CategoryDto> category = service.getcategorylist(); 
+		//model.addAttribute("category", category);
 		model.addAttribute("inquiryList", inquiryList);
 		model.addAttribute("pager", pager);
 		return "manager/inquirybeforecomplete";
@@ -162,12 +162,12 @@ public class ManagerController {
 	
 	@RequestMapping("/inquiryaftercomplete")
 	public String inquiryaftercomplete(Model model, @RequestParam(defaultValue = "1")int pageNo) {
-		int totalRows = service.getTotalInquiryRows();
+		int totalRows = service.getAfterInquiryRows();
 
 		PagerDto pager = new PagerDto(8, 5, totalRows, pageNo);
 		List<InquiryDto> inquiryList = service.getInquiryList(pager);
-		List<CategoryDto> category = service.getcategorylist(); 
-		model.addAttribute("category", category);
+		//List<CategoryDto> category = service.getcategorylist(); 
+		//model.addAttribute("category", category);
 		model.addAttribute("inquiryList", inquiryList);
 		model.addAttribute("pager", pager);
 		return "manager/inquiryaftercomplete";

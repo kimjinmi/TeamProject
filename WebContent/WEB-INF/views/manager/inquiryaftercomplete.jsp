@@ -73,10 +73,10 @@ function inquiryaftercomplete(pageNo) {
 					
 					<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 						<c:if test="${pager.pageNo == i}">
-							<a class="genric-btn primary small" href="javascript:inquiryaftercomplete()">${i}</a>
+							<a class="genric-btn primary small" href="javascript:inquiryaftercomplete(${i})">${i}</a>
 						</c:if>
 						<c:if test="${pager.pageNo != i}">
-							<a class="genric-btn primary-border small" href="javascript:inquiryaftercomplete()">${i}</a>
+							<a class="genric-btn primary-border small" href="javascript:inquiryaftercomplete(${i})">${i}</a>
 						</c:if>
 					</c:forEach>
 					<c:if test="${pager.groupNo <pager.totalGroupNo}">
