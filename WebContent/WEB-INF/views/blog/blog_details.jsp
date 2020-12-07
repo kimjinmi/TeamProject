@@ -419,8 +419,90 @@
 									</c:if>
 								</ul>
 							</div>
-<!-- 							
 						
+						
+						
+			
+						<div class="comments-area" id="comments-area" style="margin-top:20px">
+							
+						</div>
+
+						<div class="comment-form">
+							<c:if test="${SessionMemail != null }">
+								<c:if test="${SessionMemail != ''}">
+							<h4>댓글 작성</h4>
+							<form class="form-contact comment_form" action="#"
+								id="commentForm">
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+											<textarea class="form-control w-100" name="comment"
+												id="comment" cols="30" rows="4" placeholder="댓글을 작성하세요"></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+							
+									<!-- <a href="javascript:needLogin()"
+										class="button button-contactForm btn_1 boxed-btn">작성하기</a> -->
+										
+								
+								
+								<script type="text/javascript">
+									function needLogin(){
+										
+										location.href="<%=application.getContextPath()%>/signin/content";
+									}
+								</script>
+								
+								<c:if test="${SessionMemail != null}">
+									<c:if test="${SessionMemail != ''}">
+										<a href="javascript:commentWrite(${board.bno })"
+											class="button button-contactForm btn_1 boxed-btn">작성하기</a>
+									</c:if>
+								</c:if>
+									
+									<script type="text/javascript">
+										function commentWrite(bno) {	
+											
+											var bno = ${board.bno};
+											// 데이터 검사	
+											var comment = $("#comment").val().trim();
+											if(comment == ""){
+												alert("2글자 이상 입력해야 합니다.");
+												return;
+											}	
+
+											// 댓글리스트 리로드
+											$.ajax({
+												url : "blogcommentlist",
+												method : "get",
+												data : {
+													bno:bno,
+													rcontent:comment
+												},
+												success : function(data) {
+													$("#comments-area").html(data);
+												}
+
+										/////댓글리스트 리로드///////////////////
+											});
+											$("#comment").val("");
+										}
+											
+											
+										
+									</script>
+								</div>
+							</form>
+							</c:if>
+							</c:if>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
 		</section>
 		<!-- Blog Area End -->
 	</main>

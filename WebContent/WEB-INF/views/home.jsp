@@ -44,7 +44,8 @@
 	href="<%=application.getContextPath()%>/resources/assets/css/nice-select.css">
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/style.css">
-
+<link rel="stylesheet"
+	href="<%=application.getContextPath()%>/resources/rank/css/rank_page.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
