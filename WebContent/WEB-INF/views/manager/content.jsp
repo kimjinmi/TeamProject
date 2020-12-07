@@ -179,6 +179,7 @@
 														$("#beforeview").html(data);
 													}
 												});	
+												
 												$.ajax({
 													url:"inquiryaftercomplete",
 													success:function(data) {

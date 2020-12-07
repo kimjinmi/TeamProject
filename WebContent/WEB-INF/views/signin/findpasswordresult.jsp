@@ -56,7 +56,7 @@
 
 <body>
 	<!-- ? Preloader Start -->
-	<!-- <div id="preloader-active">
+<!-- 	<div id="preloader-active">
 		<div
 			class="preloader d-flex align-items-center justify-content-center">
 			<div class="preloader-inner position-relative">
@@ -115,47 +115,25 @@
 		 <div class="container">
 		 	
 		 	<div class="row">
-
-		 		
-
 		 		<div class="col-md-6">
 		 		<hr align="left" style="border: solid 1px black; width: 100%;">
 					<h3 class="text-heading" style="font-size: 30px;">비밀번호 변경</h3>
 					<p></p>
-					<p>새로운 비밀번호를 입력해주세요</p>
-						
-					<form method="post" action="findpasswordform">									
+					<p>입력하신 비밀번호로 변경이 완료되었습니다</p>
+						<div style="height: 30px;"></div>
+														
 					<!-- 이메일 입력 & 비밀번호 입력 시작 -->
-						<div class="input-group mb-3">
-             				<input type="password" class="form-control"  id="mpassword1" name="mpassword1"  
-             						placeholder='  새로운 비밀번호를 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  새로운 비밀번호를 입력하세요'" 
-             						style="height:45px; font-size:16px;">
-						</div>
+						<b>새로운 비밀번호로 로그인 해 주세요</b>
 						
-						<div class="input-group mb-3">
-             				<input type="password" class="form-control"  id="mpassword2" name="mpassword2"  
-             						placeholder='  비밀번호를 다시 입력하세요' onfocus="this.placeholder = ''" onblur="this.placeholder = '  비밀번호를 다시 입력하세요'" 
-             						style="height:45px; font-size:16px;">
-						</div>
+						<div style="height: 80px;"></div>	
 						
-						<div class="input-group mb-3" id="passwordresult"></div>
-						
-						<div class="button-group-area mt-40" style="font-size: 20px;">
-							<a class="genric-btn primary circle" href="javascript:passwordcheck()" name="submit" style="width: 100%;">비밀번호 변경</a>
-						</div>
-						
-						
-						
-						<div style="height: 10px;"></div>
+							<a class="genric-btn primary" href="<%=application.getContextPath()%>/signin/content" style="width: 100%;">SIGN IN</a>
+								<div style="height: 10px;"></div>
 						<span style="text-align: center; color: black;">
-							<ul class="blog-info-link">
-				        		
-				        		<li><a class="ex" href="findemail" style="color:black; font-size:7px;">이메일 찾기></a></li>       
-				                 <%-- 
-				             	 <li><a style="color: black;" href="<%=application.getContextPath()%>/signup/signupcheck">회원가입<i class="fa fa-angle-right" aria-hidden="true"></i></a></li> --%>
-				             </ul>
+							
 						</span>
-					</form>
+						
+					
 				</div>
 				
 				<div class="col-md-6">
@@ -256,39 +234,6 @@
 	<script
 		src="<%=application.getContextPath()%>/resources/assets/js/main.js"></script>
 
-	
-	<script type="text/javascript">
-
-		$('#mpassword2').keyup(function(){
-			var mpassword1 = $("#mpassword1").val().trim();
-			var mpassword2 = $("#mpassword2").val().trim();
-
-			if(mpassword1 != mpassword2){
-				$("#passwordresult").css('color','#f74242');
-				$("#passwordresult").text("※ 새비밀번호와 확인비밀번호가 일치하지않습니다");
-			}else{
-				$("#passwordresult").css('color','#7ad263');
-				$("#passwordresult").text("※ 새비밀번호와 확인비밀번호가 일치합니다");
-			}
-		})
-		
-		
-		function passwordcheck(){
-			$.ajax({
-				url:"passwordresult",
-				data:{memail: '${member.memail}' ,mpassword:$("#mpassword2").val().trim()},
-				success:function(data){
-					if(data.result == "success"){
-						location.href="findpasswordresult";
-					}
-				}
-			});
-			
-		}
-		
-	
-		
-	</script>
 
 </body>
 </html>
