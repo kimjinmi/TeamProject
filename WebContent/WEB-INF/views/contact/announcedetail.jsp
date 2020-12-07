@@ -80,10 +80,12 @@ function announcedelete(ano){
 				<a class="genric-btn primary small" href="javascript:announcedelete(${announce.ano})">삭제</a>
 			</c:if>
 		</c:if>	
-		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<a class="genric-btn primary small" href="javascript:announceedit(${announce.ano})">수정</a>
-			<a class="genric-btn primary small" href="javascript:announcedelete(${announce.ano})">삭제</a>
-		</sec:authorize>	
+		<c:if test="${announce.memail!=sessionMemail}">	
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<a class="genric-btn primary small" href="javascript:announceedit(${announce.ano})">수정</a>
+				<a class="genric-btn primary small" href="javascript:announcedelete(${announce.ano})">삭제</a>
+			</sec:authorize>	
+		</c:if>
 		</td>
 	</tr>
 </table>		
