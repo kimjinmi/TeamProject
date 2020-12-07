@@ -12,10 +12,11 @@
 				<div class="single-cat">
 					<div style="width: 100%; background-color: #fff;">
 						<div class="cat-icon"  style="padding-top: 1%; padding-top: 5%; margin-top:3%; margin-left: 5%; margin-right: 5%">
+								<a href="<%= application.getContextPath()%>/blog/blog_details?bno=${board.bno}"
+								class="blog_item_date" style="border: 1px solid #EAEAEA;">
 							<img class="card-img rounded-0" height="200"
-								src="boardphotodownload?fileName=${board.bimage}" alt=""> <a
-								href="<%=application.getContextPath() %>/blog/blog_details?bno="${board.bno}
-								class="blog_item_date" style="border: 1px solid #EAEAEA;"></a>
+								src="boardphotodownload?fileName=${board.bimage}" alt=""> 
+								</a>
 						</div>
 						<p class="home_p" style="font-weight: bold; padding-top: 4%; margin:0; text-align: center;">랭킹 ${status.count}위</p>
 						<div style="width: 88%; margin-left: 6%; margin-right: 6%;">
