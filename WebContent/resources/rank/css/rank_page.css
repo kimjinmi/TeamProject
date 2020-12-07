@@ -260,7 +260,7 @@ ul li.nev_sm {
 .list_data {
 	position: static;
 	/* overflow: hidden; */
-	padding: 0.2778vw 0 0;
+	padding: 0;
 	top: 2.1528vw;
 	right: 1.3194vw;
 	line-height: 1.5278vw;
