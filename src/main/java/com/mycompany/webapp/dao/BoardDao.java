@@ -235,5 +235,12 @@ public class BoardDao {
 		map.put("rcontent", rcontent);
 		sst.update("mybatis.mapper.board.commentModify", map);
 		
+	}
+
+
+	// home에 보이는 Ranking 순위 
+	public List<BoardDto> selectHomeAll() {
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.homeRanking");
+		return list;
 	} 
 }

@@ -89,7 +89,7 @@ iframe {
 
 </head>
 
-<body>
+<body onload="homeRanking()">
 	<!-- ? Preloader Start -->
 <%-- 	<div id="preloader-active">
 		<div
@@ -174,14 +174,25 @@ iframe {
 			</div>
 		</section>
 		<!-- slider Area End-->
-
+		<div id="homeRanking">
+			<script type="text/javascript">
+				function homeRanking() {
+					$.ajax({
+						url: "homeRanking",
+						success: function(data) {
+							$("#homeRanking").html(data);
+						}
+					});
+				}
+			</script>
+		</div>
 			<!--? video_start -->
 		<div class="video" style="margin-top: 5%;">
 			<div class="video-container">
-				<iframe width="100%" height="100%"
-					src="https://www.youtube.com/embed/eeiqjyYgPew"
-					frameborder="0"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				<iframe width="560" height="315" 
+					src="https://www.youtube.com/embed/sOcWhjbuKwk" 
+					frameborder="0" 
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
 					allowfullscreen></iframe>
 			</div>
 		</div>

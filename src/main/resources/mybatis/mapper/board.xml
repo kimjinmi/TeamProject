@@ -28,6 +28,17 @@
 		where murl=#{murl} and rownum &lt;=4
 		</select>	 	
 		
+		<!-- 영아 - home에 보이는 Ranking 순위 -->
+		<select id="homeRanking" resultType="board">
+			select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, murl, bimage
+			from ( select bno, btitle, bcontent, bdate, blike, murl, bimage
+			from board 
+			order by blike desc) 
+			where rownum &lt;=4
+		</select>
+		
+		
+		
 			<!-- ////////////////////////////////////영아////////////////////////////// -->
 	
 	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
