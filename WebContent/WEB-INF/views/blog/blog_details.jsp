@@ -65,12 +65,13 @@
  
 </head>
 
-<body onload="javascript:onload()">
+<body onload="javascript:onload('${member.murl}')">
 	<script type="text/javascript">
 	var heart__status = false;
-	function onload(){
+	function onload(murl){
 		
 		var bno = ${board.bno};
+		
 		
 		$.ajax({
 			url : "blogcommentlist",
@@ -96,6 +97,7 @@
 		
 		$.ajax({
 			url : "neighborlist",
+			data:{murl:murl},
 			success : function(data){
 				$("#neighborlist").html(data);	
 			}
