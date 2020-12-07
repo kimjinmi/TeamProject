@@ -116,7 +116,7 @@ public class BlogController {
 		
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
 		int existRows = -1;
-		if(SessionMurl != null) {
+		if(SessionMurl != null && SessionMurl != "") {
 			if(!SessionMurl.equals(UserUrl)){
 				existRows = service.neighorexist(UserUrl, memail);
 			}

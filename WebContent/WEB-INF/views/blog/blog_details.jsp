@@ -394,7 +394,7 @@
 												}
 											</script>		
 											<li style="margin-right: 20px;"><a href="javascript:boardDelete(${board.bno})" style="color: #999999; font-size: 14px;">삭제</a></li>
-											<li style="margin-right: 20px;"><a href="blog?UserUrl=${board.murl }" style="color: #999999; font-size: 14px;">목록</a></li>
+											<li style="margin-right: 20px;"><a href="blog?UserUrl=${board.murl}" style="color: #999999; font-size: 14px;">목록</a></li>
 											<script type="text/javascript">
 												function boardDelete(bno) {
 													if (confirm("정말 삭제하시겠습니까?") == true){  
@@ -419,142 +419,8 @@
 									</c:if>
 								</ul>
 							</div>
-<!-- 							<div class="navigation-area">
-								<div class="row">
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/preview.png" alt="">
-											</a>
-										</div>
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-left"></span>
-											</a>
-										</div>
-										<div class="detials">
-											<p>이전 게시물</p>
-											<a href="#">
-												<h4 style="color: #2d2d2d;">Space The Final Frontier</h4>
-											</a>
-										</div>
-									</div>
-									<div
-										class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-										<div class="detials">
-											<p>다음 게시글</p>
-											<a href="#">
-												<h4 style="color: #2d2d2d;">Telescopes 101</h4>
-											</a>
-										</div>
-										<div class="arrow">
-											<a href="#"> <span class="lnr text-white ti-arrow-right"></span>
-											</a>
-										</div>
-										<div class="thumb">
-											<a href="#"> <img class="img-fluid"
-												src="assets/img/post/next.png" alt="">
-											</a>
-										</div>
-									</div>
-								</div>
-							</div> -->
-						</div>
+<!-- 							
 						
-						<c:if test="${board.blinkcontent != null }">
-							<hr/ style="margin:12px; width:100%;">
-							<div class="blog-author" style="margin:0px; padding:12px;">
-								<div class="media align-items-center">
-								<%-- 	<img
-										src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
-										alt=""> --%>
-									<div class="media-body">
-									<a class="fa fa-external-link" style="color:black; font-size:20px; margin-right:12px;	"></a>
-										<a
-											href="https://${board.blinkcontent }"
-											target="_blank">
-											<h5> 추천 링크 :: 바로가기</h5>
-										</a>
-									</div>
-							</div>
-						</div>
-						
-						</c:if>
-			
-						<div class="comments-area" id="comments-area" style="margin-top:20px">
-							
-						</div>
-
-						<div class="comment-form">
-							<h4>댓글 작성</h4>
-							<form class="form-contact comment_form" action="#"
-								id="commentForm">
-								<div class="row">
-									<div class="col-12">
-										<div class="form-group">
-											<textarea class="form-control w-100" name="comment"
-												id="comment" cols="30" rows="4" placeholder="댓글을 작성하세요"></textarea>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-								<c:if test="${SessionMemail == null }">
-									<a href="javascript:needLogin()"
-										class="button button-contactForm btn_1 boxed-btn">작성하기</a>
-								</c:if>
-								<script type="text/javascript">
-									function needLogin(){
-										
-										location.href="<%=application.getContextPath()%>/signin/content";
-									}
-								</script>
-								
-								<c:if test="${SessionMemail != null}">
-									<c:if test="${SessionMemail != ''}">
-										<a href="javascript:commentWrite(${board.bno })"
-											class="button button-contactForm btn_1 boxed-btn">작성하기</a>
-									</c:if>
-								</c:if>
-									
-									<script type="text/javascript">
-										function commentWrite(bno) {	
-											
-											var bno = ${board.bno};
-											// 데이터 검사	
-											var comment = $("#comment").val().trim();
-											if(comment == ""){
-												alert("2글자 이상 입력해야 합니다.");
-												return;
-											}	
-
-											// 댓글리스트 리로드
-											$.ajax({
-												url : "blogcommentlist",
-												method : "get",
-												data : {
-													bno:bno,
-													rcontent:comment
-												},
-												success : function(data) {
-													$("#comments-area").html(data);
-												}
-
-										/////댓글리스트 리로드///////////////////
-											});
-											$("#comment").val("");
-										}
-											
-											
-										
-									</script>
-								</div>
-							</form>
-						</div>
-					</div>
-
-				</div>
-
-			</div>
 		</section>
 		<!-- Blog Area End -->
 	</main>
