@@ -4,7 +4,7 @@
 
 	<div class="container" style="margin-top: 5%;">
 		<div class="row">
-			<h1 class="widget_title home_h" style="color: #6C6C6C;">&nbsp;&nbsp;&nbsp;이달의 랭킹</h1>
+			<h1 class="widget_title home_h" style="color: #6C6C6C; font-size: 15px;">&nbsp;&nbsp;&nbsp;이달의 랭킹</h1>
 		</div>
 	<div class="row" style="background-color: #EAEAEA;  padding-bottom: 1%;">
 		<c:forEach var="board" items="${board}" varStatus="status">
