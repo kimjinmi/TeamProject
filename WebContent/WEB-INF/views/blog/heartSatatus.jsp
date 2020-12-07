@@ -29,19 +29,20 @@
 				// 까지 로그인 유저의 해당 게시글 좋아요 상태확인
 				
 				function heartbreaker(bno){
-						if(${SessiomMemail} == null){
-							/* $("#heartspan").toggle(); */
-							return
-						}
-					$.ajax({
-						url: "heartClick",
-						method:"post",
-						data:{bno:bno, heartCheck:${heartCheck}},
-						success:function(data){
-							onload();			
+						if('${SessionMemail}' == null || '${SessionMemail}' == ""){
 							
+							
+						}else{
+							$.ajax({
+								url: "heartClick",
+								method:"post",
+								data:{bno:bno, heartCheck:${heartCheck}},
+								success:function(data){
+									onload();			
+								}
+							});
 						}
-					});
+					
 				}
 	</script>
 	<!-- board.blike갯수 조사 -->
