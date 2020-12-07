@@ -313,7 +313,9 @@ public class BlogController {
 		  service.commentWrite(reply); 
 		  }
 			int bbno = reply.getBno();
+			logger.info("bbno : " + bbno);
 			List<ReplyDto> commentlist = service.commentList(bbno);
+			logger.info("commentList : " + commentlist.toString());
 			model.addAttribute("commentlist", commentlist);
 			String murl = (String) session.getAttribute("SessionMurl");
 			logger.info("왜 안나올까 : "+murl);

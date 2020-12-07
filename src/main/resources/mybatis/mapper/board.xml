@@ -176,7 +176,7 @@
       
         select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl, board.bno, member.mmyimage
 		from board, reply, member
-		where board.bno = reply.bno AND board.bno = 797 AND member.memail = reply.memail
+		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
 		order by rdate asc
 	</select>	
 	
