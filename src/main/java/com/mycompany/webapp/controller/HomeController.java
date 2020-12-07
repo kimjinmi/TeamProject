@@ -36,8 +36,14 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String content(HttpSession session, Model model, String memail) { //http://localhost:8080/teamproject
-		logger.info("메인페이지 로그인");
+		
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
+		logger.info("sessionMemail");
+		if(sessionMemail==null) {
+			session.setAttribute("SessionMnickname", "");
+			session.setAttribute("SessionMemail", "");
+			session.setAttribute("SessionMurl", "");
+		}
 		if(sessionMemail!=null) {
 			MemberDto member = service.selectbyMemail(sessionMemail);
 			model.addAttribute("member", member);
