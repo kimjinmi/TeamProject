@@ -58,10 +58,21 @@ public class ContactController {
 	}
 	
 	@RequestMapping("/contactform")
-	public void contactform(InquiryDto inquiry, HttpServletResponse response){
+	public void contactform(InquiryDto inquiry, HttpServletResponse response) throws IOException{
 		inquiry.setIresult(false);
 		service.inquirywrite(inquiry);
 		//service.inquirywrite(inquiry);
+		//JSON 생성
+		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // {"result" : "success"}
+		
+		//응답보내기
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json;charset=utf-8");
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 	
 	@GetMapping("/announcewrite")

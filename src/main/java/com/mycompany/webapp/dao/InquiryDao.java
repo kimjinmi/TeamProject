@@ -43,6 +43,11 @@ public class InquiryDao {
 		return inquiry;
 	}
 
+	public int sendByIno(int ino) {
+		int inquiry = sst.update("mybatis.mapper.inquiry.sendByIno", ino);
+		return inquiry;
+	}
+
 
 
 }

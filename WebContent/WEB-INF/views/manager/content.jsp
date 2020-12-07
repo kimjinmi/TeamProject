@@ -208,6 +208,17 @@
 													}
 												});
 											}
+											function inquirysend(ino) {
+												$.ajax({
+													url : "inquirysend",
+													data : {ino:ino},
+													success : function(data) {
+														if(data.result == "success") {
+															inquirylist();
+														}
+													}
+												});
+											}
 										</script>
 											
 									</li>
