@@ -139,6 +139,35 @@ ul li.nev_sm {
 	src: url("../font/도담.ttf");
 }
 
+.home_t {
+	text-align: center; 
+	font-family: "주아";
+	font-size: 14px;
+	color: #5A5A5A;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    width: 95%;
+    font-weight: bold;
+}
+
+.home_p {
+	font-family: "주아";
+	font-size: 12px;
+	color: #5A5A5A;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+}
+
+.home_h {
+	font-family: "주아";
+}
+
 /* contents.jsp css시작 */
 
 /* 게시된 시간, 카테고리 안보이게 */
