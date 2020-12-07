@@ -2,7 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <c:forEach var="board" items="${list}">
-	<div class="col-lg-12 col-md-12 d-none d-sm-block" style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
+	<div class="col-lg-12 col-md-12 d-none d-sm-block"
+		style="border-bottom: 1px solid #E7E7E7; padding-bottom: 2%;">
 		<a href="javascript:boardDetails(${board.bno})"
 			class="box_desc box_desc_type"> <!-- 게시물 이미지 --> <script
 				type="text/javascript">
@@ -22,7 +23,7 @@
 					</dl>
 					<%-- <dl class="list_data" style="margin-bottom: 0px">
 						<dt class="screen_out">게시된 시간</dt>
-						<dd class="ddcss"> ${board.bdate} </dd>
+						<dd class="ddcss">${board.bdate }</dd>
 					</dl> --%>
 					<dl class="list_data">
 						<dt
@@ -40,7 +41,7 @@
 					<!-- 사용자 이미지 -->
 					<span class="wrap_thumb"> <img class="thumb_profile"
 						src="photodownload_member?fileName=${board.mmyimage}">
-	
+
 					</span> <span class="txt_id">${board.mintro}</span> <span
 						class="txt_date">by ${board.mnickname}</span>
 				</div>
@@ -57,8 +58,8 @@
 						location.href = "<%=application.getContextPath()%>/blog/blog_details?bno="+ bno;
 					}
 				</script>
-			<div class="img_thumb">
-				<img class="thumb_g"
+			<div class="img_thumb_sm">
+				<img class="thumb_g_sm"
 					src="photodownload_board?fileName=${board.bimage}" />
 			</div> <!-- 게시물 타이틀, 내용 -->
 			<div>

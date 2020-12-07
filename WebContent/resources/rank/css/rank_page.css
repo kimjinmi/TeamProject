@@ -75,6 +75,19 @@ ul li.nev {
 	font-size: 1.8750vw;
 }
 
+ul.nev_sm {
+	list-style: none;
+	text-align: center;
+	padding-top: 8%;
+	padding-bottom: 5%;
+	width: 100%;
+}
+
+ul li.nev_sm {
+	display: inline;
+	padding: 1.3%;
+	font-size: 25px;
+}
 
 .rank {
 	display: inline;
@@ -83,7 +96,17 @@ ul li.nev {
 
 .link_tab {
 	color: #484848;
-	font-size: 2.5000vw;;
+	font-size: 2.5000vw;
+	font-family: "Noto Sans DemiLight", AppleSDGothicNeo-Regular,
+		"Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
+	line-height: 1;
+	height: 2.7778vw;
+	letter-spacing: -0.0833vw;
+}
+
+.link_tab_sm {
+	color: #484848;
+	font-size: 20px;
 	font-family: "Noto Sans DemiLight", AppleSDGothicNeo-Regular,
 		"Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
 	line-height: 1;
@@ -98,14 +121,14 @@ ul li.nev {
 	font-family: AppleSDGothicNeo-Regular;
 	font-weight: bold;
 	letter-spacing: -0.0833vw;
-	font-size: 1.7361vw;
+	font-size: 16px;
 }
 
 .rc {
 	letter-spacing: -0.1389vw;
 	margin-left: 16%;
 	color: #3D3D3D;
-	font-size: 1.5278vw;
+	font-size: 15px;
 	font-family: "Noto Sans DemiLight", AppleSDGothicNeo-Regular,
 		"Malgun Gothic", "맑은 고딕", dotum, 돋움, sans-serif;
 	/* letter-spacing: -0.0833vw; */
@@ -164,9 +187,28 @@ ul li.nev {
 	margin: 0 0 0 3.1944vw;
 }
 
+.img_thumb_sm {
+	overflow: hidden;
+	padding: 1.9444vw 0 0.0694vw 6.3889vw;
+	display: block;
+	float: right;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	margin: 0 0 0 3.1944vw;
+}
+
 .thumb_g {
 	width: 8.8889vw; 
 	height: 8.8889vw;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.thumb_g_sm {
+	width: 50px; 
+	height: 50px;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -219,7 +261,7 @@ ul li.nev {
 	white-space: nowrap;
 	 width: 80%;
 	padding: 0.4167vw 0 0.3472vw;
-	font-size: 1.3889vw;
+	font-size: 14px;
 	color: #000000;
 
 }
@@ -249,7 +291,7 @@ ul li.nev {
 	 text-overflow: ellipsis;
 	white-space: nowrap;
 	 width: 80%;
-	font-size: 0.9722vw;
+	font-size: 11px;
 	color: #777;
 }
 
@@ -289,8 +331,8 @@ wrap_thumb {
 
 /* sm 사이즈 <img> 사용자 이미지 css */
 .thumb_profile_sm {
-	width: 7%;
-	height: 7%;
+	width: 20px;
+	height: 20px;
 	margin-right: 2%;
 	float: left;
 	border-radius: 50%; 
@@ -313,6 +355,7 @@ wrap_thumb {
 .txt_id_sm {
 	display: inline-block;
 	max-width: 17.3611vw;
+	font-size: 9px;
 	vertical-align: top;
 	white-space: nowrap;
 	text-overflow: ellipsis;

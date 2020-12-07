@@ -110,10 +110,21 @@
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 rc">블로그 세상 속 다양한
 					이야기들을 만나보세요</div>
-				<div class="col-md-12">
+				<div class="col-md-12 d-none d-sm-block">
 					<ul class="nev">
 						<c:forEach var="i" items="${category_list}">
 							<li class="nev"><a class="link_tab"
+								href="javascript:boardList(${i.cno})"> <span
+									class="inner_link">${i.ccontent}</span>
+							</a></li>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- ------------------------------------------------- -->
+				<div class="col-md-12 d-block d-sm-none">
+					<ul class="nev_sm">
+						<c:forEach var="i" items="${category_list}">
+							<li class="nev_sm"><a class="link_tab_sm"
 								href="javascript:boardList(${i.cno})"> <span
 									class="inner_link">${i.ccontent}</span>
 							</a></li>
@@ -200,8 +211,8 @@
 											location.href = "<%=application.getContextPath()%>/blog/blog_details?bno="+ bno;
 										}
 									</script>
-								<div class="img_thumb">
-									<img class="thumb_g"
+								<div class="img_thumb_sm">
+									<img class="thumb_g_sm"
 										src="photodownload_board?fileName=${board.bimage}" />
 								</div> <!-- 게시물 타이틀, 내용 -->
 								<div>
