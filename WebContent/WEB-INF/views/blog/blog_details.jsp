@@ -421,7 +421,25 @@
 								</ul>
 							</div>
 						
+						<c:if test="${board.blinkcontent != null }">
+							<hr/ style="margin:12px; width:100%;">
+							<div class="blog-author" style="margin:0px; padding:12px;">
+								<div class="media align-items-center">
+								<%-- 	<img
+										src="<%=application.getContextPath()%>/resources/assets/img/elements/f1.jpg"
+										alt=""> --%>
+									<div class="media-body">
+									<a class="fa fa-external-link" style="color:black; font-size:20px; margin-right:12px;	"></a>
+										<a
+											href="https://${board.blinkcontent }"
+											target="_blank">
+											<h5> 추천 링크 :: 바로가기</h5>
+										</a>
+									</div>
+							</div>
+						</div>
 						
+						</c:if>
 						
 			
 						<div class="comments-area" id="comments-area" style="margin-top:20px">
