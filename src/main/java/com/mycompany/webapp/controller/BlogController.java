@@ -126,13 +126,12 @@ public class BlogController {
 		
 		
 		// 영아 - catelist, likelist
-		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 				// 영아
-		List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아
-		MemberDto member = service.getMimage(UserUrl); 									// UserUrl을 가지고 유저 이미지를 들고온다
-		/* model.addAttribute("list", list); */
-		model.addAttribute("catelist", catelist);													 // 영아
+		List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 	
+		List<BoardDto> likelist = service.bLikeList(UserUrl);			
+		MemberDto member = service.getMimage(UserUrl); 	// UserUrl을 가지고 유저 이미지를 들고온다
+		model.addAttribute("catelist", catelist);		
+		model.addAttribute("likelist", likelist);		
 		model.addAttribute("member", member);	
-		model.addAttribute("likelist", likelist);													// 영아
 		return "blog/blog";
 	}
 

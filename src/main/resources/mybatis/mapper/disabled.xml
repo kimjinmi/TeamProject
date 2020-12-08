@@ -16,11 +16,10 @@
 	</select>
 
 	<select id="DisabledPageList" resultType="disabled">
-        	SELECT dno, memail, dreason, ddate, mmyimage, mnickname
-		FROM (
-			SELECT rownum as rnum, dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
-			FROM disabled d, member m
-			WHERE d.memail = m.memail and rownum &lt;=#{endRowNo}
+     	SELECT dno, memail, dreason, ddate, mmyimage, mnickname
+		FROM (SELECT rownum as rnum, dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
+		FROM disabled d, member m
+		WHERE d.memail = m.memail and rownum &lt;=#{endRowNo}
 		)
 		WHERE rnum &gt;=#{startRowNo}
 	</select>	

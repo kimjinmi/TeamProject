@@ -33,7 +33,7 @@
 					<input type="hidden" id="memail${status.index}"  name="memail" value="${mabled.memail}">
 					<input type="text" id="dreason${status.index}" name="dreason" placeholder="해당 회원을 비활성화 하려는 이유를 작성하세요."
 								onblur="this.placeholder = 'Please write down the reason.'"
-								class="single-input" style="font-weight: bold;"><span id="dreasonError${status.index}"></span>
+								class="single-input" style="font-weight: bold;"><span id="dreasonError${status.index}" style="color: red; font-weight: bold;"></span>
 				</div>
 				<li style="padding-left: 10%;"><a href="javascript:disabledclick(${status.index})" class="list-group-item"
 					style="color: red; display: inline-block; padding-left: 10%; padding-right: 10%;">
