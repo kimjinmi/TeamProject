@@ -176,7 +176,7 @@
 				        								<fmt:parseNumber var="end" value="${board.bdate.time}" integerOnly="true"/>
 															<c:if test="${((start/(1000*60))-(end/(1000*60)))<60}">
 																<c:if test="${((start/(1000*60))-(end/(1000*60)))<1}">
-																	방금전
+																	<dd class="ddcss">방금전</dd>
 																</c:if>
 																<c:if test="${((start/(1000*60))-(end/(1000*60)))>=1}">
 																	<dd class="ddcss"><fmt:formatNumber type="dateDiff"  pattern="0" value="${(start/(1000*60))-(end/(1000*60))}"/>분전</dd>
