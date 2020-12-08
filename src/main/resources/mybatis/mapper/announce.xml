@@ -29,6 +29,7 @@
 		WHERE ano=#{ano}
 	</select>
 	
+	<!-- 조회수 -->
 	<update id="updateahitnum" parameterType="int">
 		UPDATE announce 
 		SET ahitnum =(SELECT ahitnum FROM announce WHERE ano=#{ano})+1 

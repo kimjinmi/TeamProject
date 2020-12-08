@@ -46,7 +46,7 @@ public class SignupController {
 	}
 	
 	@RequestMapping("/signupcheck")
-	public String signupcheck(@ModelAttribute("creatememberdto")MemberDto member) { //http://localhost:8080/teamproject
+	public String signupcheck(@ModelAttribute("creatememberdto")MemberDto member) { 
 		
 		return "signup/signupcheck";
 	}
@@ -70,7 +70,6 @@ public class SignupController {
 	@RequestMapping("/signup")
 	public String signup(@ModelAttribute("creatememberdto") MemberDto member, Model model) {
 		model.addAttribute("member", member);
-		
 		return "signup/signup";
 	}
 	
@@ -82,9 +81,9 @@ public class SignupController {
 	}
 	
 	@RequestMapping("/nicknamecheck")
-	public void nicknamecheck(String mnicknamecheck, @ModelAttribute("creatememberdto") MemberDto member, Model model, HttpServletResponse response) throws Exception {
+	public void nicknamecheck(String mnicknamecheck, @ModelAttribute("creatememberdto") MemberDto member, 
+			Model model, HttpServletResponse response) throws Exception {
 		int row = service.nicknamecheck(mnicknamecheck);
-		
 		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
 		if(row == 1) {
 			jsonObject.put("result", "fail");
@@ -92,9 +91,7 @@ public class SignupController {
 			member.setMnickname(mnicknamecheck);
 			jsonObject.put("result", "success");
 		}
-			
 			String json = jsonObject.toString(); // {"result" : "success"}
-			
 			model.addAttribute("member", member);	
 			//응답보내기
 			PrintWriter out = response.getWriter();
