@@ -229,19 +229,19 @@
                      <aside class="single_sidebar_widget popular_post_widget">
                            <h3 class="widget_title" style="color: #2d2d2d;">Be Liked Posting</h3>
                            <c:forEach var="likelist" items="${likelist}">
-                           <div class="media post_item">    
-                               <i class="fas fa-heart" style="color: red;padding-top: 3px; padding-right: 3px;"></i>
-                                <h3 style="color: red;"> like : ${likelist.blike} </h3>                
-                                 <div class="media-body">
-                                	<a href="javascript:boardDetails(${likelist.bno})"><h3 style="color: #2d2d2d;">
-                                	${likelist.btitle}</h3> </a>
-		                          	<script type="text/javascript">
-										function boardDetails(bno) {
-											location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
-										}
-									</script>
-										</div>
+	                           <div class="media post_item">    
+	                               <i class="fas fa-heart" style="color: red;padding-top: 3px; padding-right: 3px;"></i>
+	                                <h3 style="color: red;"> like : ${likelist.blike} </h3>                
+	                                 <div class="media-body">
+	                                	<a href="javascript:boardDetails(${likelist.bno})"><h3 style="color: #2d2d2d;">
+	                                	${likelist.btitle}</h3> </a>
+			                          	<script type="text/javascript">
+											function boardDetails(bno) {
+												location.href = "<%=application.getContextPath()%>/blog/blog_details?bno=" + bno;
+											}
+										</script>
 									</div>
+								</div>
                            </c:forEach>
                      </aside>
        				<c:if test="${SessionMurl != null}">
