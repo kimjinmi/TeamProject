@@ -220,13 +220,6 @@ public class BlogController {
 		is.close();
 	}	
 
-/*	    PrintWriter printWriter = response.getWriter();
-	    String fileUrl = request.getContextPath() + "/images/" + fileName;
-	    printWriter.println("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + fileUrl
-	            + "','이미지가 업로드되었습니다.')" + "</script>");
-	    printWriter.flush();
-	}*/
-
 	@PostMapping("/boardDelete")
 	public void boardDelete(int bno, HttpServletResponse response) throws IOException {
 		// 게시물 삭제
@@ -266,13 +259,12 @@ public class BlogController {
 			board.setBimage(saveFileName);
 		}
 		
-		// 서비스를 이용해서 게시물 수정
 		service.boardUpdate(board);
 
 		// JSON 생성
-		JSONObject jsonObject = new JSONObject(); // {} -> jsonObject, [] -> jsonArray
+		JSONObject jsonObject = new JSONObject(); 
 		jsonObject.put("result", "success");
-		String json = jsonObject.toString(); // { "result" : "success" } 가 들어가 있다.
+		String json = jsonObject.toString(); 
 
 		// JSON 응답 보내기
 		PrintWriter out = response.getWriter();
@@ -295,7 +287,6 @@ public class BlogController {
 		
 		int fileSize = (int) new File(saveFilePath).length();
 		response.setContentLength(fileSize);
-		
 		OutputStream os = response.getOutputStream();
 		FileCopyUtils.copy(is, os); 
 		os.flush();

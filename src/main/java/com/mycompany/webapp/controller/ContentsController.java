@@ -31,9 +31,9 @@ public class ContentsController {
 	
 	@GetMapping("/contents")
 	public String boardList(Model model) {
-		logger.info("실행");
 		List<BoardDto> list = service.getBoardList();
 		List<CategoryDto> category_list = service.getCategoryList(); 
+		
 		model.addAttribute("list", list);
 		model.addAttribute("category_list", category_list);
 		return "contents/contents";
@@ -41,15 +41,14 @@ public class ContentsController {
 	
 	@GetMapping("/boardList")
 	public String life(int cno, Model model) {
-		List<BoardDto> list = service.getBoardListCno(cno); // 서비스에 BoardList를 달라고 요청
+		List<BoardDto> list = service.getBoardListCno(cno);
 		model.addAttribute("list", list); 
 		return "contents/boardList";
 	}
+	
 	@GetMapping("/photodownload_board")
 	public void photodownload_board(String fileName, HttpServletResponse response, HttpServletRequest request)
 			throws Exception {
-		logger.info("fileName: " + fileName);
-		
 		String saveFilePath = "C:/temp/projectimage/board/" + fileName;
 		InputStream is = new FileInputStream(saveFilePath);
 		
@@ -59,7 +58,6 @@ public class ContentsController {
 
 		int fileSize = (int) new File(saveFilePath).length(); // 파일 사이즈 얻기
 		response.setContentLength(fileSize);
-
 		OutputStream os = response.getOutputStream();
 		FileCopyUtils.copy(is, os);
 		os.flush();
@@ -96,6 +94,4 @@ public class ContentsController {
 		 model.addAttribute("board", board);
 		return "blog/blog_details";
 	}
-
-
 }
