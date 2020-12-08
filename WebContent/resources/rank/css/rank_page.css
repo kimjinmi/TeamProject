@@ -369,7 +369,7 @@ wrap_thumb {
 /* <span> 사용자 닉네임 css */
 .txt_id {
 	display: inline-block;
-	max-width: 17.3611vw;
+	max-width: 80%;
 	padding: 0.3472vw 0 0 0.8333vw;
 	vertical-align: top;
 	white-space: nowrap;
