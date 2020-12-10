@@ -83,6 +83,17 @@ public class BlogService {
 		return list;
 	}
 		
+		//이웃 리스트
+	public int neighborlistRows(String memail) {
+		int row = neighborDao.myNeighborCount(memail);
+		return row;
+	}
+
+	public List<NeighborDto> getNeighborList(PagerDto pager) {
+		List<NeighborDto> list = neighborDao.selectByPageNeList(pager);
+		return list;
+	}
+	
 	//-----------------------------------------------영아--------------------------------------------------//
 	
 	public List<ReplyDto> commentList(int bno) {
@@ -179,15 +190,6 @@ public class BlogService {
 		return list;
 	}
 
-	public int neighborlistRows(String memail) {
-		int row = neighborDao.myNeighborCount(memail);
-		return row;
-	}
-
-	public List<NeighborDto> getNeighborList(PagerDto pager) {
-		List<NeighborDto> list = neighborDao.selectByPageNeList(pager);
-		return list;
-	}
 
 	public void commentModify(int rno, String rcontent) {
 		boardDao.commentModify(rno, rcontent);

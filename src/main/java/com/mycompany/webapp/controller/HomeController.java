@@ -94,7 +94,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	// home에 보이는 Ranking 순위 
+	// 영아 -  home에 보이는 Ranking 순위 
 	@RequestMapping("/homeRanking")
 	public String homeRanking(Model model) {
 		List<BoardDto> bRanking = service.getHomeRanking();
