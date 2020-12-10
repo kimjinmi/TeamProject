@@ -19,6 +19,7 @@
 		
 			<!-- ////////////////////////////////////영아////////////////////////////// -->
 		
+		
 		<!-- 진미 : 카테고리랑 카테고리별 개수 구하는 쿼리 -->
 		<select id="selectAllCount" resultType="category">	
 			SELECT cno, ccontent, ccount
@@ -29,6 +30,9 @@
 				)
 			ORDER BY cno ASC
 		</select>
+		
+		
+		
 		<!-- 진미 : 카테고리 추가 삭제 변경 -->
 		<insert id="insert" parameterType="String">
 			INSERT INTO category(cno, ccontent)

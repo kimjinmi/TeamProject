@@ -230,8 +230,8 @@
 
 <!--  댓글 입력값 -->
 	<insert id="commentinsert" parameterType="reply">
-		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
-		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
+		insert into reply(rno, rcontent, memail, bno, rdate)
+		values (seq_reply_rno.nextval, #{rcontent}, #{memail}, #{bno}, sysdate)
 	</insert>
 <!--  댓글 입력 -->	
 
@@ -325,12 +325,20 @@
 		delete from liked where bno=#{bno} AND memail = #{sessionMemail}
 	</delete>
 	
+	
+	
+	
+	
 	<!-- search 이용 -->
 	<select id="userBoardSearchCount" parameterType="search" resultType="int">
 		SELECT count(*)
 		FROM board b, category c
 		WHERE b.cno = c.cno and ${value} like '%'|| #{search}||'%'
 	</select>
+	
+	
+	
+	
 	
 	<select id="searchList" parameterType="map" resultType="board">
 		select * from board where btitle like '%' ||  #{searchContent} || '%'  OR bcontent like '%' ||  #{searchContent} || '%'
