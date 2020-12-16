@@ -31,7 +31,6 @@ public class RankingController {
 	
 	@GetMapping("/ranking")
 		public String boardList(Model model) {
-			logger.info("실행");	
 			List<BoardDto> list = service.getBoardList(); 
 			List<CategoryDto> category_list = service.getCategoryList(); 
 			model.addAttribute("list", list); 

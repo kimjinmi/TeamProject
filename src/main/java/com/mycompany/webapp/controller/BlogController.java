@@ -160,7 +160,6 @@ public class BlogController {
 			attach.transferTo(new File("C:/temp/projectimage/board/" + saveFileName));
 			board.setBimage(saveFileName);
 		}
-		
 		String SessionMurl =(String) session.getAttribute("SessionMurl");
 		board.setMurl(SessionMurl);
 		board.setBlike(0);
@@ -175,8 +174,6 @@ public class BlogController {
 		out.println(json);
 		out.flush();
 		out.close();
-		
-
 	}
 	
 	@RequestMapping("/upload")

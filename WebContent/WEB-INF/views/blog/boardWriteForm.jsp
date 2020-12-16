@@ -42,7 +42,7 @@
 				<input id="memail" type="text" name="memail" class="form-control"
 					style="height: 45px; font-size: 16px;"
 					<c:if test="${sessionMemail!=null}">value="${sessionMemail}"</c:if>
-					<c:if test="${sessionMemail==null}">value="세션 연결좀ㅋ"</c:if> readonly>
+					<c:if test="${sessionMemail==null}">value="세션 연결"</c:if> readonly>
 			</div>
 			<!-- 작성자 입력 끝 (board.mnickname) -->
 			<hr />

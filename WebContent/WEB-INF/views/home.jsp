@@ -137,7 +137,6 @@ iframe {
 		<!--? slider Area Start-->
 		<section class="slider-area ">
 			<div class="slider-active">
-
 				<div id="demo" class="carousel slide" data-ride="carousel">
 					<ul class="carousel-indicators">
 						<li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -146,22 +145,15 @@ iframe {
 					</ul>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<!--  출처: <Pinterest> '땡스아트' 
-								   출처: <크라우드픽> '@woocat'  -->
-							<img
-								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_5.png"
-								width="100%">
+							<!--  출처: <Pinterest> '땡스아트', <크라우드픽> '@woocat'  -->
+							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_5.png" width="100%">
 						</div>
 						<div class="carousel-item">
 							<!-- 출처: [아이패드] PNGEGG -->
-							<img
-								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_11.png"
-								width="100%">
+							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_11.png" width="100%">
 						</div>
 						 <div class="carousel-item">
-							<img
-								src="<%=application.getContextPath()%>/resources/assets/img/hero/image_6.png"
-								width="100%"/>
+							<img src="<%=application.getContextPath()%>/resources/assets/img/hero/image_6.png" width="100%"/>
 						</div> 
 					</div>
 					 <a class="carousel-control-prev" href="#demo" data-slide="prev">
@@ -171,7 +163,6 @@ iframe {
 					    <span class="carousel-control-next-icon"></span>
 					  </a>
 				</div>
-
 			</div>
 		</section>
 		<!-- slider Area End-->
