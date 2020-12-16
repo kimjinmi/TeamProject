@@ -20,19 +20,19 @@ import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class BlogService {
-	
+
 	@Resource
 	private BoardDao boardDao;
-		
+
 	@Resource
 	private CategoryDao categoryDao;
-	
+
 	@Resource
 	private ReplyDao replyDao;
-	
+
 	@Resource
 	private MemberDao memberDao;
-	
+
 	@Resource
 	private NeighborDao neighborDao;
 
@@ -40,7 +40,7 @@ public class BlogService {
 		BoardDto board = boardDao.selectByBno(bno);
 		return board;
 	}
-	
+
 	/*public List<CategoryDto> getBoardList() {		//controller에서 호출함
 			List<CategoryDto> list = categoryDao.selectAll();			//selectAll을 호출함 - ch14memberDao에서 만들어줌
 			return list;
@@ -51,40 +51,51 @@ public class BlogService {
 	 * 들어옴(memail자리에) List<BoardDto> list = boardDao.selectUserBoard(pager); return
 	 * list; }
 	 */
-	
-	public List<BoardDto> getBoardList(PagerDto pager) {										//userurl이 들어옴(memail자리에)
+
+	public List<BoardDto> getBoardList(PagerDto pager) { // userurl이 들어옴(memail자리에)
 		List<BoardDto> list = boardDao.selectUserBoard(pager);
 		return list;
 	}
-	
-	//-----------------------------------------------영아--------------------------------------------------//
-	
-				//카테고리 리스트
-	public List<CategoryDto> categoryList() {												
+
+	// -----------------------------------------------영아--------------------------------------------------//
+
+	// 카테고리 리스트
+	public List<CategoryDto> categoryList() {
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
-	
-			// 내 블로그 내의 카테고리 리스트
-	public List<CategoryDto> categoryListMurl(String UserUrl) {													
+
+	// 내 블로그 내의 카테고리 리스트
+	public List<CategoryDto> categoryListMurl(String UserUrl) {
 		List<CategoryDto> list = categoryDao.selectMurl(UserUrl);
 		return list;
 	}
-	
-			//보드 게시물 / 이메일 & cno 가 맞을 때
+
+	// 보드 게시물 / 이메일 & cno 가 맞을 때
 	public List<BoardDto> bcno(int cno, String userUrl) {
-			List<BoardDto> list = boardDao.categoryListLink(cno, userUrl);
-			return list;
-		}
-	
-		//나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
-	public List<BoardDto> bLikeList(String userUrl) {												
+		List<BoardDto> list = boardDao.categoryListLink(cno, userUrl);
+		return list;
+	}
+
+	// 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
+	public List<BoardDto> bLikeList(String userUrl) {
 		List<BoardDto> list = boardDao.selectBLikeList(userUrl);
 		return list;
 	}
-		
-	//-----------------------------------------------영아--------------------------------------------------//
-	
+
+	// 이웃 리스트
+	public int neighborlistRows(String memail) {
+		int row = neighborDao.myNeighborCount(memail);
+		return row;
+	}
+
+	public List<NeighborDto> getNeighborList(PagerDto pager) {
+		List<NeighborDto> list = neighborDao.selectByPageNeList(pager);
+		return list;
+	}
+
+	// -----------------------------------------------영아--------------------------------------------------//
+
 	public List<ReplyDto> commentList(int bno) {
 		List<ReplyDto> list = replyDao.selectBoardComment(bno);
 		return list;
@@ -132,13 +143,13 @@ public class BlogService {
 		return row;
 	}
 
-	//-------------진미 친구구현
+	// -------------진미 친구구현
 	public int neighorexist(String userUrl, String memail) {
 		int existRows = neighborDao.neighorexist(userUrl, memail);
 		return existRows;
 	}
 
-	//친구추가
+	// 친구추가
 	public void addneighbor(NeighborDto neighbor) {
 		neighborDao.insertneighbor(neighbor);
 	}
@@ -152,12 +163,12 @@ public class BlogService {
 		BoardDto board = boardDao.selectContentBno(bno);
 		return board;
 	}
-	
+
 	// 게시물 수정 update (선)
 	public void boardUpdate(BoardDto board) {
 		boardDao.update(board);
 	}
-	
+
 	public void likeinfo(int bno, String sessionMemail) {
 		boardDao.likeinfo(bno, sessionMemail);
 	}
@@ -179,19 +190,10 @@ public class BlogService {
 		return list;
 	}
 
-	public int neighborlistRows(String memail) {
-		int row = neighborDao.myNeighborCount(memail);
-		return row;
-	}
-
-	public List<NeighborDto> getNeighborList(PagerDto pager) {
-		List<NeighborDto> list = neighborDao.selectByPageNeList(pager);
-		return list;
-	}
 
 	public void commentModify(int rno, String rcontent) {
 		boardDao.commentModify(rno, rcontent);
-		
+
 	}
 
 }

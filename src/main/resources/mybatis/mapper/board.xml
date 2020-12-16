@@ -348,4 +348,3 @@
 			WHERE rnum &gt;= #{startRowNo}
 	</select>
 </mapper>
-

@@ -143,7 +143,18 @@ public class BlogController {
 			return "blog/categoryListLinkBoard";
 		}
 
-
+	//영아 - 이웃리스트
+	@RequestMapping("/neighborlist")
+	public String neighborlist(@RequestParam(defaultValue="1")int pageNo, HttpSession session, Model model) {
+		String memail = (String) session.getAttribute("sessionMemail");
+		int totalRows = service.neighborlistRows(memail);
+		PagerDto pager = new PagerDto(memail, 4, 4, totalRows, pageNo);
+		List<NeighborDto> list = service.getNeighborList(pager);
+		model.addAttribute("list", list);
+		model.addAttribute("totalRows", totalRows);
+		model.addAttribute("pager", pager);
+		return "blog/neighborlist";
+	}
 	
 	//--------------------------- (선) 게시물 쓰기 시작 -------------------------
 	@GetMapping("/boardWrite")
@@ -455,18 +466,6 @@ public class BlogController {
 		List<BoardDto> list = service.searchList(searchContent, memberUrl);
 		model.addAttribute("list", list);
 		return "blog/blogList";
-	}
-	
-	@RequestMapping("/neighborlist")
-	public String neighborlist(@RequestParam(defaultValue="1")int pageNo, HttpSession session, Model model) {
-		String memail = (String) session.getAttribute("sessionMemail");
-		int totalRows = service.neighborlistRows(memail);
-		PagerDto pager = new PagerDto(memail, 4, 4, totalRows, pageNo);
-		List<NeighborDto> list = service.getNeighborList(pager);
-		model.addAttribute("list", list);
-		model.addAttribute("totalRows", totalRows);
-		model.addAttribute("pager", pager);
-		return "blog/neighborlist";
 	}
 	
 	@PostMapping("/commentModify")

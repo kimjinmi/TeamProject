@@ -44,7 +44,7 @@
 	
 
 	<insert id="addComent" parameterType="int">
-		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
-		valuse(seq_reply_rno.nextval, #{rcontent}, #{rno}, #{meamil}, #{bno}, sysdate )
+		insert into reply(rno, rcontent, memail, bno, rdate)
+		valuse(seq_reply_rno.nextval, #{rcontent}, #{meamil}, #{bno}, sysdate)
 	</insert>
 </mapper>
