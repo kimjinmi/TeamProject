@@ -20,7 +20,7 @@
 
 
 **:floppy_disk:DATABASE:floppy_disk:**
-![database](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/images/database.PNG)
+![database](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/database.PNG)
 
 **:mag_right:PREVIEW:mag_right:**  
 :bulb: HOME
