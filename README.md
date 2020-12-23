@@ -1,4 +1,5 @@
 ### :office:KOSA FINAL PROJECT : HOBBYS(취미 생활 기록 및 공유 플랫폼)
+:calendar:2020.11.01 ~ 2020.12.09
 
 **:bust_in_silhouette:MEMBER**  
 [JINMI KIM](https://github.com/kimjinmi)  
@@ -7,8 +8,6 @@
 [SUNMYOUNG CHO](https://github.com/aodrhfk)  
 [SEON LEE](https://github.com/2SunE)  
 
-
-**:floppy_disk:DATABASE**
 
 
 **:computer:USE TOOL**  
@@ -19,3 +18,7 @@
 - WAS : Tomcat 9.0  
 - IDE : JDK 1.8.0, Eclipse IDE for Java EE developers 
 - DataBase : Oracle Database 11g  
+
+
+**:floppy_disk:DATABASE**
+![database](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/images/database.PNG)
