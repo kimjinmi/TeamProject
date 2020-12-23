@@ -22,33 +22,33 @@
 **:floppy_disk:DATABASE:floppy_disk:**
 ![database](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/images/database.PNG)
 
-**:mag_right:PREVIEW:mag_right:**
-1. HOME
+**:mag_right:PREVIEW:mag_right:**  
+:bulb: HOME
 ![home](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/home.PNG)
 
-2. ABOUT
+:bulb: ABOUT
 ![about](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/about.PNG)
 
-3. RANKING
+:bulb: RANKING
 ![ranking](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/ranking.PNG)
 
-4. CONTENTS
+:bulb: CONTENTS
 ![ranking](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/content.PNG)
 
-5. BLOG
+:bulb: BLOG
 ![blog](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/blog.PNG)
 
-6. DETAIL
+:bulb: DETAIL
 ![detail](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/detail.PNG)
 
-7. SETTING
+:bulb: SETTING
 ![setting](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/setting.PNG)
 
-8. MANAGER
+:bulb: MANAGER
 ![manager](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/manager.PNG)
 
-9. ADMIN
+:bulb: ADMIN
 ![admin](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/admin.PNG)
 
-10.CONTACT
+:bulb: CONTACT
 ![contact](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/contact.PNG)
