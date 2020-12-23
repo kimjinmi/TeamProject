@@ -21,3 +21,34 @@
 
 **:floppy_disk:DATABASE:floppy_disk:**
 ![database](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/images/database.PNG)
+
+**:mag_right:PREVIEW:mag_right:**
+1. HOME
+![home](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/home.PNG)
+
+2. ABOUT
+![about](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/about.PNG)
+
+3. RANKING
+![ranking](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/ranking.PNG)
+
+4. CONTENTS
+![ranking](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/content.PNG)
+
+5. BLOG
+![blog](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/blog.PNG)
+
+6. DETAIL
+![detail](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/detail.PNG)
+
+7. SETTING
+![setting](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/setting.PNG)
+
+8. MANAGER
+![manager](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/manager.PNG)
+
+9. ADMIN
+![admin](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/admin.PNG)
+
+10.CONTACT
+![contact](https://github.com/kimjinmi/TeamProject/blob/master/WebContent/resources/Doc/contact.PNG)
