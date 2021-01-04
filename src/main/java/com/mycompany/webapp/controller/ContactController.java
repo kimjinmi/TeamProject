@@ -29,16 +29,16 @@ public class ContactController {
 
 	@Resource
 	private ContactService service;
-	
+
 	@RequestMapping("/contact")
-	public String contact(HttpSession session, Model model) { //http://localhost:8080/teamproject
+	public String contact(HttpSession session, Model model) { // http://localhost:8080/teamproject
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
-		if(sessionMemail != null) {
+		if (sessionMemail != null) {
 			model.addAttribute("sessionMemail", sessionMemail);
 		}
 		return "contact/contact";
 	}
-	
+
 	@RequestMapping("/announcelist")
 	public String announcelist(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		int totalRows = service.getTotalAnnounceRows();
@@ -48,97 +48,101 @@ public class ContactController {
 		model.addAttribute("list", list);
 		return "contact/announcelist";
 	}
+
 	@RequestMapping("/announcedetail")
 	public String announcedetail(int ano, Model model) {
 		AnnounceDto announce = service.getannounce(ano);
 		service.updatehitnum(ano);
 		model.addAttribute("announce", announce);
-		
+
 		return "contact/announcedetail";
 	}
-	
+
 	@RequestMapping("/contactform")
-	public void contactform(InquiryDto inquiry, HttpServletResponse response) throws IOException{
+	public void contactform(InquiryDto inquiry, HttpServletResponse response) throws IOException {
 		inquiry.setIresult(false);
 		service.inquirywrite(inquiry);
-		//service.inquirywrite(inquiry);
-		//JSON 생성
-		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		// service.inquirywrite(inquiry);
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); // 배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString(); // {"result" : "success"}
-		
-		//응답보내기
+
+		// 응답보내기
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json;charset=utf-8");
 		out.println(json);
 		out.flush();
 		out.close();
 	}
-	
+
 	@GetMapping("/announcewrite")
 	public String announcewrite(Model model, HttpSession session) {
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
 		return "contact/announcewrite";
 	}
-	
+
 	@RequestMapping("/announcewriteform")
-	public void announcewriteform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws IOException {
+	public void announcewriteform(Model model, HttpSession session, AnnounceDto announcedto,
+			HttpServletResponse response) throws IOException {
 		announcedto.setAhitnum(0);
 		service.announceadd(announcedto);
-		//JSON 생성
-		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); // 배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString(); // {"result" : "success"}
-		
-		//응답보내기
+
+		// 응답보내기
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json;charset=utf-8");
 		out.println(json);
 		out.flush();
 		out.close();
 	}
-	
+
 	@RequestMapping("/announceedit")
-	public String announceedit(int ano, HttpSession session, Model model){
-		
+	public String announceedit(int ano, HttpSession session, Model model) {
+
 		AnnounceDto announcedto = service.getannounce(ano);
 
 		model.addAttribute("announcedto", announcedto);
 		return "contact/announceedit";
-	
+
 	}
-	@RequestMapping("/announceeditform")	
-	public void announceeditform(Model model, HttpSession session, AnnounceDto announcedto, HttpServletResponse response) throws Exception {
-		
-		logger.info("------"+announcedto.isAifmain());
+
+	@RequestMapping("/announceeditform")
+	public void announceeditform(Model model, HttpSession session, AnnounceDto announcedto,
+			HttpServletResponse response) throws Exception {
+
+		logger.info("------" + announcedto.isAifmain());
 		service.announceedit(announcedto);
-		//JSON 생성
-		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); // 배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString(); // {"result" : "success"}
-		
-		//응답보내기
+
+		// 응답보내기
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json;charset=utf-8");
 		out.println(json);
 		out.flush();
 		out.close();
 	}
-	
+
 	@RequestMapping("/announcedelete")
 	public void announcedelete(int ano, HttpServletResponse response) throws Exception {
 		service.announcedelete(ano);
-		//JSON 생성
-		JSONObject jsonObject = new JSONObject(); //배열[]로 만들어지면 JSONArray
+		// JSON 생성
+		JSONObject jsonObject = new JSONObject(); // 배열[]로 만들어지면 JSONArray
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString(); // {"result" : "success"}
-		
-		//응답보내기
+
+		// 응답보내기
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json;charset=utf-8");
 		out.println(json);
 		out.flush();
 		out.close();
 	}
-	
+
 }
