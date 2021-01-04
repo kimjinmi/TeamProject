@@ -25,9 +25,6 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	
-	
 	<!-- DispatcherServlet 실행이 필요없는 resources 경로 설정 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" /> 
-
 </beans>
