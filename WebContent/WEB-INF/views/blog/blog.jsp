@@ -44,13 +44,13 @@
 
    
 <style type="text/css">
-   .blog_list_content{  	
-   			overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; 
-            -webkit-box-orient: vertical;
-   }
+	.blog_list_content{  	
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 3; 
+		-webkit-box-orient: vertical;
+	}
 	.ck-editor__editable {
 	       min-height: 800px;
 	}
