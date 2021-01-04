@@ -3,10 +3,7 @@
 
 <h2 style="color: #2d2d2d;">My Neighborhood List</h2>
 <hr/ style="margin-top:12px;">
-	
 
-
-                   <!-- 1 -->
 <div class="blog_details">
 	<div class="container"
 		style="background-color: #fbf9ff; padding: 30px;">
