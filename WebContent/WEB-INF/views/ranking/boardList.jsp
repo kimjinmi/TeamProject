@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<c:forEach var="board" items="${list}">
+<c:forEach var="board" items="${list}"> 
 	<div class="col-lg-4 col-md-6 col-sm-12">
 		<div class="cat-icon" style="background-color: #f6f6f6; margin-bottom: 5%;">
 			<div class="d-none d-sm-block" style="width: 100%;">
