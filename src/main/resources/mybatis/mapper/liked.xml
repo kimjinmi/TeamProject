@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.liked">
-
 	<select id="countmyliked" parameterType="String" resultType="int">
-	SELECT count(*)
-	FROM liked
-	WHERE memail= #{memail}
+		SELECT count(*)
+		FROM liked
+		WHERE memail= #{memail}
 	</select>
 	
 	<select id="selectmylikelist" parameterType="pager" resultType="liked">
-	select rnum, ccontent, bno, btitle, memail, ldate
+		select rnum, ccontent, bno, btitle, memail, ldate
 		from (select rownum as rnum, ccontent, bno, btitle, memail, ldate
-		      from (select ccontent, l.bno, btitle, b.memail, ldate
-					from category c, board b, liked l
-					where c.cno = b.cno and b.bno = l.bno and l.memail = #{murl}
-					order by ldate desc
-		                )
-		      where rownum &lt;=#{endRowNo}
-		        )
+			      from (select ccontent, l.bno, btitle, b.memail, ldate
+							from category c, board b, liked l
+							where c.cno = b.cno and b.bno = l.bno and l.memail = #{murl}
+							order by ldate desc )
+			      where rownum &lt;=#{endRowNo})
 		where rnum &gt;=#{startRowNo}
 	</select>
-
 </mapper>
 
