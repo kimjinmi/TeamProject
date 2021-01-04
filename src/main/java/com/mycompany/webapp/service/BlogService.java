@@ -41,23 +41,10 @@ public class BlogService {
 		return board;
 	}
 
-	/*public List<CategoryDto> getBoardList() {		//controller에서 호출함
-			List<CategoryDto> list = categoryDao.selectAll();			//selectAll을 호출함 - ch14memberDao에서 만들어줌
-			return list;
-	}*/
-
-	/*
-	 * public List<BoardDto> getBoardList(PagerDto pager) { //userurl이
-	 * 들어옴(memail자리에) List<BoardDto> list = boardDao.selectUserBoard(pager); return
-	 * list; }
-	 */
-
-	public List<BoardDto> getBoardList(PagerDto pager) { // userurl이 들어옴(memail자리에)
+	public List<BoardDto> getBoardList(PagerDto pager) { 
 		List<BoardDto> list = boardDao.selectUserBoard(pager);
 		return list;
 	}
-
-	// -----------------------------------------------영아--------------------------------------------------//
 
 	// 카테고리 리스트
 	public List<CategoryDto> categoryList() {
@@ -93,8 +80,6 @@ public class BlogService {
 		List<NeighborDto> list = neighborDao.selectByPageNeList(pager);
 		return list;
 	}
-
-	// -----------------------------------------------영아--------------------------------------------------//
 
 	public List<ReplyDto> commentList(int bno) {
 		List<ReplyDto> list = replyDao.selectBoardComment(bno);
@@ -143,7 +128,7 @@ public class BlogService {
 		return row;
 	}
 
-	// -------------진미 친구구현
+	// 친구구현
 	public int neighorexist(String userUrl, String memail) {
 		int existRows = neighborDao.neighorexist(userUrl, memail);
 		return existRows;
@@ -190,10 +175,7 @@ public class BlogService {
 		return list;
 	}
 
-
 	public void commentModify(int rno, String rcontent) {
 		boardDao.commentModify(rno, rcontent);
-
 	}
-
 }
