@@ -3,7 +3,7 @@
 
 
 <h2 style="color: #2d2d2d; display:inline;">카테고리 편집</h2>
-
+ 
 <hr style="margin-top:12px;">
 <script type="text/javascript">
 	function buttonclick(cno, ccontent){
