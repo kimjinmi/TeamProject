@@ -27,7 +27,6 @@
 			</div>
 			<!-- 카테고리 선택 끝 (div) -->
 			
-			<!-- 실험 -->
 			<div class="mb-3" style="border: solid 0.1px #F6F6F6; width: 153px; height: 153px; ">
 				<img id="id_view" width="150" height="150" src="download?fileName=${board.bimage}"/>
 			</div>
@@ -37,7 +36,6 @@
 				</div>
 				<input style="height: 30px;" type="file" id="attach" name="attach" class="form-control" onchange="loadFile(event)">
 			</div>
-			<!-- 실험 -->
 			
 			<!-- 제목 입력 시작 (board.btitle) -->
 			<div class="input-group mb-3">
@@ -153,5 +151,4 @@
 		<!-- 글쓰기 버튼 끝 (확인) -->
 	</div>
 </form>
-<script
-	src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/ckeditor.js"></script>
