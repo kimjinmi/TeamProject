@@ -19,13 +19,13 @@ import com.mycompany.webapp.dto.ReplyDto;
 
 @Service
 public class ContactService {
-	
+
 	@Resource
 	private InquiryDao inquirydao;
-	
+
 	@Resource
 	private AnnounceDao announcedao;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ContactService.class);
 
 	public void inquirywrite(InquiryDto inquiry) {
@@ -33,7 +33,7 @@ public class ContactService {
 	}
 
 	public List<AnnounceDto> getannouncelist(PagerDto pager) {
-		List<AnnounceDto> list = announcedao.selectlist(pager); 
+		List<AnnounceDto> list = announcedao.selectlist(pager);
 		return list;
 	}
 
@@ -46,29 +46,22 @@ public class ContactService {
 		AnnounceDto announce = announcedao.selectannounce(ano);
 		return announce;
 	}
-	
+
 	public int updatehitnum(int ano) {
 		int row = announcedao.updatehitnum(ano);
 		return row;
-		
 	}
-
+	
 	public int announceadd(AnnounceDto announcedto) {
 		int row = announcedao.insertannounce(announcedto);
 		return row;
-		
 	}
-
-
 
 	public void announceedit(AnnounceDto announcedto) {
 		int row = announcedao.updateannounce(announcedto);
-		
 	}
 
 	public void announcedelete(int ano) {
 		int row = announcedao.deleteannounce(ano);
-		
 	}
-
 }
