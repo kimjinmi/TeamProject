@@ -111,7 +111,7 @@
 			<systemPath>${basedir}/WebContent/WEB-INF/lib/ojdbc6.jar</systemPath>
 		</dependency>
 		
-			<!-- Spring Security 설정 -->
+		<!-- Spring Security 설정 -->
 		<dependency>
    			<groupId>org.springframework.security</groupId>
     		<artifactId>spring-security-web</artifactId>
@@ -130,9 +130,4 @@
 		    <version>5.3.4.RELEASE</version>
 		</dependency>		
 	</dependencies>
-	
-	
-
-
-
 </project>
