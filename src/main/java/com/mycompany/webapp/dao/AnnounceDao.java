@@ -33,17 +33,14 @@ public class AnnounceDao {
 	}
 
 	public AnnounceDto selectannounce(int ano) {
-		
 		AnnounceDto announce = sst.selectOne("mybatis.mapper.announce.selectannounce", ano);
 		return announce;
 	}
-	
-	public int updatehitnum(int ano){
+
+	public int updatehitnum(int ano) {
 		int row = sst.update("mybatis.mapper.announce.updateahitnum", ano);
 		return row;
 	}
-
-
 
 	public int updateannounce(AnnounceDto announcedto) {
 		int row = sst.update("mybatis.mapper.announce.updateannounce", announcedto);
@@ -54,10 +51,4 @@ public class AnnounceDao {
 		int row = sst.update("mybatis.mapper.announce.deleteannounce", ano);
 		return row;
 	}
-
-
-
-	
-	
-	
 }
