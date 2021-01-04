@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<h2 style="color: #2d2d2d;">회원탈퇴</h2>
+<h2 style="color: #2d2d2d;">회원탈퇴</h2> 
 <hr/ style="margin-top:12px;">
 <center>
 	<img class="img-fluid" src="<%=application.getContextPath()%>/resources/images/risk_high.jpg" alt="">
