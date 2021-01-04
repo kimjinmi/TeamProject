@@ -97,12 +97,10 @@ public class SigninController {
 		out.flush();
 		out.close();
 		
-		
 	}
 	
 	@RequestMapping("/findpasswordresult")
 	public String findpasswordresult() {
-		
 	
 		return "signin/findpasswordresult";
 	}
