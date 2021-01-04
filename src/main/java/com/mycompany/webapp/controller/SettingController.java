@@ -68,9 +68,7 @@ public class SettingController {
 		return "setting/content";
 	}
 
-	//---------------------------------------영아, 이웃 관리 시작------------------------------------------
-
-				//이웃 삭제
+	//이웃 삭제
 	@PostMapping("/nDelete") //void - jsp로 이동하지 않겠다
 	public void nDelete(int nno, HttpServletResponse response) throws Exception { //아래 response.getWriter();에서 runtimeexception이 생기므로 예외처리해줌
 
@@ -90,7 +88,7 @@ public class SettingController {
 		out.close();
 	}
 
-				//이웃 리스트 페이지
+	//이웃 리스트 페이지
 	@GetMapping("/myneighborlist")
 	public String myneighborlist(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) { 
 		String sessionMemail = (String) session.getAttribute("sessionMemail");
@@ -104,10 +102,6 @@ public class SettingController {
 		return "setting/myneighborlist";
 	}
 	
-	// 선명- 게시글 관리
-
-	//---------------------------------------영아, 이웃 관리 끝------------------------------------------
-
 	//게시글 관리
 	@RequestMapping("/mybloglist")
 	public String mybloglist(@RequestParam(defaultValue = "1") int pageNo, HttpSession session, Model model) { //http://localhost:8080/teamproject
@@ -129,15 +123,10 @@ public class SettingController {
 		return "setting/mybloglist";
 	}
 	
-
-	/*선명- 게시물 관리 리스트 전체,개별삭제 */
 	@RequestMapping("/deleteBlog")
 	public void deleteBlog(@RequestParam(value="chbox[]")List<String> chbox,  HttpSession session, HttpServletResponse response, BoardDto board) throws Exception {
-		
 		logger.info("chbox.length======>"+ chbox.size());
 		
-		
-//		List<String> chbox = (List<String>) request.getParameter("chbox"); 
 		String murl = (String) session.getAttribute("SessionMurl");
 		int bno = 0;
 		
@@ -252,10 +241,6 @@ public class SettingController {
 		model.addAttribute("member", member);
 		return "setting/imagechange";
 	}
-	
-	
-
-
 	
 	@GetMapping("/photodownload")
 	public void photodownload(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -399,18 +384,10 @@ public class SettingController {
 		  logger.info("실행");
 		  service.userDelete(SessionMemail);
 		  
-		  JSONObject jsonObject = new JSONObject(); jsonObject.put("result",
-		  "success");
+		  JSONObject jsonObject = new JSONObject(); jsonObject.put("result","success");
 		  
 		  String json = jsonObject.toString(); PrintWriter out = response.getWriter();
 		  response.setContentType("applecation/json; charset=utf-8");
 		  out.println(json); out.flush(); out.close(); session.invalidate();
-		 
 	}
-	
-
-	
-	
-	
-	
 }
