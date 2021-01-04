@@ -5,9 +5,7 @@
 <h2 style="color: #2d2d2d; display:inline;">내 페이지 설정</h2>
 
 <hr style="margin-top:12px;">
-	
 
-	
 <form method="post" action="updatenickintro">
 	<%-- <div id="nicknamecheck" class="row">
 		<div class="col-2">닉네임</div>
