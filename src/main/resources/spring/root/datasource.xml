@@ -6,10 +6,7 @@
 	<bean id="dataSource"
 		  class="org.apache.commons.dbcp2.BasicDataSource"
 		  destroy-method="close">
-		  <!--
-		  <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-		  <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-		  -->
+
 		  <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
 		  <property name="url" value="jdbc:log4jdbc:oracle:thin:@106.253.56.122:1521:orcl"/>
 		  <property name="username" value="team3"/>
@@ -18,7 +15,6 @@
 		  <property name="initialSize" value="1"/>
 		  <property name="maxIdle" value="1"/>
 	</bean>
-	
 	 
 	<bean id="sqlSessionFactory"
 		  class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -30,6 +26,4 @@
 		  class="org.mybatis.spring.SqlSessionTemplate">
 		  <constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean> 
-	 
-
 </beans>
