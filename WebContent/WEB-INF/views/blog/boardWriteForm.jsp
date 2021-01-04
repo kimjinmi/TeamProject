@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <form id="boardWriteForm" action="boardUpload" enctype="multipart/form-data">
-	<div class="single-post">
+	<div class="single-post"> 
 		<div class="blog_write">
 			<h3 style="color: #2d2d2d;">게시글 작성</h3>
 			<hr style="margin-top: 12px;">
