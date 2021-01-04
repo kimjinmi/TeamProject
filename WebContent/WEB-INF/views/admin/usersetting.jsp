@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-
 <h2 style="color: #2d2d2d; display: inline;">회원 관리</h2>
 <div class="container">
 	<div class="row">
