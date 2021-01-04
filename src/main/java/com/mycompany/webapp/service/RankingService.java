@@ -16,21 +16,21 @@ public class RankingService {
 
 	@Resource
 	private BoardDao boardDao;
-	
+
 	public List<BoardDto> getBoardList() {
 		List<BoardDto> list = boardDao.selectLikeAll();
 		return list;
 	}
-	
+
 	public List<BoardDto> getBoardListCno(int cno) {
 		List<BoardDto> list = boardDao.selectLikeCategory(cno);
 		return list;
 	}
-	
+
 	@Resource
 	private CategoryDao categoryDao;
-	
-	public List<CategoryDto> getCategoryList(){
+
+	public List<CategoryDto> getCategoryList() {
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
@@ -39,5 +39,4 @@ public class RankingService {
 		BoardDto board = boardDao.selectByBno(bno);
 		return board;
 	}
-	
 }
