@@ -16,25 +16,23 @@ import com.mycompany.webapp.dto.MemberDto;
 @Service
 public class HomeService {
 	private static final Logger logger = LoggerFactory.getLogger(HomeService.class);
-	
+
 	@Resource
 	private MemberDao memberDao;
 
 	@Resource
 	private BoardDao boardDao;
 
-	public MemberDto getMemberInfo(String sessionMemail) { // 세션이메일이 들어온다
+	public MemberDto getMemberInfo(String sessionMemail) { 
 		MemberDto memberinfo = memberDao.selectByMurl(sessionMemail);
 		return memberinfo;
 	}
-	
+
 	public MemberDto selectbyMemail(String Memail) {
 		MemberDto SessionMemail = memberDao.selectbyMemail(Memail);
 		return SessionMemail;
 	}
 
-	
-	// home에 보이는 Ranking 순위 
 	public List<BoardDto> getHomeRanking() {
 		List<BoardDto> list = boardDao.selectHomeAll();
 		return list;
