@@ -3,17 +3,28 @@
 							   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="category" type="com.mycompany.webapp.dto.CategoryDto" />
-		<typeAlias alias="board" type="com.mycompany.webapp.dto.BoardDto" />
-		<typeAlias alias="member" type="com.mycompany.webapp.dto.MemberDto" />
-		<typeAlias alias="reply" type="com.mycompany.webapp.dto.ReplyDto" />
-		<typeAlias alias="pager" type="com.mycompany.webapp.dto.PagerDto" />
-		<typeAlias alias="search" type="com.mycompany.webapp.dto.SearchDto" />
-		<typeAlias alias="inquiry" type="com.mycompany.webapp.dto.InquiryDto" />
-		<typeAlias alias="neighbor" type="com.mycompany.webapp.dto.NeighborDto" />
-		<typeAlias alias="disabled" type="com.mycompany.webapp.dto.DisabledDto" />
-		<typeAlias alias="announce" type="com.mycompany.webapp.dto.AnnounceDto" />
-		<typeAlias alias="liked" type="com.mycompany.webapp.dto.LikedDto" />
-	</typeAliases> 
+		<typeAlias alias="category"
+			type="com.mycompany.webapp.dto.CategoryDto" />
+		<typeAlias alias="board"
+			type="com.mycompany.webapp.dto.BoardDto" />
+		<typeAlias alias="member"
+			type="com.mycompany.webapp.dto.MemberDto" />
+		<typeAlias alias="reply"
+			type="com.mycompany.webapp.dto.ReplyDto" />
+		<typeAlias alias="pager"
+			type="com.mycompany.webapp.dto.PagerDto" />
+		<typeAlias alias="search"
+			type="com.mycompany.webapp.dto.SearchDto" />
+		<typeAlias alias="inquiry"
+			type="com.mycompany.webapp.dto.InquiryDto" />
+		<typeAlias alias="neighbor"
+			type="com.mycompany.webapp.dto.NeighborDto" />
+		<typeAlias alias="disabled"
+			type="com.mycompany.webapp.dto.DisabledDto" />
+		<typeAlias alias="announce"
+			type="com.mycompany.webapp.dto.AnnounceDto" />
+		<typeAlias alias="liked"
+			type="com.mycompany.webapp.dto.LikedDto" />
+	</typeAliases>
 </configuration>
 
