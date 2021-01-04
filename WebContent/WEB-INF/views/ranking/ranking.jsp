@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<!doctype html>
+<!doctype html> 
 <html class="no-js" lang="zxx">
 <head>
 <meta charset="utf-8">
