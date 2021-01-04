@@ -57,20 +57,7 @@ function buttondetail() {
 					<a href="javascript:buttonafter()"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;처리완료</a>
 				</li>
 				<span id="afterview" style="display:none;"></span>
-				
-					
-
-			</ul>
-			
+			</ul>	
 		</div>
 	</div>
-	
-	<p></p>
-
 </div>
-
-	
-
-
-
-					
