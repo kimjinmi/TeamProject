@@ -347,4 +347,4 @@
 		src="<%=application.getContextPath()%>/resources/assets/js/plugins.js"></script>
 	<script
 		src="<%=application.getContextPath()%>/resources/assets/js/main.js"></script>
-</html>
+</html> 
