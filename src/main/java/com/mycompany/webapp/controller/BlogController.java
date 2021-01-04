@@ -46,32 +46,19 @@ public class BlogController {
 
 	@Resource
 	private BlogService service;
-	
 
 	private static final Logger logger = LoggerFactory.getLogger(BlogController.class);
 
-
-
 	@GetMapping("/blog_details")
 	public String board_details(HttpSession session, int bno, Model model, HttpServletRequest request) {
-		// get 값 매핑
-		/*
-		 * String UserUrl = (String) request.getParameter("UserUrl"); // Get으로 전송받은
-		 * useurl의 값을 받는다. -지훈 if (UserUrl == "") {
-		 * 
-		 * UserUrl += session.getAttribute("murl"); }
-		 */
-		//진미(친구추가버튼)
-		
-				
 		 bno = Integer.parseInt(request.getParameter("bno"));
 		 BoardDto board = service.getBoard(bno);
 		 String UserUrl = board.getMurl(); 
 		 List<CategoryDto> catelist = service.categoryListMurl(UserUrl); 
-		 List<BoardDto> likelist = service.bLikeList(UserUrl);			//영아		
+		 List<BoardDto> likelist = service.bLikeList(UserUrl);		
 		 logger.info("링크 : " + board.getBlinkcontent());
 		 model.addAttribute("board", board);
-		 model.addAttribute("catelist", catelist);								//영아
+		 model.addAttribute("catelist", catelist);								
 		 model.addAttribute("likelist", likelist);
 		 MemberDto member = service.getMimage(UserUrl); 	
 		 model.addAttribute("member", member);	
@@ -82,14 +69,7 @@ public class BlogController {
 		 String memail = (String) session.getAttribute("sessionMemail");
 			
 		String SessionMurl = (String) session.getAttribute("SessionMurl");
-		/*int existRows = -1;
-		if(SessionMurl != null) {
-			if(!SessionMurl.equals(UserUrl)){
-				existRows = service.neighorexist(UserUrl, memail);
-			}
-			
-		}
-		model.addAttribute("existRows", existRows);*/
+	
 		return "blog/blog_details";
 	}
 
