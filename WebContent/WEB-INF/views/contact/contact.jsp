@@ -93,7 +93,7 @@ function announcewrte(){
         </div>
     </div> -->
     <!-- Preloader Start -->
-    <header>
+    <header> 
         <!-- Header Start -->
         <div class="header-area header-transparent">
             <div class="main-header ">
