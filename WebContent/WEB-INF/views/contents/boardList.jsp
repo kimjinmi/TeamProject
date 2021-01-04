@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+ 
 <jsp:useBean id="now" class="java.util.Date" scope="request" />
 <fmt:parseNumber var="time" value="${now.time /(1000*60*60*24)}" integerOnly="true" />
 
