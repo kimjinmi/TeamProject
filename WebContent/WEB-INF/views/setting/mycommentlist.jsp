@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-
+ 
 			<h2 style="color: #2d2d2d;">댓글관리</h2>
 			<hr/ style="margin-top:12px;">
 
