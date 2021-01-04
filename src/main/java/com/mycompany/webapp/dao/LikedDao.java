@@ -12,7 +12,6 @@ import com.mycompany.webapp.dto.PagerDto;
 
 @Repository
 public class LikedDao {
-
 	@Resource
 	private SqlSessionTemplate sst;
 
@@ -26,6 +25,4 @@ public class LikedDao {
 		List<LikedDto> list = sst.selectList("mybatis.mapper.liked.selectmylikelist",pager);
 		return list;
 	}
-	
-	
 }
