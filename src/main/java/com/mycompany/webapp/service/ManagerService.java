@@ -29,16 +29,16 @@ public class ManagerService {
 
 	@Resource
 	private MemberDao memberdao;
-	
+
 	@Resource
 	private BoardDao boarddao;
 
 	@Resource
 	private ReplyDao replydao;
-	
+
 	@Resource
 	private CategoryDao categorydao;
-	
+
 	@Resource
 	private InquiryDao inquirydao;
 
@@ -46,12 +46,12 @@ public class ManagerService {
 	private AnnounceDao announcedao;
 
 	public MemberDto sessionconnect(MemberDto member) {
-		//logger.info("service: "+member.getMemail());
+		// logger.info("service: "+member.getMemail());
 		MemberDto dbmember = memberdao.selectbyMemail(member.getMemail());
 		return dbmember;
-		
+
 	}
-	
+
 	public List<CategoryDto> getcategorylist() {
 		List<CategoryDto> list = categorydao.selectAllCount();
 		return list;
@@ -59,17 +59,17 @@ public class ManagerService {
 
 	public void addCategory(String addCategory) {
 		categorydao.insert(addCategory);
-		
+
 	}
 
 	public void deleteCategory(int cno) {
 		categorydao.delete(cno);
-		
+
 	}
 
 	public void editCategory(int cno, String editCategory2) {
 		categorydao.update(cno, editCategory2);
-		
+
 	}
 
 	public List<MemberDto> getmanagerlist(String role) {
@@ -79,14 +79,14 @@ public class ManagerService {
 
 	public void managerChange(MemberDto member) {
 		memberdao.updaterole(member);
-		
+
 	}
 
 	public int getTotalBoardRows() {
 		int totalRows = boarddao.countAll();
 		return totalRows;
 	}
-	
+
 	public int getSearchTotalBoardRows(SearchDto search) {
 		int totalRows = boarddao.countSearchAll(search);
 		return totalRows;
@@ -99,16 +99,13 @@ public class ManagerService {
 
 	public void boarddelete(int bno) {
 		boarddao.deleteByBno(bno);
-		
-		
+
 	}
 
 	public int getTotalReplyRows() {
 		int totalRows = replydao.countAll();
 		return totalRows;
 	}
-	
-
 
 	public List<ReplyDto> getReplyList(PagerDto pager) {
 		List<ReplyDto> list = replydao.selectByAllPage(pager);
@@ -117,20 +114,20 @@ public class ManagerService {
 
 	public void replydelete(int rno) {
 		replydao.deleteByRno(rno);
-		
 	}
 
 	public List<BoardDto> getUserBoardList(PagerDto pager) {
 		List<BoardDto> list = boarddao.selectByAllPageUser(pager);
 		return list;
 	}
-	//처리 대기중
+
+	// 처리 대기중
 	public int getBeforeInquiryRows() {
 		int totalRows = inquirydao.countBeforeAll();
 		return totalRows;
 	}
-	
-	//처리 완료
+
+	// 처리 완료
 	public int getAfterInquiryRows() {
 		int totalRows = inquirydao.countAfterAll();
 		return totalRows;
@@ -146,15 +143,13 @@ public class ManagerService {
 	}
 
 	public InquiryDto getInquiry(int ino) {
-			InquiryDto inquiry = inquirydao.selectByIno(ino);
+		InquiryDto inquiry = inquirydao.selectByIno(ino);
 		return inquiry;
 	}
 
 	public int sendInquiry(int ino) {
-			int inquiry = inquirydao.sendByIno(ino);
+		int inquiry = inquirydao.sendByIno(ino);
 		return inquiry;
 	}
-
-
 
 }
