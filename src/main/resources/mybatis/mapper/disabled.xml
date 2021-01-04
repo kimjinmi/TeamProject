@@ -2,13 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.disabled">
 
-	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
-			
-				<!-- disabled에 데이터 추가해주기 -->
 	<insert id="selectDisabled" parameterType="disabled" >
-	insert into disabled(dno, memail, dreason, ddate)
-	values (SEQ_DISABLED_DNO.nextval, #{memail}, #{dreason}, sysdate)
-	</insert>
+		insert into disabled(dno, memail, dreason, ddate)
+		values (SEQ_DISABLED_DNO.nextval, #{memail}, #{dreason}, sysdate)
+		</insert>
 
 	<select id="mdisabledThing" resultType="int"> 
 		SELECT count(*)
@@ -18,24 +15,13 @@
 	<select id="DisabledPageList" resultType="disabled">
      	SELECT dno, memail, dreason, ddate, mmyimage, mnickname
 		FROM (SELECT rownum as rnum, dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
-		FROM disabled d, member m
-		WHERE d.memail = m.memail and rownum &lt;=#{endRowNo}
-		)
+					FROM disabled d, member m
+					WHERE d.memail = m.memail and rownum &lt;=#{endRowNo})
 		WHERE rnum &gt;=#{startRowNo}
 	</select>	
 	
-		<!-- disabled 에서 데이터 삭제해주기 -->
-		<delete id="selectAbled" parameterType="disabled">
-		 DELETE from disabled
-         WHERE memail=#{memail}
-		</delete>
-		
-		<!-- 		 diasbled 된 해당 memail의 정보(이미지 포함 - 조인)
-	<select id="disInformation" parameterType="String" resultType="disabled">
-	 select dno, d.memail, dreason, ddate, m.mmyimage, m.mnickname
-     from disabled d, member m
-     where d.memail = m.memail and d.memail=#{memail}
-	</select> -->
-	
-	<!-- //////////////////////////////////////영아/////////////////////////////////// -->
+	<delete id="selectAbled" parameterType="disabled">
+	 	DELETE from disabled
+        WHERE memail=#{memail}
+	</delete>
 </mapper>
