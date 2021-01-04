@@ -4,7 +4,7 @@
     @include flex-wrap(wrap);
     @include transition(.4s);
     @media #{$md}{
-    }
+    } 
     @media #{$sm}{
     }
     .job-items{
