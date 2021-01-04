@@ -3,18 +3,17 @@
 <mapper namespace="mybatis.mapper.announce">
 
 	<select id="countalllist" resultType="int">
-	SELECT count(*)
-	FROM announce
+		SELECT count(*)
+		FROM announce
 	</select>
 	
 	<select id="selectlist" parameterType="pager" resultType="announce"> 
-	select rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
+		select rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
 		from (select rownum as rnum, ano, memail, atitle, acontent, adate, aifmain, ahitnum
-		      from (select ano, memail, atitle, acontent, adate, aifmain, ahitnum
-					from announce
-					order by aifmain desc, adate desc)
-		      where rownum &lt;=#{endRowNo}
-		        )
+			      from (select ano, memail, atitle, acontent, adate, aifmain, ahitnum
+							from announce
+							order by aifmain desc, adate desc)
+			      where rownum &lt;=#{endRowNo} )
 		where rnum &gt;=#{startRowNo}
 	</select> 
 	
@@ -46,5 +45,4 @@
 		DELETE FROM announce
 		WHERE ano=#{ano}
 	</delete>
-
 </mapper>
