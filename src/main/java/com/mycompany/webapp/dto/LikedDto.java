@@ -9,7 +9,6 @@ public class LikedDto {
 	Date ldate;
 	private String ccontent;
 	private String btitle;
-	
 
 	public int getLno() {
 		return lno;
@@ -58,7 +57,5 @@ public class LikedDto {
 	public void setBtitle(String btitle) {
 		this.btitle = btitle;
 	}
-	
-	
 
 }
