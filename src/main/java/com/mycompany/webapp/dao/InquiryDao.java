@@ -1,6 +1,5 @@
 package com.mycompany.webapp.dao;
 
-
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,16 +8,14 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.webapp.dto.InquiryDto;
 import com.mycompany.webapp.dto.PagerDto;
-import com.mycompany.webapp.dto.ReplyDto;
-
 
 @Repository
 public class InquiryDao {
-	
+
 	@Resource
 	private SqlSessionTemplate sst;
 
-	public  void inquiryinsert(InquiryDto inquiry) {
+	public void inquiryinsert(InquiryDto inquiry) {
 		sst.insert("mybatis.mapper.inquiry.inquiryinsert", inquiry);
 	}
 
@@ -26,7 +23,7 @@ public class InquiryDao {
 		int rows = sst.selectOne("mybatis.mapper.inquiry.countBeforeAll");
 		return rows;
 	}
-	
+
 	public int countAfterAll() {
 		int rows = sst.selectOne("mybatis.mapper.inquiry.countAfterAll");
 		return rows;
@@ -40,7 +37,6 @@ public class InquiryDao {
 	public int deleteByIno(int ino) {
 		int rows = sst.delete("mybatis.mapper.inquiry.deleteByIno", ino);
 		return rows;
-		
 	}
 
 	public InquiryDto selectByIno(int ino) {
@@ -52,7 +48,4 @@ public class InquiryDao {
 		int inquiry = sst.update("mybatis.mapper.inquiry.sendByIno", ino);
 		return inquiry;
 	}
-
-
-
 }
