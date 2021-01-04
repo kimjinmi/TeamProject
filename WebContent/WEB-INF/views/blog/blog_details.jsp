@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
-<head>
+<head> 
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>HOBBYS</title>
