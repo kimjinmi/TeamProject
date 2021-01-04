@@ -16,50 +16,45 @@ import com.mycompany.webapp.dto.SearchDto;
 
 @Repository
 public class BoardDao {
-	
+
 	@Resource
 	private SqlSessionTemplate sst;
-	
+
 	public BoardDto selectByBno(int bno) {
-		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno",bno);
-		if(board.getBlinkcontent() != null) {
-		String str = board.getBlinkcontent();
-		
-		if(str.contains("http")) {
-			String[] cut = str.split("//");
-			board.setBlinkcontent(cut[1]);
-		}
-		
+		BoardDto board = sst.selectOne("mybatis.mapper.board.selectByBno", bno);
+		if (board.getBlinkcontent() != null) {
+			String str = board.getBlinkcontent();
+
+			if (str.contains("http")) {
+				String[] cut = str.split("//");
+				board.setBlinkcontent(cut[1]);
+			}
+
 		}
 		return board;
 	}
-	
-	
-	//-------------------------------------------------영아---------------------------------------------------//
-	
-	//영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
+
+	// 영아 - 보드/카테고리리스트/cno순으로 내 게시물 다 불러오기
 	public List<BoardDto> categoryListLink(int cno, String murl) {
 		Map map = new HashMap();
 		map.put("cno", cno);
 		map.put("murl", murl);
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);	
-			return list;
-	}
-	
-	//영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
-	public List<BoardDto> selectBLikeList(String murl) {				//selectAll : Service가 호출함
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList", murl);		//like받은 것을 찾아서 모두를 실행해라
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.categoryListLink", map);
 		return list;
 	}
-		
-	//-------------------------------------------------영아---------------------------------------------------//
-	
+
+	// 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트
+	public List<BoardDto> selectBLikeList(String murl) { // selectAll : Service가 호출함
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList", murl); // like받은 것을 찾아서 모두를 실행해라
+		return list;
+	}
+
 	/*------------------------- 선 -------------------------*/
 	public List<BoardDto> selectLikeAll() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectLikeAll");
 		return list;
 	}
-	
+
 	public List<BoardDto> selectLikeCategory(int cno) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectLikeCategory", cno);
 		return list;
@@ -69,20 +64,13 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectNewAll");
 		return list;
 	}
-	
+
 	public List<BoardDto> selectNewCategory(int cno) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectNewCategory", cno);
 		return list;
-	}	
+	}
 	/*------------------------- 선 -------------------------*/
-	
-	
-	/* 지훈 사용자 블로그리스트 출력하기*/
-	/*
-	 * public List<BoardDto> selectUserBoard(PagerDto pager) { List<BoardDto> list =
-	 * sst.selectList("mybatis.mapper.board.selectUserBoard", pager); return list; }
-	 */
-	
+
 	public List<BoardDto> selectUserBoard(PagerDto pager) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectUserBoard", pager);
 		return list;
@@ -93,15 +81,14 @@ public class BoardDao {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBtitleAll");
 		return list;
 	}
-	
 
-	//선명 보드 페이저
-	 public List<BoardDto> selectByPage(PagerDto pager) { 
-		 List<BoardDto> listpage = sst.selectList("mybatis.mapper.board.selectByPage", pager);
-		 
-		 return listpage; 
-	 }
-	
+	// 선명 보드 페이저
+	public List<BoardDto> selectByPage(PagerDto pager) {
+		List<BoardDto> listpage = sst.selectList("mybatis.mapper.board.selectByPage", pager);
+
+		return listpage;
+	}
+
 	public List<BoardDto> selectAll(String sessionMemail) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectAll", sessionMemail);
 		return list;
@@ -122,14 +109,13 @@ public class BoardDao {
 		return rows;
 	}
 
-
 	public int deleteByBno(int bno) {
 		int rows = sst.delete("mybatis.mapper.board.deleteByBno", bno);
 		return rows;
 	}
 
 	public List<BoardDto> selectBLikeList1() {
-		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList1");		//like받은 것을 찾아서 모두를 실행해라
+		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectBLikeList1"); // like받은 것을 찾아서 모두를 실행해라
 		return list;
 	}
 
@@ -138,8 +124,7 @@ public class BoardDao {
 		return rows;
 	}
 
-	
-// 선명 : 임시 게시물별로 삭제
+	// 선명 : 임시 게시물별로 삭제
 	public int deleteBlog(BoardDto board) {
 		int rows = sst.delete("mybatis.mapper.board.deleteBlog", board);
 		return rows;
@@ -155,7 +140,7 @@ public class BoardDao {
 		return totalRows;
 	}
 
-	//진미 : 전체 글의 구하는거임 삭제 ㄴ, 고쳐서 사용 금지
+	// 진미 : 전체 글의 구하는거임 삭제 ㄴ, 고쳐서 사용 금지
 	public List<BoardDto> selectByAllPage(PagerDto pager) {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.selectListAll", pager);
 		return list;
@@ -166,10 +151,10 @@ public class BoardDao {
 		BoardDto board = sst.selectOne("mybatis.mapper.board.selectContentBno", bno);
 		return board;
 	}
-	
+
 	public int update(BoardDto board) {
 		int rows;
-		if(board.getBimage() != null) {
+		if (board.getBimage() != null) {
 			rows = sst.update("mybatis.mapper.board.update", board);
 		} else {
 			rows = sst.update("mybatis.mapper.board.updateNoImage", board);
@@ -178,19 +163,17 @@ public class BoardDao {
 	}
 	// ------ 선 - 게시물 수정 ------
 
-
 	public int heartCheck(String SessionMemail, int bno) {
 		Map map = new HashMap();
 		map.put("SessionMemail", SessionMemail);
-		map.put("bno", bno);	
-		int row  = sst.selectOne("mybatis.mapper.board.heartCheck", map);
+		map.put("bno", bno);
+		int row = sst.selectOne("mybatis.mapper.board.heartCheck", map);
 		return row;
 	}
 
 	public void likeadd(int bno) {
 		sst.update("mybatis.mapper.board.likeadd", bno);
 	}
-
 
 	public void likeinfo(int bno, String sessionMemail) {
 		Map map = new HashMap();
@@ -200,7 +183,7 @@ public class BoardDao {
 	}
 
 	public void likesub(int bno) {
-		sst.update("mybatis.mapper.board.likesub", bno);	
+		sst.update("mybatis.mapper.board.likesub", bno);
 	}
 
 	public void likeinfoDelete(int bno, String sessionMemail) {
@@ -228,19 +211,17 @@ public class BoardDao {
 		return list;
 	}
 
-
 	public void commentModify(int rno, String rcontent) {
 		Map map = new HashMap();
 		map.put("rno", rno);
 		map.put("rcontent", rcontent);
 		sst.update("mybatis.mapper.board.commentModify", map);
-		
+
 	}
 
-
-	// home에 보이는 Ranking 순위 
+	// home에 보이는 Ranking 순위
 	public List<BoardDto> selectHomeAll() {
 		List<BoardDto> list = sst.selectList("mybatis.mapper.board.homeRanking");
 		return list;
-	} 
+	}
 }
