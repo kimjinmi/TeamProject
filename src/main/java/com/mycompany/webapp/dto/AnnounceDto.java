@@ -3,7 +3,6 @@ package com.mycompany.webapp.dto;
 import java.util.Date;
 
 public class AnnounceDto {
-
 	private int ano;
 	private String memail;
 	private String atitle;
@@ -67,7 +66,4 @@ public class AnnounceDto {
 	public void setAhitnum(int ahitnum) {
 		this.ahitnum = ahitnum;
 	}
-	
-
-	
 }
