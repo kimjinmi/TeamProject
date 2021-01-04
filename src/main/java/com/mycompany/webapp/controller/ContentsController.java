@@ -93,5 +93,5 @@ public class ContentsController {
 		 BoardDto board = service.getBoard(bno);
 		 model.addAttribute("board", board);
 		return "blog/blog_details";
-	}
+	} 
 }
