@@ -42,8 +42,7 @@ public class AdminService {
 		return dbmember;
 		
 	} 
-	
-	
+		
 	public List<MemberDto> getmanagerlist(String role) {
 		List<MemberDto> list = memberdao.selectmrole(role);
 		return list;
@@ -54,10 +53,7 @@ public class AdminService {
 		
 	}
 
-	//-------------------------------------영아- 시작--------------------------------------
-	
-			// 이메일을 지정해서 한 사람을 선택하고 활성화(1) 되있던 것을 비활성화(0)으로 바꿈
-
+	// 이메일을 지정해서 한 사람을 선택하고 활성화(1) 되있던 것을 비활성화(0)으로 바꿈
 	public int getTotalMyRownList() {
 		int totalMyRows = memberdao.menabledThing();
 		return totalMyRows;
@@ -68,29 +64,25 @@ public class AdminService {
 		return list;
 	}
 
-			//비활성화 된 회원들의 행 구하기
+	//비활성화 된 회원들의 행 구하기
 	public int mdisabledRows() {
 		int totalMRows = disableddao.mdisabledThing();
 		return totalMRows;
 	}
 
-			//비활성화 된 사람들 목록 페이저 만들기
+	//비활성화 된 사람들 목록 페이저 만들기
 	public List<DisabledDto> pickedDisabledPerson(PagerDto pager) {
 		List<DisabledDto> disPageList = disableddao.DisabledPageList(pager);
 		return disPageList;
 	}
-
 
 	public void disabled(DisabledDto disabled) {
 		memberdao.fromOneToZero(disabled.getMemail());
 		disableddao.disabledMember(disabled);
 	}
 
-
 	public void abled(DisabledDto abled) {
 		memberdao.fromZeroToOne(abled.getMemail());
 		disableddao.abledMember(abled);
 	}
-	
-	//-------------------------------------영아- 끝 -------------------------------------
 }
