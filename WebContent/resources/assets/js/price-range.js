@@ -2,7 +2,7 @@
 // version 2.1.7 Build: 371
 // Â© Denis Ineshin, 2017
 // https://github.com/IonDen
-//
+//  
 // Project page:    http://ionden.com/a/plugins/ion.rangeSlider/en.html
 // GitHub page:     https://github.com/IonDen/ion.rangeSlider
 //

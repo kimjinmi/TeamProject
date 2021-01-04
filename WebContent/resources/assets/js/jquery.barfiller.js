@@ -7,7 +7,7 @@
 * http://www.9bitstudios.com
 * Free to use and abuse under the MIT license.
 * http://www.opensource.org/licenses/mit-license.php
-*/
+*/ 
 
 (function ($) {
 
