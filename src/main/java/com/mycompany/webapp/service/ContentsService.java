@@ -14,7 +14,6 @@ import com.mycompany.webapp.dto.PagerDto;
 
 @Service
 public class ContentsService {
-	
 	@Resource
 	private BoardDao boardDao;
 
@@ -22,7 +21,6 @@ public class ContentsService {
 		List<BoardDto> list = boardDao.selectNewAll();
 		return list;
 	}
-	
 
 	public List<BoardDto> getBoardListCno(int cno) {
 		List<BoardDto> list = boardDao.selectNewCategory(cno);
@@ -31,17 +29,14 @@ public class ContentsService {
 
 	@Resource
 	private CategoryDao categoryDao;
-	
+
 	public List<CategoryDto> getCategoryList() {
 		List<CategoryDto> list = categoryDao.selectAll();
 		return list;
 	}
 
-
 	public BoardDto getBoard(int bno) {
 		BoardDto board = boardDao.selectByBno(bno);
 		return board;
 	}
-
-
 }
