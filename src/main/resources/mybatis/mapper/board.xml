@@ -2,47 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mybatis.mapper.board">
 	
-	
 	<select id="selectByBno" parameterType="int" resultType="board">
 		select board.bno, btitle, bcontent, bdate, board.memail, to_char(bdate, 'YYYY-MM-DD HH24:Mi:SS') bdate, board.murl, blike, member.mnickname, board.blinkcontent
 		from board, member
 		where bno = #{bno} AND board.memail = member.memail
 	</select>
-	
-	<!-- ////////////////////////////////////영아////////////////////////////// -->
-	
-	<!-- 영아 - 보드 게시물 / url & cno 가 맞을 때 -->
+
+	<!-- 보드 게시물 / url & cno 가 맞을 때 -->
 	<select id="categoryListLink"  parameterType="map"  resultType="board">
-			select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, bimage, c.cno, c.ccontent, b.murl
-			from board b, category c
-			where c.cno=b.cno and b.murl=#{murl} and c.cno=#{cno}
-			order by bdate desc
+		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, bimage, c.cno, c.ccontent, b.murl
+		from board b, category c
+		where c.cno=b.cno and b.murl=#{murl} and c.cno=#{cno}
+		order by bdate desc
 	</select>
 	
-	<!-- 영아 - 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트 -->
+	<!-- 나의 블로그 내 좋아요 순 상위 4개 게시물 리스트 -->
 	<select id="selectBLikeList" parameterType="String" resultType="board">
 		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, murl
 		from ( select bno, btitle, bcontent, bdate, blike, murl
 		from board 
 		order by blike desc) 
 		where murl=#{murl} and rownum &lt;=4
-		</select>	 	
+	</select>	 	
 		
-		<!-- 영아 - home에 보이는 Ranking 순위 -->
-		<select id="homeRanking" resultType="board">
-			select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, murl, bimage
-			from ( select bno, btitle, bcontent, bdate, blike, murl, bimage
-			from board 
-			order by blike desc) 
-			where rownum &lt;=4
-		</select>
-		
-		
-		
-			<!-- ////////////////////////////////////영아////////////////////////////// -->
+	<select id="homeRanking" resultType="board">
+		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, murl, bimage
+		from ( select bno, btitle, bcontent, bdate, blike, murl, bimage
+		from board 
+		order by blike desc) 
+		where rownum &lt;=4
+	</select>
 	
-	<!-- 선: 좋아요 순으로 불러오기 ranking 총 데이터 -->
-	<!-- 좋아요순은 데이터 12개 -->
+	<!-- 좋아요 순으로 불러오기 ranking 총 데이터 -->
 	<select id="selectLikeAll" resultType="board">	
 		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, murl
 		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, b.murl
@@ -52,8 +43,7 @@
 		where rownum &lt;= 12
 	</select>
 	
-	<!-- 선: 좋아요 순으로 불러오기 ranking 카테고리별 데이터 -->
-	<!-- 좋아요순은 데이터 12개 -->
+	<!-- 좋아요 순으로 불러오기 ranking 카테고리별 데이터 -->
 	<select id="selectLikeCategory" parameterType="int" resultType="board">
 		select rownum as rnum,  bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, murl
 		from(select bno, btitle, bcontent, bdate, blike, cno, bimage, mnickname, mmyimage, mintro, b.murl
@@ -63,8 +53,7 @@
 		where rownum &lt;= 12
 	</select>
 	
-	<!-- 선: 최신순으로 불러오기 contents 총 데이터 -->
-	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
+	<!-- 최신순으로 불러오기 contents 총 데이터 -->
 	<select id="selectNewAll" resultType="board">	
 	  	 select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro, b.murl
          from board b, member m, category c
@@ -72,8 +61,7 @@
        	 order by bdate desc
 	</select>
 	
-	<!-- 선: 최신순으로 불러오기 contents 카테고리별 데이터 -->
-	<!-- 최신순은 나와야되는 데이터 수 제한없음 -->
+	<!-- 최신순으로 불러오기 contents 카테고리별 데이터 -->
 	<select id="selectNewCategory" parameterType="int" resultType="board">
 		select bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, b.cno, ccontent, bimage, mnickname, mmyimage, mintro, b.murl
        	from board b, member m, category c
@@ -81,24 +69,7 @@
        	order by bdate desc
 	</select>
 	
-	
-	<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->
-	<!-- <select id="selectUserBoard" parameterType="String" resultType="board">
-		select bno,btitle, bcontent, bdate, blike, bimage, mnickname
-		from board, member
-		where board.memail = member.memail AND board.memail = #{memail} 
-		order by bdate desc
-	</select> -->
-		
-		
-		<select id="selectUserBoard" parameterType="pager" resultType="board">
-		<!-- select bno,btitle, bcontent, bdate, blike, bimage, mnickname, member.murl, category.ccontent
-		from board, member, category
-		where member.murl = #{Murl} AND member.memail = board.memail AND category.cno = board.cno
-		order by bdate desc -->
-	
-		<!-- blog리스트에 댓글 갯수를 출력하기 위한 서브쿼리 추가 (김지훈) 지우지마 제발  -->
-		
+	<select id="selectUserBoard" parameterType="pager" resultType="board">
 		select rnum, bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
 		from (
 			select rownum as rnum, bno, btitle, REGEXP_REPLACE(bcontent, <![CDATA['<[^>]*>|\&([^;])*;']]>) as bcontent, bdate, blike, bimage, mnickname, murl, ccontent, commentnum
@@ -116,71 +87,19 @@
 			where rownum &lt; = #{endRowNo}
 		)
 		where rnum &gt; = #{startRowNo}
-		
-	
-		<!-- select rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, comnum
-		from (
-			select rownum as rnum, bno, btitle, bcontent, bdate, blike, bimage, mnickname, murl, ccontent, comnum
-			from(
-				select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, b.murl, ccontent, comments.commentnum as comnum
-					from board b, member m, category c, (
-														select count(b.bno) commentnum , b.bno  
-														from board b, reply r
-														where b.bno = r.bno (+)
-														group by b.bno
-													  ) comments
-					where b.murl = #{murl} AND m.memail = b.memail AND c.cno = b.cno AND comments.bno = b.bno	
-					order by bdate desc
-				) 
-			where rownum &lt; = #{endRowNo} 
-		)
-		where rnum &gt; = #{startRowNo} -->
-		<!-- 
-						select b.bno, btitle, bcontent, bdate, blike, bimage, mnickname, m.murl, c.ccontent, comments.commentnum
-						
-						from board b, member m, category c, (
-														select count(b.bno) commentnum , b.bno  
-														from board b, reply r
-														where b.bno = r.bno (+)
-														group by b.bno
-														
-													  ) comments
-													  
-						where m.murl = #{murl} AND m.memail = b.memail AND c.cno = b.cno AND comments.bno = b.bno
-						
-						order by bdate desc
-		
-	 -->
-
-		
-		
-		
-
-		
-
-		</select>
-		
-			<!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 --><!-- ******* 지우지마라 김지훈 작성 -->			
-
+	</select>
 
 	<select id="countAll" resultType="int">
 		select count(*) 
 		from board
 	</select>
 	
-
 	<select id="selectBoardComment" parameterType="int" resultType="reply">
-		<!-- select distinct rno, rcontent, reply.memail, , rdate
-		from board, reply, member
-		where board.bno = reply.bno AND board.bno = #{bno} AND reply.memail = member.memail -->
-      
         select  rno, rcontent, reply.memail,  rdate, member.mnickname, member.murl, board.bno, member.mmyimage
 		from board, reply, member
 		where board.bno = reply.bno AND board.bno = #{bno} AND member.memail = reply.memail
 		order by rdate asc
 	</select>	
-	
-<!-- 선명- mybloglist에서 게시글 관리에서 데이터 불러오기-->
 	
 	<select id="selectAll" parameterType="String" resultType="board">
 		select c.ccontent, b.bno, b.btitle, b.bdate, b.blike, b.memail
@@ -188,9 +107,7 @@
 		where b.cno = c.cno and b.memail = #{memail}
 		order by b.bdate desc
 	</select>
-	
-	
-	<!-- 선명 - 페이지별로 목록 불러오기   --> 
+
 	<select id="selectByPage" parameterType="pager" resultType="board">
 		select ccontent, rnum, bno, btitle, bdate, blike, murl
 		from (select rownum as rnum, ccontent, bno, btitle, bdate, blike, murl
@@ -199,8 +116,7 @@
 		            where b.cno = c.cno and b.murl = #{murl}
 		            order by bdate desc
 		                )
-		      where rownum &lt;=#{endRowNo}
-		        )
+		      where rownum &lt;=#{endRowNo})
 		where rnum &gt;=#{startRowNo}
 	</select>  
 
@@ -210,37 +126,20 @@
 		where murl = #{murl}
 	</select>
 	
-	<!-- 게시물 올리기 (선) -->
 	<insert id="insert" parameterType="board">
 		insert into board(cno, bno, btitle, bcontent, bdate, memail, blinkcontent, murl, blike, bimage)
 		values (#{cno}, seq_board_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{memail}, #{blinkcontent}, #{murl}, #{blike}, #{bimage})
 	</insert>
 
-<!--  
-		<select id="commentinsert" parameterType="reply">
-		
-			<selectKey order="BEFORE" resultType="int" keyProperty="rno">
-			 select seq_reply_rno.nextval from dual
-			</selectKey>
-		
-			insert into reply (rno, rcontent, firstcomment, memail, bno, rdate)
-				values(seq_reply_rno.currval, #{rcontent}, #{firstcomment}, #{bno}, sysdate)
-		</select>
--->
-
-<!--  댓글 입력값 -->
 	<insert id="commentinsert" parameterType="reply">
 		insert into reply(rno, rcontent, firstcomment, memail, bno, rdate)
 		values (seq_reply_rno.nextval, #{rcontent}, 0, #{memail}, #{bno}, sysdate)
 	</insert>
-<!--  댓글 입력 -->	
 
-	<!-- 선명 - 게시물 관리 탭에서 게시물 리스트 삭제 -->
 	<delete id="deleteBlog">
 		delete from board where bno = #{bno} and murl = #{murl}
 	</delete>
 	
-	<!--  게시글 삭제, 선이도 씀 -->
 	<delete id="deleteByBno" parameterType="int">
 		delete from board where bno=#{bno}
 	</delete>
@@ -249,46 +148,38 @@
 		delete from reply where rno=#{rno}
 	</delete>
 
-<!-- 게시물 좋아요 갯수 조회 -->
 	<select id="boardLikeCount" parameterType="int" resultType="board">
 		select *
 		from board
 		where bno=#{bno} 
 	</select>
 	
-<!-- 개인 사이트 블로그 게시물 페이저  -->
-<select id="userBoardCountAll" parameterType="String" resultType="int">
-	select count(*) from board where murl = #{Usermurl} 
-</select>
-
-
-	<!-- 전체게시글구하기(고치지말것) -->
-	<select id="selectListAll" parameterType="pager" resultType="board">
-		SELECT rnum, bno, btitle, bdate, memail, ccontent
-			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
-					FROM (SELECT bno, btitle, bdate, memail, ccontent
-					        FROM board b, category c
-					        WHERE b.cno = c.cno 
-					        ORDER BY bdate DESC)
-							WHERE rownum &lt;=#{endRowNo})
-			WHERE rnum &gt;= #{startRowNo}
+	<select id="userBoardCountAll" parameterType="String" resultType="int">
+		select count(*) from board where murl = #{Usermurl} 
 	</select>
 	
-	<!-- 게시물 수정 bno 얻기 (선) -->
+	<select id="selectListAll" parameterType="pager" resultType="board">
+		SELECT rnum, bno, btitle, bdate, memail, ccontent
+		FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
+					FROM (SELECT bno, btitle, bdate, memail, ccontent
+					        	FROM board b, category c
+					        	WHERE b.cno = c.cno 
+					        	ORDER BY bdate DESC)
+					WHERE rownum &lt;=#{endRowNo})
+		WHERE rnum &gt;= #{startRowNo}
+	</select>
+	
 	<select id="selectContentBno" parameterType="int" resultType="board">
 		select cno, bno, btitle, bcontent, bdate, b.memail, blinkcontent, b.murl, blike, bimage
 		from board b, member m
 		where b.memail = m.memail and bno = #{bno}
 	</select>
-	<!-- 게시물 수정 bno 얻기 (선) -->
-	
-	<!-- 게시물 수정 업데이트 (선) -->
+
 	<update id="update" parameterType="board">
 		update board
 		set cno=#{cno}, btitle=#{btitle}, bcontent=#{bcontent}, memail=#{memail}, blinkcontent=#{blinkcontent}, murl=#{murl}, bimage=#{bimage}
 		where bno=#{bno}
 	</update>
-	<!-- 게시물 수정 업데이트 (선) -->
 	
 	<update id="commentModify" parameterType="map">
 		update reply
@@ -296,14 +187,12 @@
 		where rno = #{rno}
 	</update>
 	
-	<!-- 게시물 수정 업데이트 (선) -->
 	<update id="updateNoImage" parameterType="board">
 		update board
 		set cno=#{cno}, btitle=#{btitle}, bcontent=#{bcontent}, memail=#{memail}, blinkcontent=#{blinkcontent}, murl=#{murl}
 		where bno=#{bno}
 	</update>	
-	<!-- 게시물 수정 업데이트 (선) -->
-	
+
 	<select id="heartCheck" parameterType="map" resultType="int">
 		select count(*) from liked where bno= #{bno} AND memail=#{SessionMemail}
 	</select>
@@ -325,7 +214,7 @@
 		delete from liked where bno=#{bno} AND memail = #{sessionMemail}
 	</delete>
 	
-	<!-- search 이용 -->
+	<!-- search -->
 	<select id="userBoardSearchCount" parameterType="search" resultType="int">
 		SELECT count(*)
 		FROM board b, category c
@@ -339,12 +228,12 @@
 	
 	<select id="searchListUser" parameterType="pager" resultType="board">
 		SELECT rnum, bno, btitle, bdate, memail, ccontent
-			FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
+		FROM (SELECT rownum as rnum, bno, btitle, bdate, memail, ccontent
 					FROM (SELECT bno, btitle, bdate, memail, ccontent
-					        FROM board b, category c
-					        WHERE b.cno = c.cno and ${value} like '%'|| #{murl}||'%' 
-					        ORDER BY bdate DESC)
-							WHERE rownum &lt;=#{endRowNo})
-			WHERE rnum &gt;= #{startRowNo}
+					        	FROM board b, category c
+					       		WHERE b.cno = c.cno and ${value} like '%'|| #{murl}||'%' 
+					       		 ORDER BY bdate DESC)
+					WHERE rownum &lt;=#{endRowNo})
+		WHERE rnum &gt;= #{startRowNo}
 	</select>
 </mapper>
