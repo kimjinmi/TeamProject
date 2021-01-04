@@ -21,7 +21,6 @@ public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailure
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
 		logger.info("실행");
 		super.onAuthenticationFailure(request, response, exception);
-		
 	}
 }
 
