@@ -218,6 +218,7 @@ public class ManagerController {
 		out.flush();
 		out.close();
 	}
+	
 /*	@RequestMapping("/inquirycomplete")
 	public String inquirycomplete(Model model) {
 		
