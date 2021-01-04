@@ -14,15 +14,15 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 	private static final Logger logger = LoggerFactory.getLogger(AuthenticationSuccessHandler.class);
-	
+
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-		
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
+
 		super.onAuthenticationSuccess(request, response, authentication);
-		//로그인 성공시 세션에 mid 저장
-		String memail = authentication.getName(); 
+		// 로그인 성공시 세션에 mid 저장
+		String memail = authentication.getName();
 		HttpSession session = request.getSession();
 		session.setAttribute("sessionMemail", memail);
 	}
 }
-
