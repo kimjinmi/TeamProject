@@ -4,7 +4,7 @@
 
 <h2 style="color: #2d2d2d; display:inline;">차단 회원 관리</h2>
 
-<hr style="margin-top:12px;">
+<hr style="margin-top:12px;"> 
 
 <div class="container">	
 <p style="font-size: 20px; font-weight: bold; color: red;"><i class="fas fa-info" style="padding-right: 2%; font-size: 20px;"></i>Disabled User Information</p>
