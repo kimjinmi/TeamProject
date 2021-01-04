@@ -27,9 +27,6 @@ import com.mycompany.webapp.service.HomeService;
 
 @Controller
 public class HomeController {
-	
-	
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Resource
@@ -75,10 +72,10 @@ public class HomeController {
 		session.setAttribute("sessionMemail", value);
 		
 		
-		// 로그인이 되었을때 작동되어야 할 코드 ** 수정 금지 ** 김지훈 작성 ***********************************************************
+		// 로그인이 되었을때 작동되어야 할 코드
 
 		String sessionMemail = (String) session.getAttribute("sessionMemail"); // 로그인하고 로그인했을 경우 로그인 아이디를 세션에 저장
-		logger.info("현재 세션의 sessionMemail은 " + sessionMemail); // 됬고
+		logger.info("현재 세션의 sessionMemail은 " + sessionMemail);
 		
 		
 		MemberDto member = service.getMemberInfo(sessionMemail); // 세션 아이디의 값으로 아이디에 해당하는 유저의 정보를 가져온다.
@@ -87,10 +84,7 @@ public class HomeController {
 		String UserUrl = member.getMurl(); // 가져온 정보중 세션 유저의 murl 정보만 획득
 		logger.info("######################       member의 Muri = " + member.getMurl());
 		session.setAttribute("UserUrl", UserUrl); // 유저의 정보중에서 MURL만 세션에 넣는다.
-		/*
-		
-		// 김지훈 작성 // 수정 금지 *****************************************************************************************
-	*/
+	
 		return "home";
 	}
 	
