@@ -3,7 +3,7 @@
     <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#007aff"/>
       <stop offset="1" stop-color="#0ccbff"/>
-    </linearGradient>
+    </linearGradient> 
   </defs>
   <path id="Path_11" data-name="Path 11" d="M89.682,282.649a3.019,3.019,0,1,1-4.269,0,3.019,3.019,0,0,1,4.269,0" transform="translate(-75.473 -251.578)" fill="url(#linear-gradient)"/>
   <path id="Path_12" data-name="Path 12" d="M315.1,282.649a3.019,3.019,0,1,1-4.269,0,3.019,3.019,0,0,1,4.269,0" transform="translate(-276.737 -251.578)" fill="url(#linear-gradient)"/>

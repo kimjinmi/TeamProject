@@ -5,7 +5,7 @@
 		var output = document.getElementById('id_view');
 		output.src = URL.createObjectURL(event.target.files[0]);
 	};
-</script>
+</script> 
 <h2 style="color: #2d2d2d; display:inline;">프로필 사진 설정</h2>
 
 

@@ -5,7 +5,7 @@
 <script type="text/javascript">
 var replyinreply = false; 
 var togglehide;
-</script>
+</script> 
 <h4>댓글</h4>
 <c:forEach var="comment" items="${commentlist}" varStatus = "status">
 	<div class="comment-list">

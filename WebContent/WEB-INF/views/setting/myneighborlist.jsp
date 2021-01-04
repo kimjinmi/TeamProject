@@ -7,7 +7,7 @@
 			url:"nDelete",
 			data:{nno:nno},
 			method:"post",
-			success:function(data) {
+			success:function(data) { 
 				if(data.result == "success") {
 					myneighborlist();
 				}

@@ -12,3 +12,4 @@
 		<input class="genric-btn success circle arrow" type="submit" value="세션연결"/>
 	</form>
 </div>
+ 

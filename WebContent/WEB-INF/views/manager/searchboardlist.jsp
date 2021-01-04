@@ -48,7 +48,7 @@ function searchboarddelete(bno,value,search){
 				</div>
 				<hr>
 			</c:forEach>
-			
+			 
 		
 			<div style="text-align:center;" class="row">
 				<div class="col">

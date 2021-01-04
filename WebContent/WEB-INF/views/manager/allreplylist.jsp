@@ -63,10 +63,4 @@ function replydelete(rno){
 			<a class="genric-btn primary-border small" href="javascript:allreplylist(${pager.totalPageNo})"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
 		</div>
 	</div>	
-</div>
-		
-			
-		
-			
-
-					
+</div>			

@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 홈 상위 랭킹 5위 시작 -->
+<!-- 홈 상위 랭킹 5위 시작 --> 
 
 	<div class="container" style="margin-top: 5%;">
 		<div class="row">

@@ -3,12 +3,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <style>
-tr, th, td{
-padding: 10px;
-overflow:hidden;
-text-overflow:ellipsis;
-
-}
+	tr, th, td{
+		padding: 10px;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	}
 </style>
 <script>
 function buttonbefore() {
@@ -58,20 +57,7 @@ function buttondetail() {
 					<a href="javascript:buttonafter()"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;&nbsp;처리완료</a>
 				</li>
 				<span id="afterview" style="display:none;"></span>
-				
-					
-
-			</ul>
-			
+			</ul>	
 		</div>
 	</div>
-	
-	<p></p>
-
 </div>
-
-	
-
-
-
-					

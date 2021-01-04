@@ -4,7 +4,7 @@
 <hr style="margin-top:12px;">
     <form class="form-contact">
         <div class="row">
-	        <div class="col">
+	        <div class="col"> 
 	        	<!-- <span>Main Setting</span> 
 				<div class="primary-checkbox">
 					<input type="checkbox" id="default-checkbox"  style="display: inline;">

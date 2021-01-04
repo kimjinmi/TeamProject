@@ -3,10 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <style>
-tr, th, td{
-padding: 10px;
+	tr, th, td{
+	padding: 10px;
 
-}
+	}
 </style>
 <script type="text/javascript">
 function announceedit(ano){

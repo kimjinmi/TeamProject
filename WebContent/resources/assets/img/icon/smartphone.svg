@@ -6,6 +6,6 @@
         <circle id="Ellipse_1" data-name="Ellipse 1" cx="0.781" cy="0.781" r="0.781" transform="translate(6.133 15.669)" fill="#fff"/>
         <path id="Path_6" data-name="Path 6" d="M219.125,71.9a.781.781,0,0,0-.781-.781h-1.563a.781.781,0,0,0,0,1.563h1.563A.781.781,0,0,0,219.125,71.9Z" transform="translate(-210.648 -68.344)" fill="#fff"/>
       </g>
-    </g>
+    </g> 
   </g>
 </svg>

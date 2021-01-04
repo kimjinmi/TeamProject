@@ -3,12 +3,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <style>
-tr, th, td{
-padding: 10px;
-overflow:hidden;
-text-overflow:ellipsis;
-
-}
+	tr, th, td{
+		padding: 10px;
+		overflow:hidden;
+		text-overflow:ellipsis;
+	} 
 </style>
 
 <script>

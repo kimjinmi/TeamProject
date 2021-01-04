@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
 	<div class="footer-wrapper section-bg2"
 		data-background="<%=application.getContextPath()%>/resources/assets/img/gallery/footer_bg.png">
 		<div class="footer-area footer-padding">

@@ -33,7 +33,7 @@
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/animated-headline.css">
 <link rel="stylesheet"
-	href="<%=application.getContextPath()%>/resources/assets/css/magnific-popup.css">
+	href="<%=application.getContextPath()%>/resources/assets/css/magnific-popup.css"> 
 <link rel="stylesheet"
 	href="<%=application.getContextPath()%>/resources/assets/css/fontawesome-all.min.css">
 <link rel="stylesheet"

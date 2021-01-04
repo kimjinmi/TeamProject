@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
+ 
 <div>
 	<a href="javascript:blogLife()" class="d-flex">
 	<p>라이프</p>
