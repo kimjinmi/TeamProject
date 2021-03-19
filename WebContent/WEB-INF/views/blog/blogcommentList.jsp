@@ -10,7 +10,6 @@ var togglehide;
 <c:forEach var="comment" items="${commentlist}" varStatus = "status">
 	<div class="comment-list">
 		<div class="single-comment justify-content-between d-flex">
-
 			<div class="user justify-content-between d-flex">
 				<!-- <div class="thumb">
 					<img src="assetsx/img/blog/comment_1.png" alt="">

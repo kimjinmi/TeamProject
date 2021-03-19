@@ -59,7 +59,7 @@ public class SignupController {
 	@RequestMapping("/signup")
 	public String signup(@ModelAttribute("creatememberdto") MemberDto member, Model model) {
 		model.addAttribute("member", member);
-		return "signup/signup";
+		return "signup/signup.do";
 	}
 
 	@RequestMapping("/regist")
